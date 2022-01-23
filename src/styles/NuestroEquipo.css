@@ -1,0 +1,24 @@
+.hero-equipo{
+    background-image: url('../assets/equipo_rhesident.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.galeria-equipo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 10rem 0;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.cont-miembros{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 90%;
+}

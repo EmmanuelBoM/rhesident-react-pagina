@@ -1,0 +1,145 @@
+.hero-intenciones{
+    background-image: url('../assets/nuestras_intenciones.png');
+    background-size: cover;
+}
+
+.intenciones-detalle{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.intencion-cont{
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    justify-content: center;
+    height: 40vh;
+}
+
+.intencion-img{
+    z-index: 10;
+    background-image: url('../assets/nature.png');
+    width: 60%;
+    background-size: contain;
+}
+
+.intencion-texto{
+    display: flex;
+    flex-direction: row;
+    width: 40%;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+
+.intencion-descripcion{
+    display: none;
+    margin-bottom: 0;
+    width: 40%;
+}
+
+.intencion-cont:hover .intencion-img{
+    animation: image_hide 0.3s;
+    animation-timing-function:cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    animation-fill-mode: forwards;
+}
+
+.intencion-cont:hover .intencion-texto{
+    animation: slide_reveal 0.3s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.intencion-cont:hover .intencion-descripcion{
+    display: flex;
+}
+
+.intencion-verde{
+    background-color: var(--primario);
+}
+
+
+.proposito-evolutivo .color-overlay{
+    padding-top: 40rem;
+}
+
+.cta-procesos{
+    margin:20rem 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.cta-procesos h2{
+    margin-bottom: 2rem;
+}
+.btn-intenciones-procesos{
+    padding: 2rem 4rem;
+    width: 25%;
+    border-radius: 1rem;
+    border: none;
+    font-weight: 600;
+    background-color: var(--secundario);
+    font-family: Lato;
+    cursor: pointer;
+}
+
+.btn-intenciones-procesos:hover{
+    background-color: var(--primario);
+    color: var(--blanco);
+}
+
+.btn-intenciones-procesos:hover .btn-intenciones-txt-secundario{
+    display: flex;
+}
+
+.btn-intenciones-procesos:hover .btn-intenciones-txt-primario{
+    display: none;
+}
+
+
+.btn-intenciones-txt-secundario{
+    display: none;
+    font-size: 2.4rem;
+}
+
+.btn-intenciones-txt-primario{
+    font-size: 2.4rem;
+}
+
+.mision-vision{
+    background-color: var(--primario);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 20rem 8rem;
+}
+
+.mision-vision h2{
+    margin-bottom: 4rem;
+}
+
+.mision, .vision, .objetivo{
+    text-align: center;
+    width: 30%;
+}
+
+@keyframes slide_reveal {
+    0%{width: 40%;}
+    100%{width: 94.5%;}
+}
+
+@keyframes image_hide {
+    0%{width: 60%;}
+    100%{width: 0%;}
+}
+
+
+
+
