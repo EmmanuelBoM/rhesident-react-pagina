@@ -1,0 +1,146 @@
+.img-404{
+    margin-top: 25rem;
+    margin-bottom: 10rem;
+    padding-left: 10rem;
+    padding-right: 10rem;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-404 h4{
+    color: var(--g-300);
+}
+
+.img-404 img{
+    width: 30%;
+}
+
+.warning-404{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.proximamente{
+    margin-top: 20rem;
+    margin-bottom: 10rem;
+    padding-left: 10rem;
+    padding-right: 10rem;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.proximamente img{
+    width: 45%;
+    margin-top: 4rem;
+}
+
+/* Gears Animation */
+
+.machine {
+    margin-top: 7rem;
+    left: 38%;
+    width: 8%;
+    fill: var(--p-300);
+    position: absolute;
+
+}
+    
+  .small-shadow, .medium-shadow, .large-shadow {
+    fill: rgba(0, 0, 0, 0.05); }
+  
+  .small {
+    -webkit-animation: counter-rotation 2.5s infinite linear;
+         -moz-animation: counter-rotation 2.5s infinite linear;
+           -o-animation: counter-rotation 2.5s infinite linear;
+              animation: counter-rotation 2.5s infinite linear;
+    -webkit-transform-origin: 100.136px 225.345px;
+        -ms-transform-origin: 100.136px 225.345px;
+            transform-origin: 100.136px 225.345px; }
+  
+  .small-shadow {
+    -webkit-animation: counter-rotation 2.5s infinite linear;
+         -moz-animation: counter-rotation 2.5s infinite linear;
+           -o-animation: counter-rotation 2.5s infinite linear;
+              animation: counter-rotation 2.5s infinite linear;
+    -webkit-transform-origin: 110.136px 235.345px;
+        -ms-transform-origin: 110.136px 235.345px;
+            transform-origin: 110.136px 235.345px; }
+  
+  .medium {
+    -webkit-animation: rotation 3.75s infinite linear;
+         -moz-animation: rotation 3.75s infinite linear;
+           -o-animation: rotation 3.75s infinite linear;
+              animation: rotation 3.75s infinite linear;
+    -webkit-transform-origin: 254.675px 379.447px;
+        -ms-transform-origin: 254.675px 379.447px;
+            transform-origin: 254.675px 379.447px; }
+  
+  .medium-shadow {
+    -webkit-animation: rotation 3.75s infinite linear;
+         -moz-animation: rotation 3.75s infinite linear;
+           -o-animation: rotation 3.75s infinite linear;
+              animation: rotation 3.75s infinite linear;
+    -webkit-transform-origin: 264.675px 389.447px;
+        -ms-transform-origin: 264.675px 389.447px;
+            transform-origin: 264.675px 389.447px; }
+  
+  .large {
+    -webkit-animation: counter-rotation 5s infinite linear;
+       -moz-animation: counter-rotation 5s infinite linear;
+           -o-animation: counter-rotation 5s infinite linear;
+              animation: counter-rotation 5s infinite linear;
+    -webkit-transform-origin: 461.37px 173.694px;
+        -ms-transform-origin: 461.37px 173.694px;
+            transform-origin: 461.37px 173.694px; }
+  
+  .large-shadow {  
+    -webkit-animation: counter-rotation 5s infinite linear;
+         -moz-animation: counter-rotation 5s infinite linear;
+           -o-animation: counter-rotation 5s infinite linear;
+              animation: counter-rotation 5s infinite linear;
+    -webkit-transform-origin: 471.37px 183.694px;
+        -ms-transform-origin: 471.37px 183.694px;
+            transform-origin: 471.37px 183.694px; }
+  
+  @-webkit-keyframes rotation {
+      from {-webkit-transform: rotate(0deg);}
+      to   {-webkit-transform: rotate(359deg);}
+  }
+  @-moz-keyframes rotation {
+      from {-moz-transform: rotate(0deg);}
+      to   {-moz-transform: rotate(359deg);}
+  }
+  @-o-keyframes rotation {
+      from {-o-transform: rotate(0deg);}
+      to   {-o-transform: rotate(359deg);}
+  }
+  @keyframes rotation {
+      from {transform: rotate(0deg);}
+      to   {transform: rotate(359deg);}
+  }
+  
+  @-webkit-keyframes counter-rotation {
+      from {-webkit-transform: rotate(359deg);}
+      to   {-webkit-transform: rotate(0deg);}
+  }
+  @-moz-keyframes counter-rotation {
+      from {-moz-transform: rotate(359deg);}
+      to   {-moz-transform: rotate(0deg);}
+  }
+  @-o-keyframes counter-rotation {
+      from {-o-transform: rotate(359deg);}
+      to   {-o-transform: rotate(0deg);}
+  }
+  @keyframes counter-rotation {
+      from {transform: rotate(359deg);}
+      to   {transform: rotate(0deg);}
+  }
