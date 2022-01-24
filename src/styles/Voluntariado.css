@@ -1,0 +1,127 @@
+.hero-voluntariado{
+    background-image: url('../assets/voluntariado.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.tipos-voluntariado{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+}
+
+.cont-tipo-voluntariado{
+    width: 33.33%;
+    background: var(--blanco);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8rem 4rem;
+}
+
+.cont-tipo-voluntariado a{
+    width: 70%;
+}
+
+.cont-tipo-voluntariado:hover{
+    background-color: var(--primario);
+}
+
+.cont-tipo-voluntariado:hover .cont-nombre-voluntariado{
+    color:var(--blanco);
+}
+
+.cont-tipo-voluntariado:hover .btn-ver-proyectos{
+    color:var(--blanco);
+}
+
+.cont-tipo-voluntariado:hover .icono-voluntariado{
+    color:var(--blanco);
+}
+
+
+.cont-tipo-voluntariado:hover .btn-voluntariado{
+    background-color: var(--secundario);
+    color: var(--negro);
+}
+
+.icono-voluntariado{
+    font-size: 10rem;
+    margin-bottom: 4rem;
+    color: var(--p-300);
+}
+.cont-nombre-voluntariado{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 4rem;
+    color: var(--negro);
+}
+
+
+.icono-pregunta{
+    margin-left: 1rem;
+    font-size: 2rem;
+}
+
+.btn-voluntariado{
+    width: 100%;
+    font-family: Lato;
+    background-color: var(--primario);
+    color: var(--blanco);
+    border: none;
+    cursor: pointer;
+    padding: 1.5rem 0;
+    font-size: 2.4rem;
+    border-radius: 1rem;
+    margin-bottom: 4rem;
+    font-weight: 600;
+}
+
+.btn-voluntariado:hover{
+    transform: scale(1.2);
+}
+
+.btn-ver-proyectos{
+    border: none;
+    background: rgba(0, 0, 0, 0);
+    text-decoration: underline;
+    font-weight: 600;
+    color: var(--primario);
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.cta-voluntariado{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20rem 0;
+    background-color: var(--blanco);
+}
+
+.btn-cta-voluntariado{
+    width: 30%;
+    font-family: Lato;
+    background-color: var(--primario);
+    color: var(--blanco);
+    border: none;
+    cursor: pointer;
+    padding: 2rem 0;
+    font-size: 2.4rem;
+    border-radius: 1rem;
+    font-weight: 600;
+    margin-top: 4rem;
+}
+
+.video-voluntariado{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20rem 0;
+}
+

@@ -1,0 +1,44 @@
+.taller{
+    margin-bottom: 6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 30rem;
+    margin-left: 4rem;
+    margin-right: 4rem;
+}
+.cont-taller{
+    background-image: url('../assets/huella_verde.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: left;
+    
+    cursor: pointer;
+    width: 100%;
+}
+
+.taller-svg{
+    width: 90%;
+}
+
+.nombre-taller{
+    margin-bottom: 1rem;
+    color: var(--p-300);
+}
+
+.duracion-taller{
+    color: var(--g-500);
+}
+
+.info-taller{
+    margin-left: 6rem;
+    margin-top: 4rem;
+    width: 100%;
+    text-align: left;
+}

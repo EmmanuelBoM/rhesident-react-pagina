@@ -1,0 +1,114 @@
+.cont-podcast{
+    margin-top: 20rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    padding-right: 10rem;
+    padding-left: 10rem;
+    margin-bottom: 10rem;
+    box-sizing: border-box;
+}
+
+.podcast-acciones{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.interruptor-podcast{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 4rem;
+    margin-top: 2rem;
+}
+
+.btn-youtube{
+    width: 50%;
+    background-color: var(--blanco);
+    padding: 1.5rem;
+    border-radius: 2rem 0 0 2rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+.btn-youtube:hover{
+    background-color: #FF0000;
+    color: var(--blanco);
+}
+
+.btn-spotify:hover{
+    background-color: #1ED760;
+    color: var(--blanco);
+}
+
+.btn-youtube:hover i{
+    color: var(--blanco);
+}
+
+.btn-spotify:hover i{
+    color: var(--blanco);
+}
+
+.btn-youtube i{
+    font-size: 6rem;
+    color: var(--g-200);
+}
+
+.btn-spotify{
+    width: 50%;
+    background-color: var(--blanco);
+    padding: 1.5rem;
+    border-radius: 0 2rem 2rem 0;
+    text-align: center;
+    cursor: pointer;
+}
+
+.btn-spotify i{
+    font-size: 6rem;
+    color: var(--g-200);
+}
+
+.cont-siguenos{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.item-siguenos{
+    font-size: 4rem;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    margin-top: 2rem;
+    text-align: left;
+}
+
+.item-siguenos i{
+    margin-right: 2rem;
+}
+
+.item-siguenos .fa-youtube{
+    color: #FF0000;
+}
+
+.item-siguenos .fa-spotify{
+    color: #1ED760;
+}
+.item-siguenos .fa-facebook{
+    color: #0983ED;
+}
+
+.item-siguenos .fa-instagram{
+    color: #E1306C;
+}
+
+.podcast-spotify{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vh;
+    width: 80%;
+}
