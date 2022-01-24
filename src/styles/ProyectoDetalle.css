@@ -1,7 +1,5 @@
-
-
 .detalles-principal{
-    margin-top:20rem;
+    margin-top:25rem;
     width: 100%;
     box-sizing: border-box;
     display: flex;
@@ -65,9 +63,19 @@
     border: none;
     background-color: var(--primario);
     color: var(--blanco);
+    font-weight: 600;
     padding: 1.5rem 3rem;
-    border-radius: 1.2rem;
+    border-radius: 1rem;
+    font-family: Lato;
+    cursor: pointer;
 }
+
+.btn-colabora:hover{
+    background-color: var(--p-100);
+    box-shadow: 2px 5px 5px #16455556;
+    transform: scale(1.05);
+}
+
 
 .detalles-secundario{
     padding: 0 20rem;
@@ -100,6 +108,7 @@
 
 .h-proyecto{
     margin-bottom: 2rem;
+    text-align: center;
 }
 
 .lista-objetivos{
@@ -115,4 +124,27 @@
 
 .objetivo-ind svg{
     margin-right: 1rem;
+}
+
+.cont-proposito{
+    text-align: center;
+}
+.galeria-proyecto{
+    margin-bottom: 10rem;
+}
+
+.swiper-galeria-proyecto{
+    height: 40rem;
+    width: 40rem;
+}
+
+.slide-proyecto{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #fff;
+    background-color: var(--primario);
 }

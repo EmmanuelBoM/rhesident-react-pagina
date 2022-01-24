@@ -6,6 +6,17 @@ import '../styles/LandingPage.css'
 import '../styles/ProyectoDetalle.css'
 import proyecto from '../assets/cultura.png'
 
+// Swiper imports
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination"
+import "swiper/css/navigation"
+import "swiper/css/effect-cards"
+import SwiperCore, { Pagination,Navigation, EffectCards } from 'swiper';
+
+// install Swiper modules
+SwiperCore.use([EffectCards]);
+
 function ProyectoDetalle() {
     return (
         <main>
@@ -75,11 +86,28 @@ function ProyectoDetalle() {
                     </div>
                     <div className="procesos">
                         <h2 className="negro h-proyecto">Procesos</h2>
-                        <p className='negro'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam corporis minima molestias amet ipsum non repellat dolore ipsa eum magni doloribus dolorum id nesciunt enim, laboriosam sapiente. <br/> Quae eligendi, numquam ratione itaque natus dolorem inventore eveniet tenetur blanditiis voluptate earum accusamus deserunt nemo expedita quas impedit enim. Facilis velit eveniet ipsum asperiores quia placeat debitis hic, officiis necessitatibus eligendi nihil magnam, iste incidunt atque nostrum veniam qui consequuntur et repellat aliquam laudantium temporibus obcaecati ullam totam. Architecto dolore modi officiis aspernatur numquam corrupti maxime. Dolorem facilis iusto temporibus eius nulla numquam ducimus quos dolore recusandae eligendi voluptates ipsam omnis asperiores, similique quod maxime!<br/><br/> Libero nemo incidunt sit repellat error dignissimos culpa distinctio consequuntur itaque. Molestias ducimus numquam dicta quidem odio. Quas, cum quo. Nesciunt dolorum corrupti, quo eligendi quaerat aliquam accusantium labore adipisci sed maiores? Quae magni ratione inventore nisi, obcaecati ad quia unde labore aspernatur adipisci beatae eaque iusto perferendis ut sed autem nobis est natus facere fugiat laudantium numquam suscipit qui. Atque nam ratione officiis cum eaque esse iste laborum, quo reiciendis impedit. Temporibus animi quam enim est facilis quis magni minus aliquam expedita assumenda sapiente adipisci facere maxime accusamus impedit velit nisi, odio molestias quos doloribus consequatur.</p>
+                        <p className='negro'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam corporis minima molestias amet ipsum non repellat dolore ipsa eum magni doloribus dolorum id nesciunt enim, laboriosam sapiente. <br/> Quae eligendi, numquam ratione itaque natus dolorem inventore eveniet tenetur blanditiis voluptate earum accusamus deserunt nemo expedita quas impedit enim. Facilis velit eveniet ipsum asperiores quia placeat debitis hic, officiis necessitatibus eligendi nihil magnam, iste incidunt atque nostrum veniam qui consequuntur et repellat aliquam laudantium temporibus obcaecati ullam totam. Architecto dolore modi officiis aspernatur numquam corrupti maxime. Dolorem facilis iusto temporibus eius nulla numquam ducimus quos dolore recusandae eligendi voluptates ipsam omnis asperiores, similique quod maxime!<br/><br/> Libero nemo incidunt sit repellat error dignissimos culpa distinctio consequuntur itaque. Molestias ducimus numquam dicta quidem odio. Quas, cum quo. Nesciunt dolorum corrupti, quo eligendi quaerat aliquam accusantium labore adipisci sed maiores? Quae magni ratione inventore nisi, obcaecati ad quia unde labore aspernatur adipisci beatae eaque iusto perferendis ut sed autem nobis est natus facere fugiat laudantium numquam suscipit qui. Atque nam ratione officiis cum eaque esse iste laborum, quo reiciendis impedit</p>
                     </div>
                 </div>
             </section>
-            <section className="galeria-proyecto"></section>
+            <section className="galeria-proyecto">
+                <Swiper effect={'cards'} 
+                grabCursor={true} 
+                className="swiper-galeria-proyecto" 
+                pagination={{"type": "custom" }} 
+                navigation={true}
+                spaceBetween={20}  >
+                    <SwiperSlide className='slide-proyecto'>Slide 1</SwiperSlide>
+                    <SwiperSlide className='slide-proyecto'>Slide 2</SwiperSlide>
+                    <SwiperSlide className='slide-proyecto'>Slide 3</SwiperSlide>
+                    <SwiperSlide className='slide-proyecto'>Slide 4</SwiperSlide>
+                    <SwiperSlide className='slide-proyecto'>Slide 5</SwiperSlide>
+                    <SwiperSlide className='slide-proyecto'>Slide 6</SwiperSlide>
+                    <SwiperSlide className='slide-proyecto'>Slide 7</SwiperSlide>
+                    <SwiperSlide className='slide-proyecto'>Slide 8</SwiperSlide>
+                    <SwiperSlide className='slide-proyecto'>Slide 9</SwiperSlide>
+                </Swiper>
+            </section>
             <Footer></Footer>
         </main>
     )
