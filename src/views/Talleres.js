@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Footer from '../components/Footer';
 import NavHeader from '../components/NavHeader';
 import '../styles/base.css'
@@ -6,8 +6,13 @@ import '../styles/LandingPage.css'
 import '../styles/Talleres.css'
 import downArrow from '../assets/down_arrow_light.svg'
 import Taller from '../components/Taller';
+import ModalTaller from '../components/ModalTaller';
+
+import {Animated} from "react-animated-css";
+import "animate.css/animate.min.css";
 
 function Talleres() {
+    const [modalVisibility, setModalVisibility] = useState(false)
     return(
         <main>
             <NavHeader textColor='blanco'></NavHeader>
@@ -28,7 +33,7 @@ function Talleres() {
             <section className="talleres">
                 <h2 className="verde">Activos</h2>
                 <div className="talleres-activos">
-                    <Taller></Taller>
+                    <Taller setModalVisibility={setModalVisibility}></Taller>
                     <Taller></Taller>
                     <Taller></Taller>
                     <Taller></Taller>
@@ -41,6 +46,9 @@ function Talleres() {
                 </div>
                 
             </section>
+            <Animated animateOnMount={false} animationIn="fadeIn" animationOut="fadeOut" isVisible={modalVisibility} animationInDuration={500} animationOutDuration={500} className="overlay-top">
+                {modalVisibility ? <ModalTaller setModalVisibility={setModalVisibility} modalVisibility={modalVisibility}></ModalTaller> : null}
+            </Animated>
             <Footer></Footer> 
         </main>
     );

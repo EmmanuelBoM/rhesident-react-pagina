@@ -1,0 +1,99 @@
+.cont-modal-taller{
+    border-radius: 4rem;
+    background-color: var(--g-900);
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    z-index: 100;
+    padding: 2rem 4rem;
+    align-items: center;
+}
+
+.modal-taller-top{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.modal-taller-top .cont-taller{
+    width: 23rem;
+}
+
+.taller-info-principal{
+    width: 50%;
+}
+
+.etiquetas-taller{
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.etiqueta-taller{
+    border-radius: 25rem;
+    border: 0.2rem solid var(--p-300);
+    color: var(--p-300);
+    font-weight: 600;
+    padding: 0.3rem 1rem;
+    margin-bottom: 1rem;
+}
+
+.etiqueta-taller p{
+    font-size: 1.4rem;
+}
+
+.taller-modalidad{
+    margin-bottom: 2rem;
+}
+
+.taller-modalidad p{
+    color: var(--negro);
+}
+
+
+.modal-taller-bottom{
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.detalle-taller{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titulo-detalle-taller{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.titulo-detalle-taller i{
+    font-size: 2rem;
+    color: var(--g-200);
+    margin-right: 1rem;
+}
+
+.btn-registro-taller{
+    font-size: 2rem;
+    color: var(--blanco);
+    background-color: var(--primario);
+    border-radius: 1rem;
+    border: none;
+    padding: 1rem;
+    width: 40%;
+    font-family: Lato;
+    margin-bottom: 2rem;
+}
+
+.btn-registro-taller:hover{
+    background-color: var(--p-100);
+    box-shadow: 2px 5px 5px #16455556;
+    transform: scale(1.05);
+}
