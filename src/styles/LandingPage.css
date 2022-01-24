@@ -200,7 +200,8 @@
 
 .btn-round:hover{
     transform: scale(1.1);
-    background-color: var(--p-300);
+    background-color: var(--p-100);
+    box-shadow: 2px 3px 5px #21647a76;
 }
 
 .btn-round-voluntario img{

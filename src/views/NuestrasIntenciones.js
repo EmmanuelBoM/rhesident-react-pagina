@@ -15,6 +15,7 @@ import { AnimationOnScroll } from 'react-animation-on-scroll';
 import {Animated} from "react-animated-css";
 import "animate.css/animate.min.css";
 
+import {Link} from 'react-router-dom';
 
 function NuestrasIntenciones() {
     const [overlayVisibility, setOverlayVisibility] = useState(false)
@@ -85,20 +86,25 @@ function NuestrasIntenciones() {
 
             <section className="proposito-evolutivo">
                 <div className="color-overlay">
-                    <h2 className='blanco'>Nuestro propósito evolutivo</h2>
-                    <p className='descripcion-hero blanco'>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam,
-                        quia praesentium iste explicabo ad ipsum ex eius neque, dolor error
-                        commodi accusamus. 
-                    </p>
-                    <div className="scrolldown-cont">
-                        <img src={downArrow} alt="" className="scroll-down-link scroll-down-arrow" />
-                    </div>
+                    <AnimationOnScroll animateIn="animate__fadeInUp" animateOut='animate__fadeOutUp' offset={190}>
+                        <h2 className='blanco'>Nuestro propósito evolutivo</h2>
+                    </AnimationOnScroll>
+                    <AnimationOnScroll className='descripcion-hero' animateIn="animate__fadeInUp" animateOut='animate__fadeOutUp' offset={190}>
+                        <p className='blanco'>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam,
+                            quia praesentium iste explicabo ad ipsum ex eius neque, dolor error
+                            commodi accusamus. 
+                        </p>
+                    </AnimationOnScroll>
                 </div>
             </section>
             <section className="cta-procesos">
-                <h2 className='negro'>Para conocer qué hacemos...</h2>
-                <button className="btn-intenciones-procesos negro"><p className="btn-intenciones-txt-primario">Presiona aquí</p><p className="btn-intenciones-txt-secundario">Conoce nuestros procesos comunitarios</p></button>
+                <AnimationOnScroll animateIn="animate__fadeIn" animateOut='animate__fadeOut'>
+                    <h2 className='negro'>Para conocer qué hacemos...</h2>
+                </AnimationOnScroll>
+                <AnimationOnScroll animateIn="animate__heartBeat" animateOut='animate__fadeOutUp' delay={2}>
+                    <Link to='/proyectos'><button className="btn-intenciones-procesos"><p className="btn-intenciones-txt-primario">Presiona aquí</p><p className="btn-intenciones-txt-secundario">Conoce nuestros procesos comunitarios</p></button></Link>
+                </AnimationOnScroll>
             </section>
             <section className="mision-vision">
             <div className="mision">

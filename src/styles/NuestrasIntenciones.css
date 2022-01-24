@@ -61,9 +61,6 @@
 }
 
 
-.proposito-evolutivo .color-overlay{
-    padding-top: 40rem;
-}
 
 .cta-procesos{
     margin:20rem 0;
@@ -81,13 +78,14 @@
 }
 .btn-intenciones-procesos{
     padding: 2rem 4rem;
-    width: 25%;
+    width: 100%;
     border-radius: 1rem;
     border: none;
     font-weight: 600;
     background-color: var(--secundario);
     font-family: Lato;
     cursor: pointer;
+    color: var(--negro);
 }
 
 .btn-intenciones-procesos:hover{
@@ -140,6 +138,14 @@
     100%{width: 0%;}
 }
 
+@keyframes btn_grow{
+    0%{
+        width: 100%;
+    }
 
+    100%{
+        width: auto;
+    }
+}
 
 
