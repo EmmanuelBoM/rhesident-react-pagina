@@ -5,7 +5,7 @@ import OverlayInvitacion from '../components/OverlayInvitacion'
 import '../styles/base.css'
 import '../styles/LandingPage.css'
 import '../styles/NuestraHuella.css'
-import downArrow from '../assets/down_arrow.svg'
+import downArrow from '../assets/down_arrow_light.svg'
 
 // SwiperJS
 import { Swiper, SwiperSlide } from "swiper/react";

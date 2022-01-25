@@ -13,7 +13,7 @@
     overflow-y: hidden;
 }
 
-.cont-modal{
+.cont-modal-miembro{
     border-radius: 4rem;
     background-color: var(--g-900);
     display: flex;

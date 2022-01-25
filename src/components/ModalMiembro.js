@@ -11,7 +11,7 @@ function ModalMiembro(props) {
     return (
         <div>
             <div className="modal-bg">
-                <div className='cont-modal'>
+                <div className='cont-modal-miembro'>
                     <div className="imagen-completa-miembro">
                     </div>
                     <div className="modal-contenido">

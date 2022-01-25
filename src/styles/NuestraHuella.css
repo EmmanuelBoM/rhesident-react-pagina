@@ -23,6 +23,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    cursor:default !important;
+}
+
+.cont-testimonio:hover .img-testimonial{
+    animation: heartbeat 0.3s ease-in-out forwards;
 }
 
 
@@ -104,6 +109,10 @@
 .cont-nota-medio{
     background-color: var(--blanco);
     border-radius: 2rem;
+}
+
+.cont-nota-medio:hover .franja-nota{
+    background-color: var(--secundario);
 }
 
 .franja-nota{

@@ -246,7 +246,7 @@
     outline: 3px solid transparent;
 }
 
-.input-newsletter-cont input{
+.input-newsletter{
     font-size: 2rem;
     width: 100%;
     padding: .5rem 1rem;
@@ -254,6 +254,13 @@
     background-color: var(--blanco);
     font-family: Lato;
     color: var(--negro);
+}
+
+.input-newsletter button{
+    background-color: var(--secundario);
+    border: none;
+    border-radius: 0 2rem 2rem 0;
+    cursor: pointer;
 }
 
 .input-newsletter-cont input:focus{
@@ -407,3 +414,19 @@
     from{fill: none; opacity: 0;}
     to{fill: var(--p-300); opacity: 1;}
   }
+
+
+  .mc-texto{
+      margin-top: 1rem !important;
+      text-align: left !important;
+      font-size: 2rem !important;
+  }
+
+  .mc-error{
+      color: rgb(224, 100, 100) !important;
+      font-size: 1.4rem;
+  }
+
+  .mc-exito{
+    color: #F0E967 !important;
+}

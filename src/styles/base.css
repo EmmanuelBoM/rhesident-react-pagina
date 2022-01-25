@@ -129,3 +129,8 @@ svg {
 path{
     pointer-events: auto;
 }
+
+.p-300{
+	color: var(--p-300);
+	font-weight: 600;
+}

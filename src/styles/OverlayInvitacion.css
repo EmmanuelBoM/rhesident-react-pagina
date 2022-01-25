@@ -42,16 +42,16 @@
 .btn-invita-donar:hover{
     background-color: var(--blanco) !important;
     color: var(--negro);
-    animation: hearthbeat 0.3s ease-in-out forwards;
+    animation: heartbeat 0.3s ease-in-out forwards;
 }
 
 .btn-invita-voluntariado:hover{
     background-color: var(--blanco) !important;
     color: var(--negro);
-    animation: hearthbeat 0.3s ease-in-out forwards;
+    animation: heartbeat 0.3s ease-in-out forwards;
 }
 
-@keyframes hearthbeat{
+@keyframes heartbeat{
     0%{ transform: scale(1);}
     50%{ transform: scale(1.1);}
     60%{ transform: scale(1.08);}

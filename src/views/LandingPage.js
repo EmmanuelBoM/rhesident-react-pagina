@@ -6,39 +6,19 @@ import Footer from '../components/Footer'
 import img from '../assets/img.jpg'
 import iconoHuella from '../assets/huella1.svg'
 import iconoCausa from '../assets/icono_causa.svg'
-import iconoEnviar from '../assets/icono_send.svg'
-import iconoFacebook from '../assets/icono_facebook.svg'
-import iconoTwitter from '../assets/icono_twitter.svg'
-import iconoInsta from '../assets/icono_instagram.svg'
-import iconoLinkedin from '../assets/icono_linkedin.svg'
-import iconoMail from '../assets/icono_mail.svg'
 import iconoMas from '../assets/icono_mas.svg'
 import downArrow from '../assets/down_arrow.svg'
 import "animate.css/animate.min.css";
 import { AnimationOnScroll } from 'react-animation-on-scroll';
 import {Link} from 'react-router-dom'
+import CustomMailchimpForm from '../components/CustomMailchimpForm'
 
 function LandingPage() {
 
     const [isVideoVisible, setIsVideoVisible] = useState(false);
     const [text1, setText1] = useState(' ')
     const [node1, setNode1] = useState(' ')
-    const [line1, setLine1] = useState(' ')
-    const [line2, setLine2] = useState(' ')
-    const [line3, setLine3] = useState(' ')
-    const [line4, setLine4] = useState(' ')
-    const [line5, setLine5] = useState(' ')
-    const [line6, setLine6] = useState(' ')
-    const [line7, setLine7] = useState(' ')
-    const [line8, setLine8] = useState(' ')
-    const [line9, setLine9] = useState(' ')
-    const [line10, setLine10] = useState(' ')
-    const [line11, setLine11] = useState(' ')
-    const [line12, setLine12] = useState(' ')
-    const [line13, setLine13] = useState(' ')
-
-    
-
+   
     function autoPlayVideo(){
       if (window.scrollY>=500){
         setIsVideoVisible(true)
@@ -237,12 +217,7 @@ function LandingPage() {
           <div className="newsletter-cont">
             <h2 className="blanco">Suscribete al newsletter</h2>
             <p className="blanco">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste facilis eligendi tempora. Cum voluptatem magnam blanditiis animi temporibus, explicabo rem repudiandae ex sed maiores optio est delectus dolorem eligendi repellat.</p>
-            <div className="input-newsletter-cont">
-              <input type="email" name="correo" id="" placeholder='Escribe tu correo electrónico'required enterKeyHint='done' autoComplete='off'/>
-              <button className="btn-newsletter">
-                <img className='icono-send-newsletter'  src={iconoEnviar} alt="" />
-              </button>
-            </div>
+            <CustomMailchimpForm></CustomMailchimpForm>
           </div>
           <div className="separador">
             <div className="circulo-separador"></div>
@@ -288,4 +263,4 @@ function LandingPage() {
     );
 }
 
-export default LandingPage
+export default LandingPag
