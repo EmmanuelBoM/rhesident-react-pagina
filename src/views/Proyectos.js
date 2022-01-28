@@ -74,7 +74,7 @@ function Proyectos() {
         
         <section className="proceso">
           <div className="cultura" id="cultura">
-            <div className="dark-overlay">
+            <div className="dark-overlay cultura-overlay">
                 <h2 className="blanco">Cultura</h2>
                 <div className="scrolldown-cont">
                   <img src={downArrow} alt="" className="scroll-down-link scroll-down-arrow"/>
@@ -95,7 +95,7 @@ function Proyectos() {
                 
                   <SwiperSlide className='proyecto-cont'> 
                     <Link to='/proyecto'>
-                      <div className="proyecto-overlay">
+                      <div className="proyecto-overlay cultura-proyecto">
                         <h3 className="blanco nombre-proceso-ind">Nombre del Proyecto</h3>
                         <p className="blanco descripcion-proceso-ind">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi accusantium ullam reiciendis possimus voluptas architecto praesentium reprehenderit quidem atque dolores.</p>
                       </div> 
@@ -103,31 +103,13 @@ function Proyectos() {
                   </SwiperSlide>
                 
                 
-                <SwiperSlide className='proyecto-cont'>
-                  <div className="proyecto-overlay">
-                    <h3 className="blanco nombre-proceso-ind">Nombre del Proyecto</h3>
-                    <p className="blanco descripcion-proceso-ind">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi accusantium ullam reiciendis possimus voluptas architecto praesentium reprehenderit quidem atque dolores.</p>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide className='proyecto-cont'>
-                  <div className="proyecto-overlay">
-                    <h3 className="blanco nombre-proceso-ind">Nombre del Proyecto</h3>
-                    <p className="blanco descripcion-proceso-ind">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi accusantium ullam reiciendis possimus voluptas architecto praesentium reprehenderit quidem atque dolores.</p>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide className='proyecto-cont'>
-                  <div className="proyecto-overlay">
-                    <h3 className="blanco nombre-proceso-ind">Nombre del Proyecto</h3>
-                    <p className="blanco descripcion-proceso-ind">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi accusantium ullam reiciendis possimus voluptas architecto praesentium reprehenderit quidem atque dolores.</p>
-                  </div>
-                </SwiperSlide>
             </Swiper>
           </div>
         </section>
 
         <section className="proceso">
           <div className="arte" id="arte">
-            <div className="dark-overlay">
+            <div className="dark-overlay arte-overlay">
                 <h2 className="blanco">Arte</h2>
                 <div className="scrolldown-cont">
                   <img src={downArrow} alt="" className="scroll-down-link scroll-down-arrow"/>
@@ -147,7 +129,7 @@ function Proyectos() {
               className="swiper-proyectos">
               <SwiperSlide className='proyecto-cont'> 
                     <Link to='/proyecto'>
-                      <div className="proyecto-overlay">
+                      <div className="proyecto-overlay arte-proyecto">
                         <h3 className="blanco nombre-proceso-ind">Nombre del Proyecto</h3>
                         <p className="blanco descripcion-proceso-ind">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi accusantium ullam reiciendis possimus voluptas architecto praesentium reprehenderit quidem atque dolores.</p>
                       </div> 
@@ -155,24 +137,7 @@ function Proyectos() {
                   </SwiperSlide>
                 
                 
-                <SwiperSlide className='proyecto-cont'>
-                  <div className="proyecto-overlay">
-                    <h3 className="blanco nombre-proceso-ind">Nombre del Proyecto</h3>
-                    <p className="blanco descripcion-proceso-ind">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi accusantium ullam reiciendis possimus voluptas architecto praesentium reprehenderit quidem atque dolores.</p>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide className='proyecto-cont'>
-                  <div className="proyecto-overlay">
-                    <h3 className="blanco nombre-proceso-ind">Nombre del Proyecto</h3>
-                    <p className="blanco descripcion-proceso-ind">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi accusantium ullam reiciendis possimus voluptas architecto praesentium reprehenderit quidem atque dolores.</p>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide className='proyecto-cont'>
-                  <div className="proyecto-overlay">
-                    <h3 className="blanco nombre-proceso-ind">Nombre del Proyecto</h3>
-                    <p className="blanco descripcion-proceso-ind">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi accusantium ullam reiciendis possimus voluptas architecto praesentium reprehenderit quidem atque dolores.</p>
-                  </div>
-                </SwiperSlide>
+               
                 
             </Swiper>
           </div>
@@ -180,7 +145,7 @@ function Proyectos() {
 
         <section className="proceso">
           <div className="urbanismo" id="urbanismo">
-            <div className="dark-overlay">
+            <div className="dark-overlay urbanismo-overlay">
                 <h2 className="blanco">Urbanismo</h2>
                 <div className="scrolldown-cont">
                   <img src={downArrow} alt="" className="scroll-down-link scroll-down-arrow"/>
@@ -201,39 +166,20 @@ function Proyectos() {
               className="swiper-proyectos">
                <SwiperSlide className='proyecto-cont'> 
                     <Link to='/proyecto'>
-                      <div className="proyecto-overlay">
+                      <div className="proyecto-overlay urbanismo-proyecto">
                         <h3 className="blanco nombre-proceso-ind">Nombre del Proyecto</h3>
                         <p className="blanco descripcion-proceso-ind">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi accusantium ullam reiciendis possimus voluptas architecto praesentium reprehenderit quidem atque dolores.</p>
                       </div> 
                     </Link>
                   </SwiperSlide>
                 
-                
-                <SwiperSlide className='proyecto-cont'>
-                  <div className="proyecto-overlay">
-                    <h3 className="blanco nombre-proceso-ind">Nombre del Proyecto</h3>
-                    <p className="blanco descripcion-proceso-ind">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi accusantium ullam reiciendis possimus voluptas architecto praesentium reprehenderit quidem atque dolores.</p>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide className='proyecto-cont'>
-                  <div className="proyecto-overlay">
-                    <h3 className="blanco nombre-proceso-ind">Nombre del Proyecto</h3>
-                    <p className="blanco descripcion-proceso-ind">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi accusantium ullam reiciendis possimus voluptas architecto praesentium reprehenderit quidem atque dolores.</p>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide className='proyecto-cont'>
-                  <div className="proyecto-overlay">
-                    <h3 className="blanco nombre-proceso-ind">Nombre del Proyecto</h3>
-                    <p className="blanco descripcion-proceso-ind">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi accusantium ullam reiciendis possimus voluptas architecto praesentium reprehenderit quidem atque dolores.</p>
-                  </div>
-                </SwiperSlide>
             </Swiper>
           </div>
         </section>
 
         <section className="proceso">
           <div className="sustentabilidad" id="sustentabilidad">
-            <div className="dark-overlay">
+            <div className="dark-overlay sustentabilidad-overlay">
             <h2 className="blanco">Sustentabilidad</h2>
                 <div className="scrolldown-cont">
                   <img src={downArrow} alt="" className="scroll-down-link scroll-down-arrow"/>
@@ -250,10 +196,10 @@ function Proyectos() {
               spaceBetween={40} 
               pagination={{"type": "custom" }} 
               navigation={true} 
-              className="mySwiper">
+              className="swiper-proyectos">
                 <SwiperSlide className='proyecto-cont'> 
                     <Link to='/proyecto'>
-                      <div className="proyecto-overlay">
+                      <div className="proyecto-overlay sustentabilidad-proyecto">
                         <h3 className="blanco nombre-proceso-ind">Nombre del Proyecto</h3>
                         <p className="blanco descripcion-proceso-ind">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi accusantium ullam reiciendis possimus voluptas architecto praesentium reprehenderit quidem atque dolores.</p>
                       </div> 
@@ -261,24 +207,7 @@ function Proyectos() {
                   </SwiperSlide>
                 
                 
-                <SwiperSlide className='proyecto-cont'>
-                  <div className="proyecto-overlay">
-                    <h3 className="blanco nombre-proceso-ind">Nombre del Proyecto</h3>
-                    <p className="blanco descripcion-proceso-ind">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi accusantium ullam reiciendis possimus voluptas architecto praesentium reprehenderit quidem atque dolores.</p>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide className='proyecto-cont'>
-                  <div className="proyecto-overlay">
-                    <h3 className="blanco nombre-proceso-ind">Nombre del Proyecto</h3>
-                    <p className="blanco descripcion-proceso-ind">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi accusantium ullam reiciendis possimus voluptas architecto praesentium reprehenderit quidem atque dolores.</p>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide className='proyecto-cont'>
-                  <div className="proyecto-overlay">
-                    <h3 className="blanco nombre-proceso-ind">Nombre del Proyecto</h3>
-                    <p className="blanco descripcion-proceso-ind">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi accusantium ullam reiciendis possimus voluptas architecto praesentium reprehenderit quidem atque dolores.</p>
-                  </div>
-                </SwiperSlide>
+              
             </Swiper>
           </div>
         </section>

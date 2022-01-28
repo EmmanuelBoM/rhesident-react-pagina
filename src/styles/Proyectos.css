@@ -45,6 +45,22 @@
     backdrop-filter: contrast(70%);
 }
 
+.cultura-overlay{
+    background: #79742d6d;
+}
+
+.arte-overlay{
+    background: #f460604c;
+}
+
+.urbanismo-overlay{
+    background: #6876836b;
+}
+
+.sustentabilidad-overlay{
+    background: #75b28d6f;
+}
+
 .cultura{
     background-image: url('../assets/cultura.png');
     background-size: cover;
@@ -139,12 +155,42 @@
     animation-fill-mode: forwards;
 }
 
+
 .swiper-slide:hover .proyecto-overlay{
     animation: color_transform 0.5s;
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
 }
 
+.swiper-slide:hover .proyecto-overlay.cultura-proyecto{
+    animation: yellow_transform 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.swiper-slide:hover .proyecto-overlay.cultura-proyecto p{
+    color: var(--negro);
+}
+.swiper-slide:hover .proyecto-overlay.cultura-proyecto h3{
+    color: var(--negro);
+}
+
+.swiper-slide:hover .proyecto-overlay.arte-proyecto{
+    animation: red_transform 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.swiper-slide:hover .proyecto-overlay.urbanismo-proyecto{
+    animation: gray_transform 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+.swiper-slide:hover .proyecto-overlay.sustentabilidad-proyecto{
+    animation: green_transform 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
 .swiper-slide:hover{
     cursor: pointer;
 }
@@ -155,4 +201,47 @@
     100%{background-color: var(--blanco); transform: scale(1.1);}
 }
 
+@keyframes color_transform{
+    0%{
+        background: rgba(0, 0, 0, 0.5);
+    }
+    100%{
+        background: var(--primario)
+    }
+}
 
+@keyframes yellow_transform{
+    0%{
+        background: rgba(0, 0, 0, 0.5);
+    }
+    100%{
+        background: var(--secundario)
+    }
+}
+
+@keyframes red_transform{
+    0%{
+        background: rgba(0, 0, 0, 0.5);
+    }
+    100%{
+        background: #F46060;
+    }
+}
+
+@keyframes gray_transform{
+    0%{
+        background: rgba(0, 0, 0, 0.5);
+    }
+    100%{
+        background: #687683;
+    }
+}
+
+@keyframes green_transform{
+    0%{
+        background: rgba(0, 0, 0, 0.5);
+    }
+    100%{
+        background: #75B28D;
+    }
+}

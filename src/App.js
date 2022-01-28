@@ -20,10 +20,12 @@ import Podcast from './views/Podcast';
 import Vista404 from './views/Vista404';
 import Proximamente from './views/Proximamente';
 import PaypalDona from './views/PaypalDona';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
    <Router>
+      <ScrollToTop/>
      <Routes>
       <Route path='/' element={<LandingPage/>} />
       <Route path='/proyectos' element={<Proyectos/>} />
@@ -34,7 +36,7 @@ function App() {
       <Route path='/proyecto' element={<ProyectoDetalle/>} />
       <Route path='/talleres' element={<Talleres/>} />
       <Route path='/voluntariado' element={<Voluntariado/>} />
-      <Route path='/donaciones' element={<Donaciones/>} />
+      <Route path='/como-apoyar' element={<Donaciones/>} />
       <Route path='/registro-voluntariado' element={<RegistroVoluntarios/>} />
       <Route path='/podcast' element={<Podcast/>} />
       <Route path='/blog' element={<Proximamente/>} />

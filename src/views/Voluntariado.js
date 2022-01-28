@@ -9,6 +9,7 @@ import CardVoluntariado from '../components/CardVoluntariado';
 
 import {Animated} from "react-animated-css";
 import "animate.css/animate.min.css";
+import { AnimationOnScroll } from 'react-animation-on-scroll';
 
 // Swiper imports
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -180,8 +181,14 @@ function Voluntariado() {
             :null}
         </section>
         <section className="cta-voluntariado">
-            <h2 className="negro">Anímate a aprender y hacer un cambio en la sociedad</h2>
-            <button className="btn-cta-voluntariado">Aplica aquí</button>
+            <AnimationOnScroll animateIn="animate__fadeIn" animateOut='animate__fadeOut'>
+                <h2 className="negro">Anímate a aprender y hacer un cambio en la sociedad</h2>
+            </AnimationOnScroll>
+            
+            <AnimationOnScroll animateIn="animate__heartBeat" animateOut='animate__fadeOutUp' delay={2}>
+                    <Link to='/registro-voluntariado'><button className="btn-cta-voluntariado"><p className="cta-voluntariado-t1">Aplica aquí</p><p className="cta-voluntariado-t2">Sé parte de Rhesident Org</p></button></Link>
+            </AnimationOnScroll>
+            
         </section>
 
         <section className="video-voluntariado">
