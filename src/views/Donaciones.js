@@ -4,6 +4,7 @@ import NavHeader from '../components/NavHeader';
 import '../styles/base.css'
 import '../styles/Donaciones.css'
 import downArrow from '../assets/down_arrow_light.svg'
+import {Link} from 'react-router-dom'
 
 function Donaciones() {
   return (
@@ -26,7 +27,7 @@ function Donaciones() {
                 <div className="cont-tipo-donaciones donar">
                     <i class="fa-solid fa-circle-dollar-to-slot icono-donaciones"></i>
                     <p className="mb4 blanco">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi suscipit architecto soluta repellendus unde id!</p>
-                    <button className="btn-donaciones">Donaciones</button>
+                    <Link to='/dona-ahora'><button className="btn-donaciones">Donaciones</button></Link>
                 </div>
                 <div className="cont-tipo-donaciones idea">
                     <i class="fa-solid fa-lightbulb icono-donaciones verde"></i>

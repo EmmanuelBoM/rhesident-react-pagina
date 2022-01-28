@@ -31,14 +31,14 @@ function Talleres() {
             </section>
 
             <section className="talleres">
-                <h2 className="verde">Activos</h2>
+                <h2 className="verde">Talleres activos</h2>
                 <div className="talleres-activos">
                     <Taller setModalVisibility={setModalVisibility}></Taller>
                     <Taller></Taller>
                     <Taller></Taller>
                     <Taller></Taller>
                 </div>
-                <h2 className="verde">Próximos</h2>
+                <h2 className="verde">Talleres Próximos</h2>
                 <div className="talleres-proximos">
                     <Taller></Taller>
                     <Taller></Taller>

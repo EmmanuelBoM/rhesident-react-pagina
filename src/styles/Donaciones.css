@@ -76,13 +76,13 @@
 }
 
 .btn-donaciones{
-    width: 70%;
+    width: 100%;
     font-family: Lato;
     background-color: var(--primario);
     color: var(--blanco);
     border: none;
     cursor: pointer;
-    padding: 1.5rem 0;
+    padding: 1.5rem 2rem;
     font-size: 2.4rem;
     border-radius: 1rem;
     font-weight: 600;

@@ -76,7 +76,7 @@ function NuestroOrigen() {
                     </div>
                 </AnimationOnScroll>
 
-                <AnimationOnScroll animateIn="animate__fadeInRight" animateOut='animate__fadeOutRight' duration={1.5}>
+                <AnimationOnScroll animateIn="animate__fadeInLeft" animateOut='animate__fadeOutLeft' duration={1.5}>
                     <div className="nuestra-historia">
                         <div className="cont-origen">
                             <h2 className="titulo-origen negro">Nuestra historia</h2>

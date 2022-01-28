@@ -90,6 +90,7 @@
     width: 40%;
     font-family: Lato;
     margin-bottom: 2rem;
+    cursor: pointer;
 }
 
 .btn-registro-taller:hover{

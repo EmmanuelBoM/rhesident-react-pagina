@@ -23,7 +23,7 @@
 }
 
 .modal-contenido{
-    padding: 8rem 6rem;
+    padding: 4rem 6rem;
     width: 60%;
 }
 .imagen-completa-miembro{
@@ -44,7 +44,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
 }
 
 .btn-cerrar-modal{
@@ -58,7 +58,8 @@
     border-radius: 50%;
 }
 .descripcion-miembro-modal{
-    font-size:1.5rem;
+    font-size:1.6rem;
+    margin-bottom: 4rem;
 }
 .btn-cerrar{
     width: 6%;

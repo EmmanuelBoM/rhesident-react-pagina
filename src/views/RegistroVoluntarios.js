@@ -82,7 +82,7 @@ function RegistroVoluntarios() {
         <main>
             <NavHeader></NavHeader>
             <div className="titulo-header">
-                <h1 className="verde">Completa tu registro como voluntario</h1>
+                <h1 className="verde">Completa el registro para <br /> tu voluntariado</h1>
             </div>
            
             <section className="registro-contenido">
@@ -96,11 +96,10 @@ function RegistroVoluntarios() {
                         <label htmlFor="" className='input-label'>Número de teléfono</label>
                         <input type="tel"  placeholder="10 dígitos" name="" id="" className="input-gral" required/>
                         <label htmlFor="" className='input-label'>Lugar de residencia</label>
-                        <input type="text"  placeholder="Ciudad" name="" id="" className="input-gral" required/>
+                        <input type="text"  placeholder="Ciudad o comunidad" name="" id="" className="input-gral" required/>
                         <label htmlFor="" className="input-label">Modalidad de voluntariado</label>
                         <Select styles={customSelectStyles} options={options} placeholder='Selecciona una modalidad'/>
-
-                        <label htmlFor="" className="input-label">¿Por qué te interesa ser parte de la organización?</label>
+                        <label htmlFor="" className="input-label">¿Por qué te interesaría ser parte de la organización?</label>
                         <textarea name="" id="" cols="30" rows="8" className="input-gral" placeholder='Cuéntanos'></textarea>
                         <button className="btn-enviar">
                             <p>Enviar</p>

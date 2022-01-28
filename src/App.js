@@ -19,7 +19,7 @@ import RegistroVoluntarios from './views/RegistroVoluntarios';
 import Podcast from './views/Podcast';
 import Vista404 from './views/Vista404';
 import Proximamente from './views/Proximamente';
-
+import PaypalDona from './views/PaypalDona';
 
 function App() {
   return (
@@ -39,6 +39,7 @@ function App() {
       <Route path='/podcast' element={<Podcast/>} />
       <Route path='/blog' element={<Proximamente/>} />
       <Route path='/tienda' element={<Proximamente/>} />
+      <Route path='/dona-ahora' element={<PaypalDona/>} />
       <Route path="*" element={<Vista404/>} />
      </Routes>
    </Router>

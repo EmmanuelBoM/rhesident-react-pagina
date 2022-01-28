@@ -44,6 +44,7 @@
     align-items: center;
     text-align: center;
     width: 35rem;
+    box-shadow: 8px 5px 15px #123a342a;
 }
 
 .icono-cta{
@@ -68,7 +69,18 @@
     border: none;
     position: absolute;
     top: 85%;
+    cursor: pointer;
+    align-items: center;
+    height: 10rem;
 }
+
+.btn-cta:hover{
+    background-color: var(--primario);
+    color: var(--blanco);
+    animation: heartbeat 0.3s ease-in-out forwards;
+}
+
+
 
 .descripcion-video-principal{
     margin-bottom: 4rem;
@@ -357,76 +369,76 @@
     100% { -webkit-transform:translate(0,20px);}
   }
   
-  @-moz-keyframes fade_move_down {
-    0%   { -moz-transform:translate(0,-20px);}
-    100% { -moz-transform:translate(0,20px);}
-  }
-  @keyframes fade_move_down {
-    0%   { transform:translate(0,-20px); }
-    100% { transform:translate(0,20px); }
-  }
+@-moz-keyframes fade_move_down {
+0%   { -moz-transform:translate(0,-20px);}
+100% { -moz-transform:translate(0,20px);}
+}
+@keyframes fade_move_down {
+0%   { transform:translate(0,-20px); }
+100% { transform:translate(0,20px); }
+}
 
 
 
-  @keyframes flip_180 {
-    0%   { transform: rotateZ(0);}
-    100% { transform: rotateZ(360deg);}
-  }
+@keyframes flip_180 {
+0%   { transform: rotateZ(0);}
+100% { transform: rotateZ(360deg);}
+}
 
 
-  .path {
-    stroke-dasharray: 1000;
-    stroke-dashoffset: 1000;
-    animation: dash 5s linear forwards;
-  }
-  .path-l{
-    stroke-dasharray: 1000;
-    stroke-dashoffset: 1000;
-    animation: dash 3s linear forwards;
-  }
+.path {
+stroke-dasharray: 1000;
+stroke-dashoffset: 1000;
+animation: dash 5s linear forwards;
+}
+.path-l{
+stroke-dasharray: 1000;
+stroke-dashoffset: 1000;
+animation: dash 3s linear forwards;
+}
 
-  .path-node-active{
-    animation: fadeIn_node 0.5s linear forwards;
-  }
+.path-node-active{
+animation: fadeIn_node 0.5s linear forwards;
+}
 
-  .path-text-active {
-    animation: fadeIn_text 0.5s linear forwards;
-  }
+.path-text-active {
+animation: fadeIn_text 0.5s linear forwards;
+}
 
-  .path-reverse{
-    stroke-dasharray: 1000;
-    stroke-dashoffset: 1000;
-    animation: dash 5s linear reverse;
-  }
-  
-  @keyframes dash {
+.path-reverse{
+stroke-dasharray: 1000;
+stroke-dashoffset: 1000;
+animation: dash 5s linear reverse;
+}
+
+@keyframes dash {
     to {
-      stroke-dashoffset: 0;
+        stroke-dashoffset: 0;
     }
-  }
+}
 
-  @keyframes fadeIn_text {
+@keyframes fadeIn_text {
     from{fill: none; opacity: 0;}
     to{fill: var(--negro); opacity: 1;}
-  }
+}
 
-  @keyframes fadeIn_node {
+@keyframes fadeIn_node {
     from{fill: none; opacity: 0;}
     to{fill: var(--p-300); opacity: 1;}
-  }
+}
 
 
-  .mc-texto{
-      margin-top: 1rem !important;
-      text-align: left !important;
-      font-size: 2rem !important;
-  }
+.mc-texto{
+    margin-top: 1rem !important;
+    text-align: left !important;
+    font-size: 2rem !important;
+}
 
-  .mc-error{
-      color: rgb(224, 100, 100) !important;
-      font-size: 1.4rem;
-  }
+.mc-error{
+    color: rgb(224, 100, 100) !important;
+    font-size: 1.4rem;
+}
 
-  .mc-exito{
+.mc-exito{
     color: #F0E967 !important;
 }
