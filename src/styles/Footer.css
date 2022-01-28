@@ -6,10 +6,79 @@ footer{
     align-items: center;
     box-sizing: border-box;
     padding: 6rem 8rem 2rem 8rem;
+    overflow-x: hidden;
 }
+.footer-main-content{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.footer-details{
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.logo-footer{
+    width: 70%;
+    margin-inline:auto;
+    margin-top: -10rem;
+    margin-bottom: -2rem;
+}
+
+.redes-footer{
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    width: 15rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+.redes-footer a i{
+    font-size: 2.4rem;
+    color: var(--primario);
+}
+
+.footer-links{
+    width: 75%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+
+.footer-cont{
+    width: 22rem;
+    height: 15rem;
+}
+.footer-cont a{
+    text-decoration: none;
+}
+.footer-subtitle{
+    color: var(--p-200);
+    font-weight: 800;
+    font-size: 1.6rem;
+    margin-bottom: 0.8rem;
+}
+.footer-link{
+    font-size: 1.6rem;
+    color: var(--p-200);
+    margin-bottom: 0.5rem;
+}
+.footer-link:hover{
+    text-decoration: underline;
+}
+
+
 .footer-divider{
     margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     height: 0.1rem;
     background-color: rgba(105, 105, 105, 0.2);
     width: 105%;
@@ -22,12 +91,21 @@ footer{
     justify-content: space-between;
 }
 
-
-
 .footer-credits {
     text-align: start;
+    color: var(--primario);
 }
+
+.footer-credits p{
+    font-size: 1.6rem;
+}
+
 
 .footer-docs{
     text-align: end;
+}
+
+.footer-docs p{
+    font-size: 1.6rem;
+    color: var(--primario);
 }
