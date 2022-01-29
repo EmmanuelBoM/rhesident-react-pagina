@@ -1,0 +1,102 @@
+.cont-menu-admin{
+    height: 100vh;
+    width: 18%;
+    background-color: #FDFDFD;
+    border-radius: 0 0 10rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4rem 1rem;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+
+.logo-menu-admin{
+    width: 70%;
+}
+
+.tabs{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    height: 65vh;
+    justify-content: space-around;
+}
+
+
+.menu-tab{
+    width: 100%;
+    padding: 1rem 1rem;
+    background-color: #f5f4f700;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 25rem;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+
+
+.icono-tab{
+    font-size: 2.4rem;
+    margin-right: 2rem;
+    margin-left: 2rem;
+    color: var(--g-800);
+}
+
+.icono-tab-img{
+    font-size: 2.4rem;
+    margin-right: 2rem;
+    margin-left: 2rem;
+    color: var(--g-800);
+}
+
+.nombre-tab{
+    color: var(--g-500);
+    font-size: 1.6rem;
+}
+
+.tab-active{
+    color: var(--p-300) !important;
+    font-weight: 600;
+    background-color: #F5F4F7 !important;
+}
+
+.icono-tab-active{
+    fill: var(--p-300) !important;
+}
+
+.menu-tab:hover{
+    background-color: #F5F4F7;
+}
+
+.menu-tab:hover .nombre-tab{
+    color: var(--p-300);
+    font-weight: 600;
+}
+
+.menu-tab:hover .icono-tab{
+    color: var(--p-300);
+}
+
+.menu-tab:hover .icono-tab-img path{
+    fill: var(--p-300) !important;
+}
+
+.logout-cont{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logout-cont i{
+    font-size: 2.5rem;
+    color: var(--primario);
+}
+
+.logout-cont p{
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--primario);
+}

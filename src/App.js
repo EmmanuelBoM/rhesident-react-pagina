@@ -21,6 +21,8 @@ import Vista404 from './views/Vista404';
 import Proximamente from './views/Proximamente';
 import PaypalDona from './views/PaypalDona';
 import ScrollToTop from './components/ScrollToTop';
+import Login from './views/Login';
+import AdminRecursos from './views/AdminRecursos';
 
 function App() {
   return (
@@ -42,6 +44,8 @@ function App() {
       <Route path='/blog' element={<Proximamente/>} />
       <Route path='/tienda' element={<Proximamente/>} />
       <Route path='/dona-ahora' element={<PaypalDona/>} />
+      <Route path='/login' element={<Login/>} />
+      <Route path='/admin_recursos' element={<AdminRecursos/>} />
       <Route path="*" element={<Vista404/>} />
      </Routes>
    </Router>
