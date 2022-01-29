@@ -25,6 +25,8 @@ function RegistroVoluntarios() {
             color: "#F7F7F7",
             fontFamily: "Lato",
             textAlign: "start",
+            backgroundColor: 'rgba(255, 255, 255, 0)',
+            marginBottom: '1rem',
             "&:focus ": {
                 outline: "none !important",
                 border: "2px solid var(--p-400)"
@@ -42,6 +44,7 @@ function RegistroVoluntarios() {
             fontSize: "1.8rem",
             textAlign: "start",
             fontFamily: "Lato",
+            marginTop: '-0.8rem'
         
         }),
         menuList: base => ({

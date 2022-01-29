@@ -7,9 +7,9 @@
 }
 .main-svg{
     position: absolute;
-    top: -40rem;
+    margin-top: -40rem;
     z-index: -10;
-    width: 95%;
+    width: 110vw;
 }
 
 .titulo-landing{
