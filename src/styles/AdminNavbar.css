@@ -9,6 +9,9 @@
     padding: 4rem 1rem;
     box-sizing: border-box;
     justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 
 .logo-menu-admin{

@@ -6,7 +6,7 @@ import iconoProyectos from '../assets/corazon_icono.svg'
 
 function AdminNavbar(props) {
     return (
-        <nav className="cont-menu-admin">
+        <aside className="cont-menu-admin">
             <img src={logoMenu} alt="" className="logo-menu-admin" />
             <div className="tabs">
                 <div className={props.activeTab==='recursos' ? 'menu-tab tab-active':`menu-tab`}>
@@ -51,7 +51,7 @@ function AdminNavbar(props) {
                 <p className="cerrar-sesion-text">Cerrar sesión</p>
             </div>
            
-        </nav>
+        </aside>
     );
 }
 
