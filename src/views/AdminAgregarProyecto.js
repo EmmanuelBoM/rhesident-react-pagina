@@ -4,15 +4,29 @@ import '../styles/base.css'
 import '../styles/AdminLayout.css'
 import ilustracionAgregarProyecto from '../assets/ilustracion_agregar_proyecto.svg'
 import Select from 'react-select'
+import CreatableSelect, { useCreatable } from 'react-select/creatable';
 
-const options = [
+const ejesAccion = [
   { value: 'Cultura', label: 'Cultura' },
   { value: 'Arte', label: 'Arte' },
   { value: 'Urbanismo', label: 'Urbanismo' },
   { value: 'Sustentabilidad', label: 'Sustentabilidad' }
 ]
 
+const estatusSelect = [
+    { value: 'Activo', label: 'Activo' },
+    { value: 'Pasado', label: 'Pasado' },
+    { value: 'Próximo', label: 'Próximo' }
+  ]
+
+const modalidadesSelect = [
+{ value: 'Presencial', label: 'Presencial' },
+{ value: 'Híbrido', label: 'Híbrido' },
+{ value: 'Remoto', label: 'Remoto' }
+]
+
 function AdminAgregarProyecto() {
+    const components={DropdownIndicator: null}
 
     const customSelectStyles = {
         control: (base, state) => ({
@@ -80,7 +94,14 @@ function AdminAgregarProyecto() {
         },
         })
     }
-  
+    
+    const galeriaArr =[
+        {url: 'https://images.unsplash.com/photo-1505820996465-b8bf9918eb60?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MnwxODg3MTUyfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=600&q=60'},
+        {url: 'https://images.unsplash.com/photo-1519331379826-f10be5486c6f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MTJ8MTg4NzE1Mnx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=600&q=60'},
+        {url: 'https://images.unsplash.com/photo-1464288550599-43d5a73451b8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MjV8MTg4NzE1Mnx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=600&q=60'},
+        {url: 'https://images.unsplash.com/photo-1566836610593-62a64888a216?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8NDN8MTg4NzE1Mnx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=600&q=60'}
+    ]
+
     return (
         <body className="body-admin">
             <AdminNavbar activeTab='proyectos'></AdminNavbar>
@@ -99,13 +120,56 @@ function AdminAgregarProyecto() {
                             <label htmlFor="" className="input-label">Descripción general</label>
                             <textarea name="" id="" cols="30" rows="8" className="input-gral" placeholder='Escribe aquí'></textarea>
                             
+                            <label htmlFor="" className="input-label">Imagen principal</label>
+                            <div className="file-preview">
+                                <input type="file" name="" id="" className="input-archivo" />
+                                <img src={''} alt="" className="preview-img" />
+                            </div>
+
+                            <label htmlFor="" className="input-label">Etiquetas</label>
+                            <CreatableSelect
+                                components={components}
+                                isClearable
+                                isMulti
+                                styles={customSelectStyles}
+                                placeholder="Escribe una o más etiquetas. Enter para agregar otra."
+                            />
+
                             <label htmlFor="" className="input-label">Ejes de acción</label>
-                            <Select styles={customSelectStyles} options={options} placeholder='Selecciona uno o más ejes'/>
+                            <Select styles={customSelectStyles} options={ejesAccion} placeholder='Selecciona uno o más ejes' isMulti/>
+
+                            <label htmlFor="" className="input-label">Estatus</label>
+                            <Select styles={customSelectStyles} options={estatusSelect} placeholder='Selecciona el estatus del proyecto'/>
+
+                            <label htmlFor="" className="input-label">Modalidad</label>
+                            <Select styles={customSelectStyles} options={modalidadesSelect} placeholder='Selecciona la modalidad del proyecto'/>
                             
                             <label htmlFor="" className="input-label">Propósito</label>
                             <textarea name="" id="" cols="30" rows="4" className="input-gral" placeholder='Escribe aquí'></textarea>
+                            
+                            <label htmlFor="" className="input-label">Objetivos</label>
+                            <CreatableSelect
+                                components={components}
+                                isClearable
+                                isMulti
+                                styles={customSelectStyles}
+                                placeholder="Escribe los objetivos. Enter para agregar otro."
+                            />
+                            
                             <label htmlFor="" className="input-label">Procesos</label>
                             <textarea name="" id="" cols="30" rows="8" className="input-gral" placeholder='Escribe aquí'></textarea>
+                            
+                            <label htmlFor="" className="input-label">Galería de imagenes</label>
+                            <div className="file-preview-multi">
+                                <input type="file" name="" id="" className="input-archivo" />
+                                <div className="cont-galeria">
+                                    {galeriaArr.map((img, i) =>
+                                        <img src={img.url} alt="" className="preview-img" />
+                                    )}
+                                </div>
+                                
+                            </div>
+
                             <button className="btn-enviar">
                                 <p>Agregar proyecto</p>
                             </button>

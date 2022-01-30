@@ -148,7 +148,7 @@
     margin-bottom: 10rem;
 }
 
-/* Overwrites Datagrid default styles */
+/*--------- Overwrites Datagrid default styles -----------------*/
 .css-1jbbcbn-MuiDataGrid-columnHeaderTitle{
     color: var(--negro);
     font-weight: 700 !important;
@@ -173,6 +173,8 @@
     font-size: 1.4rem !important;
     font-family: Lato;
 }
+/*----------------------------------------------------------------*/
+
 
 .icono-accion-tabla{
     font-size: 2rem;
