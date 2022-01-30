@@ -23,6 +23,8 @@ import PaypalDona from './views/PaypalDona';
 import ScrollToTop from './components/ScrollToTop';
 import Login from './views/Login';
 import AdminRecursos from './views/AdminRecursos';
+import AdminProyectos from './views/AdminProyectos';
+import AdminAgregarProyecto from './views/AdminAgregarProyecto';
 
 function App() {
   return (
@@ -46,6 +48,8 @@ function App() {
       <Route path='/dona-ahora' element={<PaypalDona/>} />
       <Route path='/login' element={<Login/>} />
       <Route path='/admin_recursos' element={<AdminRecursos/>} />
+      <Route path='/admin_proyectos' element={<AdminProyectos/>} />
+      <Route path='/agregar-proyecto' element={<AdminAgregarProyecto/>} />
       <Route path="*" element={<Vista404/>} />
      </Routes>
    </Router>
