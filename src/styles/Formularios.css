@@ -30,7 +30,7 @@
 .input-label{
     font-size: 1.8rem;
     color: var(--negro);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
     font-weight: 600;
 }
 
@@ -39,7 +39,7 @@
     border-radius: 1.2rem;
     border: 2px solid var(--g-800);
     font-size: 1.8rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     font-family: Lato;
     resize: none;
     font-weight: 500;
@@ -87,6 +87,43 @@
     margin-right: 2rem;
     font-weight: 600;
     
+}
+
+.input-archivo::-webkit-file-upload-button{
+    background-color: var(--secundario);
+    border: none;
+    font-family: Lato;
+    padding: 1rem 2rem;
+    font-weight: 600;
+    border-radius: 1rem;
+}
+
+.input-archivo::file-selector-button{
+    background-color: var(--secundario);
+    border: none;
+    font-family: 'Lato';
+    padding: 1rem 2rem;
+    font-weight: 600;
+    border-radius: 1rem;
+}
+
+.file-preview{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    align-items: center;
+}
+
+.preview-img{
+    margin-top: 1rem;
+    width: 20%;
+}
+
+.cont-formulario-agregar{
+    min-width: 65rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 @keyframes focus_appear{
