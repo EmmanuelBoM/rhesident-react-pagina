@@ -6,27 +6,41 @@ import ilustracionAgregarProyecto from '../assets/ilustracion_agregar_proyecto.s
 import Select from 'react-select'
 import CreatableSelect, { useCreatable } from 'react-select/creatable';
 
-const ejesAccion = [
-  { value: 'Cultura', label: 'Cultura' },
-  { value: 'Arte', label: 'Arte' },
-  { value: 'Urbanismo', label: 'Urbanismo' },
-  { value: 'Sustentabilidad', label: 'Sustentabilidad' }
-]
+// Firebase Imports
+import {db, storage} from '../firebaseConfig'
+import {collection,addDoc} from "@firebase/firestore";
+import { ref, uploadBytes, getDownloadURL } from "@firebase/storage";
 
-const estatusSelect = [
-    { value: 'Activo', label: 'Activo' },
-    { value: 'Pasado', label: 'Pasado' },
-    { value: 'Próximo', label: 'Próximo' }
-  ]
 
-const modalidadesSelect = [
-{ value: 'Presencial', label: 'Presencial' },
-{ value: 'Híbrido', label: 'Híbrido' },
-{ value: 'Remoto', label: 'Remoto' }
-]
 
 function AdminAgregarProyecto() {
-    const components={DropdownIndicator: null}
+    const [ejesValue, setEjesValue] = useState([])
+    const [etiquetasValue, setEtiquetasValue] = useState([])
+    const [objetivosValue, setObjetivosValue] = useState([])
+    const [galeria, setGaleria] = useState([])
+    const [imgPrincipalURL, setImgPrincipalURL] = useState('')
+    const [modalidadValue, setModalidadValue] = useState('')
+    const [estatusValue, setEstatusValue] = useState('')
+    const [proyecto, setProyecto] = useState({})
+
+    const ejesAccion = [
+        { value: 'Cultura', label: 'Cultura' },
+        { value: 'Arte', label: 'Arte' },
+        { value: 'Urbanismo', label: 'Urbanismo' },
+        { value: 'Sustentabilidad', label: 'Sustentabilidad' }
+    ]
+    
+    const estatusSelect = [
+        { value: 'Activo', label: 'Activo' },
+        { value: 'Pasado', label: 'Pasado' },
+        { value: 'Próximo', label: 'Próximo' }
+    ]
+    
+    const modalidadesSelect = [
+        { value: 'Presencial', label: 'Presencial' },
+        { value: 'Híbrido', label: 'Híbrido' },
+        { value: 'Remoto', label: 'Remoto' }
+    ]
 
     const customSelectStyles = {
         control: (base, state) => ({
@@ -94,16 +108,132 @@ function AdminAgregarProyecto() {
         },
         })
     }
+
+    const components={DropdownIndicator: null}
+
+
     
-    const galeriaArr =[
-        {url: 'https://images.unsplash.com/photo-1505820996465-b8bf9918eb60?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MnwxODg3MTUyfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=600&q=60'},
-        {url: 'https://images.unsplash.com/photo-1519331379826-f10be5486c6f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MTJ8MTg4NzE1Mnx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=600&q=60'},
-        {url: 'https://images.unsplash.com/photo-1464288550599-43d5a73451b8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MjV8MTg4NzE1Mnx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=600&q=60'},
-        {url: 'https://images.unsplash.com/photo-1566836610593-62a64888a216?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8NDN8MTg4NzE1Mnx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=600&q=60'}
-    ]
+
+    const handleEjesChange = selectedOptions =>{
+        setEjesValue(selectedOptions);
+    }
+
+    const handleEtiquetasChange = selectedOptions =>{
+        setEtiquetasValue(selectedOptions);
+        console.log(etiquetasValue)
+    }
+    
+    const handleObjetivosChange = selectedOptions =>{
+        setObjetivosValue(selectedOptions);
+    }
+
+    const handleModalidadChange = selectedOption =>{
+        setModalidadValue(selectedOption.value);
+    }
+
+    const handleEstatusChange = selectedOption =>{
+        setEstatusValue(selectedOption.value);
+    }
+
+    const handleImgChange = async (e) =>{
+        
+        const file = e.target.files[0]
+        const bucketPath =`images/proyectos/${proyecto.nombre}_imgPrincipal`
+        
+        const storageRef = ref(storage, bucketPath);
+        
+        await uploadBytes(storageRef, file)
+        .then((snapshot) => {
+            console.log('Imagen subida!');
+        })
+        .catch((error)=>{
+            console.log(error)
+        });
+
+        setImgPrincipalURL(await getDownloadURL(storageRef))
+    }
+
+    const handleGaleriaChange = async (e) =>{
+        setGaleria([])
+        const files = [...e.target.files]
+
+        const promises = files.map(async (file, i) => {
+            
+            const bucketPath =`images/proyectos/galeria/${proyecto.nombre}_img${i+1}`
+            const storageRef = ref(storage, bucketPath);
+
+            await uploadBytes(storageRef, file)
+                .then((snapshot) => {
+                    console.log('Imagen subida!');
+                })
+                .catch((error)=>{
+                    console.log(error)
+                });
+            
+
+            const downloadURL = await getDownloadURL(storageRef);
+            setGaleria(prevGaleria => [...prevGaleria, downloadURL]); 
+            console.log(galeria)
+        });
+       
+    }
+
+
+    function handleInputChange(e){
+        let newProyecto = {
+            ...proyecto,
+            [e.target.name]: e.target.value,
+        };
+
+        setProyecto(newProyecto);
+    }
+
+
+    const proyectosCollectionRef = collection(db, "proyectos")
+
+    const submitProyecto = async (e) => {
+        e.preventDefault();
+        let ejesArr = []
+        let etiquetasArr=[]
+        let objetivosArr = []
+        ejesValue.map((eje)=>ejesArr.push(eje.value))
+        etiquetasValue.map((etiqueta)=>etiquetasArr.push(etiqueta.value))
+        objetivosValue.map((objetivo)=>objetivosArr.push(objetivo.value))
+
+        console.log(proyecto)
+        console.log(ejesArr)
+        console.log(etiquetasArr)
+        console.log(objetivosArr)
+        console.log(modalidadValue)
+        console.log(estatusValue)
+
+        try{
+            await addDoc(proyectosCollectionRef,
+                {
+                    nombre: proyecto.nombre,
+                    descripcionBreve: proyecto.descripcionBreve,
+                    descripcionGeneral: proyecto.descripcionGeneral,
+                    estatus: estatusValue,
+                    modalidad: modalidadValue,
+                    proposito: proyecto.proposito,
+                    procesos: proyecto.procesos,
+                    ejesAccion: ejesArr,
+                    etiquetas: etiquetasArr,
+                    objetivos: objetivosArr,
+                    imgPrincipalURL: imgPrincipalURL,
+                    imgGaleria: galeria,
+                    visible: true
+                })
+        }
+        catch(error){
+            console.log(error)
+        }
+        
+       
+    }
 
     return (
-        <body className="body-admin">
+        <div className="body-admin">
             <AdminNavbar activeTab='proyectos'></AdminNavbar>
             <main className='main-admin'>
                 <section className="admin-form-content">
@@ -114,16 +244,18 @@ function AdminAgregarProyecto() {
                     <div className="cont-formulario-agregar">
                         <form action="" className="formulario-registro">
                             <label htmlFor="" className='input-label'>Nombre del proyecto</label>
-                            <input type="text"  placeholder="Nombre" name="" id="" className="input-gral" required/>
-                            <label htmlFor="" className="input-label">Descripción breve</label>
-                            <textarea name="" id="" cols="30" rows="4" className="input-gral" placeholder='90 caracteres máximo'></textarea>
-                            <label htmlFor="" className="input-label">Descripción general</label>
-                            <textarea name="" id="" cols="30" rows="8" className="input-gral" placeholder='Escribe aquí'></textarea>
+                            <input type="text"  placeholder="Nombre" name="nombre" id="" className="input-gral" required onChange={handleInputChange}/>
                             
-                            <label htmlFor="" className="input-label">Imagen principal</label>
+                            <label htmlFor="descripcionBreve" className="input-label">Descripción breve</label>
+                            <textarea name="descripcionBreve" id="" cols="30" rows="4" className="input-gral" placeholder='90 caracteres máximo' onChange={handleInputChange}></textarea>
+                            
+                            <label htmlFor="descripcionGeneral" className="input-label">Descripción general</label>
+                            <textarea name="descripcionGeneral" id="" cols="30" rows="8" className="input-gral" placeholder='Escribe aquí' onChange={handleInputChange}></textarea>
+                            
+                            <label htmlFor="imgPrincipalURL" className="input-label">Imagen principal</label>
                             <div className="file-preview">
-                                <input type="file" name="" id="" className="input-archivo" />
-                                <img src={''} alt="" className="preview-img" />
+                                <input type="file" name="imgPrincipalURL" id="" className="input-archivo" onChange={handleImgChange}/>
+                                <img src={imgPrincipalURL} alt=""  className="preview-img" />
                             </div>
 
                             <label htmlFor="" className="input-label">Etiquetas</label>
@@ -133,19 +265,20 @@ function AdminAgregarProyecto() {
                                 isMulti
                                 styles={customSelectStyles}
                                 placeholder="Escribe una o más etiquetas. Enter para agregar otra."
+                                onChange={handleEtiquetasChange}
                             />
 
                             <label htmlFor="" className="input-label">Ejes de acción</label>
-                            <Select styles={customSelectStyles} options={ejesAccion} placeholder='Selecciona uno o más ejes' isMulti/>
+                            <Select styles={customSelectStyles} options={ejesAccion} placeholder='Selecciona uno o más ejes' isMulti onChange={handleEjesChange}/>
 
                             <label htmlFor="" className="input-label">Estatus</label>
-                            <Select styles={customSelectStyles} options={estatusSelect} placeholder='Selecciona el estatus del proyecto'/>
+                            <Select styles={customSelectStyles} options={estatusSelect} placeholder='Selecciona el estatus del proyecto' onChange={handleEstatusChange}/>
 
                             <label htmlFor="" className="input-label">Modalidad</label>
-                            <Select styles={customSelectStyles} options={modalidadesSelect} placeholder='Selecciona la modalidad del proyecto'/>
+                            <Select styles={customSelectStyles} options={modalidadesSelect} placeholder='Selecciona la modalidad del proyecto' onChange={handleModalidadChange}/>
                             
-                            <label htmlFor="" className="input-label">Propósito</label>
-                            <textarea name="" id="" cols="30" rows="4" className="input-gral" placeholder='Escribe aquí'></textarea>
+                            <label htmlFor="proposito" className="input-label">Propósito</label>
+                            <textarea name="proposito" id="" cols="30" rows="4" className="input-gral" placeholder='Escribe aquí' onChange={handleInputChange}></textarea>
                             
                             <label htmlFor="" className="input-label">Objetivos</label>
                             <CreatableSelect
@@ -154,31 +287,31 @@ function AdminAgregarProyecto() {
                                 isMulti
                                 styles={customSelectStyles}
                                 placeholder="Escribe los objetivos. Enter para agregar otro."
+                                onChange={handleObjetivosChange}
                             />
                             
                             <label htmlFor="" className="input-label">Procesos</label>
-                            <textarea name="" id="" cols="30" rows="8" className="input-gral" placeholder='Escribe aquí'></textarea>
+                            <textarea name="procesos" id="" cols="30" rows="8" className="input-gral" placeholder='Escribe aquí' onChange={handleInputChange}></textarea>
                             
                             <label htmlFor="" className="input-label">Galería de imagenes</label>
                             <div className="file-preview-multi">
-                                <input type="file" name="" id="" className="input-archivo" />
+                                <input type="file" name="" id="" className="input-archivo" onChange={handleGaleriaChange} multiple/>
                                 <div className="cont-galeria">
-                                    {galeriaArr.map((img, i) =>
-                                        <img src={img.url} alt="" className="preview-img" />
+                                    {galeria.map((img) =>
+                                        <img src={img} alt="" className="preview-img" />
                                     )}
                                 </div>
                                 
                             </div>
 
-                            <button className="btn-enviar">
+                            <button className="btn-enviar"  type="button" onClick={submitProyecto}>
                                 <p>Agregar proyecto</p>
                             </button>
                         </form>
                     </div>
                 </section>
             </main>
-        </body>
-        
+        </div>
     );
 }
 
