@@ -124,7 +124,6 @@
     width: 25rem !important;
     height: 25rem !important;
     border-radius: 2rem;
-    background-image: url('../assets/equipo_rhesident.jpg');
     background-position: center;
     background-size: cover;
     margin-left: 2rem;
@@ -193,6 +192,21 @@
 }
 .swiper-slide:hover{
     cursor: pointer;
+}
+
+.swiper-wrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.slide-proyecto{
+    background-size: cover;
+    background-position: center;
+}
+.img-principal-proyecto{
+    width: 484px;
 }
 
 

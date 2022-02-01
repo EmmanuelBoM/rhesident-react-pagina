@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Footer from '../components/Footer'
 import NavHeader from '../components/NavHeader'
 import OverlayInvitacion from '../components/OverlayInvitacion'
@@ -21,10 +21,50 @@ import "swiper/css/navigation"
 import SwiperCore, { Pagination,Navigation } from 'swiper';
 
 
+//Firebase imports
+import {db} from '../firebaseConfig'
+import {query, collection, getDocs,where} from "@firebase/firestore";
+
 // install Swiper modules
 SwiperCore.use([Pagination,Navigation]);
 
 function Proyectos() {
+  //Firestore GET Query
+  const [proyectosArte, setProyectosArte] = useState([])
+  const [proyectosCultura, setProyectosCultura] = useState([])
+  const [proyectosUrbanismo, setProyectosUrbanismo] = useState([])
+  const [proyectosSustentabilidad, setProyectosSustentabilidad] = useState([])
+  const proyectosCollectionRef = collection(db, "proyectos")
+
+  const q_arte = query(proyectosCollectionRef, where("ejesAccion", "array-contains", "Arte"), where("visible", "==",true));
+  const q_cultura = query(proyectosCollectionRef, where("ejesAccion", "array-contains", "Cultura"), where("visible", "==",true));
+  const q_sustentabilidad = query(proyectosCollectionRef, where("ejesAccion", "array-contains", "Sustentabilidad"), where("visible", "==",true));
+  const q_urbanismo = query(proyectosCollectionRef, where("ejesAccion", "array-contains", "Urbanismo"), where("visible", "==",true));
+  
+  useEffect (()=>{
+    const getProyectosArte = async () => {
+      const data = await getDocs(q_arte);
+      setProyectosArte(data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))
+    }
+
+    const getProyectosCultura = async () => {
+      const data = await getDocs(q_cultura);
+      setProyectosCultura(data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))
+    }
+    const getProyectosSustentabilidad = async () => {
+      const data = await getDocs(q_sustentabilidad);
+      setProyectosSustentabilidad(data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))
+    }
+    const getProyectosUrbanismo = async () => {
+      const data = await getDocs(q_urbanismo);
+      setProyectosUrbanismo(data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))
+    }
+
+    getProyectosArte();
+    getProyectosCultura();
+    getProyectosSustentabilidad();
+    getProyectosUrbanismo();
+  }, [])
 
   const [swiperRef, setSwiperRef] = useState(null);
 
@@ -85,24 +125,31 @@ function Proyectos() {
           <div className="proyectos-galeria">
             <Swiper 
               onSwiper={setSwiperRef} 
-              slidesPerView={5} 
+              slidesPerView={1} 
               centeredSlides={true}
-              loop={true}
+              loop={false}
               spaceBetween={30} 
               pagination={{"type": "custom" }} 
               navigation={true} 
               className="swiper-proyectos">
-                
-                  <SwiperSlide className='proyecto-cont'> 
-                    <Link to='/proyecto'>
-                      <div className="proyecto-overlay cultura-proyecto">
-                        <h3 className="blanco nombre-proceso-ind">Nombre del Proyecto</h3>
-                        <p className="blanco descripcion-proceso-ind">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi accusantium ullam reiciendis possimus voluptas architecto praesentium reprehenderit quidem atque dolores.</p>
-                      </div> 
-                    </Link>
-                  </SwiperSlide>
-                
-                
+
+                {proyectosCultura.map((proyecto, i)=>{
+                  const proyectoBG = {
+                    backgroundImage: `url(${proyecto.imgPrincipalURL})`
+                  }
+                  return(
+                    <SwiperSlide className='proyecto-cont' style={proyectoBG}> 
+                      <Link to={`/proyecto/${proyecto.id}`}>
+                        <div className="proyecto-overlay cultura-proyecto">
+                          <h3 className="blanco nombre-proceso-ind">{proyecto.nombre}</h3>
+                          <p className="blanco descripcion-proceso-ind">{proyecto.descripcionBreve}</p>
+                        </div> 
+                      </Link>
+                    </SwiperSlide>
+                  )
+                 
+                })}
+
             </Swiper>
           </div>
         </section>
@@ -120,21 +167,29 @@ function Proyectos() {
           <div className="proyectos-galeria">
             <Swiper 
               onSwiper={setSwiperRef} 
-              slidesPerView={5} 
+              slidesPerView={1} 
               centeredSlides={true}
-              loop={true}
-              spaceBetween={40} 
+              loop={false}
+              spaceBetween={30} 
               pagination={{"type": "custom" }} 
               navigation={true} 
               className="swiper-proyectos">
-              <SwiperSlide className='proyecto-cont'> 
-                    <Link to='/proyecto'>
-                      <div className="proyecto-overlay arte-proyecto">
-                        <h3 className="blanco nombre-proceso-ind">Nombre del Proyecto</h3>
-                        <p className="blanco descripcion-proceso-ind">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi accusantium ullam reiciendis possimus voluptas architecto praesentium reprehenderit quidem atque dolores.</p>
-                      </div> 
-                    </Link>
-                  </SwiperSlide>
+              {proyectosArte.map((proyecto, i)=>{
+                const proyectoBG = {
+                  backgroundImage: `url(${proyecto.imgPrincipalURL})`
+                }
+                  return(
+                    <SwiperSlide className='proyecto-cont'  style={proyectoBG}> 
+                      <Link to={`/proyecto/${proyecto.id}`}>
+                        <div className="proyecto-overlay arte-proyecto">
+                          <h3 className="blanco nombre-proceso-ind">{proyecto.nombre}</h3>
+                          <p className="blanco descripcion-proceso-ind">{proyecto.descripcionBreve}</p>
+                        </div> 
+                      </Link>
+                    </SwiperSlide>
+                  )
+                 
+                })}
                 
                 
                
@@ -157,21 +212,29 @@ function Proyectos() {
           <div className="proyectos-galeria">
             <Swiper 
               onSwiper={setSwiperRef} 
-              slidesPerView={5} 
+              slidesPerView={1} 
               centeredSlides={true}
-              loop={true}
-              spaceBetween={40} 
+              loop={false}
+              spaceBetween={30} 
               pagination={{"type": "custom" }} 
               navigation={true} 
               className="swiper-proyectos">
-               <SwiperSlide className='proyecto-cont'> 
-                    <Link to='/proyecto'>
-                      <div className="proyecto-overlay urbanismo-proyecto">
-                        <h3 className="blanco nombre-proceso-ind">Nombre del Proyecto</h3>
-                        <p className="blanco descripcion-proceso-ind">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi accusantium ullam reiciendis possimus voluptas architecto praesentium reprehenderit quidem atque dolores.</p>
-                      </div> 
-                    </Link>
-                  </SwiperSlide>
+               {proyectosUrbanismo.map((proyecto, i)=>{
+                const proyectoBG = {
+                  backgroundImage: `url(${proyecto.imgPrincipalURL})`
+                }
+                  return(
+                    <SwiperSlide className='proyecto-cont'  style={proyectoBG}> 
+                      <Link to={`/proyecto/${proyecto.id}`}>
+                        <div className="proyecto-overlay urbanismo-proyecto">
+                          <h3 className="blanco nombre-proceso-ind">{proyecto.nombre}</h3>
+                          <p className="blanco descripcion-proceso-ind">{proyecto.descripcionBreve}</p>
+                        </div> 
+                      </Link>
+                    </SwiperSlide>
+                  )
+                 
+                })}
                 
             </Swiper>
           </div>
@@ -190,22 +253,29 @@ function Proyectos() {
           <div className="proyectos-galeria">
             <Swiper 
               onSwiper={setSwiperRef} 
-              slidesPerView={5} 
+              slidesPerView={1} 
               centeredSlides={true}
-              loop={true}
-              spaceBetween={40} 
+              loop={false}
+              spaceBetween={30} 
               pagination={{"type": "custom" }} 
               navigation={true} 
               className="swiper-proyectos">
-                <SwiperSlide className='proyecto-cont'> 
-                    <Link to='/proyecto'>
-                      <div className="proyecto-overlay sustentabilidad-proyecto">
-                        <h3 className="blanco nombre-proceso-ind">Nombre del Proyecto</h3>
-                        <p className="blanco descripcion-proceso-ind">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi accusantium ullam reiciendis possimus voluptas architecto praesentium reprehenderit quidem atque dolores.</p>
-                      </div> 
-                    </Link>
-                  </SwiperSlide>
-                
+                {proyectosSustentabilidad.map((proyecto, i)=>{
+                const proyectoBG = {
+                  backgroundImage: `url(${proyecto.imgPrincipalURL})`
+                }
+                  return(
+                    <SwiperSlide className='proyecto-cont'  style={proyectoBG}> 
+                      <Link to={`/proyecto/${proyecto.id}`}>
+                        <div className="proyecto-overlay sustentabilidad-proyecto">
+                          <h3 className="blanco nombre-proceso-ind">{proyecto.nombre}</h3>
+                          <p className="blanco descripcion-proceso-ind">{proyecto.descripcionBreve}</p>
+                        </div> 
+                      </Link>
+                    </SwiperSlide>
+                  )
+                 
+                })}
                 
               
             </Swiper>
