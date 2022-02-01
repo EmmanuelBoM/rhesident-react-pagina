@@ -129,7 +129,9 @@
     box-sizing: border-box;
     cursor: pointer;
     margin-left: 2rem;
+    text-decoration: none;
 }
+
 .btn-agregar-panel:hover{ 
     transform: scale(1.05);
     background-color: var(--p-100);
@@ -182,6 +184,9 @@
 
 .icono-tabla-habilitar{
     color: #5F9779;
+}
+.icono-tabla-deshabilitar{
+    color: var(--g-600);
 }
 
 .icono-tabla-ir{

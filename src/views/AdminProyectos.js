@@ -1,24 +1,64 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import AdminNavbar from '../components/AdminNavbar';
 import '../styles/base.css'
 import '../styles/AdminLayout.css'
 import { DataGrid, esES, GridActionsCellItem } from '@mui/x-data-grid';
 import iconoAgregarProyecto from '../assets/icono_agregarProyecto.svg'
+import ModalAdminEliminar from '../components/ModalAdminEliminar';
+import {Link} from 'react-router-dom'
+
+import {db} from '../firebaseConfig'
+import {query, collection, getDocs,orderBy, doc, updateDoc} from "@firebase/firestore";
 
 function AdminProyectos() {
-    const rows = [
-        { id: 1, col1: 'Regeneración comunitaria de espacios', col2: 'World' },
-        { id: 2, col1: 'DataGridPro', col2: 'is Awesome' },
-        { id: 3, col1: 'MUI', col2: 'is Amazing' },
-        { id: 4, col1: 'Hello', col2: 'World' },
-        { id: 5, col1: 'DataGridPro', col2: 'is Awesome' },
-        { id: 6, col1: 'MUI', col2: 'is Amazing' }
-      ];
-      
-      const columns = [
-        { field: 'col1', headerName: 'Nombre',flex:1, minWidth: 80 },
-        { field: 'col2', headerName: 'Estatus', flex:1, minWidth: 20},
-        { field: 'col3', headerName: 'Ejes de acción', flex:1, minWidth: 100},
+
+    //Firestore GET Query
+    const [proyectos, setProyectos] = useState([])
+    const proyectosCollectionRef = collection(db, "proyectos")
+  
+    const q = query(proyectosCollectionRef, orderBy("nombre"))
+
+    useEffect (()=>{
+      const getProyectos = async () => {
+        const data = await getDocs(q);
+        setProyectos(data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))
+      }
+  
+      getProyectos();
+    }, [])
+
+    
+
+    const [modalVisibility, setModalVisibility] = useState(false)
+    const [modalInfo, setModalInfo] = useState('')
+
+
+    const showModal = React.useCallback(
+        (info)=>()=>{
+            setModalInfo(info)
+            setModalVisibility(true);
+        },
+        [],
+    );
+
+    const toggleProyectoVisibility = React.useCallback(
+            (id, isVisible) =>async()=>{
+            let visibility;
+            if(isVisible) { visibility = { visible: false } }
+            else{ visibility = { visible: true } }
+        
+            const proyectoRef = doc(db, "proyectos", id)
+            await updateDoc(proyectoRef, visibility);
+            window.location.reload();
+        },
+        [],
+    );
+
+      const columns = React.useMemo(()=>
+      [
+        { field: 'nombre', headerName: 'Nombre',flex:1, minWidth: 80 },
+        { field: 'estatus', headerName: 'Estatus', flex:1, minWidth: 20},
+        { field: 'ejesAccion', headerName: 'Ejes de acción', flex:1, minWidth: 100},
         {
             field: 'actions',
             type: 'actions',
@@ -26,15 +66,16 @@ function AdminProyectos() {
             flex:1, 
             minWidth: 100,
             getActions: (params) => [
-                // params.isActive ? eye-active : eye-disable
-                <GridActionsCellItem icon={ <i class="fa-solid fa-eye icono-accion-tabla icono-tabla-habilitar"></i> }  label="Habilitar/Ocultar" />,
-                <GridActionsCellItem icon={ <i class="fa-solid fa-up-right-from-square icono-accion-tabla icono-tabla-ir"></i> }  label="Ir a" />,
-                <GridActionsCellItem icon={ <i class="fa-solid fa-pen-to-square icono-accion-tabla icono-tabla-editar"></i> }  label="Editar" />,
-                <GridActionsCellItem icon={ <i class="fa-solid fa-trash icono-accion-tabla icono-tabla-eliminar"></i> }  label="Eliminar" />
-            ]
-          }
-        
-      ];
+            
+                <GridActionsCellItem icon={ <i class={params.getValue(params.id, 'visible') ? 'fa-solid fa-eye icono-accion-tabla icono-tabla-habilitar' : 'fa-solid fa-eye-slash icono-accion-tabla icono-tabla-deshabilitar'}></i> }  label="Habilitar/Ocultar" onClick={toggleProyectoVisibility(params.id, params.getValue(params.id, 'visible'))}/>,
+                <Link className='link-decoration' to={`/proyectos`}><GridActionsCellItem icon={ <i class="fa-solid fa-up-right-from-square icono-accion-tabla icono-tabla-ir"></i> }  label="Ir a" /></Link>,
+                <Link className='link-decoration' to={`/editar-proyecto/${params.id}`}><GridActionsCellItem icon={ <i class="fa-solid fa-pen-to-square icono-accion-tabla icono-tabla-editar"></i> }  label="Editar" /></Link> ,
+                <GridActionsCellItem icon={ <i class="fa-solid fa-trash icono-accion-tabla icono-tabla-eliminar"></i> }  label="Eliminar" onClick={showModal(params.getValue(params.id, 'nombre'))}/>
+            ],
+          },
+      ],
+      [showModal],[toggleProyectoVisibility],
+    );
 
       const datagridStyles ={
           fontSize:'1.4rem',
@@ -48,9 +89,13 @@ function AdminProyectos() {
             backgroundColor:'#F5F4F7'
           },
       }
+
+        
+
     return (
-        <body className="body-admin">
+        <div className="body-admin">
             <AdminNavbar activeTab='proyectos'></AdminNavbar>
+            {modalVisibility ? <ModalAdminEliminar setModalVisibility={setModalVisibility} recurso='el proyecto' nombreRecurso={modalInfo}></ModalAdminEliminar> : null}
             <main className='main-admin'>
                     <header className="header-panel">
                         <div className="cont-bienvenida">
@@ -63,10 +108,10 @@ function AdminProyectos() {
                             </div>
                         </div>
                         <div className="cont-accesos-directos">
-                            <div className="acceso-directo">
+                            <Link to='/' className="acceso-directo">
                                 <i class="fa-solid fa-house negro"></i>
                                 <p className="nombre-acceso-directo negro">Página principal</p>
-                            </div>
+                            </Link>
                         </div>
                     </header>
                     <section className="panel-bottom">
@@ -78,13 +123,14 @@ function AdminProyectos() {
                                 </div>
                             </div>
 
-                            <div className="btn-agregar-panel">
+                            <Link  to='/agregar-proyecto' className="btn-agregar-panel">
                                 <div className="header-card-contenido">
                                     <div className="vertical-indicator-light"></div>
                                     <h4 className="blanco">Agregar proyecto</h4>
                                 </div>
                                 <img src={iconoAgregarProyecto} alt="" className='icono-agregar'/>
-                            </div>
+                            </Link>
+                            
                         </div>
 
                         <div className="card-contenido-panel card-cont-tabla">
@@ -92,11 +138,11 @@ function AdminProyectos() {
                                 <div className="vertical-indicator"></div>
                                 <h4 className="verde">Todos los proyectos</h4>
                             </div>
-                            <DataGrid autoHeight rows={rows} columns={columns} sx={datagridStyles} localeText={esES.components.MuiDataGrid.defaultProps.localeText}/>
+                            <DataGrid autoHeight rows={proyectos} columns={columns} sx={datagridStyles} localeText={esES.components.MuiDataGrid.defaultProps.localeText}/>
                         </div>
                     </section>
             </main>
-        </body>
+        </div>
         
     );
 }
