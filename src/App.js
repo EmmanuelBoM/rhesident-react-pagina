@@ -38,7 +38,7 @@ function App() {
       <Route path='/nuestro-origen' element={<NuestroOrigen/>} />
       <Route path='/nuestro-equipo' element={<NuestroEquipo/>} />
       <Route path='/nuestra-huella' element={<NuestraHuella/>} />
-      <Route path='/proyecto' element={<ProyectoDetalle/>} />
+      <Route path='/proyecto/:id' element={<ProyectoDetalle/>} />
       <Route path='/talleres' element={<Talleres/>} />
       <Route path='/voluntariado' element={<Voluntariado/>} />
       <Route path='/como-apoyar' element={<Donaciones/>} />

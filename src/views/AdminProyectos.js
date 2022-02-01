@@ -1,14 +1,19 @@
 import React, {useState, useEffect} from 'react';
 import AdminNavbar from '../components/AdminNavbar';
-import '../styles/base.css'
-import '../styles/AdminLayout.css'
-import { DataGrid, esES, GridActionsCellItem } from '@mui/x-data-grid';
 import iconoAgregarProyecto from '../assets/icono_agregarProyecto.svg'
 import ModalAdminEliminar from '../components/ModalAdminEliminar';
+
+//Estilos
+import '../styles/base.css'
+import '../styles/AdminLayout.css'
+
+//npm components
+import { DataGrid, esES, GridActionsCellItem } from '@mui/x-data-grid';
 import {Link} from 'react-router-dom'
 
+//Firebase Imports
 import {db} from '../firebaseConfig'
-import {query, collection, getDocs,orderBy, doc, updateDoc} from "@firebase/firestore";
+import {query, collection, getDocs,orderBy, doc, updateDoc,  deleteDoc} from "@firebase/firestore";
 
 function AdminProyectos() {
 
@@ -30,16 +35,31 @@ function AdminProyectos() {
     
 
     const [modalVisibility, setModalVisibility] = useState(false)
+    const [idProyecto, setIdProyecto] = useState('')
     const [modalInfo, setModalInfo] = useState('')
 
+    const deleteProyecto = async () => {
+        try{
+            await deleteDoc(doc(db, "proyectos", idProyecto));
+        }
+        catch(error){
+            console.log(error)
+        }
+        setModalVisibility(false);
+        window.location.reload();
+        
+    }
 
     const showModal = React.useCallback(
-        (info)=>()=>{
-            setModalInfo(info)
+        (id, info)=>()=>{
+            setModalInfo(info);
+            setIdProyecto(id);
             setModalVisibility(true);
         },
         [],
     );
+
+    
 
     const toggleProyectoVisibility = React.useCallback(
             (id, isVisible) =>async()=>{
@@ -68,9 +88,9 @@ function AdminProyectos() {
             getActions: (params) => [
             
                 <GridActionsCellItem icon={ <i class={params.getValue(params.id, 'visible') ? 'fa-solid fa-eye icono-accion-tabla icono-tabla-habilitar' : 'fa-solid fa-eye-slash icono-accion-tabla icono-tabla-deshabilitar'}></i> }  label="Habilitar/Ocultar" onClick={toggleProyectoVisibility(params.id, params.getValue(params.id, 'visible'))}/>,
-                <Link className='link-decoration' to={`/proyectos`}><GridActionsCellItem icon={ <i class="fa-solid fa-up-right-from-square icono-accion-tabla icono-tabla-ir"></i> }  label="Ir a" /></Link>,
+                <Link className='link-decoration' to={`/proyecto/${params.id}`}><GridActionsCellItem icon={ <i class="fa-solid fa-up-right-from-square icono-accion-tabla icono-tabla-ir"></i> }  label="Ir a" /></Link>,
                 <Link className='link-decoration' to={`/editar-proyecto/${params.id}`}><GridActionsCellItem icon={ <i class="fa-solid fa-pen-to-square icono-accion-tabla icono-tabla-editar"></i> }  label="Editar" /></Link> ,
-                <GridActionsCellItem icon={ <i class="fa-solid fa-trash icono-accion-tabla icono-tabla-eliminar"></i> }  label="Eliminar" onClick={showModal(params.getValue(params.id, 'nombre'))}/>
+                <GridActionsCellItem icon={ <i class="fa-solid fa-trash icono-accion-tabla icono-tabla-eliminar"></i> }  label="Eliminar" onClick={showModal(params.id, params.getValue(params.id, 'nombre'))}/>
             ],
           },
       ],
@@ -95,7 +115,7 @@ function AdminProyectos() {
     return (
         <div className="body-admin">
             <AdminNavbar activeTab='proyectos'></AdminNavbar>
-            {modalVisibility ? <ModalAdminEliminar setModalVisibility={setModalVisibility} recurso='el proyecto' nombreRecurso={modalInfo}></ModalAdminEliminar> : null}
+            {modalVisibility ? <ModalAdminEliminar setModalVisibility={setModalVisibility} recurso='el proyecto' nombreRecurso={modalInfo} runFunction={deleteProyecto}></ModalAdminEliminar> : null}
             <main className='main-admin'>
                     <header className="header-panel">
                         <div className="cont-bienvenida">

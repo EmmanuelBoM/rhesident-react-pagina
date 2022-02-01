@@ -15,6 +15,7 @@ function ModalAdminEliminar(props) {
                 <div className='cont-modal-admin'>
                     <div className="modal-admin-barra danger"></div>
                     <p className="texto-modal-admin">{`¿Estás segur@ que deseas eliminar ${props.recurso} ${props.nombreRecurso}?`}</p>
+                    <p className="subt-modal-admin">Esta acción <span className="bold">no se puede deshacer.</span></p>
                     <div className="btns-modal-admin">
                         <button className="btn-modal-admin-confirmar"  onClick={props.runFunction}>
                             Confirmar

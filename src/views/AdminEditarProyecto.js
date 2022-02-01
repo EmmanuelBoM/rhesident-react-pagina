@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import AdminNavbar from '../components/AdminNavbar';
 import '../styles/base.css'
 import '../styles/AdminLayout.css'
@@ -7,28 +7,44 @@ import Select from 'react-select'
 import CreatableSelect, { useCreatable } from 'react-select/creatable';
 import ModalAdminExito from '../components/ModalAdminExito';
 import ModalAdminConfirmar from '../components/ModalAdminConfirmar';
-
+import { useParams } from 'react-router-dom';
 
 // Firebase Imports
 import {db, storage} from '../firebaseConfig'
-import {collection,addDoc} from "@firebase/firestore";
+import {doc, getDoc, updateDoc} from "@firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "@firebase/storage";
 
 
 
-
-
-function AdminAgregarProyecto() {
+function AdminEditarProyecto() {
     const [modalExitoVisibility, setModalExitoVisibility] = useState(false)
     const [modalConfVisibility, setModalConfVisibility] = useState(false)
+    const [pageStatus, setPageStaus] = useState('')
     const [ejesValue, setEjesValue] = useState([])
     const [etiquetasValue, setEtiquetasValue] = useState([])
+    const [etiquetas, setEtiquetas] = useState([])
     const [objetivosValue, setObjetivosValue] = useState([])
     const [galeria, setGaleria] = useState([])
     const [imgPrincipalURL, setImgPrincipalURL] = useState('')
     const [modalidadValue, setModalidadValue] = useState('')
     const [estatusValue, setEstatusValue] = useState('')
     const [proyecto, setProyecto] = useState({})
+    const [newProyecto, setNewProyecto] = useState({})
+    let params = useParams();
+
+    let etiquetasDefaultValue = []
+    let ejesAccionDefaultValue = []
+    const proyectoRef = doc(db, "proyectos", params.id)
+    useEffect (()=>{
+        const getProyecto = async () => {
+          const proyectoDoc = await getDoc(proyectoRef);
+          setProyecto(proyectoDoc.data())
+          setEtiquetas(proyectoDoc.data().etiquetas)
+          setGaleria(proyectoDoc.data().imgGaleria)
+        }
+    
+        getProyecto();
+      }, []);
 
     const ejesAccion = [
         { value: 'Cultura', label: 'Cultura' },
@@ -190,86 +206,47 @@ function AdminAgregarProyecto() {
 
 
     function handleInputChange(e){
-        let newProyecto = {
-            ...proyecto,
+        let nuevoProyecto = {
+            ...newProyecto,
             [e.target.name]: e.target.value,
         };
 
-        setProyecto(newProyecto);
+        setNewProyecto(nuevoProyecto);
     }
 
-
-    const proyectosCollectionRef = collection(db, "proyectos")
-
-    const submitProyecto = async (e) => {
-        e.preventDefault();
-        let ejesArr = []
-        let etiquetasArr=[]
-        let objetivosArr = []
-        ejesValue.map((eje)=>ejesArr.push(eje.value))
-        etiquetasValue.map((etiqueta)=>etiquetasArr.push(etiqueta.value))
-        objetivosValue.map((objetivo)=>objetivosArr.push(objetivo.value))
-
-        console.log(proyecto)
-        console.log(ejesArr)
-        console.log(etiquetasArr)
-        console.log(objetivosArr)
-        console.log(modalidadValue)
-        console.log(estatusValue)
-
-        try{
-            await addDoc(proyectosCollectionRef,
-                {
-                    nombre: proyecto.nombre,
-                    descripcionBreve: proyecto.descripcionBreve,
-                    descripcionGeneral: proyecto.descripcionGeneral,
-                    estatus: estatusValue,
-                    modalidad: modalidadValue,
-                    proposito: proyecto.proposito,
-                    procesos: proyecto.procesos,
-                    ejesAccion: ejesArr,
-                    etiquetas: etiquetasArr,
-                    objetivos: objetivosArr,
-                    imgPrincipalURL: imgPrincipalURL,
-                    imgGaleria: galeria,
-                    visible: true
-                })
-        }
-        catch(error){
-            console.log(error)
-        }
-        setModalConfVisibility(false)
-        setModalExitoVisibility(true)
-    }
     
+    
+    etiquetasDefaultValue = etiquetas.map(function(etiqueta, indice){ 
+        return {value: indice, label: etiqueta};
+    });
 
     return (
         <div className="body-admin">
             {modalExitoVisibility ? <ModalAdminExito setModalVisibility={setModalExitoVisibility} rutaContinuar='/admin_proyectos' recurso= 'Proyecto' nombreRecurso={proyecto.nombre}></ModalAdminExito> : null }
-            {modalConfVisibility ? <ModalAdminConfirmar setModalVisibility={setModalConfVisibility} runFunction={submitProyecto} accion='agregar' recurso= 'Proyecto' nombreRecurso={proyecto.nombre}></ModalAdminConfirmar> : null }
+            {modalConfVisibility ? <ModalAdminConfirmar setModalVisibility={setModalConfVisibility} runFunction={''} accion='agregar' recurso= 'Proyecto' nombreRecurso={proyecto.nombre}></ModalAdminConfirmar> : null }
             
             <AdminNavbar activeTab='proyectos'></AdminNavbar>
             <main className='main-admin'>
                 <section className="admin-form-content">
                     <div className="header-form">
                         <img src={ilustracionAgregarProyecto} alt="" className="ilustracion-form" />
-                        <h2 className="titulo-admin-form negro">Agrega un <br/> proyecto nuevo</h2>
+                        <h2 className="titulo-admin-form negro">{`Editar proyecto ${proyecto.nombre}` }</h2>
                     </div>
                     <div className="cont-formulario-agregar">
                         <form action="" className="formulario-registro">
                             <label htmlFor="nombre" className='input-label'>Nombre del proyecto</label>
-                            <input type="text"  placeholder="Nombre" name="nombre" id="" className="input-gral" required onChange={handleInputChange}/>
+                            <input type="text"  placeholder="Nombre" name="nombre" id="" className="input-gral" required onChange={handleInputChange} defaultValue={proyecto.nombre}/>
                             
                             <label htmlFor="descripcionBreve" className="input-label">Descripción breve</label>
-                            <textarea name="descripcionBreve" id="" cols="30" rows="4" className="input-gral" placeholder='90 caracteres máximo' onChange={handleInputChange}></textarea>
+                            <textarea name="descripcionBreve" id="" cols="30" rows="4" className="input-gral" placeholder='90 caracteres máximo' onChange={handleInputChange} defaultValue={proyecto.descripcionBreve}></textarea>
                             
                             <label htmlFor="descripcionGeneral" className="input-label">Descripción general</label>
-                            <textarea name="descripcionGeneral" id="" cols="30" rows="8" className="input-gral" placeholder='Escribe aquí' onChange={handleInputChange}></textarea>
+                            <textarea name="descripcionGeneral" id="" cols="30" rows="8" className="input-gral" placeholder='Escribe aquí' onChange={handleInputChange} defaultValue={proyecto.descripcionGeneral}></textarea>
                             
                             <label htmlFor="imgPrincipalURL" className="input-label">Imagen principal</label>
                             <div className="file-preview">
                                 <input type="file" name="imgPrincipalURL" id="" className="input-archivo" onChange={handleImgChange}/>
-                                <img src={imgPrincipalURL} alt=""  className="preview-img" />
+                                <img src={proyecto.imgPrincipalURL} alt=""  className="preview-img"/>
                             </div>
 
                             <label htmlFor="" className="input-label">Etiquetas</label>
@@ -280,19 +257,20 @@ function AdminAgregarProyecto() {
                                 styles={customSelectStyles}
                                 placeholder="Escribe una o más etiquetas. Enter para agregar otra."
                                 onChange={handleEtiquetasChange}
+                                placeholder={proyecto.etiquetas}
                             />
 
                             <label htmlFor="" className="input-label">Ejes de acción</label>
-                            <Select styles={customSelectStyles} options={ejesAccion} placeholder='Selecciona uno o más ejes' isMulti onChange={handleEjesChange}/>
+                            <Select styles={customSelectStyles} options={ejesAccion} placeholder='Selecciona uno o más ejes' isMulti onChange={handleEjesChange} placeholder={proyecto.ejesAccion}/>
 
                             <label htmlFor="" className="input-label">Estatus</label>
-                            <Select styles={customSelectStyles} options={estatusSelect} placeholder='Selecciona el estatus del proyecto' onChange={handleEstatusChange}/>
+                            <Select styles={customSelectStyles} options={estatusSelect} placeholder='Selecciona el estatus del proyecto' onChange={handleEstatusChange} placeholder={proyecto.estatus}/>
 
                             <label htmlFor="" className="input-label">Modalidad</label>
                             <Select styles={customSelectStyles} options={modalidadesSelect} placeholder='Selecciona la modalidad del proyecto' onChange={handleModalidadChange}/>
                             
                             <label htmlFor="proposito" className="input-label">Propósito</label>
-                            <textarea name="proposito" id="" cols="30" rows="4" className="input-gral" placeholder='Escribe aquí' onChange={handleInputChange}></textarea>
+                            <textarea name="proposito" id="" cols="30" rows="4" className="input-gral" placeholder='Escribe aquí' onChange={handleInputChange} defaultValue={proyecto.proposito}></textarea>
                             
                             <label htmlFor="" className="input-label">Objetivos</label>
                             <CreatableSelect
@@ -300,12 +278,12 @@ function AdminAgregarProyecto() {
                                 isClearable
                                 isMulti
                                 styles={customSelectStyles}
-                                placeholder="Escribe los objetivos. Enter para agregar otro."
+                                placeholder={proyecto.objetivos}
                                 onChange={handleObjetivosChange}
                             />
                             
                             <label htmlFor="" className="input-label">Procesos</label>
-                            <textarea name="procesos" id="" cols="30" rows="8" className="input-gral" placeholder='Escribe aquí' onChange={handleInputChange}></textarea>
+                            <textarea name="procesos" id="" cols="30" rows="8" className="input-gral" placeholder='Escribe aquí' onChange={handleInputChange} defaultValue={proyecto.procesos}></textarea>
                             
                             <label htmlFor="" className="input-label">Galería de imagenes</label>
                             <div className="file-preview-multi">
@@ -319,7 +297,7 @@ function AdminAgregarProyecto() {
                             </div>
 
                             <button className="btn-enviar"  type="button" onClick={showModalConfirmar}>
-                                <p>Agregar proyecto</p>
+                                <p>Editar proyecto</p>
                             </button>
                         </form>
                     </div>
@@ -329,4 +307,4 @@ function AdminAgregarProyecto() {
     );
 }
 
-export default AdminAgregarProyecto;
+export default AdminEditarProyecto;
