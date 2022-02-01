@@ -25,6 +25,7 @@ import Login from './views/Login';
 import AdminRecursos from './views/AdminRecursos';
 import AdminProyectos from './views/AdminProyectos';
 import AdminAgregarProyecto from './views/AdminAgregarProyecto';
+import AdminEditarProyecto from './views/AdminEditarProyecto';
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
       <Route path='/admin_recursos' element={<AdminRecursos/>} />
       <Route path='/admin_proyectos' element={<AdminProyectos/>} />
       <Route path='/agregar-proyecto' element={<AdminAgregarProyecto/>} />
+      <Route path='/editar-proyecto/:id' element={<AdminEditarProyecto/>} />
       <Route path="*" element={<Vista404/>} />
      </Routes>
    </Router>
