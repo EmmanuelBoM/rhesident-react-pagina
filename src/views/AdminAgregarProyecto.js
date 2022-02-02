@@ -148,7 +148,7 @@ function AdminAgregarProyecto() {
     const handleImgChange = async (e) =>{
         
         const file = e.target.files[0]
-        const bucketPath =`images/proyectos/${proyecto.nombre}_imgPrincipal`
+        const bucketPath =`images/proyectos/${proyecto.nombre}/${proyecto.nombre}_imgPrincipal`
         
         const storageRef = ref(storage, bucketPath);
         
@@ -169,7 +169,7 @@ function AdminAgregarProyecto() {
 
         const promises = files.map(async (file, i) => {
             
-            const bucketPath =`images/proyectos/galeria/${proyecto.nombre}_img${i+1}`
+            const bucketPath =`images/proyectos/${proyecto.nombre}/galeria/${proyecto.nombre}_img${i+1}`
             const storageRef = ref(storage, bucketPath);
 
             await uploadBytes(storageRef, file)
@@ -245,7 +245,7 @@ function AdminAgregarProyecto() {
 
     return (
         <div className="body-admin">
-            {modalExitoVisibility ? <ModalAdminExito setModalVisibility={setModalExitoVisibility} rutaContinuar='/admin_proyectos' recurso= 'Proyecto' nombreRecurso={proyecto.nombre}></ModalAdminExito> : null }
+            {modalExitoVisibility ? <ModalAdminExito setModalVisibility={setModalExitoVisibility} rutaContinuar='/admin_proyectos' accion='agregado' recurso= 'Proyecto' nombreRecurso={proyecto.nombre}></ModalAdminExito> : null }
             {modalConfVisibility ? <ModalAdminConfirmar setModalVisibility={setModalConfVisibility} runFunction={submitProyecto} accion='agregar' recurso= 'Proyecto' nombreRecurso={proyecto.nombre}></ModalAdminConfirmar> : null }
             
             <AdminNavbar activeTab='proyectos'></AdminNavbar>
@@ -261,7 +261,7 @@ function AdminAgregarProyecto() {
                             <input type="text"  placeholder="Nombre" name="nombre" id="" className="input-gral" required onChange={handleInputChange}/>
                             
                             <label htmlFor="descripcionBreve" className="input-label">Descripción breve</label>
-                            <textarea name="descripcionBreve" id="" cols="30" rows="4" className="input-gral" placeholder='90 caracteres máximo' onChange={handleInputChange}></textarea>
+                            <textarea name="descripcionBreve" id="" cols="30" rows="4" className="input-gral" placeholder='90 caracteres máximo' onChange={handleInputChange} maxLength={200}></textarea>
                             
                             <label htmlFor="descripcionGeneral" className="input-label">Descripción general</label>
                             <textarea name="descripcionGeneral" id="" cols="30" rows="8" className="input-gral" placeholder='Escribe aquí' onChange={handleInputChange}></textarea>

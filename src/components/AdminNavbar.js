@@ -20,10 +20,10 @@ function AdminNavbar(props) {
                     </svg>
                     <p className={props.activeTab==='proyectos' ? 'nombre-tab tab-active':`nombre-tab`}>Proyectos</p>
                 </Link>
-                <div className={props.activeTab==='notas' ? 'menu-tab tab-active':`menu-tab`}>
+                <Link to='/admin_notas' className={props.activeTab==='notas' ? 'menu-tab tab-active link-decoration':`menu-tab link-decoration`}>
                     <i class={props.activeTab==='notas' ? 'fa-solid fa-newspaper icono-tab tab-active':`fa-solid fa-newspaper icono-tab`}></i>
                     <p className={props.activeTab==='notas' ? 'nombre-tab tab-active':`nombre-tab`}>Notas de medios</p>
-                </div>
+                </Link>
                 <div className={props.activeTab==='beneficiarios' ? 'menu-tab tab-active':`menu-tab`}>
                     <i class={props.activeTab==='beneficiarios' ? 'fa-solid fa-hand-holding-medical icono-tab tab-active':`fa-solid fa-hand-holding-medical icono-tab`}></i>
                     <p className={props.activeTab==='beneficiarios' ? 'nombre-tab tab-active':`nombre-tab`}>Beneficiarios</p>

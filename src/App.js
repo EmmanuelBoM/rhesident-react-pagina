@@ -26,6 +26,12 @@ import AdminRecursos from './views/AdminRecursos';
 import AdminProyectos from './views/AdminProyectos';
 import AdminAgregarProyecto from './views/AdminAgregarProyecto';
 import AdminEditarProyecto from './views/AdminEditarProyecto';
+import AdminNotas from './views/AdminNotas';
+import AdminAgregarNota from './views/AdminAgregarNota';
+import AdminEditarNota from './views/AdminEditarNota';
+
+
+
 
 function App() {
   return (
@@ -52,6 +58,9 @@ function App() {
       <Route path='/admin_proyectos' element={<AdminProyectos/>} />
       <Route path='/agregar-proyecto' element={<AdminAgregarProyecto/>} />
       <Route path='/editar-proyecto/:id' element={<AdminEditarProyecto/>} />
+      <Route path='/admin_notas' element={<AdminNotas/>} />
+      <Route path='/agregar-nota' element={<AdminAgregarNota/>} />
+      <Route path='/editar-nota/:id' element={<AdminEditarNota/>} />
       <Route path="*" element={<Vista404/>} />
      </Routes>
    </Router>

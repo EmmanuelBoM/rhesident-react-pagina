@@ -20,6 +20,7 @@ import "swiper/css/navigation"
 import "swiper/css/effect-cards"
 import SwiperCore, { Pagination,Navigation, EffectCards } from 'swiper';
 
+
 // install Swiper modules
 SwiperCore.use([EffectCards]);
 
@@ -115,14 +116,12 @@ function ProyectoDetalle() {
                 </div>
             </section>
             <section className="galeria-proyecto">
-                <Swiper effect={'cards'} 
-                grabCursor={true} 
+                <Swiper 
+                effect={'cards'} 
                 className="swiper-galeria-proyecto"
-                slidesPerView={1} 
-                pagination={{"type": "custom" }} 
+                grabCursor={true}
                 navigation={true}
-                loop={true}
-                spaceBetween={20}  >
+                modules={[EffectCards]}>
                     {
                         galeria.map((img, i)=>{
                             const proyectoImgGaleria = {

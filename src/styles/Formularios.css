@@ -149,6 +149,8 @@
     flex-wrap: wrap;
 }
 
+
+
 @keyframes focus_appear{
     0%{
         border: 2px solid var(--g-800);
