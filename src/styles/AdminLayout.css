@@ -68,6 +68,14 @@
     box-sizing: border-box;
 }
 
+.panel-bottom-2{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
 .card-contenido-panel{
     border-radius: 2.5rem;
     background-color: #FDFDFD;
@@ -130,6 +138,7 @@
     cursor: pointer;
     margin-left: 2rem;
     text-decoration: none;
+    height: 18rem;
 }
 
 .btn-agregar-panel:hover{ 
@@ -148,6 +157,11 @@
     width: 100%;
     box-sizing: border-box;
     margin-bottom: 10rem;
+}
+
+.card-cont-items{
+    width: 80%;
+    box-sizing: border-box;
 }
 
 /*--------- Overwrites Datagrid default styles -----------------*/
@@ -180,6 +194,11 @@
 
 .icono-accion-tabla{
     font-size: 2rem;
+    cursor: pointer;
+}
+
+.icono-accion-tabla:hover{
+    transform: scale(1.1);
 }
 
 .icono-tabla-habilitar{
@@ -222,4 +241,12 @@
 .ilustracion-form{
     margin-right: 2rem;
     width: 25rem;
+}
+
+.cont-items-panel{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 4rem;
 }

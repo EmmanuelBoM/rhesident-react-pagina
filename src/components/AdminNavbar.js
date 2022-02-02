@@ -24,22 +24,22 @@ function AdminNavbar(props) {
                     <i class={props.activeTab==='notas' ? 'fa-solid fa-newspaper icono-tab tab-active':`fa-solid fa-newspaper icono-tab`}></i>
                     <p className={props.activeTab==='notas' ? 'nombre-tab tab-active':`nombre-tab`}>Notas de medios</p>
                 </Link>
-                <div className={props.activeTab==='beneficiarios' ? 'menu-tab tab-active':`menu-tab`}>
+                <Link to='/admin_beneficiarios' className={props.activeTab==='beneficiarios' ? 'menu-tab tab-active link-decoration':`menu-tab link-decoration`}>
                     <i class={props.activeTab==='beneficiarios' ? 'fa-solid fa-hand-holding-medical icono-tab tab-active':`fa-solid fa-hand-holding-medical icono-tab`}></i>
                     <p className={props.activeTab==='beneficiarios' ? 'nombre-tab tab-active':`nombre-tab`}>Beneficiarios</p>
-                </div>
-                <div className={props.activeTab==='testimonios' ? 'menu-tab tab-active':`menu-tab`}>
+                </Link>
+                <Link to='/admin_testimonios' className={props.activeTab==='testimonios' ? 'menu-tab tab-active link-decoration':`menu-tab link-decoration`}>
                     <i class={props.activeTab==='testimonios' ? 'fa-solid fa-comment-dots icono-tab tab-active':`fa-solid fa-comment-dots icono-tab`}></i>
                     <p className={props.activeTab==='testimonios' ? 'nombre-tab tab-active':`nombre-tab`}>Testimonios</p>
-                </div>
-                <div className={props.activeTab==='colaboradores' ? 'menu-tab tab-active':`menu-tab`}>
-                    <i class={props.activeTab==='colaboradores' ? 'fa-solid fa-handshake-angle icono-tab tab-active':`fa-solid fa-handshake-angle icono-tab`}></i>
-                    <p className={props.activeTab==='colaboradores' ? 'nombre-tab tab-active':`nombre-tab`}>Colaboradores</p>
-                </div>
-                <div className={props.activeTab==='equipo' ? 'menu-tab tab-active':`menu-tab`}>
+                </Link>
+                <Link to='/admin_alianzas' className={props.activeTab==='alianzas' ? 'menu-tab tab-active link-decoration':`menu-tab link-decoration`}>
+                    <i class={props.activeTab==='alianzas' ? 'fa-solid fa-handshake-angle icono-tab tab-active':`fa-solid fa-handshake-angle icono-tab`}></i>
+                    <p className={props.activeTab==='alianzas' ? 'nombre-tab tab-active':`nombre-tab`}>Alianzas</p>
+                </Link>
+                <Link  to='/admin_equipo' className={props.activeTab==='equipo' ? 'menu-tab tab-active link-decoration':`menu-tab link-decoration`}>
                     <i class={props.activeTab==='equipo' ? 'fa-solid fa-users icono-tab tab-active':`fa-solid fa-users icono-tab`}></i>
                     <p className={props.activeTab==='equipo' ? 'nombre-tab tab-active':`nombre-tab`}>Equipo</p>
-                </div>
+                </Link>
                 <div className={props.activeTab==='talleres' ? 'menu-tab tab-active':`menu-tab`}>
                     <i class={props.activeTab==='talleres' ? 'fa-solid fa-briefcase icono-tab tab-active':`fa-solid fa-briefcase icono-tab`}></i>
                     <p className={props.activeTab==='talleres' ? 'nombre-tab tab-active':`nombre-tab`}>Talleres</p>

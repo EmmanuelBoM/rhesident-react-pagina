@@ -107,6 +107,7 @@
 }
 
 .cont-nota-medio{
+    width: 20rem;
     background-color: var(--blanco);
     border-radius: 2rem;
 }

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Footer from '../components/Footer'
 import NavHeader from '../components/NavHeader'
 import OverlayInvitacion from '../components/OverlayInvitacion'
@@ -16,12 +16,17 @@ import {Animated} from "react-animated-css";
 import "animate.css/animate.min.css";
 import SwiperCore, {Pagination,Navigation} from 'swiper';
 
+//Firebase imports
+import {db} from '../firebaseConfig'
+import {query, collection, getDocs,where} from "@firebase/firestore";
+
 SwiperCore.use([Pagination,Navigation]);
 
 
 
 function NuestraHuella() {
     const [overlayVisibility, setOverlayVisibility] = useState(false)
+    const [notas, setNotas]= useState([])
 
     function showOverlay(){
         if (window.scrollY>=80){
@@ -31,6 +36,17 @@ function NuestraHuella() {
             setOverlayVisibility(false)
         }
     }
+    const notasCollectionRef = collection(db, "notasMedio")
+    const q = query(notasCollectionRef, where("visible", "==",true));
+
+  
+  useEffect (()=>{
+    const getNotas = async () => {
+      const data = await getDocs(q);
+      setNotas(data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))
+    }
+    getNotas();
+  }, [])
 
     window.addEventListener('scroll', showOverlay)
     return (
@@ -121,23 +137,33 @@ function NuestraHuella() {
                     slidesPerView={4} 
                     centeredSlides={true}
                     loop={true}
-                    spaceBetween={20} 
+                    spaceBetween={30} 
                     pagination={{"type": "custom" }} 
                     navigation={true} 
                     className="swiper-proyectos">
+                        {
+                            notas.map((nota)=>{
+                                return(
+                                    <a href={nota.notaURL} className='link-decoration' className='cont-nota-medio'>
+                                        <SwiperSlide className='cont-nota-medio'>
+                                            <div className="franja-nota"></div>
+                                            <div className="detalles-nota">
+                                                <p className="fecha-nota">{nota.fecha}</p>
+                                                <h4 className="nombre-nota negro">{nota.titulo}</h4>
+                                                <div className="separador-nota"></div>
+                                                <div className="fuente-nota">
+                                                    <i class="fa-solid fa-newspaper icono-nota"></i>
+                                                    <p className="nombre-fuente">{nota.fuente}</p>
+                                                </div>
+                                            </div>
+                                        </SwiperSlide>
+                                    </a>
+                                    
+                                )
+                            })
+                        }
                 
-                    <SwiperSlide className='cont-nota-medio'>
-                        <div className="franja-nota"></div>
-                        <div className="detalles-nota">
-                            <p className="fecha-nota">17 Dic, 2022</p>
-                            <h4 className="nombre-nota negro">Organización rehabilita espacios comunitarios en Pachuca</h4>
-                            <div className="separador-nota"></div>
-                            <div className="fuente-nota">
-                                <i class="fa-solid fa-newspaper icono-nota"></i>
-                                <p className="nombre-fuente">Milenio noticias</p>
-                            </div>
-                        </div>
-                    </SwiperSlide>
+                    
                     
                     
             </Swiper>
@@ -145,7 +171,7 @@ function NuestraHuella() {
             </section>
             <section className="Aliados">
                 <div className="section-title">
-                    <h2 className="negro">Nuestros aliados</h2>
+                    <h2 className="negro">Nuestras alianzas colaborativas</h2>
                     <p className="negro section-description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum ducimus incidunt totam minima, molestias laudantium!</p>
                 </div>
                 <div className="galeria-aliados">

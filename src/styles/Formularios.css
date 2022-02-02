@@ -80,6 +80,7 @@
     font-size: 2rem;
     margin-inline:auto;
     cursor: pointer;
+    margin-top: 4rem;
 }
 
 .btn-enviar:hover{
@@ -133,14 +134,10 @@
     margin-bottom: 10rem;
 }
 
-.file-preview{
-    margin-bottom: 2rem;
-}
 
 .file-preview-multi{
     display: flex;
     flex-direction: column;
-    margin-bottom: 2rem;
 }
 
 .cont-galeria{
@@ -150,6 +147,26 @@
 }
 
 
+.warning-img{
+    margin-bottom: 4rem;
+    margin-top: 0.8rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.warning-img i{
+    font-size: 1.4rem;
+    margin-right: 0.5rem;
+    color: var(--g-400);
+}
+
+.txt-warning{
+    font-size: 1.6rem;
+    text-align: left;
+    color: var(--g-500);
+    font-weight: 500;
+    
+}
 
 @keyframes focus_appear{
     0%{

@@ -29,8 +29,16 @@ import AdminEditarProyecto from './views/AdminEditarProyecto';
 import AdminNotas from './views/AdminNotas';
 import AdminAgregarNota from './views/AdminAgregarNota';
 import AdminEditarNota from './views/AdminEditarNota';
-
-
+import AdminBeneficiarios from './views/AdminBeneficiarios';
+import AdminAgregarBeneficiario from './views/AdminAgregarBeneficiario';
+import AdminEditarBeneficiario from './views/AdminEditarBeneficiario';
+import AdminAlianzas from './views/AdminAlianzas';
+import AdminAgregarAlianza from './views/AdminAgregarAlianza';
+import AdminEditarAlianza from './views/AdminEditarAlianza';
+import AdminEquipo from './views/AdminEquipo';
+import AdminAgregarMiembro from './views/AdminAgregarMiembro';
+import AdminEditarMiembro from './views/AdminEditarMiembro';
+import AdminTestimonios from './views/AdminTestimonios';
 
 
 function App() {
@@ -61,6 +69,16 @@ function App() {
       <Route path='/admin_notas' element={<AdminNotas/>} />
       <Route path='/agregar-nota' element={<AdminAgregarNota/>} />
       <Route path='/editar-nota/:id' element={<AdminEditarNota/>} />
+      <Route path='/admin_beneficiarios' element={<AdminBeneficiarios/>} />
+      <Route path='/agregar-beneficiario' element={<AdminAgregarBeneficiario/>} />
+      <Route path='/editar-beneficiario/:id' element={<AdminEditarBeneficiario/>} />
+      <Route path='/admin_alianzas' element={<AdminAlianzas/>} />
+      <Route path='/agregar-alianza' element={<AdminAgregarAlianza/>} />
+      <Route path='/editar-alianza/:id' element={<AdminEditarAlianza/>} />
+      <Route path='/admin_equipo' element={<AdminEquipo/>} />
+      <Route path='/agregar-miembro' element={<AdminAgregarMiembro/>} />
+      <Route path='/editar-miembro/:id' element={<AdminEditarMiembro/>} />
+      <Route path='/admin_testimonios' element={<AdminTestimonios/>} />
       <Route path="*" element={<Vista404/>} />
      </Routes>
    </Router>
