@@ -40,10 +40,10 @@ function AdminNavbar(props) {
                     <i class={props.activeTab==='equipo' ? 'fa-solid fa-users icono-tab tab-active':`fa-solid fa-users icono-tab`}></i>
                     <p className={props.activeTab==='equipo' ? 'nombre-tab tab-active':`nombre-tab`}>Equipo</p>
                 </Link>
-                <div className={props.activeTab==='talleres' ? 'menu-tab tab-active':`menu-tab`}>
+                <Link  to='/admin_talleres' className={props.activeTab==='talleres' ? 'menu-tab tab-active link-decoration':`menu-tab link-decoration`}>
                     <i class={props.activeTab==='talleres' ? 'fa-solid fa-briefcase icono-tab tab-active':`fa-solid fa-briefcase icono-tab`}></i>
                     <p className={props.activeTab==='talleres' ? 'nombre-tab tab-active':`nombre-tab`}>Talleres</p>
-                </div>
+                </Link>
                 
             </div>
 

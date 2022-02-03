@@ -39,6 +39,10 @@ import AdminEquipo from './views/AdminEquipo';
 import AdminAgregarMiembro from './views/AdminAgregarMiembro';
 import AdminEditarMiembro from './views/AdminEditarMiembro';
 import AdminTestimonios from './views/AdminTestimonios';
+import AdminAgregarTestimonio from './views/AdminAgregarTestimonio';
+import AdminEditarTestimonio from './views/AdminEditarTestimonio';
+import AdminTalleres from './views/AdminTalleres';
+import AdminAgregarTaller from './views/AdminAgregarTaller';
 
 
 function App() {
@@ -79,6 +83,10 @@ function App() {
       <Route path='/agregar-miembro' element={<AdminAgregarMiembro/>} />
       <Route path='/editar-miembro/:id' element={<AdminEditarMiembro/>} />
       <Route path='/admin_testimonios' element={<AdminTestimonios/>} />
+      <Route path='/agregar-testimonio' element={<AdminAgregarTestimonio/>} />
+      <Route path='/editar-testimonio/:id' element={<AdminEditarTestimonio/>} />
+      <Route path='/admin_talleres' element={<AdminTalleres/>} />
+      <Route path='/agregar-taller' element={<AdminAgregarTaller/>} />
       <Route path="*" element={<Vista404/>} />
      </Routes>
    </Router>

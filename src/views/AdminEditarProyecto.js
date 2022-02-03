@@ -19,11 +19,12 @@ import { ref, uploadBytes, getDownloadURL } from "@firebase/storage";
 function AdminEditarProyecto() {
     const [modalExitoVisibility, setModalExitoVisibility] = useState(false)
     const [modalConfVisibility, setModalConfVisibility] = useState(false)
-    const [pageStatus, setPageStaus] = useState('')
     const [ejesValue, setEjesValue] = useState([])
     const [etiquetasValue, setEtiquetasValue] = useState([])
-    const [etiquetas, setEtiquetas] = useState([])
     const [objetivosValue, setObjetivosValue] = useState([])
+    const [ejesChange, setEjesChange] = useState(false)
+    const [etiquetasChange, setEtiquetasChange] = useState(false)
+    const [objetivosChange, setObjetivosChange] = useState(false)
     const [galeria, setGaleria] = useState([])
     const [imgPrincipalURL, setImgPrincipalURL] = useState('')
     const [modalidadValue, setModalidadValue] = useState('')
@@ -32,14 +33,17 @@ function AdminEditarProyecto() {
     const [newProyecto, setNewProyecto] = useState({})
     let params = useParams();
 
-    let etiquetasDefaultValue = []
-    let ejesAccionDefaultValue = []
     const proyectoRef = doc(db, "proyectos", params.id)
     useEffect (()=>{
         const getProyecto = async () => {
           const proyectoDoc = await getDoc(proyectoRef);
           setProyecto(proyectoDoc.data())
-          setEtiquetas(proyectoDoc.data().etiquetas)
+          setEjesValue(proyectoDoc.data().ejesAccion)
+          setEtiquetasValue(proyectoDoc.data().etiquetas)
+          setObjetivosValue(proyectoDoc.data().objetivos)
+          setModalidadValue(proyectoDoc.data().modalidad)
+          setEstatusValue(proyectoDoc.data().estatus)
+          setImgPrincipalURL(proyectoDoc.data().imgPrincipalURL)
           setGaleria(proyectoDoc.data().imgGaleria)
         }
     
@@ -138,18 +142,19 @@ function AdminEditarProyecto() {
         setModalConfVisibility(true);
     }
 
-    
 
     const handleEjesChange = selectedOptions =>{
+        setEjesChange(true)
         setEjesValue(selectedOptions);
     }
 
     const handleEtiquetasChange = selectedOptions =>{
+        setEtiquetasChange(true)
         setEtiquetasValue(selectedOptions);
-        console.log(etiquetasValue)
     }
     
     const handleObjetivosChange = selectedOptions =>{
+        setObjetivosChange(true)
         setObjetivosValue(selectedOptions);
     }
 
@@ -214,16 +219,46 @@ function AdminEditarProyecto() {
         setNewProyecto(nuevoProyecto);
     }
 
-    
-    
-    etiquetasDefaultValue = etiquetas.map(function(etiqueta, indice){ 
-        return {value: indice, label: etiqueta};
-    });
+    const updateProyecto = async() => {
+
+        let ejesArr = []
+        let etiquetasArr=[]
+        let objetivosArr = []
+        
+        if (ejesChange) ejesValue.map((eje)=>ejesArr.push(eje.value)) 
+        else ejesArr = ejesValue
+        if(etiquetasChange) etiquetasValue.map((etiqueta)=>etiquetasArr.push(etiqueta.value))
+        else etiquetasArr = etiquetasValue
+        if (objetivosChange) objetivosValue.map((objetivo)=>objetivosArr.push(objetivo.value))
+        else objetivosArr = objetivosValue
+
+        const proyectoFB ={
+            ...newProyecto, 
+            imgPrincipalURL: imgPrincipalURL,
+            imgGaleria: galeria,
+            estatus: estatusValue,
+            modalidad: modalidadValue,
+            ejesAccion: ejesArr,
+            etiquetas: etiquetasArr,
+            objetivos: objetivosArr
+        }
+        console.log(proyectoFB)
+        try{
+            await updateDoc(proyectoRef, proyectoFB);
+        }
+        catch(error){
+            console.log(error)
+        }
+        setModalConfVisibility(false)
+        setModalExitoVisibility(true)
+        
+    }
+
 
     return (
         <div className="body-admin">
-            {modalExitoVisibility ? <ModalAdminExito setModalVisibility={setModalExitoVisibility} rutaContinuar='/admin_proyectos' recurso= 'Proyecto' nombreRecurso={proyecto.nombre}></ModalAdminExito> : null }
-            {modalConfVisibility ? <ModalAdminConfirmar setModalVisibility={setModalConfVisibility} runFunction={''} accion='agregar' recurso= 'Proyecto' nombreRecurso={proyecto.nombre}></ModalAdminConfirmar> : null }
+            {modalExitoVisibility ? <ModalAdminExito setModalVisibility={setModalExitoVisibility} rutaContinuar='/admin_proyectos' accion='editado' recurso= 'Proyecto' nombreRecurso={proyecto.nombre}></ModalAdminExito> : null }
+            {modalConfVisibility ? <ModalAdminConfirmar setModalVisibility={setModalConfVisibility} runFunction={updateProyecto} accion='editar' recurso= 'Proyecto' nombreRecurso={proyecto.nombre}></ModalAdminConfirmar> : null }
             
             <AdminNavbar activeTab='proyectos'></AdminNavbar>
             <main className='main-admin'>
@@ -267,7 +302,7 @@ function AdminEditarProyecto() {
                             <Select styles={customSelectStyles} options={estatusSelect} placeholder='Selecciona el estatus del proyecto' onChange={handleEstatusChange} placeholder={proyecto.estatus}/>
 
                             <label htmlFor="" className="input-label">Modalidad</label>
-                            <Select styles={customSelectStyles} options={modalidadesSelect} placeholder='Selecciona la modalidad del proyecto' onChange={handleModalidadChange}/>
+                            <Select styles={customSelectStyles}  options={modalidadesSelect} placeholder='Selecciona la modalidad del proyecto' onChange={handleModalidadChange} placeholder={proyecto.modalidad}/>
                             
                             <label htmlFor="proposito" className="input-label">Propósito</label>
                             <textarea name="proposito" id="" cols="30" rows="4" className="input-gral" placeholder='Escribe aquí' onChange={handleInputChange} defaultValue={proyecto.proposito}></textarea>

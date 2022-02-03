@@ -2,12 +2,14 @@ import React, {useState} from 'react';
 import AdminNavbar from '../components/AdminNavbar';
 import '../styles/base.css'
 import '../styles/AdminLayout.css'
-import ilustracionAgregarProyecto from '../assets/ilustracion_agregar_proyecto.svg'
+import ilustracionAgregarTaller from '../assets/ilustracion_agregar_taller.svg'
 import Select from 'react-select'
 import CreatableSelect, { useCreatable } from 'react-select/creatable';
 import ModalAdminExito from '../components/ModalAdminExito';
 import ModalAdminConfirmar from '../components/ModalAdminConfirmar';
-
+import DatePicker from "react-multi-date-picker";
+import DatePanel from "react-multi-date-picker/plugins/date_panel"
+import "react-multi-date-picker/styles/colors/green.css"
 
 // Firebase Imports
 import {db, storage} from '../firebaseConfig'
@@ -18,17 +20,19 @@ import { ref, uploadBytes, getDownloadURL } from "@firebase/storage";
 
 
 
-function AdminAgregarProyecto() {
+function AdminAgregarTaller() {
     const [modalExitoVisibility, setModalExitoVisibility] = useState(false)
     const [modalConfVisibility, setModalConfVisibility] = useState(false)
     const [ejesValue, setEjesValue] = useState([])
+    const [fechasValue, setFechasValue] = useState([])
     const [etiquetasValue, setEtiquetasValue] = useState([])
     const [objetivosValue, setObjetivosValue] = useState([])
-    const [galeria, setGaleria] = useState([])
-    const [imgPrincipalURL, setImgPrincipalURL] = useState('')
+    const [imgURL, setImgURL] = useState('')
     const [modalidadValue, setModalidadValue] = useState('')
     const [estatusValue, setEstatusValue] = useState('')
-    const [proyecto, setProyecto] = useState({})
+    const [taller, setTaller] = useState({})
+    const weekDays = ["D", "L", "M", "X", "J", "V", "S"]
+    const months = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"]
 
     const ejesAccion = [
         { value: 'Cultura', label: 'Cultura' },
@@ -38,8 +42,7 @@ function AdminAgregarProyecto() {
     ]
     
     const estatusSelect = [
-        { value: 'Activo', label: 'Activo' },
-        { value: 'Pasado', label: 'Pasado' },
+        { value: 'Abierto', label: 'Abierto' },
         { value: 'Próximo', label: 'Próximo' }
     ]
     
@@ -123,7 +126,6 @@ function AdminAgregarProyecto() {
     }
 
     
-
     const handleEjesChange = selectedOptions =>{
         setEjesValue(selectedOptions);
     }
@@ -133,10 +135,6 @@ function AdminAgregarProyecto() {
         console.log(etiquetasValue)
     }
     
-    const handleObjetivosChange = selectedOptions =>{
-        setObjetivosValue(selectedOptions);
-    }
-
     const handleModalidadChange = selectedOption =>{
         setModalidadValue(selectedOption.value);
     }
@@ -148,7 +146,7 @@ function AdminAgregarProyecto() {
     const handleImgChange = async (e) =>{
         
         const file = e.target.files[0]
-        const bucketPath =`images/proyectos/${proyecto.nombre}/${proyecto.nombre}_imgPrincipal`
+        const bucketPath =`images/talleres/${taller.nombre}_img`
         
         const storageRef = ref(storage, bucketPath);
         
@@ -160,72 +158,49 @@ function AdminAgregarProyecto() {
             console.log(error)
         });
 
-        setImgPrincipalURL(await getDownloadURL(storageRef))
+        setImgURL(await getDownloadURL(storageRef))
     }
 
-    const handleGaleriaChange = async (e) =>{
-        setGaleria([])
-        const files = [...e.target.files]
-
-        const promises = files.map(async (file, i) => {
-            
-            const bucketPath =`images/proyectos/${proyecto.nombre}/galeria/${proyecto.nombre}_img${i+1}`
-            const storageRef = ref(storage, bucketPath);
-
-            await uploadBytes(storageRef, file)
-                .then((snapshot) => {
-                    console.log('Imagen subida!');
-                })
-                .catch((error)=>{
-                    console.log(error)
-                });
-            
-
-            const downloadURL = await getDownloadURL(storageRef);
-            setGaleria(prevGaleria => [...prevGaleria, downloadURL]); 
-            console.log(galeria)
-        });
-       
-    }
-
+   
 
     function handleInputChange(e){
-        let newProyecto = {
-            ...proyecto,
+        let newTaller = {
+            ...taller,
             [e.target.name]: e.target.value,
         };
 
-        setProyecto(newProyecto);
+        setTaller(newTaller);
     }
 
+    const handleFechasChange = fecha =>{
+        setFechasValue(fecha)
+    }
 
-    const proyectosCollectionRef = collection(db, "proyectos")
+    const talleresCollectionRef = collection(db, "talleres")
 
-    const submitProyecto = async (e) => {
+    const submitTaller = async (e) => {
         e.preventDefault();
         let ejesArr = []
         let etiquetasArr=[]
         let objetivosArr = []
+        let fechasArr =[]
         ejesValue.map((eje)=>ejesArr.push(eje.value))
         etiquetasValue.map((etiqueta)=>etiquetasArr.push(etiqueta.value))
-        objetivosValue.map((objetivo)=>objetivosArr.push(objetivo.value))
+        fechasValue.map((fecha)=>fechasArr.push(fecha.toString()))
 
 
         try{
-            await addDoc(proyectosCollectionRef,
+            await addDoc(talleresCollectionRef,
                 {
-                    nombre: proyecto.nombre,
-                    descripcionBreve: proyecto.descripcionBreve,
-                    descripcionGeneral: proyecto.descripcionGeneral,
+                    nombre: taller.nombre,
+                    descripcion: taller.descripcion,
+                    duracion: taller.duracion,
                     estatus: estatusValue,
                     modalidad: modalidadValue,
-                    proposito: proyecto.proposito,
-                    procesos: proyecto.procesos,
                     ejesAccion: ejesArr,
                     etiquetas: etiquetasArr,
-                    objetivos: objetivosArr,
-                    imgPrincipalURL: imgPrincipalURL,
-                    imgGaleria: galeria,
+                    fechasInicio: fechasArr,
+                    imgURL: imgURL,
                     visible: true
                 })
         }
@@ -239,31 +214,32 @@ function AdminAgregarProyecto() {
 
     return (
         <div className="body-admin">
-            {modalExitoVisibility ? <ModalAdminExito setModalVisibility={setModalExitoVisibility} rutaContinuar='/admin_proyectos' accion='agregado' recurso= 'Proyecto' nombreRecurso={proyecto.nombre}></ModalAdminExito> : null }
-            {modalConfVisibility ? <ModalAdminConfirmar setModalVisibility={setModalConfVisibility} runFunction={submitProyecto} accion='agregar' recurso= 'Proyecto' nombreRecurso={proyecto.nombre}></ModalAdminConfirmar> : null }
+            {modalExitoVisibility ? <ModalAdminExito setModalVisibility={setModalExitoVisibility} rutaContinuar='/admin_talleres' accion='agregado' recurso= 'Taller' nombreRecurso={taller.nombre}></ModalAdminExito> : null }
+            {modalConfVisibility ? <ModalAdminConfirmar setModalVisibility={setModalConfVisibility} runFunction={submitTaller} accion='agregar' recurso= 'el Taller' nombreRecurso={taller.nombre}></ModalAdminConfirmar> : null }
             
-            <AdminNavbar activeTab='proyectos'></AdminNavbar>
+            <AdminNavbar activeTab='talleres'></AdminNavbar>
             <main className='main-admin'>
                 <section className="admin-form-content">
                     <div className="header-form">
-                        <img src={ilustracionAgregarProyecto} alt="" className="ilustracion-form" />
-                        <h2 className="titulo-admin-form negro">Agrega un <br/> proyecto nuevo</h2>
+                        <img src={ilustracionAgregarTaller} alt="" className="ilustracion-form" />
+                        <h2 className="titulo-admin-form negro">Agrega un <br/> taller nuevo</h2>
                     </div>
                     <div className="cont-formulario-agregar">
                         <form action="" className="formulario-registro">
-                            <label htmlFor="nombre" className='input-label'>Nombre del proyecto</label>
-                            <input type="text"  placeholder="Nombre" name="nombre" id="" className="input-gral" required onChange={handleInputChange}/>
+                            <label htmlFor="nombre" className='input-label'>Nombre del taller</label>
+                            <input type="text"  placeholder="Nombre" name="nombre" className="input-gral" required onChange={handleInputChange}/>
                             
-                            <label htmlFor="descripcionBreve" className="input-label">Descripción breve</label>
-                            <textarea name="descripcionBreve" id="" cols="30" rows="4" className="input-gral" placeholder='90 caracteres máximo' onChange={handleInputChange} maxLength={200}></textarea>
-                            
-                            <label htmlFor="descripcionGeneral" className="input-label">Descripción general</label>
-                            <textarea name="descripcionGeneral" id="" cols="30" rows="8" className="input-gral" placeholder='Escribe aquí' onChange={handleInputChange}></textarea>
-                            
-                            <label htmlFor="imgPrincipalURL" className="input-label">Imagen principal</label>
+                            <label htmlFor="descripcion" className="input-label">Descripción</label>
+                            <textarea name="descripcion"  cols="30" rows="6" className="input-gral" placeholder='200 caracteres máximo' onChange={handleInputChange} maxLength={200}></textarea>
+                           
+                            <label htmlFor="imgURL" className="input-label">Imagen</label>
                             <div className="file-preview">
-                                <input type="file" name="imgPrincipalURL" id="" className="input-archivo" onChange={handleImgChange}/>
-                                <img src={imgPrincipalURL} alt=""  className="preview-img" />
+                                <input type="file" name="imgURL"  className="input-archivo" onChange={handleImgChange}/>
+                                <img src={imgURL} alt=""  className="preview-img" />
+                            </div>
+                            <div className="warning-img">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                                <p className="txt-warning">Recuerda comprimir el tamaño de la imagen <a href="https://compressor.io/">aquí</a></p>
                             </div>
 
                             <label htmlFor="" className="input-label">Etiquetas</label>
@@ -280,40 +256,30 @@ function AdminAgregarProyecto() {
                             <Select styles={customSelectStyles} options={ejesAccion} placeholder='Selecciona uno o más ejes' isMulti onChange={handleEjesChange}/>
 
                             <label htmlFor="" className="input-label">Estatus</label>
-                            <Select styles={customSelectStyles} options={estatusSelect} placeholder='Selecciona el estatus del proyecto' onChange={handleEstatusChange}/>
+                            <Select styles={customSelectStyles} options={estatusSelect} placeholder='Selecciona el estatus del taller' onChange={handleEstatusChange}/>
 
                             <label htmlFor="" className="input-label">Modalidad</label>
-                            <Select styles={customSelectStyles} options={modalidadesSelect} placeholder='Selecciona la modalidad del proyecto' onChange={handleModalidadChange}/>
+                            <Select styles={customSelectStyles} options={modalidadesSelect} placeholder='Selecciona la modalidad del taller' onChange={handleModalidadChange}/>
                             
-                            <label htmlFor="proposito" className="input-label">Propósito</label>
-                            <textarea name="proposito" id="" cols="30" rows="4" className="input-gral" placeholder='Escribe aquí' onChange={handleInputChange}></textarea>
+                            <label htmlFor="duracion" className="input-label">Duración</label>
+                            <input type='number' name="duracion" id=""className="input-gral" placeholder='Escribe la duración en horas del taller.' onChange={handleInputChange}/>
                             
-                            <label htmlFor="" className="input-label">Objetivos</label>
-                            <CreatableSelect
-                                components={components}
-                                isClearable
-                                isMulti
-                                styles={customSelectStyles}
-                                placeholder="Escribe los objetivos. Enter para agregar otro."
-                                onChange={handleObjetivosChange}
-                            />
+                            <label htmlFor="duracion" className="input-label">Fechas de inicio</label>
+                            <DatePicker inputClass='input-gral'  
+                                        multiple 
+                                        className='green' 
+                                        placeholder='Clic para seleccionar'
+                                        format={ "DD/MM/YYYY" }
+                                        weekDays={weekDays}
+                                        months={months}
+                                        onChange={handleFechasChange}
+                                        plugins={[
+                                            <DatePanel />
+                                           ]}/>;
                             
-                            <label htmlFor="" className="input-label">Procesos</label>
-                            <textarea name="procesos" id="" cols="30" rows="8" className="input-gral" placeholder='Escribe aquí' onChange={handleInputChange}></textarea>
-                            
-                            <label htmlFor="" className="input-label">Galería de imagenes</label>
-                            <div className="file-preview-multi">
-                                <input type="file" name="" id="" className="input-archivo" onChange={handleGaleriaChange} multiple/>
-                                <div className="cont-galeria">
-                                    {galeria.map((img) =>
-                                        <img src={img} alt="" className="preview-img" />
-                                    )}
-                                </div>
-                                
-                            </div>
 
                             <button className="btn-enviar"  type="button" onClick={showModalConfirmar}>
-                                <p>Agregar proyecto</p>
+                                <p>Agregar taller</p>
                             </button>
                         </form>
                     </div>
@@ -323,4 +289,4 @@ function AdminAgregarProyecto() {
     );
 }
 
-export default AdminAgregarProyecto;
+export default AdminAgregarTaller;

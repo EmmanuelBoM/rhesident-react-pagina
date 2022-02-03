@@ -1,37 +1,49 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import AdminNavbar from '../components/AdminNavbar';
 import '../styles/base.css'
 import '../styles/AdminLayout.css'
 import ilustracionAgregarTestimonio from '../assets/ilustracion_agregar_testimonio.svg'
 import ModalAdminExito from '../components/ModalAdminExito';
 import ModalAdminConfirmar from '../components/ModalAdminConfirmar';
-
+import { useParams } from 'react-router-dom';
 
 // Firebase Imports
 import {db, storage} from '../firebaseConfig'
-import {collection,addDoc} from "@firebase/firestore";
+import {collection,getDoc, doc, updateDoc} from "@firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "@firebase/storage";
 
 
-function AdminAgregarTestimonio() {
+function AdminEditarTestimonio() {
     const [modalExitoVisibility, setModalExitoVisibility] = useState(false)
     const [modalConfVisibility, setModalConfVisibility] = useState(false)
     const [testimonio, setTestimonio] = useState({})
+    const [newTestimonio, setNewTestimonio] = useState({})
     const [imgURL, setImgURL] = useState('')
-    const [imgCompletaURL, setImgCompletaURL] = useState('')
+    const params = useParams();
+   
+    const testimonioRef = doc(db, "testimonios", params.id)
+
+    useEffect (()=>{
+        const getTestimonio = async () => {
+          const testimonioDoc = await getDoc(testimonioRef);
+          setTestimonio(testimonioDoc.data())
+          setImgURL(testimonioDoc.data().imgURL)
+        }
+    
+        getTestimonio();
+      }, []);
 
     function showModalConfirmar(){
         setModalConfVisibility(true);
     }
 
     function handleInputChange(e){
-        let newTestimonio = {
-            ...testimonio,
+        let nuevoTestimonio = {
+            ...newTestimonio,
             [e.target.name]: e.target.value,
         };
 
-        setTestimonio(newTestimonio);
-        console.log(testimonio)
+        setNewTestimonio(nuevoTestimonio);
     }
 
     const handleImgChange = async (e) =>{
@@ -53,53 +65,46 @@ function AdminAgregarTestimonio() {
     }
 
 
-
-    const testimoniosCollectionRef = collection(db, "testimonios")
-
-    const submitTestimonio = async (e) => {
-        e.preventDefault();
-        console.log(testimonio);
-
+    const updateTestimonio = async() => {
+        const testimonioFB ={
+            ...newTestimonio, 
+            imgURL: imgURL
+        }
+        console.log(testimonioFB)
         try{
-            await addDoc(testimoniosCollectionRef,
-                {
-                    nombre: testimonio.nombre,
-                    relacion: testimonio.relacion,
-                    testimonio: testimonio.testimonio,
-                    imgURL: imgURL,
-                    visible: true
-                })
+            await updateDoc(testimonioRef, testimonioFB);
         }
         catch(error){
             console.log(error)
         }
         setModalConfVisibility(false)
         setModalExitoVisibility(true)
+        
     }
-    
+
 
     return (
         <div className="body-admin">
-            {modalExitoVisibility ? <ModalAdminExito setModalVisibility={setModalExitoVisibility} rutaContinuar='/admin_testimonios' accion='agregado' recurso= 'Testimonio' nombreRecurso={testimonio.nombre}></ModalAdminExito> : null }
-            {modalConfVisibility ? <ModalAdminConfirmar setModalVisibility={setModalConfVisibility} runFunction={submitTestimonio} accion='agregar' recurso= 'el testimonio' nombreRecurso={testimonio.nombre}></ModalAdminConfirmar> : null }
+            {modalExitoVisibility ? <ModalAdminExito setModalVisibility={setModalExitoVisibility} rutaContinuar='/admin_testimonios' accion='editado' recurso= 'Testimonio de' nombreRecurso={newTestimonio.nombre}></ModalAdminExito> : null }
+            {modalConfVisibility ? <ModalAdminConfirmar setModalVisibility={setModalConfVisibility} runFunction={updateTestimonio} accion='editar' recurso= 'el Testimonio de' nombreRecurso={testimonio.nombre}></ModalAdminConfirmar> : null }
             
             <AdminNavbar activeTab='testimonios'></AdminNavbar>
             <main className='main-admin'>
                 <section className="admin-form-content">
                     <div className="header-form">
                         <img src={ilustracionAgregarTestimonio} alt="" className="ilustracion-form" />
-                        <h2 className="titulo-admin-form negro">Agrega un<br/> testimonio nuevo</h2>
+                        <h2 className="titulo-admin-form negro">Editar testimonio</h2>
                     </div>
                     <div className="cont-formulario-agregar">
                         <form action="" className="formulario-registro">
                             <label htmlFor="nombre" className='input-label'>Nombre</label>
-                            <input type="text"  placeholder="Persona/Organización que da el tesimonioo" name="nombre" id="" className="input-gral" required onChange={handleInputChange}/>
+                            <input type="text"  placeholder="Persona/Organización que da el tesimonioo" name="nombre" id="" className="input-gral" required onChange={handleInputChange} defaultValue={testimonio.nombre}/>
 
                             <label htmlFor="relacion" className='input-label'>Relación con Rhesident Org.</label>
-                            <input type="text"  placeholder="Ej.: Voluntario, Colaborador, etc." name="relacion" id="" className="input-gral" required onChange={handleInputChange}/>
+                            <input type="text"  placeholder="Ej.: Voluntario, Colaborador, etc." name="relacion" id="" className="input-gral" required onChange={handleInputChange} defaultValue={testimonio.relacion}/>
 
                             <label htmlFor="testimonio" className='input-label'>Testimonio</label>
-                            <textarea name="testimonio" id="" cols="30" rows="10" className="input-gral"  onChange={handleInputChange}></textarea>
+                            <textarea name="testimonio" id="" cols="30" rows="10" className="input-gral"  onChange={handleInputChange} defaultValue={testimonio.testimonio}></textarea>
                             
                             <label htmlFor="imgURL" className="input-label">Imagen / Logotipo</label>
                             <div className="file-preview">
@@ -113,7 +118,7 @@ function AdminAgregarTestimonio() {
                             </div>
                             
                             <button className="btn-enviar"  type="button" onClick={showModalConfirmar}>
-                                <p>Agregar testimonio</p>
+                                <p>Editar testimonio</p>
                             </button>
                         </form>
                     </div>
@@ -123,4 +128,4 @@ function AdminAgregarTestimonio() {
     );
 }
 
-export default AdminAgregarTestimonio;
+export default AdminEditarTestimonio;
