@@ -265,6 +265,10 @@ function AdminAgregarProyecto() {
                                 <input type="file" name="imgPrincipalURL" id="" className="input-archivo" onChange={handleImgChange}/>
                                 <img src={imgPrincipalURL} alt=""  className="preview-img" />
                             </div>
+                            <div className="warning-img">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                                <p className="txt-warning">Recuerda comprimir el tamaño de la imagen <a href="https://compressor.io/" target="_blank">aquí</a></p>
+                            </div>
 
                             <label htmlFor="" className="input-label">Etiquetas</label>
                             <CreatableSelect
@@ -309,10 +313,13 @@ function AdminAgregarProyecto() {
                                         <img src={img} alt="" className="preview-img" />
                                     )}
                                 </div>
-                                
+                            </div>
+                            <div className="warning-img">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                                <p className="txt-warning">Recuerda comprimir el tamaño de las imagenes <a href="https://compressor.io/" target="_blank">aquí</a></p>
                             </div>
 
-                            <button className="btn-enviar"  type="button" onClick={showModalConfirmar}>
+                            <button className="btn-enviar" type="button" onClick={showModalConfirmar}>
                                 <p>Agregar proyecto</p>
                             </button>
                         </form>

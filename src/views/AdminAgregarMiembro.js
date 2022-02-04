@@ -128,7 +128,7 @@ function AdminAgregarMiembro() {
 
                             <div className="warning-img">
                                 <i class="fa-solid fa-circle-exclamation"></i>
-                                <p className="txt-warning">Recuerda comprimir el tamaño de la imagen <a href="https://compressor.io/">aquí</a></p>
+                                <p className="txt-warning">Recuerda comprimir el tamaño de la imagen <a href="https://compressor.io/" target="_blank">aquí</a></p>
                             </div>
 
                             <label htmlFor="imgCompletaURL" className="input-label">Imagen Completa</label>
@@ -138,7 +138,7 @@ function AdminAgregarMiembro() {
                             </div>
                             <div className="warning-img">
                                 <i class="fa-solid fa-circle-exclamation"></i>
-                                <p className="txt-warning">Recuerda comprimir el tamaño de la imagen <a href="https://compressor.io/">aquí</a></p>
+                                <p className="txt-warning">Recuerda comprimir el tamaño de la imagen <a href="https://compressor.io/" target="_blank">aquí</a></p>
                             </div>
                             
                             <button className="btn-enviar"  type="button" onClick={showModalConfirmar}>
