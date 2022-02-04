@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Footer from '../components/Footer'
 import NavHeader from '../components/NavHeader'
 import '../styles/base.css'
@@ -12,11 +12,24 @@ import OverlayInvitacion from '../components/OverlayInvitacion'
 import {Animated} from "react-animated-css";
 import "animate.css/animate.min.css";
 
+//Firebase imports
+import {db} from '../firebaseConfig'
+import {query, collection, getDocs,where} from "@firebase/firestore";
 
 function NuestroEquipo() {
     //Bloquear scroll del body
     // document.body.style.overflow = 'hidden';
-
+    const [equipo, setNotas]= useState([])
+    const [miembroModal, setMiembroModal] = useState({})
+    const equipoCollectionRef = collection(db, "equipo")
+    const q = query(equipoCollectionRef, where("visible", "==",true));
+    useEffect (()=>{
+        const getNotas = async () => {
+          const data = await getDocs(q);
+          setNotas(data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))
+        }
+        getNotas();
+      }, [])
     const [overlayVisibility, setOverlayVisibility] = useState(false)
     const [modalVisibility, setModalVisibility] = useState(false)
 
@@ -53,17 +66,18 @@ function NuestroEquipo() {
             </section>
             <section className="galeria-equipo">
                 <div className="cont-miembros">
-                    <MiembroEquipo setModalVisibility={setModalVisibility}></MiembroEquipo>
-                    <MiembroEquipo></MiembroEquipo>
-                    <MiembroEquipo></MiembroEquipo>
-                    <MiembroEquipo></MiembroEquipo>
-                    <MiembroEquipo></MiembroEquipo>
-                    <MiembroEquipo></MiembroEquipo>
+                    {equipo.map((miembro, i)=>{
+                        return(
+                            <MiembroEquipo miembro={miembro} miembroModal={miembroModal} setMiembroModal={setMiembroModal} setModalVisibility={setModalVisibility}></MiembroEquipo>
+                        )
+                        
+                    })}
+                    
                 </div>
             </section>
             <Footer></Footer>
             <Animated animateOnMount={false} animationIn="fadeIn" animationOut="fadeOut" isVisible={modalVisibility} animationInDuration={500} animationOutDuration={500} className="overlay-top">
-                {modalVisibility ? <ModalMiembro setModalVisibility={setModalVisibility} modalVisibility={modalVisibility}></ModalMiembro> : null}
+                {modalVisibility ? <ModalMiembro miembro= {miembroModal} setModalVisibility={setModalVisibility} modalVisibility={modalVisibility}></ModalMiembro> : null}
             </Animated>
            
         </main>
