@@ -27,13 +27,13 @@
     width: 60%;
 }
 .imagen-completa-miembro{
-    width: 40%;
-    background-image: url('../assets/miembro_completa.png');
+    width: 50%;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     border-radius: 4rem 0 0 4rem;
 }
+
 
 .nombre-miembro-modal{
     margin-bottom: 2rem;
