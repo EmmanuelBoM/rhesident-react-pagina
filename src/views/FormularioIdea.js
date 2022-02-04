@@ -3,88 +3,13 @@ import Footer from '../components/Footer';
 import NavHeader from '../components/NavHeader';
 import '../styles/base.css'
 import '../styles/Formularios.css'
-import imgRegistroVoluntario from '../assets/ilustracion_registro_voluntariado.svg'
-import Select from 'react-select'
+import '../styles/FormularioIdea.css'
 import emailjs from '@emailjs/browser';
 import ModalAdminExito from '../components/ModalAdminExito';
 import ModalAdminConfirmar from '../components/ModalAdminConfirmar';
 
-const options = [
-  { value: 'Presencial', label: 'Presencial' },
-  { value: 'Híbrido', label: 'Híbrido' },
-  { value: 'Remoto', label: 'Remoto' }
-]
+function FormularioIdea() {
 
-function RegistroVoluntarios() {
-
-    const customSelectStyles = {
-        control: (base, state) => ({
-            ...base,
-            border: "2px solid #cfcfc9",
-            boxShadow: state.isFocused ? null : null,
-            padding: "0.3rem 0rem",
-            borderRadius: "1rem",
-            fontSize: "1.8rem",
-            color: "#F7F7F7",
-            fontFamily: "Lato",
-            textAlign: "start",
-            backgroundColor: 'rgba(255, 255, 255, 0)',
-            marginBottom: '2rem',
-            "&:focus ": {
-                outline: "none !important",
-                border: "2px solid var(--p-400)"
-              },
-          }),
-        placeholder: base =>({
-            ...base,
-            color: "#878778"
-        }),
-        menu: base => ({
-            ...base,
-            borderRadius: "1rem",
-            background: "#FCFCFC",
-            color: "#878778",
-            fontSize: "1.8rem",
-            textAlign: "start",
-            fontFamily: "Lato",
-            marginTop: '-1.5rem'
-        
-        }),
-        menuList: base => ({
-            ...base,
-            borderRadius: "1rem",
-        }),
-        singleValue: base => ({
-            ...base,
-            color: "#1b1b18",
-        }),
-        input: base => ({
-            ...base,
-            color: "#1b1b18",
-            
-        }),
-        dropdownIndicator: base => ({
-            ...base,
-            color: "#164453"
-        }),
-        option: (base,{data, isDisabled, isFocused,isSelected}) => ({
-            ...base,
-            color: "#1A1A1A",
-            backgroundColor: isDisabled ? undefined: isSelected,
-            "&:hover ": {
-                background: "#164453",
-                color:"#f0f0ee"
-              },
-        }),
-        container: base => ({
-            ...base,
-            "@media only screen and (max-width: 576px)": {
-                ...base["@media only screen and (max-width: 576px)"],
-                width:"100%",
-        },
-        })
-    }
-    
     const [modalExitoVisibility, setModalExitoVisibility] = useState(false)
     const [modalConfVisibility, setModalConfVisibility] = useState(false)
     const form = useRef();
@@ -115,16 +40,16 @@ function RegistroVoluntarios() {
         e.preventDefault();
         setContenido(`
         <strong>Nombre Completo:</strong> ${contenidoValues.nombre}<br/>
+        <strong>¿Perteneces a algún colectivo? ¿Cuál?</strong> ${contenidoValues.colectivo ? contenidoValues.colectivo : "Ninguno"}<br/>
         <strong>Correo Electrónico:</strong> ${contenidoValues.correo}<br/>
         <strong>Número de teléfono:</strong> ${contenidoValues.numTelefono}<br/>
         <strong>Lugar de Residencia:</strong> ${contenidoValues.lugarResidencia}<br/>
-        <strong>Modalidad de voluntariado:</strong> ${modalidadValue}<br/><br/>
-        <strong>¿Por qué te interesaría ser parte de la organización?</strong><br/>${contenidoValues.mensaje}
+        <strong> Cuéntanos cómo podríamos colaborar</strong><br/>${contenidoValues.mensaje}
         `)
 
-        setAsunto("[Voluntariado] Nuevo Registro")
-        setEncabezado("Nuevo registro de voluntariado")
-        setFormulario("Completa el registro para tu voluntariado")
+        setAsunto("[Idea] Nueva respuesta")
+        setEncabezado("Nuevo propuesta de colaboración")
+        setFormulario("Cuéntanos tu idea")
         setFormul(form.current)
         
     };
@@ -141,29 +66,33 @@ function RegistroVoluntarios() {
 
     return (
         <main>
-            {modalExitoVisibility ? <ModalAdminExito setModalVisibility={setModalExitoVisibility} rutaContinuar='/voluntariado' accion='enviada' recurso= 'Respuesta' subt=" " nombreRecurso=" "></ModalAdminExito> : null }
-            {modalConfVisibility ? <ModalAdminConfirmar setModalVisibility={setModalConfVisibility} runFunction={sendEmail} accion='enviar' recurso= 'respuesta' nombreRecurso=" "></ModalAdminConfirmar> : null }
+            {modalExitoVisibility ? <ModalAdminExito setModalVisibility={setModalExitoVisibility} rutaContinuar='/como-apoyar' accion='enviada' recurso= 'Respuesta' subt=" " nombreRecurso=" "></ModalAdminExito> : null }
+            {modalConfVisibility ? <ModalAdminConfirmar setModalVisibility={setModalConfVisibility} runFunction={sendEmail} accion='enviar' recurso= 'tu respuesta' nombreRecurso=" "></ModalAdminConfirmar> : null }
             <NavHeader></NavHeader>
             <div className="titulo-header">
-                <h1 className="verde">Completa el registro para <br /> tu voluntariado</h1>
+                <h1 className="verde">Cuéntanos tu idea</h1>
             </div>
            
-            <section className="registro-contenido">
-                <img src={imgRegistroVoluntario} alt="" className="img-registro" />
+            <section className="registro-contenido cont-idea">
+               
                 <div className="cont-formulario-registro">
                     <form action="" ref={form} onSubmit={submitRegistro} className="formulario-registro">
                         <label htmlFor="nombre" className='input-label'>Nombre Completo*</label>
                         <input type="text"  placeholder="Nombre completo" name="nombre" id="" className="input-gral" required onChange={handleInputChange} autoComplete="name"/>
+                        
+                        <label htmlFor="colectivo" className='input-label'>¿Perteneces a algún colectivo? ¿Cuál?</label>
+                        <input type="text"  placeholder="Nombre del colectivo, organización, etc." name="colectivo" id="" className="input-gral" onChange={handleInputChange}/>
+                        
                         <label htmlFor="correo" className='input-label'>Correo electrónico*</label>
                         <input type="email"  placeholder="Correo electrónico" name="correo" id="" className="input-gral" required onChange={handleInputChange}  autoComplete="email"/>
+                        
                         <label htmlFor="numTelefono" className='input-label'>Número de teléfono*</label>
                         <input type="tel"  placeholder="10 dígitos" name="numTelefono" id="" className="input-gral" maxLength={10} required onChange={handleInputChange}  autoComplete="tel"/>
                         <label htmlFor="lugarResidencia" className='input-label'>Lugar de residencia*</label>
                         <input type="text"  placeholder="Ciudad o comunidad" name="lugarResidencia" id="" className="input-gral" required onChange={handleInputChange}/>
-                        <label htmlFor="" className="input-label">Modalidad de voluntariado*</label>
-                        <Select styles={customSelectStyles} options={options} placeholder='Selecciona una modalidad' onChange={handleModalidadChange}/>
-                        <label htmlFor="mensaje" className="input-label">¿Por qué te interesaría ser parte de la organización?*</label>
-                        <textarea name="mensaje" id=""  cols="30" rows="10" className="input-gral" placeholder='Cuéntanos' onChange={handleInputChange} required></textarea>
+                        
+                        <label htmlFor="mensaje" className="input-label">Cuéntanos cómo podríamos colaborar*</label>
+                        <textarea name="mensaje" id=""  cols="30" rows="10" className="input-gral" placeholder='Escribe tu idea aquí' onChange={handleInputChange} required></textarea>
                         
                         <input type="text" name="asunto" id="" value={asunto} className="input-gral dnone"/>
                         <input type="text" name="formulario" id="" value={formulario} className="input-gral dnone"/>
@@ -176,10 +105,42 @@ function RegistroVoluntarios() {
                         </button>
                     </form>
                 </div>
+                <div className="cont-info-idea">
+                    <div className="info-idea">
+                        <h3 className="verde">Síguenos en</h3>
+                        <div className="redes-idea">
+                            <a href="https://www.facebook.com/rhesident.org">
+                                <i class="fa-brands fa-facebook"></i>
+                            </a>
+                            <a href="https://www.instagram.com/rhesident_org/">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                            <a href="https://twitter.com/rhesident_org">
+                                <i class="fa-brands fa-twitter"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/company/rhesident-org/">
+                                <i class="fa-brands fa-linkedin"></i>
+                            </a>
+                            <a href="mailto:contacto@rhesident.org">
+                                <i class="fa-brands fa-youtube"></i>
+                            </a>
+                        </div>
+                        <h3 className="verde">Contacto</h3>
+                        <div className="text-idea">
+                            <p className="verde bold">Teléfono</p>
+                            <p className="verde ">771 123 73 48</p>
+                        </div>
+                        <div className="text-idea">
+                            <p className="verde bold">Correo Electrónico</p>
+                            <p className="verde ">info@rhesident.org</p>
+                        </div>
+                    </div>
+                    <img src='' alt="" className="img-registro" />
+                </div>
             </section>
             <Footer></Footer>
         </main>
   );
 }
 
-export default RegistroVoluntarios;
+export default FormularioIdea;
