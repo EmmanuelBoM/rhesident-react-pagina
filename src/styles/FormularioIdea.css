@@ -1,0 +1,35 @@
+.cont-info-idea{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+}
+
+.cont-idea{
+    align-items: flex-start !important;
+}
+
+.cont-info-idea h3{
+    margin-bottom: 2rem;
+}
+
+.redes-idea{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 4rem;
+}
+
+.redes-idea i{
+    font-size: 4em;
+    text-decoration: none;
+    color: var(--primario);
+}
+
+.text-idea{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
