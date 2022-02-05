@@ -19,16 +19,17 @@ import {query, collection, getDocs,where} from "@firebase/firestore";
 function NuestroEquipo() {
     //Bloquear scroll del body
     // document.body.style.overflow = 'hidden';
-    const [equipo, setNotas]= useState([])
+    const [equipo, setEquipo]= useState([])
     const [miembroModal, setMiembroModal] = useState({})
+
     const equipoCollectionRef = collection(db, "equipo")
     const q = query(equipoCollectionRef, where("visible", "==",true));
     useEffect (()=>{
-        const getNotas = async () => {
+        const getEquipo = async () => {
           const data = await getDocs(q);
-          setNotas(data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))
+          setEquipo(data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))
         }
-        getNotas();
+        getEquipo();
       }, [])
     const [overlayVisibility, setOverlayVisibility] = useState(false)
     const [modalVisibility, setModalVisibility] = useState(false)

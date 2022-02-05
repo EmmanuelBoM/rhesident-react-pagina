@@ -43,6 +43,8 @@ import AdminAgregarTestimonio from './views/AdminAgregarTestimonio';
 import AdminEditarTestimonio from './views/AdminEditarTestimonio';
 import AdminTalleres from './views/AdminTalleres';
 import AdminAgregarTaller from './views/AdminAgregarTaller';
+import FormularioIdea from './views/FormularioIdea';
+
 
 
 function App() {
@@ -87,6 +89,7 @@ function App() {
       <Route path='/editar-testimonio/:id' element={<AdminEditarTestimonio/>} />
       <Route path='/admin_talleres' element={<AdminTalleres/>} />
       <Route path='/agregar-taller' element={<AdminAgregarTaller/>} />
+      <Route path='/cuentanos-tu-idea' element={<FormularioIdea/>} />
       <Route path="*" element={<Vista404/>} />
      </Routes>
    </Router>
