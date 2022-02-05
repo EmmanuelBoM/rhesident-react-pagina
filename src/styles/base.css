@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
 }
+
 html{
     font-size: 10px;
     font-family: 'Lato', sans-serif;
@@ -64,6 +65,9 @@ font-size: 2.4rem;
 .titulo-header h1{
     width: 70%;
 }
+
+
+
 :root{
     --primario: #164453;
     --secundario: #f0e967;
@@ -111,6 +115,8 @@ font-size: 2.4rem;
 main{
 	box-sizing: border-box;
 	overflow-x: hidden;
+	height: 100vh;
+	overflow-y: hidden;
 }
 
 .descripcion-seccion{
@@ -128,4 +134,25 @@ svg {
 
 path{
     pointer-events: auto;
+}
+
+
+@media only screen and (max-width: 768px) {
+    html{
+		font-size: 8px;
+	}
+
+	p{
+		font-size: 1.6rem;
+	}
+}
+
+@media only screen and (max-width: 576px) {
+    html{
+		font-size: 6px;
+	}
+
+	h4{
+		font-size: 3rem;
+	}
 }
