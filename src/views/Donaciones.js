@@ -32,7 +32,7 @@ function Donaciones() {
                 <div className="cont-tipo-donaciones idea">
                     <i class="fa-solid fa-lightbulb icono-donaciones verde"></i>
                     <p className="mb4 verde">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi suscipit architecto soluta repellendus unde id!</p>
-                    <button className="btn-donaciones">Cuéntanos tu idea</button>
+                    <Link to='/cuentanos-tu-idea'><button className="btn-donaciones">Cuéntanos tu idea</button></Link>
                 </div>
                 <div className="cont-tipo-donaciones agenda-entrevista">
                     <i class="fa-solid fa-calendar-day icono-donaciones"></i>

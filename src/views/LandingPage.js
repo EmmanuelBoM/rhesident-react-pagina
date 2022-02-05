@@ -157,7 +157,7 @@ function LandingPage() {
 
           <div className="round-cta-cont">
             <h3 className='negro'>Ayúdanos a lograr nuestro propósito</h3>
-            <Link to='/donaciones'>
+            <Link to='/como-apoyar'>
               <div className="btn-round">
                 <img src={iconoMas} alt="" />
               </div>

@@ -74,9 +74,9 @@ function ProyectoDetalle() {
                     
                 </div>
                 <div className="img-principal-cont">
-                    <svg width="484" height="428" viewBox="0 0 584 528" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="584" height="528" viewBox="0 0 584 528" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <defs>
-                            <pattern id='imgProyecto' patternUnits='userSpaceOnUse' x="0" y="0" width="548" height="528">
+                            <pattern id='imgProyecto' patternUnits='userSpaceOnUse' x="0" y="0" width="100%" height="100%" className='pt-proyecto-detalle'>
                                 <image href={proyecto.imgPrincipalURL} className='img-principal-proyecto' />             
                             </pattern>
                         </defs>

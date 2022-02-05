@@ -12,6 +12,7 @@ function ModalAdminExito(props) {
                 <div className='cont-modal-admin'>
                     <div className="modal-admin-barra success"></div>
                     <p className="texto-modal-admin">{`¡${props.recurso} ${props.nombreRecurso} ${props.accion} correctamente!`}</p>
+                    <p className="subt-modal-admin">{props.subt}</p>
                     <div className="btns-modal-exito">
                         <Link to={props.rutaContinuar}>
                         <button className="btn-modal-admin-confirmar">Continuar</button>
