@@ -4,8 +4,15 @@ import '../styles/AdminNavbar.css'
 import logoMenu from '../assets/logo_menu_admin.svg'
 import {Link} from 'react-router-dom'
 import iconoProyectos from '../assets/corazon_icono.svg'
-
+import { useNavigate } from 'react-router-dom';
 function AdminNavbar(props) {
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        sessionStorage.removeItem('Auth Token');
+        navigate('/login')
+    }
+
     return (
         <aside className="cont-menu-admin">
             <img src={logoMenu} alt="" className="logo-menu-admin" />
@@ -53,7 +60,7 @@ function AdminNavbar(props) {
             </div>
 
             <div className="logout-cont">
-                <i class="fa-solid fa-right-from-bracket"></i>
+                <i class="fa-solid fa-right-from-bracket icono-logout" onClick={handleLogout}></i>
                 <p className="cerrar-sesion-text">Cerrar sesión</p>
             </div>
            

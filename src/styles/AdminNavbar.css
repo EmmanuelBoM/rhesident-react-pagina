@@ -103,3 +103,7 @@
     font-weight: 600;
     color: var(--primario);
 }
+
+.icono-logout{
+    cursor: pointer;
+}
