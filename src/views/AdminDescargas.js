@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import AdminNavbar from '../components/AdminNavbar';
-import iconoAgregarTestimonio from '../assets/icono_agregarTestimonio.svg'
+import iconoAgregarDescarga from '../assets/icono_agregarDescarga.svg'
 import ModalAdminEliminar from '../components/ModalAdminEliminar';
 
 //Estilos
@@ -15,21 +15,21 @@ import {Link} from 'react-router-dom'
 import {db} from '../firebaseConfig'
 import {query, collection, getDocs,orderBy, doc, updateDoc,  deleteDoc} from "@firebase/firestore";
 
-function AdminTestimonios() {
+function AdminDescargas() {
 
     //Firestore GET Query
-    const [testimonios, setTestimonios] = useState([])
-    const testimoniosCollectionRef = collection(db, "testimonios")
+    const [descargas, setDescargas] = useState([])
+    const descargasCollectionRef = collection(db, "descargas")
   
-    const q = query(testimoniosCollectionRef, orderBy("nombre"))
+    const q = query(descargasCollectionRef, orderBy("nombre"))
 
     useEffect (()=>{
-      const getTestimonios = async () => {
+      const getDescargas = async () => {
         const data = await getDocs(q);
-        setTestimonios(data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))
+        setDescargas(data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))
       }
   
-      getTestimonios();
+      getDescargas();
     }, [])
 
     
@@ -40,7 +40,7 @@ function AdminTestimonios() {
 
     const deleteTestimonio = async () => {
         try{
-            await deleteDoc(doc(db, "testimonios", idTestimonio));
+            await deleteDoc(doc(db, "descargas", idTestimonio));
         }
         catch(error){
             console.log(error)
@@ -66,8 +66,8 @@ function AdminTestimonios() {
             if(isVisible) { visibility = { visible: false } }
             else{ visibility = { visible: true } }
         
-            const testimonioRef = doc(db, "testimonios", id)
-            await updateDoc(testimonioRef, visibility);
+            const descargaRef = doc(db, "descargas", id)
+            await updateDoc(descargaRef, visibility);
             window.location.reload();
         },
         [],
@@ -75,9 +75,9 @@ function AdminTestimonios() {
 
       const columns = React.useMemo(()=>
       [
-        { field: 'nombre', headerName: 'Nombre',flex:1, minWidth: 120 },
-        { field: 'relacion', headerName: 'Relación', flex:1, minWidth: 20},
-        { field: 'testimonio', headerName: 'Testimonio', flex:1, minWidth: 150},
+        { field: 'nombre', headerName: 'Nombre',flex:1, minWidth: 60 },
+        { field: 'descripcion', headerName: 'Descripción', flex:1, minWidth: 100},
+        { field: 'archivoURL', headerName: 'Archivo', flex:1, minWidth: 150},
         {
             field: 'actions',
             type: 'actions',
@@ -87,8 +87,8 @@ function AdminTestimonios() {
             getActions: (params) => [
             
                 <GridActionsCellItem icon={ <i class={params.getValue(params.id, 'visible') ? 'fa-solid fa-eye icono-accion-tabla icono-tabla-habilitar' : 'fa-solid fa-eye-slash icono-accion-tabla icono-tabla-deshabilitar'}></i> }  label="Habilitar/Ocultar" onClick={toggleTestimonioVisibility(params.id, params.getValue(params.id, 'visible'))}/>,
-                <Link className='link-decoration' to={`/nuestra-huella`}><GridActionsCellItem icon={ <i class="fa-solid fa-up-right-from-square icono-accion-tabla icono-tabla-ir"></i> }  label="Ir a" /></Link>,
-                <Link className='link-decoration' to={`/editar-testimonio/${params.id}`}><GridActionsCellItem icon={ <i class="fa-solid fa-pen-to-square icono-accion-tabla icono-tabla-editar"></i> }  label="Editar" /></Link> ,
+                <Link className='link-decoration' to={`/descargas`}><GridActionsCellItem icon={ <i class="fa-solid fa-up-right-from-square icono-accion-tabla icono-tabla-ir"></i> }  label="Ir a" /></Link>,
+                <Link className='link-decoration' to={`/editar-descarga/${params.id}`}><GridActionsCellItem icon={ <i class="fa-solid fa-pen-to-square icono-accion-tabla icono-tabla-editar"></i> }  label="Editar" /></Link> ,
                 <GridActionsCellItem icon={ <i class="fa-solid fa-trash icono-accion-tabla icono-tabla-eliminar"></i> }  label="Eliminar" onClick={showModal(params.id, params.getValue(params.id, 'nombre'))}/>
             ],
           },
@@ -111,15 +111,15 @@ function AdminTestimonios() {
 
     return (
         <div className="body-admin">
-            <AdminNavbar activeTab='testimonios'></AdminNavbar>
-            {modalVisibility ? <ModalAdminEliminar setModalVisibility={setModalVisibility} recurso='el testimonio' nombreRecurso={modalInfo} runFunction={deleteTestimonio}></ModalAdminEliminar> : null}
+            <AdminNavbar activeTab='descargas'></AdminNavbar>
+            {modalVisibility ? <ModalAdminEliminar setModalVisibility={setModalVisibility} recurso='la descarga' nombreRecurso={modalInfo} runFunction={deleteTestimonio}></ModalAdminEliminar> : null}
             <main className='main-admin'>
                     <header className="header-panel">
                         <div className="cont-bienvenida">
-                        <i class= 'fa-solid fa-comment-dots icono-tab icono-pagina'></i>
+                        <i class= 'fa-solid fa-file-arrow-down icono-tab icono-pagina'></i>
                             <div className="texto-bienvenida">
                                 <p className="verde">Bienvenido Administrador</p>
-                                <h3 className="negro">Testimonios</h3>
+                                <h3 className="negro">Descargas</h3>
                             </div>
                         </div>
                         <div className="cont-accesos-directos">
@@ -138,12 +138,12 @@ function AdminTestimonios() {
                                 </div>
                             </div>
 
-                            <Link  to='/agregar-testimonio' className="btn-agregar-panel">
+                            <Link  to='/agregar-descarga' className="btn-agregar-panel">
                                 <div className="header-card-contenido">
                                     <div className="vertical-indicator-light"></div>
-                                    <h4 className="blanco">Agregar testimonio</h4>
+                                    <h4 className="blanco">Agregar descarga</h4>
                                 </div>
-                                <img src={iconoAgregarTestimonio} alt="" className='icono-agregar'/>
+                                <img src={iconoAgregarDescarga} alt="" className='icono-agregar'/>
                             </Link>
                             
                         </div>
@@ -151,9 +151,9 @@ function AdminTestimonios() {
                         <div className="card-contenido-panel card-cont-tabla">
                             <div className="header-card-contenido">
                                 <div className="vertical-indicator"></div>
-                                <h4 className="verde">Todos los testimonios</h4>
+                                <h4 className="verde">Todas los descargas</h4>
                             </div>
-                            <DataGrid autoHeight rows={testimonios} columns={columns} sx={datagridStyles} localeText={esES.components.MuiDataGrid.defaultProps.localeText}/>
+                            <DataGrid autoHeight rows={descargas} columns={columns} sx={datagridStyles} localeText={esES.components.MuiDataGrid.defaultProps.localeText}/>
                         </div>
                     </section>
             </main>
@@ -162,4 +162,4 @@ function AdminTestimonios() {
     );
 }
 
-export default AdminTestimonios;
+export default AdminDescargas;

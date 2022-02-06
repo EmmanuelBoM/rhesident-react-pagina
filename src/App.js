@@ -44,7 +44,11 @@ import AdminEditarTestimonio from './views/AdminEditarTestimonio';
 import AdminTalleres from './views/AdminTalleres';
 import AdminAgregarTaller from './views/AdminAgregarTaller';
 import FormularioIdea from './views/FormularioIdea';
-
+import Mantenimiento from './views/Mantenimiento';
+import RegistroTaller from './views/RegistroTaller';
+import AdminDescargas from './views/AdminDescargas';
+import AdminAgregarDescarga from './views/AdminAgregarDescarga';
+import AdminEditarDescarga from './views/AdminEditarDescarga';
 
 
 function App() {
@@ -62,6 +66,7 @@ function App() {
       <Route path='/talleres' element={<Talleres/>} />
       <Route path='/voluntariado' element={<Voluntariado/>} />
       <Route path='/como-apoyar' element={<Donaciones/>} />
+      <Route path='/registro-voluntariado/:modalidad' element={<RegistroVoluntarios/>} />
       <Route path='/registro-voluntariado' element={<RegistroVoluntarios/>} />
       <Route path='/podcast' element={<Podcast/>} />
       <Route path='/blog' element={<Proximamente/>} />
@@ -90,6 +95,10 @@ function App() {
       <Route path='/admin_talleres' element={<AdminTalleres/>} />
       <Route path='/agregar-taller' element={<AdminAgregarTaller/>} />
       <Route path='/cuentanos-tu-idea' element={<FormularioIdea/>} />
+      <Route path='/registro-taller/:id' element={<RegistroTaller/>} />
+      <Route path='/admin_descargas' element={<AdminDescargas/>} />
+      <Route path='/agregar-descarga' element={<AdminAgregarDescarga/>} />
+      <Route path='/editar-descarga/:id' element={<AdminEditarDescarga/>} />
       <Route path="*" element={<Vista404/>} />
      </Routes>
    </Router>

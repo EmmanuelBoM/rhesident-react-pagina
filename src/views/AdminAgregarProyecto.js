@@ -217,6 +217,7 @@ function AdminAgregarProyecto() {
                     nombre: proyecto.nombre,
                     descripcionBreve: proyecto.descripcionBreve,
                     descripcionGeneral: proyecto.descripcionGeneral,
+                    URLExterno: proyecto.URLExterno,
                     estatus: estatusValue,
                     modalidad: modalidadValue,
                     proposito: proyecto.proposito,
@@ -240,7 +241,7 @@ function AdminAgregarProyecto() {
     return (
         <div className="body-admin">
             {modalExitoVisibility ? <ModalAdminExito setModalVisibility={setModalExitoVisibility} rutaContinuar='/admin_proyectos' accion='agregado' recurso= 'Proyecto' nombreRecurso={proyecto.nombre}></ModalAdminExito> : null }
-            {modalConfVisibility ? <ModalAdminConfirmar setModalVisibility={setModalConfVisibility} runFunction={submitProyecto} accion='agregar' recurso= 'Proyecto' nombreRecurso={proyecto.nombre}></ModalAdminConfirmar> : null }
+            {modalConfVisibility ? <ModalAdminConfirmar setModalVisibility={setModalConfVisibility} runFunction={submitProyecto} accion='agregar' recurso= 'el proyecto' nombreRecurso={proyecto.nombre}></ModalAdminConfirmar> : null }
             
             <AdminNavbar activeTab='proyectos'></AdminNavbar>
             <main className='main-admin'>
@@ -251,18 +252,18 @@ function AdminAgregarProyecto() {
                     </div>
                     <div className="cont-formulario-agregar">
                         <form action="" className="formulario-registro">
-                            <label htmlFor="nombre" className='input-label'>Nombre del proyecto</label>
-                            <input type="text"  placeholder="Nombre" name="nombre" id="" className="input-gral" required onChange={handleInputChange}/>
+                            <label htmlFor="nombre" className='input-label'>Nombre del proyecto*</label>
+                            <input type="text"  placeholder="Nombre" name="nombre" className="input-gral" required onChange={handleInputChange}/>
                             
-                            <label htmlFor="descripcionBreve" className="input-label">Descripción breve</label>
-                            <textarea name="descripcionBreve" id="" cols="30" rows="4" className="input-gral" placeholder='90 caracteres máximo' onChange={handleInputChange} maxLength={200}></textarea>
+                            <label htmlFor="descripcionBreve" className="input-label">Descripción breve*</label>
+                            <textarea name="descripcionBreve" cols="30" rows="4" className="input-gral" placeholder='250 caracteres máximo' onChange={handleInputChange} maxLength={250}></textarea>
                             
-                            <label htmlFor="descripcionGeneral" className="input-label">Descripción general</label>
-                            <textarea name="descripcionGeneral" id="" cols="30" rows="8" className="input-gral" placeholder='Escribe aquí' onChange={handleInputChange}></textarea>
+                            <label htmlFor="descripcionGeneral" className="input-label">Descripción general*</label>
+                            <textarea name="descripcionGeneral" cols="30" rows="8" className="input-gral" placeholder='Escribe aquí' onChange={handleInputChange}></textarea>
                             
-                            <label htmlFor="imgPrincipalURL" className="input-label">Imagen principal</label>
+                            <label htmlFor="imgPrincipalURL" className="input-label">Imagen principal*</label>
                             <div className="file-preview">
-                                <input type="file" name="imgPrincipalURL" id="" className="input-archivo" onChange={handleImgChange}/>
+                                <input type="file" name="imgPrincipalURL"  className="input-archivo" onChange={handleImgChange}/>
                                 <img src={imgPrincipalURL} alt=""  className="preview-img" />
                             </div>
                             <div className="warning-img">
@@ -270,7 +271,7 @@ function AdminAgregarProyecto() {
                                 <p className="txt-warning">Recuerda comprimir el tamaño de la imagen <a href="https://compressor.io/" target="_blank">aquí</a></p>
                             </div>
 
-                            <label htmlFor="" className="input-label">Etiquetas</label>
+                            <label htmlFor="" className="input-label">Etiquetas*</label>
                             <CreatableSelect
                                 components={components}
                                 isClearable
@@ -280,19 +281,19 @@ function AdminAgregarProyecto() {
                                 onChange={handleEtiquetasChange}
                             />
 
-                            <label htmlFor="" className="input-label">Ejes de acción</label>
+                            <label htmlFor="" className="input-label">Ejes de acción*</label>
                             <Select styles={customSelectStyles} options={ejesAccion} placeholder='Selecciona uno o más ejes' isMulti onChange={handleEjesChange}/>
 
-                            <label htmlFor="" className="input-label">Estatus</label>
+                            <label htmlFor="" className="input-label">Estatus*</label>
                             <Select styles={customSelectStyles} options={estatusSelect} placeholder='Selecciona el estatus del proyecto' onChange={handleEstatusChange}/>
 
-                            <label htmlFor="" className="input-label">Modalidad</label>
+                            <label htmlFor="" className="input-label">Modalidad*</label>
                             <Select styles={customSelectStyles} options={modalidadesSelect} placeholder='Selecciona la modalidad del proyecto' onChange={handleModalidadChange}/>
                             
-                            <label htmlFor="proposito" className="input-label">Propósito</label>
+                            <label htmlFor="proposito" className="input-label">Propósito*</label>
                             <textarea name="proposito" id="" cols="30" rows="4" className="input-gral" placeholder='Escribe aquí' onChange={handleInputChange}></textarea>
                             
-                            <label htmlFor="" className="input-label">Objetivos</label>
+                            <label htmlFor="" className="input-label">Objetivos*</label>
                             <CreatableSelect
                                 components={components}
                                 isClearable
@@ -302,12 +303,15 @@ function AdminAgregarProyecto() {
                                 onChange={handleObjetivosChange}
                             />
                             
-                            <label htmlFor="" className="input-label">Procesos</label>
-                            <textarea name="procesos" id="" cols="30" rows="8" className="input-gral" placeholder='Escribe aquí' onChange={handleInputChange}></textarea>
+                            <label htmlFor="" className="input-label">Procesos*</label>
+                            <textarea name="procesos"  cols="30" rows="8" className="input-gral" placeholder='Escribe aquí' onChange={handleInputChange}></textarea>
                             
-                            <label htmlFor="" className="input-label">Galería de imagenes</label>
+                            <label htmlFor="URLExterno" className='input-label'>Enlace externo</label>
+                            <input type="text"  placeholder="URL del blog o página del proyecto" name="URLExterno" id="" className="input-gral" onChange={handleInputChange}/>
+
+                            <label htmlFor="" className="input-label">Galería de imagenes*</label>
                             <div className="file-preview-multi">
-                                <input type="file" name="" id="" className="input-archivo" onChange={handleGaleriaChange} multiple/>
+                                <input type="file" name="" className="input-archivo" onChange={handleGaleriaChange} multiple/>
                                 <div className="cont-galeria">
                                     {galeria.map((img) =>
                                         <img src={img} alt="" className="preview-img" />

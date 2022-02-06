@@ -281,7 +281,7 @@ function AdminEditarProyecto() {
                             <label htmlFor="imgPrincipalURL" className="input-label">Imagen principal</label>
                             <div className="file-preview">
                                 <input type="file" name="imgPrincipalURL" id="" className="input-archivo" onChange={handleImgChange}/>
-                                <img src={proyecto.imgPrincipalURL} alt=""  className="preview-img"/>
+                                <img src={imgPrincipalURL} alt=""  className="preview-img"/>
                             </div>
 
                             <label htmlFor="" className="input-label">Etiquetas</label>
