@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Footer from '../components/Footer';
 import NavHeader from '../components/NavHeader';
 import '../styles/base.css'
@@ -11,8 +11,35 @@ import ModalTaller from '../components/ModalTaller';
 import {Animated} from "react-animated-css";
 import "animate.css/animate.min.css";
 
+//Firebase imports
+import {db} from '../firebaseConfig'
+import {query, collection, getDocs,where} from "@firebase/firestore";
+
 function Talleres() {
     const [modalVisibility, setModalVisibility] = useState(false)
+    const [talleresAbiertos, setTalleresAbiertos]= useState([])
+    const [talleresProximos, setTalleresProximos]= useState([])
+    const [taller, setTaller]= useState({})
+
+    const talleresCollectionRef = collection(db, "talleres")
+    const q_abiertos = query(talleresCollectionRef, where("visible", "==",true), where("estatus", "==", "Abierto"));
+    const q_proximos = query(talleresCollectionRef, where("visible", "==",true), where("estatus", "==", "Próximo"));
+
+    useEffect (()=>{
+        const getTalleresAbiertos= async () => {
+          const data = await getDocs(q_abiertos);
+          setTalleresAbiertos (data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))
+        }
+
+        const getTalleresProximos= async () => {
+            const data = await getDocs(q_proximos);
+            setTalleresProximos (data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))
+          }
+
+        getTalleresAbiertos();
+        getTalleresProximos();
+
+      }, [])
     return(
         <main>
             <NavHeader textColor='blanco'></NavHeader>
@@ -31,23 +58,27 @@ function Talleres() {
             </section>
 
             <section className="talleres">
-                <h2 className="verde">Talleres activos</h2>
+                <h2 className="verde">Talleres abiertos</h2>
                 <div className="talleres-activos">
-                    <Taller setModalVisibility={setModalVisibility}></Taller>
-                    <Taller></Taller>
-                    <Taller></Taller>
-                    <Taller></Taller>
+                    {talleresAbiertos.map((tallerInd)=>{
+                        return(
+                            <Taller taller={tallerInd} setTaller={setTaller} setModalVisibility={setModalVisibility}></Taller>
+                        )
+                    })}
                 </div>
-                <h2 className="verde">Talleres Próximos</h2>
+                <h2 className="verde">Próximos Talleres</h2>
                 <div className="talleres-proximos">
-                    <Taller></Taller>
-                    <Taller></Taller>
-                    <Taller></Taller>
+                    {talleresProximos.map((tallerInd)=>{
+                        return(
+                            <Taller taller={tallerInd} setTaller={setTaller} setModalVisibility={setModalVisibility}></Taller>
+                        )
+                    })}
+                   
                 </div>
                 
             </section>
             <Animated animateOnMount={false} animationIn="fadeIn" animationOut="fadeOut" isVisible={modalVisibility} animationInDuration={500} animationOutDuration={500} className="overlay-top">
-                {modalVisibility ? <ModalTaller setModalVisibility={setModalVisibility} modalVisibility={modalVisibility}></ModalTaller> : null}
+                {modalVisibility ? <ModalTaller taller ={taller} setModalVisibility={setModalVisibility} modalVisibility={modalVisibility}></ModalTaller> : null}
             </Animated>
             <Footer></Footer> 
         </main>

@@ -9,7 +9,7 @@ function OverlayInvitacion(props) {
 return (
     <div>
         <div className="overlay-top">
-            <Link to='/donaciones'><button className="btn-invita-donar"><span className="bold">Apoya</span> nuestra causa</button></Link>
+            <Link to='/como-apoyar'><button className="btn-invita-donar"><span className="bold">Apoya</span> nuestra causa</button></Link>
             <Link to='/voluntariado'><button className="btn-invita-voluntariado">Conviértete en <span className="bold">voluntario</span></button></Link>
         </div>
     </div>

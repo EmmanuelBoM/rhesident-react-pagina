@@ -64,8 +64,8 @@ function NavHeader(props) {
                                 <Link to='/voluntariado'>
                                     Voluntariado
                                 </Link>
-                                <Link to='/donaciones'>
-                                    Donaciones
+                                <Link to='/como-apoyar'>
+                                    Cómo apoyar
                                 </Link>
                             </div>
                         </div>
@@ -91,6 +91,9 @@ function NavHeader(props) {
                                 </Link>
                                 <Link to='/podcast'>
                                     Podcast
+                                </Link>
+                                <Link to='/descargas'>
+                                    Descargas
                                 </Link>
                             </div>
                         </div>

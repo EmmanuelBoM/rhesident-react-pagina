@@ -1,0 +1,26 @@
+.cont-item-panel{
+    display: flex;
+    flex-direction: column;
+    width: 12rem;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+}
+
+.img-item-panel{
+    width: 6rem;
+    height: 6rem;
+    background-position: center;
+    background-size: cover;
+    margin-bottom: 2rem;
+    border-radius: 25rem;
+}
+
+.acciones-item-panel{
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 1rem;
+}

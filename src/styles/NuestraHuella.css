@@ -9,7 +9,7 @@
 
 .swiper-testimonios{
     padding: 10rem 0 !important;
-    height: 40rem;
+    height: 38rem;
     width: 100%;
     display: flex;
     align-items: center;
@@ -34,6 +34,7 @@
 .nombre-testimonial{
     font-weight: 500;
 }
+
 .detalles-testimonial{
     display: flex;
     flex-direction: column;
@@ -54,7 +55,6 @@
 .img-testimonial{
     width: 10rem;
     height: 10rem;
-    background-image: url('../assets/miembro_prueba.png');
     background-size: cover;
     background-position: center;
     border-radius: 25rem;
@@ -69,7 +69,8 @@
     height: 10rem !important;
     border-radius: 25rem;
     color: var(--primario) !important;
-    top: 52.8rem !important;
+    top: 50.5rem !important;
+    cursor: pointer;
     
 }
 
@@ -107,6 +108,7 @@
 }
 
 .cont-nota-medio{
+    width: 20rem;
     background-color: var(--blanco);
     border-radius: 2rem;
 }
@@ -170,4 +172,20 @@
 
 .section-description{
     width: 40%;
+}
+
+.galeria-aliados{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20rem;
+    margin-top: 5rem;
+}
+
+
+.img-alianza{
+    margin-inline: 4rem;
+    width: 20rem;
 }

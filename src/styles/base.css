@@ -9,6 +9,9 @@ html{
 	scroll-behavior: smooth;
 	overflow-x: hidden;
 }
+.link-decoration{
+	text-decoration: none;
+}
 
 
 p{
@@ -115,9 +118,9 @@ main{
 
 .descripcion-seccion{
 	font-weight: 400;
-    color: var(--p-300);
+    color: var(--p-200);
 	margin-top: 2rem;
-    margin-bottom: 4rem;
+    margin-bottom: 10rem;
 	text-align: center;
 	width: 60%;
 }

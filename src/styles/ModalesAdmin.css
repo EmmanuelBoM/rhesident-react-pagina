@@ -1,0 +1,106 @@
+.cont-modal-admin{
+    background-color: var(--blanco);
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 35%;
+}
+
+.modal-admin-barra{
+    top: 0;
+    border-radius: 2rem 2rem 0 0;
+    width: 100%;
+    height: 1.5rem;
+}
+
+.danger{
+    background-color: #E85E5E;
+    color: #E85E5E !important;
+}
+
+.success{
+    background-color: #98D788;
+    color: #98D788 !important;
+}
+
+.warning{
+    background-color: #E1CF71;
+    color: #E1CF71 !important;
+}
+
+.texto-modal-admin{
+    font-weight: 600;
+    margin-top: 4rem;
+    margin-bottom: 1rem;
+    width: 70%;
+    color: var(--negro);
+    text-align: center;
+}
+
+.subt-modal-admin{
+    font-size: 1.4rem;
+    color: var(--g-400);
+    width: 70%;
+    text-align: center;
+    margin-bottom: 6rem;
+}
+
+.btns-modal-admin{
+    margin-bottom: 4rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 70%;
+    
+}
+
+.btns-modal-exito{
+    margin-bottom: 4rem;
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    width: 100%;
+    
+}
+
+.btns-modal-exito a{
+   text-align: center;
+}
+
+.btn-modal-admin-confirmar{
+    font-weight: 600;
+    border: none;
+    background-color: var(--primario);
+    padding: 1rem;
+    font-family: Lato;
+    font-size: 1.8rem;
+    color: var(--blanco);
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.btn-modal-admin-confirmar:hover{
+    transform: scale(1.05);
+    background-color: var(--p-100);
+    box-shadow: 2px 3px 5px #21647a76;
+}
+
+.btn-modal-admin-cancelar{
+    font-weight: 600;
+    border: none;
+    background-color: var(--g-800);
+    padding: 1rem;
+    font-family: Lato;
+    font-size: 1.8rem;
+    color: var(--negro);
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+
+.btn-modal-admin-cancelar:hover{
+    transform: scale(1.05);
+    background-color: var(--g-700);
+    box-shadow: 2px 3px 5px #535b5e76;
+}

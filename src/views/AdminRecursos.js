@@ -3,6 +3,8 @@ import AdminNavbar from '../components/AdminNavbar';
 import '../styles/AdminLayout.css'
 import popUp from '../assets/cultura.png'
 
+
+
 function AdminRecursos() {
     const [popupPreview, setPopupPreview] = useState('')
     return (

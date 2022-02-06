@@ -15,7 +15,7 @@
 }
 
 .logo-menu-admin{
-    width: 70%;
+    width: 50%;
 }
 
 .tabs{
@@ -94,12 +94,12 @@
 }
 
 .logout-cont i{
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: var(--primario);
 }
 
 .logout-cont p{
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-weight: 600;
     color: var(--primario);
 }

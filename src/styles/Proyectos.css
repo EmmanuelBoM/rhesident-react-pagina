@@ -124,7 +124,6 @@
     width: 25rem !important;
     height: 25rem !important;
     border-radius: 2rem;
-    background-image: url('../assets/equipo_rhesident.jpg');
     background-position: center;
     background-size: cover;
     margin-left: 2rem;
@@ -195,6 +194,21 @@
     cursor: pointer;
 }
 
+.swiper-proyectos .swiper-wrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.slide-proyecto{
+    background-size: cover;
+    background-position: center;
+}
+.img-principal-proyecto{
+    width: 484px;
+}
+
 
 @keyframes btn_white_fade{
     0%{background-color: var(--secundario); transform: scale(1);}
@@ -244,4 +258,8 @@
     100%{
         background: #75B28D;
     }
+}
+
+.icono-pag-admin{
+    color: #768D95 !important;
 }
