@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Footer from '../components/Footer';
 import NavHeader from '../components/NavHeader';
 import '../styles/base.css'
@@ -6,7 +6,24 @@ import '../styles/Donaciones.css'
 import downArrow from '../assets/down_arrow_light.svg'
 import {Link} from 'react-router-dom'
 
+//Firebase imports
+import {db} from '../firebaseConfig'
+import {query, collection, getDocs,where} from "@firebase/firestore";
+
 function Donaciones() {
+
+    const [beneficiarios, setBeneficiarios]= useState([])
+    const beneficiariosCollectionRef = collection(db, "beneficiarios")
+    const q_beneficiarios = query(beneficiariosCollectionRef, where("visible", "==",true));
+    useEffect (()=>{
+        
+        const getBeneficiarios = async () => {
+        const data = await getDocs(q_beneficiarios);
+        setBeneficiarios(data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))
+        }
+    
+        getBeneficiarios();
+      }, [])
   return (
       <main>
             <NavHeader textColor='blanco'></NavHeader>
@@ -43,8 +60,14 @@ function Donaciones() {
 
             <section className="beneficiarios">
                 <h2 className="negro">Nuestros beneficiarios</h2>
-                <div className="galeria-beneficiarios">
-
+                <div className="galeria-aliados">
+                    {
+                        beneficiarios.map((alianza)=>{
+                            return(
+                                <img src={alianza.imgURL} alt={`alianza_${alianza.nombre}`} title={alianza.nombre} className="img-alianza" />
+                            )
+                        })
+                    }
                 </div>
             </section>
             <Footer></Footer>
