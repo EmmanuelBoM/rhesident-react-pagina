@@ -1,10 +1,9 @@
 import React from 'react'
-import miembroCompleta from '../assets/miembro_completa.png'
 import '../styles/base.css'
 import '../styles/ModalMiembro.css'
 import '../styles/ModalTaller.css'
 import iconoCerrar from '../assets/icono_cerrar.svg'
-import imgTaller from '../assets/cultura.png'
+import { Link } from 'react-router-dom'
 
 function ModalTaller(props) {
     function hideModal(){
@@ -34,8 +33,19 @@ function ModalTaller(props) {
                                     })
                                 }
                             </div>
+
+                            
                             <p className="taller-modalidad"><span className="p-300">Modalidad:</span> {props.taller.modalidad}</p>
                             <p className="taller-descripcion negro">{props.taller.descripcion}</p>
+                            <div className="etiquetas-taller">
+                                {
+                                    props.taller.etiquetas.map((etiqueta)=>{
+                                        return(
+                                            <p className='verde etiqueta'>{etiqueta}</p>
+                                        )
+                                    })
+                                }
+                            </div>
                         </div>
                     </div>
                     <div className="modal-taller-bottom">
@@ -62,7 +72,7 @@ function ModalTaller(props) {
                             <p className="negro">{`${props.taller.duracion} horas`}</p>
                         </div>
                     </div>
-                    {props.taller.estatus === 'Abierto' ? <button className="btn-registro-taller">Regístrate</button> : null}
+                    {props.taller.estatus === 'Abierto' ? <Link to={`/registro-taller/${props.taller.id}`} className="btn-registro-taller">Regístrate</Link> : null}
                     
                 </div>
             </div>
