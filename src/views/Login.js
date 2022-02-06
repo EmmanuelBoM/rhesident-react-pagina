@@ -1,25 +1,98 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/base.css'
 import '../styles/Formularios.css'
 import '../styles/Login.css'
 import logoLogin from '../assets/logo_login.svg'
+import LoginForm from '../components/LoginForm';
+import ForgotPassword from '../components/ForgotPassword';
+import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
+    const [forgotVisibility, setForgotVisibility] = useState(false)
+    const [loginVisibility, setLoginVisibility] = useState(true)
+    const [errorMsg, setErrorMsg] = useState('')
+    const [errorVisibility, setErrorVisibility] = useState(false)
+    const [successVisibility, setSuccessVisibility] = useState(false)
+    const [successMsg, setSuccessMsg] = useState('')
+    const auth = getAuth();
+    const[email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const navigate = useNavigate();
+
+    function forgotPassword(e){
+        e.preventDefault()
+        sendPasswordResetEmail(auth, email)
+        .then(() => {
+            setSuccessMsg('Correo enviado. Sigue las instrucciones para restablecer tu contraseña')
+            setSuccessVisibility(true)
+            setErrorVisibility(false)
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            if(errorCode =='auth/user-not-found'){
+                setErrorMsg("Correo electrónico no registrado.")
+            }
+            else{
+                setErrorMsg(errorMessage)
+            }
+            setSuccessVisibility(false)
+            setErrorVisibility(true)
+        });
+    }
+
+    function signIn(e){
+        e.preventDefault()
+        signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            setErrorVisibility(false);
+            sessionStorage.setItem('Auth Token', userCredential._tokenResponse.refreshToken)
+            navigate('/admin_proyectos')
+        })
+        .catch((error) => {
+            const errorMessage = error.message;
+            const errorCode= error.code;
+            if(errorCode == 'auth/wrong-password' ){
+                setErrorMsg('El correo electrónico o la contraseña no son correctos.');
+            }
+            if(errorCode == 'auth/too-many-requests'){
+                setErrorMsg('Acceso a la cuenta deshabilitado temporalmente. Intenta de nuevo más tarde.');
+            }
+            if(errorCode == 'auth/user-not-found'){
+                setErrorMsg('El correo electrónico o la contraseña no son correctos.');
+            }
+            else{
+                setErrorMsg(`Hubo un error. ${errorMessage}`);
+            }
+        
+            setErrorVisibility(true);
+        });
+    
+    }
+    
+    function toggleForgot(){
+        if(loginVisibility){
+            setErrorVisibility(false)
+            setSuccessVisibility(false)
+            setForgotVisibility(true)
+            setLoginVisibility(false)
+        }
+        else{
+            setErrorVisibility(false)
+            setSuccessVisibility(false)
+            setForgotVisibility(false)
+            setLoginVisibility(true)
+        }
+        
+    }
+
     return (
         <main className='login-main'>
             <section className="login-cont">
                 <img src={logoLogin} alt="" className="logo-login" />
-                <div className="card-login">
-                    <h4 className="negro">Bienvenido</h4>
-                    <h3 className="negro">Inicia sesión</h3>
-                    <form action="" className="login-form">
-                        <label htmlFor="email" className="input-label">Correo Electrónico</label>
-                        <input name="email" type="email" className="input-gral" required placeholder='Escribe correo de administrador'/>
-                        <label htmlFor="contrasena" className="input-label">Contraseña</label>
-                        <input name="contrasena" type="password" className="input-gral" required placeholder='Escribe tu contraseña'/>
-                        <button className='btn-login' type="submit">Iniciar sesión</button>
-                    </form>
-                </div>
+                {loginVisibility ? <LoginForm errorMsg={errorMsg} errorVisibility={errorVisibility} action = {toggleForgot} signIn={signIn} setEmail={setEmail} setPassword={setPassword}></LoginForm>:null}
+                {forgotVisibility ? <ForgotPassword setEmail={setEmail} successMsg={successMsg} errorMsg={errorMsg} successVisibility={successVisibility} action = {toggleForgot} forgotPassword={forgotPassword}  errorVisibility={errorVisibility}></ForgotPassword>:null}
             </section>
         </main>
     );

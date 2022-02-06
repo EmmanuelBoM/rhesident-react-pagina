@@ -1,8 +1,9 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {
   BrowserRouter as Router,
   Route,
-  Routes
+  Routes, 
+  Navigate
   } from 'react-router-dom';
 import "animate.css";
 import LandingPage from './views/LandingPage'
@@ -53,6 +54,13 @@ import Descargas from './views/Descargas';
 
 
 function App() {
+  const [authToken, setAuthToken] =useState('')
+  
+    useEffect(() => {
+      setAuthToken(sessionStorage.getItem('Auth Token'))
+  }, [])
+  
+
   return (
    <Router>
       <ScrollToTop/>
@@ -75,7 +83,7 @@ function App() {
       <Route path='/dona-ahora' element={<PaypalDona/>} />
       <Route path='/login' element={<Login/>} />
       <Route path='/admin_recursos' element={<AdminRecursos/>} />
-      <Route path='/admin_proyectos' element={<AdminProyectos/>} />
+      <Route path='/admin_proyectos' element={authToken ? <AdminProyectos/> : <Navigate to='/login'/>} />
       <Route path='/agregar-proyecto' element={<AdminAgregarProyecto/>} />
       <Route path='/editar-proyecto/:id' element={<AdminEditarProyecto/>} />
       <Route path='/admin_notas' element={<AdminNotas/>} />
