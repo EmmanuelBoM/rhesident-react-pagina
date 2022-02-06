@@ -66,7 +66,7 @@ function Talleres() {
                         )
                     })}
                 </div>
-                <h2 className="verde">Talleres Próximos</h2>
+                <h2 className="verde">Próximos Talleres</h2>
                 <div className="talleres-proximos">
                     {talleresProximos.map((tallerInd)=>{
                         return(

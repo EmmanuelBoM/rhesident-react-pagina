@@ -92,6 +92,9 @@ function NavHeader(props) {
                                 <Link to='/podcast'>
                                     Podcast
                                 </Link>
+                                <Link to='/descargas'>
+                                    Descargas
+                                </Link>
                             </div>
                         </div>
                         <a className='submenu-title' className={props.textColor == 'blanco' ? `submenu-title blanco`: `submenu-title negro`}>

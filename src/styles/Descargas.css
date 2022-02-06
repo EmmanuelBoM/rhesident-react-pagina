@@ -1,0 +1,75 @@
+.header-descargas{
+    margin-top: 25rem;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    text-align: center;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 10rem;
+    width: 100%;
+    margin-bottom: 10rem;
+}
+.img-descargas{
+    width: 30%;
+}
+
+.text-header-descargas{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.text-header-descargas h1{
+    margin-bottom: 2rem;
+}
+
+.descargas-lista{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 10rem;
+    margin-bottom: 20rem;
+}
+
+.descarga{
+    background-color: var(--blanco);
+    border-radius: 2rem;
+    padding: 4rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 4rem;
+}
+
+.descarga-l{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+.header-descarga{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.barra-header-descarga{
+    background-color: var(--primario);
+    height: 3rem;
+    width: 1rem;
+    border-radius: 0.2rem;
+    margin-right: 2rem;
+}
+
+.descarga-r{
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icono-descarga{
+    font-size: 4rem;
+    color: var(--primario);
+}

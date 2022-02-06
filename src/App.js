@@ -49,6 +49,7 @@ import RegistroTaller from './views/RegistroTaller';
 import AdminDescargas from './views/AdminDescargas';
 import AdminAgregarDescarga from './views/AdminAgregarDescarga';
 import AdminEditarDescarga from './views/AdminEditarDescarga';
+import Descargas from './views/Descargas';
 
 
 function App() {
@@ -99,6 +100,7 @@ function App() {
       <Route path='/admin_descargas' element={<AdminDescargas/>} />
       <Route path='/agregar-descarga' element={<AdminAgregarDescarga/>} />
       <Route path='/editar-descarga/:id' element={<AdminEditarDescarga/>} />
+      <Route path='/descargas' element={<Descargas/>} />
       <Route path="*" element={<Vista404/>} />
      </Routes>
    </Router>

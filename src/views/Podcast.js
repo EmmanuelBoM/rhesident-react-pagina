@@ -9,8 +9,8 @@ function Podcast() {
     <main>
         <NavHeader></NavHeader>
         <div className="titulo-header">
-            <h1 className="verde">Rhesident Podcast</h1>
-            <p className="negro">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit a, labore optio distinctio perferendis laudantium?</p>
+            <h1 className="negro">Rhesident Podcast</h1>
+            <p className="verde">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit a, labore optio distinctio perferendis laudantium?</p>
         </div>
         <section className="cont-podcast">
             <aside className="podcast-acciones">
