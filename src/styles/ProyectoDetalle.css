@@ -1,22 +1,25 @@
 .detalles-principal{
-    margin-top:25rem;
+    margin-top: 15rem;
     width: 100%;
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    padding: 0 10rem;
-    margin-bottom: 5rem;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20rem;
 }
 
+.img-principal-svg{
+    width: 40rem;
+}
 
 .img-principal-proyecto{
-    width: 150%;
+    width: 135%;
 }
 
 .info-principal{
     margin-top: 2rem;
-    width: 60%;
+    width: 50%;
     text-align: justify;
     display: flex;
     flex-direction: column;
@@ -24,7 +27,7 @@
 }
 
 .nombre-proyecto{
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .categorias-proyecto{
@@ -39,32 +42,75 @@
     border: 0.3rem solid var(--p-300);
     padding: 0.5rem 2rem;
     border-radius: 25rem;
-    color: var(--p-200);
+    color: var(--negro);
     margin-right: 1rem;
 }
 
 .descripcion-proyecto{
     color: var(--g-400);
     width: 90%;
-    margin-bottom: 4rem;
+    margin-bottom: 1rem;
 }
 
 .tag-estatus{
     display: flex;
     justify-content: center;
-    background-color: #b5f06770;
-    border: 0.3rem solid #A1DB85;
     padding: 0.5rem 2rem;
     border-radius: 25rem;
     width: 10rem;
-    color: var(--p-200);
+    color: var(--g-300);
     margin-bottom: 4rem;
     margin-top: 1rem;
 }
 
-.btn-colabora{
+.e-activo{
+    background-color: #b5f06770;
+    border: 0.3rem solid #A1DB85;
+}
+
+.e-pasado{
+    background-color: #f0a96764;
+    border: 0.3rem solid #EE9F57;
+}
+
+.e-proximo{
+    background-color: #f0e96768;
+    border: 0.3rem solid #F0E967;
+}
+
+.cont-botones-proyecto{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 40%;
-    font-size: 2.2rem;
+}
+
+.cont-botones-proyecto a{
+    width: 100%;
+}
+
+.btn-proyecto-externo{
+    width: 100%;
+    font-family: Lato;
+    background-color: var(--secundario);
+    color: var(--negro);
+    border: none;
+    cursor: pointer;
+    padding: 1.5rem 3rem;
+    font-size: 1.8rem;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+}
+
+.btn-proyecto-externo:hover{
+    background-color: var(--s-600) !important;
+    box-shadow: 2px 5px 5px #8f863956;
+    transform: scale(1.05);
+}
+
+.btn-colabora{
+    width: 100%;
+    font-size: 1.8rem;
     border: none;
     background-color: var(--primario);
     color: var(--blanco);
@@ -87,9 +133,10 @@
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
+    align-items: center;
     margin-bottom: 10rem;
-    margin-top: 10rem;
 }
+
 
 .cont-proposito{
     margin-bottom: 4rem;

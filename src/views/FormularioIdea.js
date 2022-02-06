@@ -48,7 +48,7 @@ function FormularioIdea() {
         `)
 
         setAsunto("[Idea] Nueva respuesta")
-        setEncabezado("Nuevo propuesta de colaboración")
+        setEncabezado("Nueva propuesta de colaboración")
         setFormulario("Cuéntanos tu idea")
         setFormul(form.current)
         

@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import Footer from '../components/Footer'
 import NavHeader from '../components/NavHeader'
 import '../styles/base.css'
 import '../styles/LandingPage.css'
 import '../styles/ProyectoDetalle.css'
 import proyecto from '../assets/cultura.png'
+import downArrow from '../assets/down_arrow.svg'
 
 // Firebase Imports
 import {db} from '../firebaseConfig'
@@ -57,6 +58,16 @@ function ProyectoDetalle() {
                 
             </section>
             <section className="detalles-principal">
+                <div className="img-principal-cont">
+                    <svg width="584" className='img-principal-svg' height="528" viewBox="0 0 584 528" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <pattern id='imgProyecto' patternUnits='userSpaceOnUse' x="0" y="0" width="100%" height="100%" className='pt-proyecto-detalle'>
+                                <image href={proyecto.imgPrincipalURL} className='img-principal-proyecto' />             
+                            </pattern>
+                        </defs>
+                        <path d="M253.501 20.802C186.61 -11.8684 107.288 -5.90641 46.7134 37.631C4.82174 67.7202 -20.9932 109.294 22.5501 161.149C120.008 277.202 128.481 569.476 319.165 522.198C509.849 474.921 577.637 582.377 581.878 431.936C586.12 281.495 590.362 225.62 526.795 182.636C463.228 139.651 420.859 83.7764 361.539 66.5826C333.729 58.5276 291.028 39.1336 253.501 20.802Z" fill="url(#imgProyecto)"/>
+                    </svg>
+                </div>
                 <div className="info-principal">
                     <h2 className="nombre-proyecto negro">{proyecto.nombre}</h2>
                     <div className="categorias-proyecto">
@@ -67,24 +78,38 @@ function ProyectoDetalle() {
                             
                         })}
                     </div>
-                    <p className="descripcion-proyecto">{proyecto.descripcionGeneral}</p>
-                    <h3 className="estatus-proyecto verde">Estatus del proyecto</h3>
-                    <div className="tag-estatus"> <p>{proyecto.estatus}</p> </div>
-                    {proyecto.estatus ==='Activo' ? <button className="btn-colabora">Colabora aquí</button> :null}
                     
+                    <p className="descripcion-proyecto">{proyecto.descripcionGeneral}</p>
+                    
+                    <div className="categorias-proyecto">
+                        {
+                            etiquetas.map((etiqueta)=>{
+                                return(
+                                    <p className="etiqueta verde">{etiqueta}</p>
+                                )
+                            })
+                        }
+                    </div>
                 </div>
-                <div className="img-principal-cont">
-                    <svg width="584" height="528" viewBox="0 0 584 528" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <pattern id='imgProyecto' patternUnits='userSpaceOnUse' x="0" y="0" width="100%" height="100%" className='pt-proyecto-detalle'>
-                                <image href={proyecto.imgPrincipalURL} className='img-principal-proyecto' />             
-                            </pattern>
-                        </defs>
-                        <path d="M253.501 20.802C186.61 -11.8684 107.288 -5.90641 46.7134 37.631C4.82174 67.7202 -20.9932 109.294 22.5501 161.149C120.008 277.202 128.481 569.476 319.165 522.198C509.849 474.921 577.637 582.377 581.878 431.936C586.12 281.495 590.362 225.62 526.795 182.636C463.228 139.651 420.859 83.7764 361.539 66.5826C333.729 58.5276 291.028 39.1336 253.501 20.802Z" fill="url(#imgProyecto)"/>
-                    </svg>
-                </div>
+
+                
+
             </section>
+
             <section className="detalles-secundario">
+                <h3 className="estatus-proyecto">Estatus del proyecto</h3>
+                {proyecto.estatus === 'Activo' ? <div className="tag-estatus e-activo"> <p>{proyecto.estatus}</p> </div> : null}
+                {proyecto.estatus === 'Pasado' ? <div className="tag-estatus e-pasado"> <p>{proyecto.estatus}</p> </div> : null}
+                {proyecto.estatus === 'Próximo' ? <div className="tag-estatus e-proximo"> <p>{proyecto.estatus}</p> </div> : null}
+                <div className="cont-botones-proyecto">
+                    {proyecto.URLExterno ? <a href={proyecto.URLExterno}><button className="btn-proyecto-externo"> <span className="bold">Ingresa</span> a la página del proyecto</button></a> : null}
+                    {proyecto.estatus ==='Activo' ?<Link to='/registro-voluntariado'><button className="btn-colabora">Colabora aquí</button></Link>  :null}
+                </div>
+                
+                <div className="scrolldown-cont">
+                    <img src={downArrow} alt="" className="scroll-down-link scroll-down-arrow" />
+                </div>
+
                 <div className="cont-proposito">
                     <h2 className="negro h-proyecto">Propósito</h2>
                     <p className="negro">{proyecto.proposito}</p>
@@ -115,7 +140,11 @@ function ProyectoDetalle() {
                     </div>
                 </div>
             </section>
+            <div className="scrolldown-cont">
+                    <img src={downArrow} alt="" className="scroll-down-link scroll-down-arrow" />
+            </div>
             <section className="galeria-proyecto">
+                <h2 className="negro h-proyecto">Galería</h2>
                 <Swiper 
                 effect={'cards'} 
                 className="swiper-galeria-proyecto"
@@ -130,10 +159,8 @@ function ProyectoDetalle() {
                             return(
                                 <SwiperSlide style={proyectoImgGaleria} className='slide-proyecto'></SwiperSlide>
                             )
-                        })
-                            
+                        })  
                     }
-                    
                     
                 </Swiper>
             </section>

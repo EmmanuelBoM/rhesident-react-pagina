@@ -13,7 +13,7 @@ function CardVoluntariado(props) {
     return (
     <div className={props.voluntariadoActive === props.tipoVoluntariado ? `cont-tipo-voluntariado cont-voluntariado-active`: `cont-tipo-voluntariado`}>
         {props.tipoVoluntariado === 'Presencial' ? <i class={props.voluntariadoActive === props.tipoVoluntariado ? " text-voluntariado-active fa-solid  fa-handshake-angle icono-voluntariado":"fa-solid  fa-handshake-angle icono-voluntariado"}></i>:null}
-        {props.tipoVoluntariado === 'Híbrido' ? <i class={props.voluntariadoActive === props.tipoVoluntariado ? " text-voluntariado-active fa-solid fa-chalkboard-user icono-voluntariado":"fa-solid fa-chalkboard-user icono-voluntariado"}></i>:null}\
+        {props.tipoVoluntariado === 'Híbrido' ? <i class={props.voluntariadoActive === props.tipoVoluntariado ? " text-voluntariado-active fa-solid fa-chalkboard-user icono-voluntariado":"fa-solid fa-chalkboard-user icono-voluntariado"}></i>:null}
         {props.tipoVoluntariado === 'Remoto' ? <i class={props.voluntariadoActive === props.tipoVoluntariado ? " text-voluntariado-active fa-solid fa-desktop icono-voluntariado":"fa-solid fa-desktop icono-voluntariado"}></i>:null}
         <div className="cont-nombre-voluntariado">
             <h3 className={props.voluntariadoActive === props.tipoVoluntariado ? `nombre-voluntariado text-voluntariado-active`:`nombre-voluntariado`}>{props.tipoVoluntariado}</h3>

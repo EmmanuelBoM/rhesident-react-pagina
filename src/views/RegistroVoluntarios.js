@@ -8,6 +8,7 @@ import Select from 'react-select'
 import emailjs from '@emailjs/browser';
 import ModalAdminExito from '../components/ModalAdminExito';
 import ModalAdminConfirmar from '../components/ModalAdminConfirmar';
+import { useParams } from 'react-router-dom';
 
 const options = [
   { value: 'Presencial', label: 'Presencial' },
@@ -96,6 +97,9 @@ function RegistroVoluntarios() {
     const [formulario, setFormulario] = useState('')
     const [formul, setFormul] = useState()
 
+    const params = useParams();
+    const defaultSelectValue =  { value: params.modalidad, label: params.modalidad }
+
     const handleModalidadChange = selectedOption =>{
         setModalidadValue(selectedOption.value);
     }
@@ -111,6 +115,8 @@ function RegistroVoluntarios() {
     }
 
     const submitRegistro = (e) => {
+        if(modalidadValue==='') {setModalidadValue(params.modalidad)}
+
         setModalConfVisibility(true);
         e.preventDefault();
         setContenido(`
@@ -126,6 +132,7 @@ function RegistroVoluntarios() {
         setEncabezado("Nuevo registro de voluntariado")
         setFormulario("Completa el registro para tu voluntariado")
         setFormul(form.current)
+        console.log(contenido)
         
     };
 
@@ -141,8 +148,8 @@ function RegistroVoluntarios() {
 
     return (
         <main>
-            {modalExitoVisibility ? <ModalAdminExito setModalVisibility={setModalExitoVisibility} rutaContinuar='/voluntariado' accion='enviada' recurso= 'Respuesta' subt=" " nombreRecurso=" "></ModalAdminExito> : null }
-            {modalConfVisibility ? <ModalAdminConfirmar setModalVisibility={setModalConfVisibility} runFunction={sendEmail} accion='enviar' recurso= 'respuesta' nombreRecurso=" "></ModalAdminConfirmar> : null }
+            {modalExitoVisibility ? <ModalAdminExito setModalVisibility={setModalExitoVisibility} rutaContinuar='/voluntariado' accion='enviado. ¡Muchas gracias por tu interés! Pronto nos pondremos en contacto contigo' recurso= 'Registro' subt=" " nombreRecurso=" "></ModalAdminExito> : null }
+            {modalConfVisibility ? <ModalAdminConfirmar setModalVisibility={setModalConfVisibility} runFunction={sendEmail} accion='enviar' recurso= 'tu respuesta' nombreRecurso=" "></ModalAdminConfirmar> : null }
             <NavHeader></NavHeader>
             <div className="titulo-header">
                 <h1 className="verde">Completa el registro para <br /> tu voluntariado</h1>
@@ -161,7 +168,7 @@ function RegistroVoluntarios() {
                         <label htmlFor="lugarResidencia" className='input-label'>Lugar de residencia*</label>
                         <input type="text"  placeholder="Ciudad o comunidad" name="lugarResidencia" id="" className="input-gral" required onChange={handleInputChange}/>
                         <label htmlFor="" className="input-label">Modalidad de voluntariado*</label>
-                        <Select styles={customSelectStyles} options={options} placeholder='Selecciona una modalidad' onChange={handleModalidadChange}/>
+                        <Select styles={customSelectStyles} options={options} placeholder='Selecciona una modalidad' onChange={handleModalidadChange} defaultValue={defaultSelectValue}/>
                         <label htmlFor="mensaje" className="input-label">¿Por qué te interesaría ser parte de la organización?*</label>
                         <textarea name="mensaje" id=""  cols="30" rows="10" className="input-gral" placeholder='Cuéntanos' onChange={handleInputChange} required></textarea>
                         
