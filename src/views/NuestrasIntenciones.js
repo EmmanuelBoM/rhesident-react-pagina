@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Footer from '../components/Footer'
 import NavHeader from '../components/NavHeader'
 import OverlayInvitacion from '../components/OverlayInvitacion'
@@ -17,8 +17,27 @@ import "animate.css/animate.min.css";
 
 import {Link} from 'react-router-dom';
 
+// Firebase Imports
+import {db} from '../firebaseConfig'
+import {collection,getDoc, doc} from "@firebase/firestore";
+
 function NuestrasIntenciones() {
     const [overlayVisibility, setOverlayVisibility] = useState(false)
+    const [portadaIntenciones, setPortadaIntenciones] = useState('')
+
+    const portadaRef = doc(db, "recursosGenerales", "JdU7qvSU98pHcPSt59e4")
+    useEffect (()=>{
+        const getPortada = async () => {
+          const portadaDoc = await getDoc(portadaRef);
+          setPortadaIntenciones(portadaDoc.data().url)
+        }
+    
+        getPortada();
+      }, []);
+    
+    const portadaImg = {
+        backgroundImage: `url(${portadaIntenciones})`
+    }
 
     function showOverlay(){
         if (window.scrollY>=80){
@@ -37,7 +56,7 @@ function NuestrasIntenciones() {
             <Animated animateOnMount={false} animationIn="fadeInDown" animationOut="fadeOutUp" isVisible={overlayVisibility} animationInDuration={500} animationOutDuration={500}className="overlay-top">
                 {overlayVisibility ? <OverlayInvitacion overlayVisibility={overlayVisibility}></OverlayInvitacion>:null}
             </Animated>
-            <section className="hero-intenciones">
+            <section className="hero-intenciones" style={portadaImg}>
                 <div className="color-overlay">
                     <h1 className='titulo-hero blanco'>Nuestras intenciones</h1>
                     <p className='intenciones-descripcion blanco descripcion-hero'>

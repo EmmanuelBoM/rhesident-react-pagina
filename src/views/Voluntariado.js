@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Footer from '../components/Footer';
 import NavHeader from '../components/NavHeader';
 import '../styles/base.css'
@@ -18,6 +18,9 @@ import "swiper/css/pagination"
 import "swiper/css/navigation"
 import SwiperCore, { Pagination,Navigation } from 'swiper';
 
+//Firebase imports
+import {db} from '../firebaseConfig'
+import {query, collection, getDocs,where, doc, getDoc} from "@firebase/firestore";
 
 // install Swiper modules
 SwiperCore.use([Pagination,Navigation]);
@@ -26,10 +29,37 @@ function Voluntariado() {
     const [swiperRef, setSwiperRef] = useState(null);
     const [voluntariadoActive, setVoluntariadoActive] = useState('')
     const [swiperVisibility, setswiperVisibility] = useState(false)
+    const [portadaVoluntariado, setPortadaVoluntariado] = useState('')
+    const [videoURL, setVideoURL] = useState('')
+    const portadaRef = doc(db, "recursosGenerales", "uxuVFcShyChtFGtJzSiX");
+    const videoRef = doc(db, "recursosGenerales", "kRku4Qd3Bqpm6ho1F2kE");
+
+    useEffect (()=>{
+        
+        const getPortada = async () => {
+            const portadaDoc = await getDoc(portadaRef);
+            setPortadaVoluntariado(portadaDoc.data().url);
+          };
+        
+          const getVideo = async () => {
+            const videoDoc = await getDoc(videoRef);
+            setVideoURL(videoDoc.data().url);
+          };
+
+        getVideo();
+        getPortada();
+
+      }, []);
+
+    const portadaImg = {
+        backgroundImage: `url(${portadaVoluntariado})`,
+    };
+
+    
   return (
       <main>
         <NavHeader textColor='blanco'></NavHeader>
-        <section className="hero-voluntariado">
+        <section className="hero-voluntariado" style={portadaImg}>
             <div className="color-overlay">
                 <h1 className='titulo-hero blanco'>¡Conviértete en voluntario!</h1>
                 <p className='origen-descripcion blanco descripcion-hero'>
@@ -196,7 +226,7 @@ function Voluntariado() {
             <h4 className='descripcion-seccion'>¡Da clic a este video y descúbrelo!</h4>
             <iframe
             className='yt-iframe'
-            src='https://www.youtube.com/embed/gR3q8YMGh8A'
+            src={`https://www.youtube.com/embed/${videoURL}`}
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

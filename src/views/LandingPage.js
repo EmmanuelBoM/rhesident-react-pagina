@@ -21,6 +21,7 @@ function LandingPage() {
 
     const [isVideoVisible, setIsVideoVisible] = useState(false);
     const [portadaImg, setPortadaImg] = useState('')
+    
 
     function autoPlayVideo(){
       if (window.scrollY>=500){
@@ -132,17 +133,13 @@ function LandingPage() {
             </AnimationOnScroll>
             <AnimationOnScroll animateIn="animate__fadeInUp" animateOut='animate__fadeOutUp' delay={1}>
               <p className='causa-descripcion'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam,
-                quia praesentium iste explicabo ad ipsum ex eius neque, dolor error
-                commodi accusamus. Quod dolor ex ea, consequatur harum eum magni
-                nesciunt ipsum error sapiente repellendus cupiditate alias suscipit
-                cumque! Quasi a veritatis omnis libero labore eum similique
-                delectus? Consequuntur, recusandae.
+              Buscamos contrarrestar la <span className="amarillo">exclusión</span>  y <span className="amarillo">vulnerabilidad</span>  en comunidades (urbanas, semi rurales y rurales), ciudades y grupos poblacionales que viven bajo condiciones de segregación y fragmentación, ocasionadas por la urbanización desmesurada.
               </p>
             </AnimationOnScroll>
             <AnimationOnScroll animateIn="animate__fadeInUp" animateOut='animate__fadeOutUp' delay={1}>
               <p className='causa-descripcion'>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic similique eos molestias consequuntur distinctio eaque omnis illo, adipisci deleniti, earum impedit recusandae cumque magni perferendis expedita, quisquam autem enim. Eos quae dolores blanditiis facere modi facilis? Beatae culpa fugiat amet!
+              Solemos tomar en cuenta los efectos sociales que han impactado a las comunidades y a su relación con su entorno, fortaleciendo su sentido de pertenencia; <span className="amarillo">evitando mayor fragmentación y conflicto social</span>, así como disminuyendo la desigualdad espacial.
+
               </p>
             </AnimationOnScroll>
           </div>

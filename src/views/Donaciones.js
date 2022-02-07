@@ -8,26 +8,39 @@ import {Link} from 'react-router-dom'
 
 //Firebase imports
 import {db} from '../firebaseConfig'
-import {query, collection, getDocs,where} from "@firebase/firestore";
+import {query, collection, getDocs,where, doc, getDoc} from "@firebase/firestore";
 
 function Donaciones() {
+    const [portadaDonaciones, setPortadaDonaciones] = useState('')
+    const portadaRef = doc(db, "recursosGenerales", "aSTTw9VJfhoZbNYB7MKk");
 
     const [beneficiarios, setBeneficiarios]= useState([])
     const beneficiariosCollectionRef = collection(db, "beneficiarios")
     const q_beneficiarios = query(beneficiariosCollectionRef, where("visible", "==",true));
+
     useEffect (()=>{
-        
+
+        const getPortada = async () => {
+            const portadaDoc = await getDoc(portadaRef);
+            setPortadaDonaciones(portadaDoc.data().url);
+        };
+
         const getBeneficiarios = async () => {
-        const data = await getDocs(q_beneficiarios);
-        setBeneficiarios(data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))
+            const data = await getDocs(q_beneficiarios);
+            setBeneficiarios(data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))
         }
-    
+        
+        getPortada();
         getBeneficiarios();
       }, [])
-  return (
-      <main>
+
+    const portadaImg = {
+        backgroundImage: `url(${portadaDonaciones})`,
+    };
+    return (
+        <main>
             <NavHeader textColor='blanco'></NavHeader>
-            <section className="hero-donaciones">
+            <section className="hero-donaciones" style={portadaImg}>
                 <div className="color-overlay">
                     <h1 className='titulo-hero blanco'>Apoya nuestra causa</h1>
                     <p className='origen-descripcion blanco descripcion-hero'>
@@ -71,7 +84,7 @@ function Donaciones() {
                 </div>
             </section>
             <Footer></Footer>
-      </main>
+        </main>
   );
 }
 

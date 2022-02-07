@@ -14,25 +14,41 @@ import "animate.css/animate.min.css";
 
 //Firebase imports
 import {db} from '../firebaseConfig'
-import {query, collection, getDocs,where} from "@firebase/firestore";
+import {query, collection, getDocs,where, doc, getDoc} from "@firebase/firestore";
 
 function NuestroEquipo() {
     //Bloquear scroll del body
     // document.body.style.overflow = 'hidden';
+    const [overlayVisibility, setOverlayVisibility] = useState(false)
+    const [modalVisibility, setModalVisibility] = useState(false)
     const [equipo, setEquipo]= useState([])
     const [miembroModal, setMiembroModal] = useState({})
+    const [portadaEquipo, setPortadaEquipo] = useState('')
 
+    const portadaRef = doc(db, "recursosGenerales", "ovN44y53KLXexXeAvrQn")
     const equipoCollectionRef = collection(db, "equipo")
     const q = query(equipoCollectionRef, where("visible", "==",true));
+
     useEffect (()=>{
         const getEquipo = async () => {
           const data = await getDocs(q);
           setEquipo(data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))
         }
+
+        const getPortada = async () => {
+            const portadaDoc = await getDoc(portadaRef);
+            setPortadaEquipo(portadaDoc.data().url)
+          }
+      
+        getPortada();
         getEquipo();
-      }, [])
-    const [overlayVisibility, setOverlayVisibility] = useState(false)
-    const [modalVisibility, setModalVisibility] = useState(false)
+    }, [])
+
+
+    
+    const portadaImg = {
+        backgroundImage: `url(${portadaEquipo})`
+    }
 
     function showOverlay(){
         if (window.scrollY>=80){
@@ -52,7 +68,7 @@ function NuestroEquipo() {
                 {overlayVisibility ? <OverlayInvitacion overlayVisibility={overlayVisibility}></OverlayInvitacion>:null}
             </Animated>
            
-            <section className="hero-equipo">
+            <section className="hero-equipo" style={portadaImg}>
                 <div className="color-overlay">
                     <h1 className='titulo-hero blanco'>Nuestro Equipo</h1>
                     <p className='origen-descripcion blanco descripcion-hero'>

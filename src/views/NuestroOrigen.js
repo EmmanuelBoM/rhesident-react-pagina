@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Footer from '../components/Footer'
 import NavHeader from '../components/NavHeader'
 import OverlayInvitacion from '../components/OverlayInvitacion'
@@ -13,10 +13,28 @@ import {Animated} from "react-animated-css";
 import "animate.css/animate.min.css";
 import { AnimationOnScroll } from 'react-animation-on-scroll';
 
+// Firebase Imports
+import {db} from '../firebaseConfig'
+import {collection,getDoc, doc} from "@firebase/firestore";
+
 function NuestroOrigen() {
 
     const [overlayVisibility, setOverlayVisibility] = useState(false)
+    const [portadaOrigen, setPortadaOrigen] = useState('')
 
+    const portadaRef = doc(db, "recursosGenerales", "xAt58eGwLARlU7bnoerV")
+    useEffect (()=>{
+        const getPortada = async () => {
+          const portadaDoc = await getDoc(portadaRef);
+          setPortadaOrigen(portadaDoc.data().url)
+        }
+    
+        getPortada();
+      }, []);
+    
+    const portadaImg = {
+        backgroundImage: `url(${portadaOrigen})`
+    }
     function showOverlay(){
         if (window.scrollY>=80){
             setOverlayVisibility(true)
@@ -35,7 +53,7 @@ function NuestroOrigen() {
                 {overlayVisibility ? <OverlayInvitacion overlayVisibility={overlayVisibility}></OverlayInvitacion>:null}
             </Animated>
 
-            <section className="hero-origen">
+            <section className="hero-origen" style={portadaImg}>
                 <div className="color-overlay">
                     <h1 className='titulo-hero blanco'>Nuestro Origen</h1>
                     <p className='origen-descripcion blanco descripcion-hero'>
