@@ -111,7 +111,7 @@ function LandingPage() {
 
         <section className="video-principal">
             <h2 className='negro'>Lorem ipsum dolor sit.</h2>
-            <p className='negro descripcion-seccion'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta tenetur doloribus, cupiditate vel tempore reprehenderit?</p>
+            <h4 className='descripcion-seccion'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta tenetur doloribus, cupiditate vel tempore reprehenderit?</h4>
           <iframe
             className='yt-iframe'
             src={isVideoVisible ? `https://www.youtube.com/embed/gR3q8YMGh8A?autoplay=1&mute=1&loop=1`: `https://www.youtube.com/embed/gR3q8YMGh8A`}
@@ -151,7 +151,7 @@ function LandingPage() {
         
         <section className="conoce">
             <h2 className="negro">¡Conócenos!</h2>
-            <p className='descripcion-seccion'><span className="bold">Desliza hacia abajo</span>  para conocer<br /> los aspectos  que definen a <span className="bold">Rhesident Org.</span> </p>
+            <h4 className='descripcion-seccion'><span className="bold">Desliza hacia abajo</span>  para conocer<br /> los aspectos  que definen a <span className="bold">Rhesident Org.</span> </h4>
           
             <AnimationOnScroll animateIn="animate__fadeIn"  offset={100} >
                 <div className="item-conoce">

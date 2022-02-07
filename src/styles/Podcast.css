@@ -43,6 +43,24 @@
     color: var(--blanco);
 }
 
+.podcast-yt{
+    background-color: #FF0000;
+    color: var(--blanco);
+}
+
+.yt-i{
+    color: var(--blanco) !important;
+}
+
+.podcast-spot{
+    background-color: #1ED760 !important;
+    color: var(--blanco);
+}
+
+.spot-i{
+    color: var(--blanco);
+}
+
 .btn-youtube:hover i{
     color: var(--blanco);
 }
@@ -105,6 +123,15 @@
 }
 
 .podcast-spotify{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vh;
+    width: 80%;
+}
+
+.podcast-youtube{
     display: flex;
     flex-direction: column;
     align-items: center;

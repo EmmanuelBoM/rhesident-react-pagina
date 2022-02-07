@@ -106,7 +106,7 @@ function NuestraHuella() {
             <section className="testimonios">
                 <div className="section-title">
                     <h2 className="negro">Testimonios</h2>
-                    <p className="negro descripcion-seccion">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur minus fuga fugit quis nemo iste.</p>
+                    <h4 className="negro descripcion-seccion">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur minus fuga fugit quis nemo iste.</h4>
                 </div>
                 
                 <Swiper   
@@ -142,7 +142,7 @@ function NuestraHuella() {
             <section className="notas-medio">
                 <div className="section-title">
                     <h2 className="negro">Notas de medios</h2>
-                    <p className="negro descripcion-seccion">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum ducimus incidunt totam minima, molestias laudantium!</p>
+                    <h4 className="descripcion-seccion">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum ducimus incidunt totam minima, molestias laudantium!</h4>
                 </div>
                 
                 <Swiper 
@@ -186,7 +186,7 @@ function NuestraHuella() {
             <section className="Aliados">
                 <div className="section-title">
                     <h2 className="negro">Nuestras alianzas colaborativas</h2>
-                    <p className="negro descripcion-seccion">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum ducimus incidunt totam minima, molestias laudantium!</p>
+                    <h4 className="negro descripcion-seccion">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum ducimus incidunt totam minima, molestias laudantium!</h4>
                 </div>
                 <div className="galeria-aliados">
                     {
