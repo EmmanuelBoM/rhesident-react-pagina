@@ -7,9 +7,9 @@
 }
 .main-svg{
     position: absolute;
-    margin-top: -40rem;
+    top: -1rem;
     z-index: -10;
-    width: 110vw;
+    width: 100%;
 }
 
 .titulo-landing{
@@ -18,12 +18,20 @@
 .subtitulo-landing{
     text-align: center;
     width: 75%;
+    font-weight: 400;
+}
+
+.img-portada-landing{
+    width: 100%;
 }
 
 .descripcion-hero{
     margin-top: 5rem;
-    width: 40%;
+    width: 60%;
     text-align: center;
+    font-weight: 500;
+    color: var(--blanco);
+    font-size: 2rem;
 }
 
 .hero-ctas{
@@ -43,33 +51,40 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    width: 35rem;
+    width: 30rem;
     box-shadow: 8px 5px 15px #123a342a;
 }
 
 .icono-cta{
-    max-width: 10rem;
-    margin-bottom: 2rem;
+    width: 10rem;
+    height: 10rem;
+    margin-bottom: 4rem;
 }
 
+.img-cta{
+    width: 100%;
+}
+
+
 .texto-cta{
-    font-weight: 300;
-    margin-bottom: 6rem;
+    width: 80%;
+    font-weight: 400;
+    margin-bottom: 4rem;
 }
 
 .btn-cta{
     font-size: 2.4rem;
     font-family: 'Lato';
-    color: var(--g-200);
+    color: var(--negro);
     font-weight: 600;
-    padding: 2rem 2rem;
+    padding: 1rem 1rem;
     border-radius: 1rem;
     background: var(--secundario);
-    width: 80%;
+    width: 70%;
     border: none;
     position: absolute;
     top: 85%;
-    margin-left: -38%;
+    margin-left: -35%;
     cursor: pointer;
     align-items: center;
 }
@@ -151,6 +166,64 @@
     height: 250vh;
 }
 
+.huella-conoce{
+    width: 40rem;
+    position: absolute;
+    margin-top: -10rem;
+    left: 50%;
+    margin-left: -22rem;
+}
+
+.subt-conoce{
+    text-align: center;
+    font-weight: 800;
+    margin-top: 2rem;
+}
+
+.item-conoce{
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.text-conoce{
+    text-align: center;
+    width: 40%;
+    font-size: 1.6rem;
+}
+
+.path-conoce{
+    stroke-dasharray: 1500;
+    stroke-dashoffset: 1600;
+    animation: dash 3s linear forwards;
+}
+
+.corazon-conoce{
+    z-index: 10;
+    margin-top: 2rem;
+    background-image: url('../assets/corazon_conoce.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20rem;
+    height: 20rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.corazon-conoce img{
+    width: 38%;
+    margin-left: 2rem;
+}
+
+.conoce p{
+    margin-top: 2rem;
+    text-align: center;
+}
+
 .elemento-conoce{
     height: 10rem;
     width: 10rem;
@@ -191,10 +264,7 @@
     margin-bottom: 2rem;
 }
 
-.conoce p{
-    margin-top: 2rem;
-    text-align: center;
-}
+
 
 
 .btn-round{
@@ -355,17 +425,43 @@
     box-sizing: border-box;
 }
 
+.scrolldown-cont-small{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2.5rem;
+    margin-bottom: 2rem;
+    height: 5rem;
+    box-sizing: border-box;
+}
+
 
 .scroll-down-link {
+    font-size: 4rem;
+    opacity: 0.6;
 	cursor:pointer;
 	color: #FFF;
 	text-align: center;
 	text-decoration: none;
 	text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.4);
-	-webkit-animation: fade_move_down 1.5s ease-in-out infinite;
-	-moz-animation:    fade_move_down 1.5s ease-in-out infinite;
-	animation:         fade_move_down 1.5s ease-in-out infinite;
+	-webkit-animation: fade_move_down 1.5s cubic-bezier(0.39, 0.575, 0.565, 1) infinite;
+	-moz-animation:    fade_move_down 1.5s cubic-bezier(0.39, 0.575, 0.565, 1) infinite;
+	animation:         fade_move_down 1.5s cubic-bezier(0.39, 0.575, 0.565, 1) infinite;
 	
+}
+
+.scroll-down-link-green{
+    font-size: 4rem;
+    opacity: 0.6;
+	cursor:pointer;
+	color: var(--primario);
+	text-align: center;
+	text-decoration: none;
+	text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.4);
+	-webkit-animation: fade_move_down 1s cubic-bezier(0.39, 0.575, 0.565, 1) infinite alternate-reverse;
+	-moz-animation:    fade_move_down 1s cubic-bezier(0.39, 0.575, 0.565, 1) infinite alternate-reverse;
+	animation:         fade_move_down 1s cubic-bezier(0.39, 0.575, 0.565, 1) infinite alternate-reverse;
 }
 
 /*animated scroll arrow animation*/
