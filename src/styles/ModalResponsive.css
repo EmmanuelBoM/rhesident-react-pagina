@@ -1,0 +1,16 @@
+.cont-modal-responsive{
+    max-width: 40%;
+}
+
+.img-modal{
+    width: 100%;
+}
+
+.icono-cerrar-modal{
+    cursor: pointer;
+    position: absolute;
+    color: var(--blanco);
+    font-size: 3rem;
+    margin-left: -4rem;
+    margin-top: 2rem;
+}

@@ -44,31 +44,33 @@ function Login() {
 
     function signIn(){
         signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            navigate('/admin_proyectos')
-            setErrorVisibility(false);
-            sessionStorage.setItem('Auth Token', userCredential._tokenResponse.refreshToken)
-        })
-        .catch((error) => {
-            const errorMessage = error.message;
-            const errorCode= error.code;
+            .then((userCredential) => {
+                
+                setErrorVisibility(false);
+                window.localStorage.setItem('Auth Token', userCredential._tokenResponse.refreshToken)
+            })
+            .catch((error) => {
+                const errorMessage = error.message;
+                const errorCode= error.code;
 
-            if(errorCode == 'auth/wrong-password' ){
-                setErrorMsg('El correo electrónico o la contraseña no son correctos.');
-            }
-            else if(errorCode == 'auth/too-many-requests'){
-                setErrorMsg('Acceso a la cuenta deshabilitado temporalmente. Intenta de nuevo más tarde.');
-            }
-            else if(errorCode == 'auth/user-not-found'){
-                setErrorMsg('El correo electrónico o la contraseña no son correctos.');
-            }
-            else{
-                setErrorMsg(`Hubo un error. ${errorCode}`);
-            }
-        
-            setErrorVisibility(true);
-        });
-    
+                if(errorCode == 'auth/wrong-password' ){
+                    setErrorMsg('El correo electrónico o la contraseña no son correctos.');
+                }
+                else if(errorCode == 'auth/too-many-requests'){
+                    setErrorMsg('Acceso a la cuenta deshabilitado temporalmente. Intenta de nuevo más tarde.');
+                }
+                else if(errorCode == 'auth/user-not-found'){
+                    setErrorMsg('El correo electrónico o la contraseña no son correctos.');
+                }
+                else{
+                    setErrorMsg(`Hubo un error. ${errorCode}`);
+                }
+                console.log(error)
+            
+                setErrorVisibility(true);
+            });
+
+        navigate('/admin_proyectos')
     }
     
     function toggleForgot(){

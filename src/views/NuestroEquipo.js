@@ -19,7 +19,7 @@ import { Helmet } from 'react-helmet'
 
 function NuestroEquipo() {
     //Bloquear scroll del body
-    // document.body.style.overflow = 'hidden';
+    
     const [overlayVisibility, setOverlayVisibility] = useState(false)
     const [modalVisibility, setModalVisibility] = useState(false)
     const [equipo, setEquipo]= useState([])

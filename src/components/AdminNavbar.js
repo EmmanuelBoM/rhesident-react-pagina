@@ -9,7 +9,7 @@ function AdminNavbar(props) {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        sessionStorage.removeItem('Auth Token');
+        window.localStorage.removeItem('Auth Token');
         navigate('/login')
     }
 

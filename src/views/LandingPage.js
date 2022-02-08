@@ -13,6 +13,7 @@ import {Link} from 'react-router-dom'
 import CustomMailchimpForm from '../components/CustomMailchimpForm'
 import iconoIntenciones from '../assets/icono_intenciones.png'
 import { Helmet } from 'react-helmet';
+import ModalResponsive from '../components/ModalResponsive.js'
 
 // Firebase Imports
 import {db} from '../firebaseConfig'
@@ -22,7 +23,9 @@ function LandingPage() {
 
     const [isVideoVisible, setIsVideoVisible] = useState(false);
     const [portadaImg, setPortadaImg] = useState('')
-    
+    const [videoURL, setVideoURL] = useState('')
+    const [modalVisibility, setModalVisibility] = useState(false)
+    const [modalImg, setModalImg] = useState('')
 
     function autoPlayVideo(){
       if (window.scrollY>=500){
@@ -34,12 +37,27 @@ function LandingPage() {
     }
 
     const portadaRef = doc(db, "recursosGenerales", "5ePochyXKfxpLa6MK32Q")
+    const modalRef = doc(db, "recursosGenerales", "enDqmvvOeWGgzB88rDrB")
+    const videoRef = doc(db, "recursosGenerales", "5aT7wvcLG9yGr6B8Ar8G")
+
     useEffect (()=>{
         const getPortada = async () => {
           const portadaDoc = await getDoc(portadaRef);
           setPortadaImg(portadaDoc.data().url)
         }
-    
+        const getModal = async () => {
+            const modalDoc = await getDoc(modalRef);
+            setModalImg(modalDoc.data().url)
+            setModalVisibility(modalDoc.data().visible)
+        }
+
+        const getVideo = async () => {
+        const videoDoc = await getDoc(videoRef);
+        setVideoURL(videoDoc.data().url)
+        }
+        
+        getModal();
+        getVideo();
         getPortada();
       }, []);
 
@@ -51,6 +69,8 @@ function LandingPage() {
             <Helmet>
                 <title>Inicio | Rhesident Org </title>
             </Helmet>
+            
+            {modalVisibility? <ModalResponsive img={modalImg} setModalVisibility={setModalVisibility}></ModalResponsive>:null}
             <NavHeader textColor='blanco'></NavHeader>
             <section className="hero-landing">
                 <svg className="main-svg"  viewBox="0 0 1920 850" fill="none" xmlns="http://www.w3.org/2000/svg">
