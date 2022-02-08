@@ -200,3 +200,12 @@
     color: #fff;
     background-color: var(--primario);
 }
+
+.swiper-galeria-proyecto .swiper-button-next, .swiper-galeria-proyecto .swiper-button-prev{
+    color: var(--s-700) !important;
+}
+
+.icono-full{
+    font-size: 3rem;
+    z-index: 100;
+}

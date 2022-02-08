@@ -20,6 +20,7 @@ import "swiper/css/pagination"
 import "swiper/css/navigation"
 import "swiper/css/effect-cards"
 import SwiperCore, { Pagination,Navigation, EffectCards } from 'swiper';
+import ModalResponsive from '../components/ModalResponsive'
 
 
 // install Swiper modules
@@ -34,7 +35,10 @@ function ProyectoDetalle() {
     const [objetivos, setObjetivos] = useState([])
     const [etiquetas, setEtiquetas] = useState([])
     const [galeria, setGaleria] = useState([])
+    const [imgGaleria, setImgGaleria] = useState([])
+    const [modalVisibility, setModalVisibility] = useState(false)
     let params = useParams();
+
 
     const proyectoRef = doc(db, "proyectos", params.id)
     useEffect (()=>{
@@ -49,7 +53,10 @@ function ProyectoDetalle() {
     
         getProyecto();
       }, []);
-
+    
+    function handleGaleriaClick(){
+        setModalVisibility(true)
+    }
     
     return (
         <main>
@@ -157,14 +164,18 @@ function ProyectoDetalle() {
                                 backgroundImage: `url(${img})`
                                 }
                             return(
-                                <SwiperSlide style={proyectoImgGaleria} className='slide-proyecto'></SwiperSlide>
-                            )
+                                <div >
+                                    <SwiperSlide style={proyectoImgGaleria} className='slide-proyecto' tag='div'></SwiperSlide>
+                                </div>
+                                
+                                )
                         })  
                     }
-                    
                 </Swiper>
             </section>
+            {modalVisibility?<ModalResponsive imgGaleria={imgGaleria}></ModalResponsive>:null}
             <Footer></Footer>
+           
         </main>
     )
 }

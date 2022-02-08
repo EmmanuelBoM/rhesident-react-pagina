@@ -1,5 +1,4 @@
 .hero-voluntariado{
-    background-image: url('../assets/voluntariado.png');
     background-size: cover;
     background-position: center;
 }
@@ -18,7 +17,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 8rem 4rem;
+    padding: 4rem 4rem;
     z-index: 10;
 }
 
@@ -163,4 +162,9 @@
 .galeria-proyectos-voluntariado{
     margin-top: 10rem;
     margin-bottom: 10rem;
+}
+
+.flecha-card-v{
+    font-size: 2rem ;
+    margin-top: 4rem;
 }

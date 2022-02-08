@@ -5,29 +5,46 @@ import '../styles/base.css'
 import '../styles/Donaciones.css'
 import downArrow from '../assets/down_arrow_light.svg'
 import {Link} from 'react-router-dom'
+import { Helmet } from 'react-helmet';
 
 //Firebase imports
 import {db} from '../firebaseConfig'
-import {query, collection, getDocs,where} from "@firebase/firestore";
+import {query, collection, getDocs,where, doc, getDoc} from "@firebase/firestore";
 
 function Donaciones() {
+    const [portadaDonaciones, setPortadaDonaciones] = useState('')
+    const portadaRef = doc(db, "recursosGenerales", "aSTTw9VJfhoZbNYB7MKk");
 
     const [beneficiarios, setBeneficiarios]= useState([])
     const beneficiariosCollectionRef = collection(db, "beneficiarios")
     const q_beneficiarios = query(beneficiariosCollectionRef, where("visible", "==",true));
+
     useEffect (()=>{
-        
+
+        const getPortada = async () => {
+            const portadaDoc = await getDoc(portadaRef);
+            setPortadaDonaciones(portadaDoc.data().url);
+        };
+
         const getBeneficiarios = async () => {
-        const data = await getDocs(q_beneficiarios);
-        setBeneficiarios(data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))
+            const data = await getDocs(q_beneficiarios);
+            setBeneficiarios(data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))
         }
-    
+        
+        getPortada();
         getBeneficiarios();
       }, [])
-  return (
-      <main>
+
+    const portadaImg = {
+        backgroundImage: `url(${portadaDonaciones})`,
+    };
+    return (
+        <main>
+            <Helmet>
+                <title>Cómo Apoyar | Rhesident</title>
+            </Helmet>
             <NavHeader textColor='blanco'></NavHeader>
-            <section className="hero-donaciones">
+            <section className="hero-donaciones" style={portadaImg}>
                 <div className="color-overlay">
                     <h1 className='titulo-hero blanco'>Apoya nuestra causa</h1>
                     <p className='origen-descripcion blanco descripcion-hero'>
@@ -47,14 +64,14 @@ function Donaciones() {
                     <Link to='/dona-ahora'><button className="btn-donaciones">Donaciones</button></Link>
                 </div>
                 <div className="cont-tipo-donaciones idea">
-                    <i class="fa-solid fa-lightbulb icono-donaciones verde"></i>
+                    <i class="fa-solid fa-lightbulb icono-donaciones"></i>
                     <p className="mb4 verde">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi suscipit architecto soluta repellendus unde id!</p>
                     <Link to='/cuentanos-tu-idea'><button className="btn-donaciones">Cuéntanos tu idea</button></Link>
                 </div>
                 <div className="cont-tipo-donaciones agenda-entrevista">
                     <i class="fa-solid fa-calendar-day icono-donaciones"></i>
                     <p className="mb4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi suscipit architecto soluta repellendus unde id!</p>
-                    <button className="btn-donaciones">Agenda una entrevista</button>
+                    <a href="https://calendly.com/"><button className="btn-donaciones">Agenda una entrevista</button></a>
                 </div>
             </section>
 
@@ -71,7 +88,7 @@ function Donaciones() {
                 </div>
             </section>
             <Footer></Footer>
-      </main>
+        </main>
   );
 }
 

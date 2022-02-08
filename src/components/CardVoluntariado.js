@@ -23,6 +23,7 @@ function CardVoluntariado(props) {
             <button className={props.voluntariadoActive === props.tipoVoluntariado ? `btn-voluntariado-active btn-voluntariado`:`btn-voluntariado`}>Aplica aquí</button>
         </Link>
         <button className={props.voluntariadoActive === props.tipoVoluntariado ? `btn-ver-proyectos text-voluntariado-active`:`btn-ver-proyectos`} onClick={setActive}>Ver Proyectos</button>
+        <i class={props.voluntariadoActive === props.tipoVoluntariado ? "fa-solid fa-angles-down scroll-down-link flecha-card-v" : "dnone" } ></i>
     </div>
     );
 }

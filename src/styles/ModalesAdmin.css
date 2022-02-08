@@ -104,3 +104,8 @@
     background-color: var(--g-700);
     box-shadow: 2px 3px 5px #535b5e76;
 }
+
+
+.rhesident{
+    background-color: var(--primario);
+}

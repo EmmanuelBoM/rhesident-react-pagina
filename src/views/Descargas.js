@@ -8,6 +8,7 @@ import '../styles/Descargas.css'
 //Firebase imports
 import {db} from '../firebaseConfig'
 import {query, collection, getDocs,where} from "@firebase/firestore";
+import { Helmet } from 'react-helmet';
 
 function Descargas() {
     const [descargas, setDescargas] = useState([])
@@ -26,6 +27,9 @@ function Descargas() {
       }, [])
     return (
         <main>
+            <Helmet>
+                <title>Descargas | Rhesident</title>
+            </Helmet>
              <NavHeader></NavHeader>
             <section className="header-descargas">
                 <img src={ilustracionDescargas} alt="" className="img-descargas" />

@@ -13,14 +13,17 @@ import "animate.css/animate.min.css";
 
 //Firebase imports
 import {db} from '../firebaseConfig'
-import {query, collection, getDocs,where} from "@firebase/firestore";
+import {query, collection, getDocs,where, doc, getDoc} from "@firebase/firestore";
+import { Helmet } from 'react-helmet';
 
 function Talleres() {
     const [modalVisibility, setModalVisibility] = useState(false)
     const [talleresAbiertos, setTalleresAbiertos]= useState([])
     const [talleresProximos, setTalleresProximos]= useState([])
     const [taller, setTaller]= useState({})
+    const [portadaTalleres, setPortadaTalleres] = useState('')
 
+    const portadaRef = doc(db, "recursosGenerales", "fQoDFrUMsc7yKR6cfbh7");
     const talleresCollectionRef = collection(db, "talleres")
     const q_abiertos = query(talleresCollectionRef, where("visible", "==",true), where("estatus", "==", "Abierto"));
     const q_proximos = query(talleresCollectionRef, where("visible", "==",true), where("estatus", "==", "Próximo"));
@@ -34,16 +37,29 @@ function Talleres() {
         const getTalleresProximos= async () => {
             const data = await getDocs(q_proximos);
             setTalleresProximos (data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))
-          }
+        }
 
+        const getPortada = async () => {
+            const portadaDoc = await getDoc(portadaRef);
+            setPortadaTalleres(portadaDoc.data().url);
+          };
+
+        getPortada();
         getTalleresAbiertos();
         getTalleresProximos();
 
       }, [])
+
+      const portadaImg = {
+        backgroundImage: `url(${portadaTalleres})`,
+      };
     return(
         <main>
+            <Helmet>
+                <title>Talleres | Rhesident</title>
+            </Helmet>
             <NavHeader textColor='blanco'></NavHeader>
-            <section className="hero-taller">
+            <section className="hero-talleres" style={portadaImg}>
                     <div className="color-overlay">
                         <h1 className='titulo-hero blanco'>Aprende con nuestros talleres</h1>
                         <p className='origen-descripcion blanco descripcion-hero'>

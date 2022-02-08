@@ -1,6 +1,6 @@
 .hero-intenciones{
-    background-image: url('../assets/nuestras_intenciones.png');
     background-size: cover;
+    background-position: center;
 }
 
 .intenciones-detalle{

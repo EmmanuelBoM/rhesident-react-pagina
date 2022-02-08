@@ -23,7 +23,7 @@ const CustomForm = ({ status, message, onValidated }) => {
             <div className="input-newsletter-cont">
                 <input  className='input-newsletter' type="email" name="correo" id="" placeholder='Escribe tu correo electrónico'required enterKeyHint='done' autoComplete='off' onChange={handleEmailChange}/>
                 <button className="btn-newsletter" onClick={submit}>
-                    <img className='icono-send-newsletter'  src={iconoEnviar} alt="" />
+                    <i class="fa-solid fa-paper-plane icono-send-newsletter"></i>
                 </button>
             </div>
             {status === "sending" && <p className='blanco mc-texto mc-enviando'>Enviando...</p>}

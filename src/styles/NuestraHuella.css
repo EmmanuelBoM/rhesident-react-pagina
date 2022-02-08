@@ -1,4 +1,9 @@
 
+.hero-huella{
+    background-size: cover;
+    background-position: center;
+}
+
 .testimonios{
     width: 100%;
     display: flex;

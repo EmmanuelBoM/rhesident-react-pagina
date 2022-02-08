@@ -18,7 +18,8 @@ import SwiperCore, {Pagination,Navigation} from 'swiper';
 
 //Firebase imports
 import {db} from '../firebaseConfig'
-import {query, collection, getDocs,where} from "@firebase/firestore";
+import {query, collection, getDocs,where, doc, getDoc} from "@firebase/firestore";
+import { Helmet } from 'react-helmet'
 
 SwiperCore.use([Pagination,Navigation]);
 
@@ -29,6 +30,7 @@ function NuestraHuella() {
     const [notas, setNotas]= useState([])
     const [testimonios, setTestimonios]= useState([])
     const [alianzas, setAlianzas]= useState([])
+    const [portadaHuella, setPortadaHuella] = useState('')
 
     function showOverlay(){
         if (window.scrollY>=80){
@@ -38,6 +40,9 @@ function NuestraHuella() {
             setOverlayVisibility(false)
         }
     }
+
+    const portadaRef = doc(db, "recursosGenerales", "mHhvAtVFhE9x7rikpH4W")
+
     const notasCollectionRef = collection(db, "notasMedio")
     const q_notas = query(notasCollectionRef, where("visible", "==",true));
 
@@ -48,35 +53,47 @@ function NuestraHuella() {
     const q_alianzas = query(alianzasCollectionRef, where("visible", "==",true));
 
   
-  useEffect (()=>{
-    const getNotas = async () => {
-      const data = await getDocs(q_notas);
-      setNotas(data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))
+    useEffect (()=>{
+        const getNotas = async () => {
+        const data = await getDocs(q_notas);
+        setNotas(data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))
+        }
+
+        const getTestimonios = async () => {
+            const data = await getDocs(q_testimonios);
+            setTestimonios(data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))
+        }
+
+        const getAlianzas = async () => {
+        const data = await getDocs(q_alianzas);
+        setAlianzas(data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))
+        }
+
+        const getPortada = async () => {
+            const portadaDoc = await getDoc(portadaRef);
+            setPortadaHuella(portadaDoc.data().url)
+        }
+        getPortada();
+        getNotas();
+        getTestimonios();
+        getAlianzas();
+    }, [])    
+
+    const portadaImg = {
+        backgroundImage: `url(${portadaHuella})`
     }
-
-    const getTestimonios = async () => {
-        const data = await getDocs(q_testimonios);
-        setTestimonios(data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))
-      }
-
-    const getAlianzas = async () => {
-    const data = await getDocs(q_alianzas);
-    setAlianzas(data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))
-    }
-
-    getNotas();
-    getTestimonios();
-    getAlianzas();
-  }, [])
 
     window.addEventListener('scroll', showOverlay)
     return (
         <main>
+            <Helmet>
+                <title>Nuestra Huella | Rhesident</title>
+            </Helmet>
             <NavHeader textColor='blanco'></NavHeader>
             <Animated animateOnMount={false} animationIn="fadeInDown" animationOut="fadeOutUp" isVisible={overlayVisibility} animationInDuration={500} animationOutDuration={500}className="overlay-top">
                 {overlayVisibility ? <OverlayInvitacion overlayVisibility={overlayVisibility}></OverlayInvitacion>:null}
             </Animated>
-            <section className="hero-huella">
+            <section className="hero-huella" style={portadaImg}>
                     <div className="color-overlay">
                         <h1 className='titulo-hero blanco'>Nuestra Huella</h1>
                         <p className='origen-descripcion blanco descripcion-hero'>
@@ -93,7 +110,7 @@ function NuestraHuella() {
             <section className="testimonios">
                 <div className="section-title">
                     <h2 className="negro">Testimonios</h2>
-                    <p className="negro descripcion-seccion">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur minus fuga fugit quis nemo iste.</p>
+                    <h4 className="negro descripcion-seccion">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur minus fuga fugit quis nemo iste.</h4>
                 </div>
                 
                 <Swiper   
@@ -129,7 +146,7 @@ function NuestraHuella() {
             <section className="notas-medio">
                 <div className="section-title">
                     <h2 className="negro">Notas de medios</h2>
-                    <p className="negro descripcion-seccion">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum ducimus incidunt totam minima, molestias laudantium!</p>
+                    <h4 className="descripcion-seccion">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum ducimus incidunt totam minima, molestias laudantium!</h4>
                 </div>
                 
                 <Swiper 
@@ -173,7 +190,7 @@ function NuestraHuella() {
             <section className="Aliados">
                 <div className="section-title">
                     <h2 className="negro">Nuestras alianzas colaborativas</h2>
-                    <p className="negro descripcion-seccion">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum ducimus incidunt totam minima, molestias laudantium!</p>
+                    <h4 className="negro descripcion-seccion">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum ducimus incidunt totam minima, molestias laudantium!</h4>
                 </div>
                 <div className="galeria-aliados">
                     {

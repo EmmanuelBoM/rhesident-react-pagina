@@ -5,10 +5,14 @@ import '../styles/base.css'
 import '../styles/extras.css'
 import ilustracion404 from '../assets/ilustracion_404.svg'
 import {Link} from 'react-router-dom'
+import { Helmet } from 'react-helmet';
 
 function Vista404() {
     return (
         <main>
+            <Helmet>
+                <title>Página no encontrada</title>
+            </Helmet>
             <NavHeader></NavHeader>
             <section className="img-404">
                 <img src={ilustracion404} alt="" />
