@@ -2,6 +2,7 @@ import React from 'react'
 import '../styles/Footer.css'
 import logo from '../assets/logo_dark.svg'
 import { Link } from 'react-router-dom';
+import CustomMailchimpForm from './CustomMailchimpForm';
 
 function Footer() {
     return (
@@ -24,8 +25,12 @@ function Footer() {
                         <a href="https://twitter.com/rhesident_org">
                             <i class="fa-brands fa-youtube"></i>
                         </a>
+                        <a href="https://www.linkedin.com/company/rhesident-org/">
+                            <i class="fa-brands fa-linkedin"></i>
+                        </a>
                     </div>
                     <p className="footer-subtitle">Suscríbete al newsletter</p>
+                    <CustomMailchimpForm variacion='footer'></CustomMailchimpForm>
                 </div>
                 <div className="footer-links">
                     <div className="footer-cont">

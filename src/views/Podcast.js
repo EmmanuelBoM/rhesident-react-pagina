@@ -4,6 +4,7 @@ import NavHeader from '../components/NavHeader';
 import ilustracionPodcast from '../assets/ilustracion_podcast.svg'
 import '../styles/base.css'
 import '../styles/Podcast.css'
+import { Helmet } from 'react-helmet';
 
 function Podcast() {
     const [plataforma, setPlataforma] = useState('youtube')
@@ -18,6 +19,9 @@ function Podcast() {
     return (
         <main>
             <NavHeader></NavHeader>
+            <Helmet>
+                <title>Podcast | Rhesident</title>
+            </Helmet>
             <section className="header-descargas">
                 <img src={ilustracionPodcast} alt="" className="img-descargas" />
                 <div className="text-header-descargas">

@@ -20,6 +20,7 @@ import {Link} from 'react-router-dom';
 // Firebase Imports
 import {db} from '../firebaseConfig'
 import {collection,getDoc, doc} from "@firebase/firestore";
+import { Helmet } from 'react-helmet'
 
 function NuestrasIntenciones() {
     const [overlayVisibility, setOverlayVisibility] = useState(false)
@@ -52,6 +53,9 @@ function NuestrasIntenciones() {
 
     return (
         <main>
+             <Helmet>
+                <title>Nuestras Intenciones | Rhesident</title>
+            </Helmet>
             <NavHeader textColor='blanco'></NavHeader>
             <Animated animateOnMount={false} animationIn="fadeInDown" animationOut="fadeOutUp" isVisible={overlayVisibility} animationInDuration={500} animationOutDuration={500}className="overlay-top">
                 {overlayVisibility ? <OverlayInvitacion overlayVisibility={overlayVisibility}></OverlayInvitacion>:null}

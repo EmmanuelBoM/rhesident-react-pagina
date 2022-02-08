@@ -14,6 +14,7 @@ import "animate.css/animate.min.css";
 //Firebase imports
 import {db} from '../firebaseConfig'
 import {query, collection, getDocs,where, doc, getDoc} from "@firebase/firestore";
+import { Helmet } from 'react-helmet';
 
 function Talleres() {
     const [modalVisibility, setModalVisibility] = useState(false)
@@ -54,6 +55,9 @@ function Talleres() {
       };
     return(
         <main>
+            <Helmet>
+                <title>Talleres | Rhesident</title>
+            </Helmet>
             <NavHeader textColor='blanco'></NavHeader>
             <section className="hero-talleres" style={portadaImg}>
                     <div className="color-overlay">

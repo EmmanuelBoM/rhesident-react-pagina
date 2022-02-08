@@ -30,6 +30,7 @@ import {
   doc,
   getDoc,
 } from "@firebase/firestore";
+import { Helmet } from "react-helmet";
 
 // install Swiper modules
 SwiperCore.use([Pagination, Navigation]);
@@ -123,6 +124,9 @@ function Proyectos() {
 
   return (
     <main>
+      <Helmet>
+        <title>Proyectos | Rhesident</title>
+      </Helmet>
       <NavHeader textColor="blanco"></NavHeader>
       <Animated
         animateOnMount={false}

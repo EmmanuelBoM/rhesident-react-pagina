@@ -5,6 +5,7 @@ import '../styles/base.css'
 import '../styles/Donaciones.css'
 import downArrow from '../assets/down_arrow_light.svg'
 import {Link} from 'react-router-dom'
+import { Helmet } from 'react-helmet';
 
 //Firebase imports
 import {db} from '../firebaseConfig'
@@ -39,6 +40,9 @@ function Donaciones() {
     };
     return (
         <main>
+            <Helmet>
+                <title>Cómo Apoyar | Rhesident</title>
+            </Helmet>
             <NavHeader textColor='blanco'></NavHeader>
             <section className="hero-donaciones" style={portadaImg}>
                 <div className="color-overlay">
@@ -60,14 +64,14 @@ function Donaciones() {
                     <Link to='/dona-ahora'><button className="btn-donaciones">Donaciones</button></Link>
                 </div>
                 <div className="cont-tipo-donaciones idea">
-                    <i class="fa-solid fa-lightbulb icono-donaciones verde"></i>
+                    <i class="fa-solid fa-lightbulb icono-donaciones"></i>
                     <p className="mb4 verde">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi suscipit architecto soluta repellendus unde id!</p>
                     <Link to='/cuentanos-tu-idea'><button className="btn-donaciones">Cuéntanos tu idea</button></Link>
                 </div>
                 <div className="cont-tipo-donaciones agenda-entrevista">
                     <i class="fa-solid fa-calendar-day icono-donaciones"></i>
                     <p className="mb4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi suscipit architecto soluta repellendus unde id!</p>
-                    <button className="btn-donaciones">Agenda una entrevista</button>
+                    <a href="https://calendly.com/"><button className="btn-donaciones">Agenda una entrevista</button></a>
                 </div>
             </section>
 

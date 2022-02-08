@@ -19,6 +19,7 @@ import SwiperCore, {Pagination,Navigation} from 'swiper';
 //Firebase imports
 import {db} from '../firebaseConfig'
 import {query, collection, getDocs,where, doc, getDoc} from "@firebase/firestore";
+import { Helmet } from 'react-helmet'
 
 SwiperCore.use([Pagination,Navigation]);
 
@@ -85,6 +86,9 @@ function NuestraHuella() {
     window.addEventListener('scroll', showOverlay)
     return (
         <main>
+            <Helmet>
+                <title>Nuestra Huella | Rhesident</title>
+            </Helmet>
             <NavHeader textColor='blanco'></NavHeader>
             <Animated animateOnMount={false} animationIn="fadeInDown" animationOut="fadeOutUp" isVisible={overlayVisibility} animationInDuration={500} animationOutDuration={500}className="overlay-top">
                 {overlayVisibility ? <OverlayInvitacion overlayVisibility={overlayVisibility}></OverlayInvitacion>:null}

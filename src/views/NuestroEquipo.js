@@ -15,6 +15,7 @@ import "animate.css/animate.min.css";
 //Firebase imports
 import {db} from '../firebaseConfig'
 import {query, collection, getDocs,where, doc, getDoc} from "@firebase/firestore";
+import { Helmet } from 'react-helmet'
 
 function NuestroEquipo() {
     //Bloquear scroll del body
@@ -63,6 +64,9 @@ function NuestroEquipo() {
 
     return (
         <main>
+            <Helmet>
+                <title>Nuestro Equipo | Rhesident</title>
+            </Helmet>
             <NavHeader textColor='blanco'></NavHeader>
             <Animated animateOnMount={false} animationIn="fadeInDown" animationOut="fadeOutUp" isVisible={overlayVisibility} animationInDuration={500} animationOutDuration={500}className="overlay-top">
                 {overlayVisibility ? <OverlayInvitacion overlayVisibility={overlayVisibility}></OverlayInvitacion>:null}

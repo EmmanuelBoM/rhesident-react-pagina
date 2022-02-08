@@ -42,28 +42,28 @@ function Login() {
         });
     }
 
-    function signIn(e){
-        e.preventDefault()
+    function signIn(){
         signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
+            navigate('/admin_proyectos')
             setErrorVisibility(false);
             sessionStorage.setItem('Auth Token', userCredential._tokenResponse.refreshToken)
-            navigate('/admin_proyectos')
         })
         .catch((error) => {
             const errorMessage = error.message;
             const errorCode= error.code;
+
             if(errorCode == 'auth/wrong-password' ){
                 setErrorMsg('El correo electrónico o la contraseña no son correctos.');
             }
-            if(errorCode == 'auth/too-many-requests'){
+            else if(errorCode == 'auth/too-many-requests'){
                 setErrorMsg('Acceso a la cuenta deshabilitado temporalmente. Intenta de nuevo más tarde.');
             }
-            if(errorCode == 'auth/user-not-found'){
+            else if(errorCode == 'auth/user-not-found'){
                 setErrorMsg('El correo electrónico o la contraseña no son correctos.');
             }
             else{
-                setErrorMsg(`Hubo un error. ${errorMessage}`);
+                setErrorMsg(`Hubo un error. ${errorCode}`);
             }
         
             setErrorVisibility(true);

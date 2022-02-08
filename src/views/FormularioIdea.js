@@ -14,16 +14,12 @@ function FormularioIdea() {
     const [modalConfVisibility, setModalConfVisibility] = useState(false)
     const form = useRef();
     const [contenidoValues, setContenidoValues] = useState({})
-    const [modalidadValue, setModalidadValue] = useState('')
     const [contenido, setContenido] = useState('')
     const [asunto, setAsunto] = useState('')
     const [encabezado, setEncabezado] = useState('')
     const [formulario, setFormulario] = useState('')
     const [formul, setFormul] = useState()
 
-    const handleModalidadChange = selectedOption =>{
-        setModalidadValue(selectedOption.value);
-    }
 
     function handleInputChange(e){
         let newContenido = {
@@ -121,7 +117,7 @@ function FormularioIdea() {
                             <a href="https://www.linkedin.com/company/rhesident-org/">
                                 <i class="fa-brands fa-linkedin"></i>
                             </a>
-                            <a href="mailto:contacto@rhesident.org">
+                            <a href="https://www.youtube.com/channel/UCTzEC-SbnoKXEtavo0MW6dQ">
                                 <i class="fa-brands fa-youtube"></i>
                             </a>
                         </div>

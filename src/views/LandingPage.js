@@ -12,6 +12,7 @@ import { AnimationOnScroll } from 'react-animation-on-scroll';
 import {Link} from 'react-router-dom'
 import CustomMailchimpForm from '../components/CustomMailchimpForm'
 import iconoIntenciones from '../assets/icono_intenciones.png'
+import { Helmet } from 'react-helmet';
 
 // Firebase Imports
 import {db} from '../firebaseConfig'
@@ -46,7 +47,10 @@ function LandingPage() {
   window.addEventListener('scroll', autoPlayVideo)
     
     return (
-        <main>
+        <main> 
+            <Helmet>
+                <title>Inicio | Rhesident Org </title>
+            </Helmet>
             <NavHeader textColor='blanco'></NavHeader>
             <section className="hero-landing">
                 <svg className="main-svg"  viewBox="0 0 1920 850" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -197,7 +201,7 @@ function LandingPage() {
           <div className="newsletter-cont">
             <h2 className="blanco">Suscribete al newsletter</h2>
             <p className="blanco">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste facilis eligendi tempora. Cum voluptatem magnam blanditiis animi temporibus, explicabo rem repudiandae ex sed maiores optio est delectus dolorem eligendi repellat.</p>
-            <CustomMailchimpForm></CustomMailchimpForm>
+            <CustomMailchimpForm variacion='normal'></CustomMailchimpForm>
           </div>
           <div className="separador">
             <div className="circulo-separador"></div>

@@ -16,6 +16,7 @@ import { AnimationOnScroll } from 'react-animation-on-scroll';
 // Firebase Imports
 import {db} from '../firebaseConfig'
 import {collection,getDoc, doc} from "@firebase/firestore";
+import { Helmet } from 'react-helmet'
 
 function NuestroOrigen() {
 
@@ -47,6 +48,9 @@ function NuestroOrigen() {
     window.addEventListener('scroll', showOverlay)
     return (
         <main>
+            <Helmet>
+                <title>Nuestro Origen | Rhesident</title>
+            </Helmet>
             <NavHeader textColor='blanco'></NavHeader>
 
             <Animated animateOnMount={false} animationIn="fadeInDown" animationOut="fadeOutUp" isVisible={overlayVisibility} animationInDuration={500} animationOutDuration={500}className="overlay-top">
