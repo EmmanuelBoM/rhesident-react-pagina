@@ -165,7 +165,6 @@
     margin-bottom: 20rem;
     box-sizing: border-box;
     overflow-x: hidden;
-    height: 250vh;
 }
 
 .huella-conoce{
@@ -214,6 +213,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    margin-bottom: 5rem;
 }
 
 .corazon-conoce img{
@@ -221,29 +221,56 @@
     margin-left: 2rem;
 }
 
-.conoce p{
+.item-conoce p{
     margin-top: 2rem;
     text-align: center;
 }
 
-.elemento-conoce{
-    height: 10rem;
-    width: 10rem;
-    
-    background-color: var(--negro);
-    left: 0;
-    top: 800vh;
+.line-conoce{
+    position: absolute;
+    margin-top: 58rem;
+    z-index: -10;
+    width: 1rem;
+    height: 65rem;
 }
 
-.nodes-cont{
-    
-    position: absolute;
-    margin-top: 20rem;
+
+
+.nodes-cont-r{
+    width: 22rem;
     display: flex;
+    flex-direction: row;
     align-items: center;
-    flex-direction: column;
-    overflow-x: hidden;
-    box-sizing: border-box;
+    justify-content: space-between;
+    margin-left: 20rem;
+    z-index: 10;
+    margin-bottom: 10rem;
+    cursor: pointer;
+}
+
+.nodes-cont-l{
+    width: 22rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 20rem;
+    z-index: 10;
+    margin-bottom: 10rem;
+}
+
+
+.node-conoce{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 25rem;
+    background-color: var(--primario);
+}
+
+.node-texto{
+    width: 70%;
+    text-align: center;
+    font-weight: 600;
 }
 
 .round-ctas{
@@ -339,7 +366,6 @@
     font-family: Lato;
     color: var(--negro);
 }
-
 
 
 .input-newsletter:focus{

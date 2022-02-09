@@ -41,6 +41,8 @@ function LandingPage() {
     const videoRef = doc(db, "recursosGenerales", "5aT7wvcLG9yGr6B8Ar8G")
 
     useEffect (()=>{
+        
+
         const getPortada = async () => {
           const portadaDoc = await getDoc(portadaRef);
           setPortadaImg(portadaDoc.data().url)
@@ -48,7 +50,14 @@ function LandingPage() {
         const getModal = async () => {
             const modalDoc = await getDoc(modalRef);
             setModalImg(modalDoc.data().url)
-            setModalVisibility(modalDoc.data().visible)
+            let modalStorage = sessionStorage.getItem('modalLanding')
+            if(modalStorage){
+              setModalVisibility(false)
+            }
+            else{
+              setModalVisibility(modalDoc.data().visible)
+            }
+            
         }
 
         const getVideo = async () => {
@@ -177,21 +186,54 @@ function LandingPage() {
             <h2 className="negro">¡Conócenos!</h2>
             <h4 className='descripcion-seccion'><span className="bold">Desliza hacia abajo</span>  para conocer<br /> los aspectos  que definen a <span className="bold">Rhesident Org.</span> </h4>
           
-            <AnimationOnScroll animateIn="animate__fadeIn"  offset={100} >
+            <AnimationOnScroll animateIn="animate__fadeIn" duration={3}>
                 <div className="item-conoce">
                     <svg className='huella-conoce' width="471" height="426" viewBox="0 0 471 426" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path className='path-conoce' d="M40.5948 34.4589L40.5961 34.458C87.9233 0.385331 149.926 -4.30329 202.253 21.2961C232.481 36.0871 267.288 51.946 290.191 58.5908C313.062 65.2314 332.898 79.4079 353.747 96.7009C359.129 101.165 364.588 105.846 370.177 110.639C386.022 124.228 402.912 138.713 422.06 151.682C434.42 160.054 443.273 168.906 449.666 179.206C456.068 189.521 460.165 201.552 462.652 216.508C467.294 244.419 466.224 281.559 464.679 335.213C464.552 339.628 464.421 344.156 464.291 348.799C463.868 363.835 462.655 375.409 460.635 384.291C458.613 393.18 455.849 399.071 452.535 403.021C446.191 410.585 436.516 412.52 419.997 411.659C413.54 411.322 406.268 410.57 398.15 409.73C365.305 406.332 318.625 401.503 256.204 417.006C219.151 426.208 191.482 418.865 169.269 401.631C146.744 384.154 129.427 356.192 114.134 323.389C103.982 301.613 94.9114 278.156 85.8043 254.605C81.1717 242.625 76.5296 230.621 71.731 218.801C57.6226 184.049 42.216 151.064 22.0185 126.972C5.27119 106.995 2.43836 89.8345 6.87797 75.1449C11.4465 60.0286 24.0447 46.366 40.5948 34.4589Z" stroke="#F0E967" stroke-width="10"/> 
                     </svg>
                     <h3 className="verde subt-conoce">Nuestras <br /> intenciones</h3>
                     <p className="negro text-conoce">Aquí encontrarás todo lo que motiva cada una de nuestras actividades y colaboraciones.</p>
+                    <Link className="corazon-conoce" to='/nuestras-intenciones'>
+                        <img src={iconoIntenciones} alt="" />
+                    </Link>
+                </div>
+            </AnimationOnScroll>
+            
+              <svg className='line-conoce' viewBox="0 0 10 524" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="5" x2="5" y2="550" stroke="#F0E967" stroke-width="10"/>
+              </svg>
+            
+            <AnimationOnScroll animateIn="animate__fadeInRight" animateOut='animate__fadeOutRight' offset={180}>
+              <div className="nodes-cont-r" onClick={() => window.location.replace("/nuestras-intenciones#propositoEvolutivo")}>
+                <div className="node-conoce"></div>
+                <p className="node-texto">Nuestro <br /> propósito evolutivo</p>
+              </div>
+            </AnimationOnScroll>
+
+            <AnimationOnScroll animateIn="animate__fadeInLeft" animateOut='animate__fadeOutLeft' offset={190}>
+              <div className="nodes-cont-l">
+                <p className="node-texto">Nuestro <br /> objetivo</p>
+                <div className="node-conoce"></div>
+              </div>
+            </AnimationOnScroll>
+            <AnimationOnScroll animateIn="animate__fadeInRight" animateOut='animate__fadeOutRight' offset={200}>
+              <div className="nodes-cont-r">
+                <div className="node-conoce"></div>
+                <p className="node-texto">Nuestra <br /> misión y visión</p>
+              </div>
+            </AnimationOnScroll>
+            <AnimationOnScroll animateIn="animate__fadeIn" duration={3}>
+                <div className="item-conoce">
+                    <svg className='huella-conoce' width="471" height="426" viewBox="0 0 471 426" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path className='path-conoce' d="M40.5948 34.4589L40.5961 34.458C87.9233 0.385331 149.926 -4.30329 202.253 21.2961C232.481 36.0871 267.288 51.946 290.191 58.5908C313.062 65.2314 332.898 79.4079 353.747 96.7009C359.129 101.165 364.588 105.846 370.177 110.639C386.022 124.228 402.912 138.713 422.06 151.682C434.42 160.054 443.273 168.906 449.666 179.206C456.068 189.521 460.165 201.552 462.652 216.508C467.294 244.419 466.224 281.559 464.679 335.213C464.552 339.628 464.421 344.156 464.291 348.799C463.868 363.835 462.655 375.409 460.635 384.291C458.613 393.18 455.849 399.071 452.535 403.021C446.191 410.585 436.516 412.52 419.997 411.659C413.54 411.322 406.268 410.57 398.15 409.73C365.305 406.332 318.625 401.503 256.204 417.006C219.151 426.208 191.482 418.865 169.269 401.631C146.744 384.154 129.427 356.192 114.134 323.389C103.982 301.613 94.9114 278.156 85.8043 254.605C81.1717 242.625 76.5296 230.621 71.731 218.801C57.6226 184.049 42.216 151.064 22.0185 126.972C5.27119 106.995 2.43836 89.8345 6.87797 75.1449C11.4465 60.0286 24.0447 46.366 40.5948 34.4589Z" stroke="#F0E967" stroke-width="10"/> 
+                    </svg>
+                    <h3 className="verde subt-conoce">Nuestro <br /> Origen</h3>
+                    <p className="negro text-conoce">Cada acción, pensamiento, intuición y sentir han contado; nos seguimos transformando cada día.</p>
                     <div className="corazon-conoce">
                         <img src={iconoIntenciones} alt="" />
                     </div>
                 </div>
-                
             </AnimationOnScroll>
-            <div className="nodes-cont">
-            </div>
         </section>
 
         <section className="round-ctas">
@@ -219,8 +261,8 @@ function LandingPage() {
 
         <section className="contacto">
           <div className="newsletter-cont">
-            <h2 className="blanco">Suscribete al newsletter</h2>
-            <p className="blanco">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste facilis eligendi tempora. Cum voluptatem magnam blanditiis animi temporibus, explicabo rem repudiandae ex sed maiores optio est delectus dolorem eligendi repellat.</p>
+            <h2 className="blanco">Suscríbete al newsletter</h2>
+            <p className="blanco">La diversidad nutre nuestro ser. Conoce nuevas propuestas, acciones e iniciativas; ejercita tu pensamiento crítico con nuestro blog y descubre cómo involucrarte en nuestros proyectos.</p>
             <CustomMailchimpForm variacion='normal'></CustomMailchimpForm>
           </div>
           <div className="separador">
@@ -230,7 +272,7 @@ function LandingPage() {
           </div>
           <div className="info-contacto">
             <h2 className="blanco">Contáctanos</h2>
-            <p className="blanco">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur officia obcaecati provident exercitationem. Quam necessitatibus molestiae quo tempore vel quis aspernatur rerum. Culpa sit magni voluptates.</p>
+            <p className="blanco">Siempre hay maneras de acercarnos, aún en la distancia. Te dejamos todas nuestras vías de comunicación y redes sociales para que te pongas en contacto con nuestro equipo.</p>
             <div className="redes">
               <a href="https://www.facebook.com/rhesident.org">
                 <i class="fa-brands fa-facebook"></i>

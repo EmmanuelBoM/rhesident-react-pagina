@@ -147,9 +147,11 @@ function Proyectos() {
         <div className="color-overlay">
           <h1 className="titulo-hero blanco">Proyectos</h1>
           <p className="origen-descripcion blanco descripcion-hero">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam,
-            quia praesentium iste explicabo ad ipsum ex eius neque, dolor error
-            commodi accusamus.
+            Es casi un proceso artesanal el que otorgamos a cada espacio y
+            lugar. Nuestros 4 ejes de acción, nos permiten conformar procesos
+            comunitarios que permitan generar consciencia acerca del lugar que
+            ocupamos, renovando la manera en la que nos vinculamos con nuestro
+            entorno.
           </p>
           <div className="btns-secciones">
             <button
@@ -201,9 +203,10 @@ function Proyectos() {
               />
             </div>
             <p className="blanco descripcion-proceso">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quos
-              nesciunt nemo dignissimos totam eveniet tempora consequuntur esse
-              veniam amet?
+              Intentamos reconstruir la identidad y la organización comunitaria;
+              fortaleciendo el sentido de pertenencia de cada lugar. Desde aquí,
+              co-creamos iniciativas de colaboración, enfocadas en educación,
+              empoderamiento y emprendimiento.
             </p>
           </div>
         </div>
@@ -253,9 +256,10 @@ function Proyectos() {
               />
             </div>
             <p className="blanco descripcion-proceso">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quos
-              nesciunt nemo dignissimos totam eveniet tempora consequuntur esse
-              veniam amet?
+              El arte es nuestra herramienta para descolonizar las formas de
+              interacción preestablecidas. Mediante este eje, logramos
+              determinar la naturaleza y vocación de cada comunidad, generando
+              mayor participación e involucramiento social.
             </p>
           </div>
         </div>
@@ -305,9 +309,10 @@ function Proyectos() {
               />
             </div>
             <p className="blanco descripcion-proceso">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quos
-              nesciunt nemo dignissimos totam eveniet tempora consequuntur esse
-              veniam amet?
+              Nombramos y reconocemos la diversidad dentro de cada lugar,
+              mediante la participación, la planificación y el ordenamiento
+              territorial. Este eje nos permite fortalecer la inclusión, la
+              creatividad y la iniciativa tanto en campo como en gabinete.
             </p>
           </div>
         </div>
@@ -357,9 +362,10 @@ function Proyectos() {
               />
             </div>
             <p className="blanco descripcion-proceso">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quos
-              nesciunt nemo dignissimos totam eveniet tempora consequuntur esse
-              veniam amet?
+              Para decodificar las limitaciones que impiden una constante
+              transformación individual y colectiva, acudimos al eje de
+              sustentabilidad. Logramos ver el panorama con mayor amplitud, para
+              particularizar estrategias de cohesión social.
             </p>
           </div>
         </div>

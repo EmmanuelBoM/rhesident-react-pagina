@@ -7,6 +7,7 @@ import '../styles/ModalResponsive.css'
 function ModalResponsive(props) {
     function hideModal(){
         props.setModalVisibility(false);
+        sessionStorage.setItem('modalLanding', true)
     }
     
 

@@ -58,7 +58,7 @@ function Podcast() {
                             
                     </div>
                 </aside>
-                {plataforma =='youtube' ?
+                {plataforma ==='youtube' ?
 
                 <div className="podcast-youtube">
                     <h2 className="verde bold">Último episodio</h2>

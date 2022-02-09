@@ -54,16 +54,6 @@ import Descargas from './views/Descargas';
 
 
 function App() {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    let authToken = sessionStorage.getItem('Auth Token')
-
-    if (authToken) {
-      navigate('/admin_proyectos')
-    }
-  }, [])
-
   return (
    <>
       <ScrollToTop/>

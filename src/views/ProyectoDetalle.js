@@ -5,7 +5,6 @@ import NavHeader from '../components/NavHeader'
 import '../styles/base.css'
 import '../styles/LandingPage.css'
 import '../styles/ProyectoDetalle.css'
-import proyecto from '../assets/cultura.png'
 import downArrow from '../assets/down_arrow.svg'
 
 // Firebase Imports
@@ -19,7 +18,7 @@ import "swiper/css";
 import "swiper/css/pagination"
 import "swiper/css/navigation"
 import "swiper/css/effect-cards"
-import SwiperCore, { Pagination,Navigation, EffectCards } from 'swiper';
+import SwiperCore, {EffectCards } from 'swiper';
 import ModalResponsive from '../components/ModalResponsive'
 
 
