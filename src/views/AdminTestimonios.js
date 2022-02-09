@@ -9,7 +9,7 @@ import '../styles/AdminLayout.css'
 
 //npm components
 import { DataGrid, esES, GridActionsCellItem } from '@mui/x-data-grid';
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 //Firebase Imports
 import {db} from '../firebaseConfig'
@@ -22,8 +22,16 @@ function AdminTestimonios() {
     const testimoniosCollectionRef = collection(db, "testimonios")
   
     const q = query(testimoniosCollectionRef, orderBy("nombre"))
-
+    let navigate = useNavigate();
     useEffect (()=>{
+        let authToken = sessionStorage.getItem('Auth Token')
+        if (authToken) {
+            navigate('/admin_proyectos')
+        }
+
+        if (!authToken) {
+            navigate('/login')
+        }
       const getTestimonios = async () => {
         const data = await getDocs(q);
         setTestimonios(data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))

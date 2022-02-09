@@ -7,7 +7,7 @@ import ModalAdminEliminar from '../components/ModalAdminEliminar';
 import '../styles/base.css'
 import '../styles/AdminLayout.css'
 
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 //Firebase Imports
 import {db} from '../firebaseConfig'
@@ -24,14 +24,22 @@ function AdminAlianzas() {
     const alianzasCollectionRef = collection(db, "alianzas")
   
     const q = query(alianzasCollectionRef, orderBy("nombre"))
-
+    let navigate = useNavigate();
     useEffect (()=>{
-      const getAlianzas = async () => {
-        const data = await getDocs(q);
-        setAlianzas(data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))
-      }
-  
-      getAlianzas();
+        let authToken = sessionStorage.getItem('Auth Token')
+        if (authToken) {
+            navigate('/admin_proyectos')
+        }
+
+        if (!authToken) {
+            navigate('/login')
+        }
+        const getAlianzas = async () => {
+            const data = await getDocs(q);
+            setAlianzas(data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))
+        }
+    
+        getAlianzas();
     }, [])
 
    

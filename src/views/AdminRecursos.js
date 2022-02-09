@@ -3,11 +3,13 @@ import AdminNavbar from '../components/AdminNavbar';
 import '../styles/AdminLayout.css'
 import RecursoPortada from '../components/RecursoPortada';
 import RecursoVideo from '../components/RecursoVideo';
+import { useNavigate } from 'react-router-dom';
 
 //Firebase Imports
 import {db, storage} from '../firebaseConfig'
 import {query, collection, getDocs,orderBy, doc, updateDoc,  where, getDoc} from "@firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "@firebase/storage";
+
 
 
 
@@ -28,7 +30,17 @@ function AdminRecursos() {
     const q_videos = query(recursosCollectionRef, where("tipo","==", "video"))
     const popupRef = doc(db, "recursosGenerales", "enDqmvvOeWGgzB88rDrB")
 
+    let navigate = useNavigate();
     useEffect (()=>{
+        let authToken = sessionStorage.getItem('Auth Token')
+        if (authToken) {
+            navigate('/admin_proyectos')
+        }
+
+        if (!authToken) {
+            navigate('/login')
+        }
+        
         const getRecursos = async () => {
             const data = await getDocs(q_portadas);
             setRecursosPortada(data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))

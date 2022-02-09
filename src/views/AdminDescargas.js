@@ -9,7 +9,7 @@ import '../styles/AdminLayout.css'
 
 //npm components
 import { DataGrid, esES, GridActionsCellItem } from '@mui/x-data-grid';
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 //Firebase Imports
 import {db} from '../firebaseConfig'
@@ -22,14 +22,22 @@ function AdminDescargas() {
     const descargasCollectionRef = collection(db, "descargas")
   
     const q = query(descargasCollectionRef, orderBy("nombre"))
-
+    let navigate = useNavigate();
     useEffect (()=>{
-      const getDescargas = async () => {
-        const data = await getDocs(q);
-        setDescargas(data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))
-      }
+        let authToken = sessionStorage.getItem('Auth Token')
+        if (authToken) {
+            navigate('/admin_proyectos')
+        }
+
+        if (!authToken) {
+            navigate('/login')
+        }
+        const getDescargas = async () => {
+            const data = await getDocs(q);
+            setDescargas(data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))
+        }
   
-      getDescargas();
+        getDescargas();
     }, [])
 
     

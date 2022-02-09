@@ -7,8 +7,7 @@ import Select from 'react-select'
 import CreatableSelect, { useCreatable } from 'react-select/creatable';
 import ModalAdminExito from '../components/ModalAdminExito';
 import ModalAdminConfirmar from '../components/ModalAdminConfirmar';
-import { useParams } from 'react-router-dom';
-
+import { useNavigate, useParams } from 'react-router-dom';
 // Firebase Imports
 import {db, storage} from '../firebaseConfig'
 import {doc, getDoc, updateDoc} from "@firebase/firestore";
@@ -34,7 +33,18 @@ function AdminEditarProyecto() {
     let params = useParams();
 
     const proyectoRef = doc(db, "proyectos", params.id)
+
+    let navigate = useNavigate();
     useEffect (()=>{
+        let authToken = sessionStorage.getItem('Auth Token')
+        if (authToken) {
+            navigate('/admin_proyectos')
+        }
+
+        if (!authToken) {
+            navigate('/login')
+        }
+        
         const getProyecto = async () => {
           const proyectoDoc = await getDoc(proyectoRef);
           setProyecto(proyectoDoc.data())

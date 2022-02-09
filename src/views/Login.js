@@ -42,12 +42,13 @@ function Login() {
         });
     }
 
-    function signIn(){
+    function signIn(e){
+        e.preventDefault();
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                
                 setErrorVisibility(false);
-                window.localStorage.setItem('Auth Token', userCredential._tokenResponse.refreshToken)
+                sessionStorage.setItem('Auth Token', userCredential._tokenResponse.refreshToken)
+                navigate('/admin_proyectos')
             })
             .catch((error) => {
                 const errorMessage = error.message;
@@ -69,8 +70,6 @@ function Login() {
             
                 setErrorVisibility(true);
             });
-
-        navigate('/admin_proyectos')
     }
     
     function toggleForgot(){

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import AdminNavbar from '../components/AdminNavbar';
 import '../styles/base.css'
 import '../styles/AdminLayout.css'
@@ -15,10 +15,7 @@ import "react-multi-date-picker/styles/colors/green.css"
 import {db, storage} from '../firebaseConfig'
 import {collection,addDoc} from "@firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "@firebase/storage";
-
-
-
-
+import { useNavigate } from 'react-router-dom';
 
 function AdminAgregarTaller() {
     const [modalExitoVisibility, setModalExitoVisibility] = useState(false)
@@ -33,6 +30,18 @@ function AdminAgregarTaller() {
     const [taller, setTaller] = useState({})
     const weekDays = ["D", "L", "M", "X", "J", "V", "S"]
     const months = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"]
+
+    let navigate = useNavigate();
+    useEffect(()=>{
+        let authToken = sessionStorage.getItem('Auth Token')
+        if (authToken) {
+            navigate('/admin_proyectos')
+        }
+
+        if (!authToken) {
+            navigate('/login')
+        }
+    },[])
 
     const ejesAccion = [
         { value: 'Cultura', label: 'Cultura' },

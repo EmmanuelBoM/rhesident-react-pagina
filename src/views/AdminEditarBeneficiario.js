@@ -5,7 +5,7 @@ import '../styles/AdminLayout.css'
 import ilustracionAgregarBeneficiario from '../assets/ilustracion_agregar_beneficiario.svg'
 import ModalAdminExito from '../components/ModalAdminExito';
 import ModalAdminConfirmar from '../components/ModalAdminConfirmar';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 // Firebase Imports
 import {db, storage} from '../firebaseConfig'
@@ -20,76 +20,19 @@ function AdminEditarBeneficiario() {
     const [newBeneficiario, setNewBeneficiario] = useState({})
     const [imgURL, setImgURL] = useState('')
     const params = useParams();
-    const customSelectStyles = {
-        control: (base, state) => ({
-            ...base,
-            border: "2px solid #cfcfc9",
-            boxShadow: state.isFocused ? null : null,
-            padding: "0.3rem 0rem",
-            borderRadius: "1rem",
-            fontSize: "1.8rem",
-            color: "#F7F7F7",
-            fontFamily: "Lato",
-            textAlign: "start",
-            backgroundColor: 'rgba(255, 255, 255, 0)',
-            marginBottom: '2rem',
-            "&:focus ": {
-                outline: "none !important",
-                border: "2px solid var(--p-400)"
-              },
-          }),
-        placeholder: base =>({
-            ...base,
-            color: "#878778"
-        }),
-        menu: base => ({
-            ...base,
-            borderRadius: "1rem",
-            background: "#FCFCFC",
-            color: "#878778",
-            fontSize: "1.8rem",
-            textAlign: "start",
-            fontFamily: "Lato",
-            marginTop: '-1.4rem'
-        
-        }),
-        menuList: base => ({
-            ...base,
-            borderRadius: "1rem",
-        }),
-        singleValue: base => ({
-            ...base,
-            color: "#1b1b18",
-        }),
-        input: base => ({
-            ...base,
-            color: "#1b1b18",
-        }),
-        dropdownIndicator: base => ({
-            ...base,
-            color: "#164453"
-        }),
-        option: (base,{data, isDisabled, isFocused,isSelected}) => ({
-            ...base,
-            color: "#1A1A1A",
-            backgroundColor: isDisabled ? undefined: isSelected,
-            "&:hover ": {
-                background: "#164453",
-                color:"#f0f0ee"
-              },
-        }),
-        container: base => ({
-            ...base,
-            "@media only screen and (max-width: 576px)": {
-                ...base["@media only screen and (max-width: 576px)"],
-                width:"100%",
-        },
-        })
-    }
 
     const beneficiarioRef = doc(db, "beneficiarios", params.id)
-
+    
+    let navigate = useNavigate();
     useEffect (()=>{
+        let authToken = sessionStorage.getItem('Auth Token')
+        if (authToken) {
+            navigate('/admin_proyectos')
+        }
+
+        if (!authToken) {
+            navigate('/login')
+        }
         const getBeneficiario = async () => {
           const beneficiarioDoc = await getDoc(beneficiarioRef);
           setBeneficiario(beneficiarioDoc.data())

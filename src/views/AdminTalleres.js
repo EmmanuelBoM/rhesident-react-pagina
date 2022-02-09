@@ -8,7 +8,7 @@ import '../styles/AdminLayout.css'
 
 //npm components
 import { DataGrid, esES, GridActionsCellItem } from '@mui/x-data-grid';
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 //Firebase Imports
 import {db} from '../firebaseConfig'
@@ -22,7 +22,17 @@ function AdminTalleres() {
   
     const q = query(talleresCollectionRef, orderBy("nombre"))
 
+    let navigate = useNavigate();
     useEffect (()=>{
+        let authToken = sessionStorage.getItem('Auth Token')
+        if (authToken) {
+            navigate('/admin_proyectos')
+        }
+
+        if (!authToken) {
+            navigate('/login')
+        }
+
       const getTalleres = async () => {
         const data = await getDocs(q);
         setTalleres(data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))

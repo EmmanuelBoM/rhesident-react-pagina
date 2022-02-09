@@ -2,12 +2,11 @@ import React,{useState, useEffect} from 'react';
 import AdminNavbar from '../components/AdminNavbar';
 import iconoAgregarBeneficiario from '../assets/icono_agregarBeneficiario.svg'
 import ModalAdminEliminar from '../components/ModalAdminEliminar';
-
 //Estilos
 import '../styles/base.css'
 import '../styles/AdminLayout.css'
 
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 //Firebase Imports
 import {db} from '../firebaseConfig'
@@ -24,14 +23,23 @@ function AdminBeneficiarios() {
     const beneficiariosCollectionRef = collection(db, "beneficiarios")
   
     const q = query(beneficiariosCollectionRef, orderBy("nombre"))
+    let navigate = useNavigate();
 
     useEffect (()=>{
-      const getBeneficiarios = async () => {
-        const data = await getDocs(q);
-        setBeneficiarios(data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))
-      }
-  
-      getBeneficiarios();
+        let authToken = sessionStorage.getItem('Auth Token')
+        if (authToken) {
+            navigate('/admin_proyectos')
+        }
+
+        if (!authToken) {
+            navigate('/login')
+        }
+        const getBeneficiarios = async () => {
+            const data = await getDocs(q);
+            setBeneficiarios(data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))
+        }
+    
+        getBeneficiarios();
     }, [])
 
    

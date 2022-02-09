@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import AdminNavbar from '../components/AdminNavbar';
 import '../styles/base.css'
 import '../styles/AdminLayout.css'
@@ -10,80 +10,25 @@ import ModalAdminConfirmar from '../components/ModalAdminConfirmar';
 // Firebase Imports
 import {db} from '../firebaseConfig'
 import {collection,addDoc} from "@firebase/firestore";
+import { useNavigate } from 'react-router-dom';
 
 function AdminAgregarNota() {
     const [modalExitoVisibility, setModalExitoVisibility] = useState(false)
     const [modalConfVisibility, setModalConfVisibility] = useState(false)
     const [nota, setNota] = useState({})
+    
+    let navigate = useNavigate();
+    useEffect(()=>{
+        let authToken = sessionStorage.getItem('Auth Token')
+        if (authToken) {
+            navigate('/admin_proyectos')
+        }
 
-    const customSelectStyles = {
-        control: (base, state) => ({
-            ...base,
-            border: "2px solid #cfcfc9",
-            boxShadow: state.isFocused ? null : null,
-            padding: "0.3rem 0rem",
-            borderRadius: "1rem",
-            fontSize: "1.8rem",
-            color: "#F7F7F7",
-            fontFamily: "Lato",
-            textAlign: "start",
-            backgroundColor: 'rgba(255, 255, 255, 0)',
-            marginBottom: '2rem',
-            "&:focus ": {
-                outline: "none !important",
-                border: "2px solid var(--p-400)"
-              },
-          }),
-        placeholder: base =>({
-            ...base,
-            color: "#878778"
-        }),
-        menu: base => ({
-            ...base,
-            borderRadius: "1rem",
-            background: "#FCFCFC",
-            color: "#878778",
-            fontSize: "1.8rem",
-            textAlign: "start",
-            fontFamily: "Lato",
-            marginTop: '-1.4rem'
-        
-        }),
-        menuList: base => ({
-            ...base,
-            borderRadius: "1rem",
-        }),
-        singleValue: base => ({
-            ...base,
-            color: "#1b1b18",
-        }),
-        input: base => ({
-            ...base,
-            color: "#1b1b18",
-        }),
-        dropdownIndicator: base => ({
-            ...base,
-            color: "#164453"
-        }),
-        option: (base,{data, isDisabled, isFocused,isSelected}) => ({
-            ...base,
-            color: "#1A1A1A",
-            backgroundColor: isDisabled ? undefined: isSelected,
-            "&:hover ": {
-                background: "#164453",
-                color:"#f0f0ee"
-              },
-        }),
-        container: base => ({
-            ...base,
-            "@media only screen and (max-width: 576px)": {
-                ...base["@media only screen and (max-width: 576px)"],
-                width:"100%",
-        },
-        })
-    }
-
-
+        if (!authToken) {
+            navigate('/login')
+        }
+    },[])
+    
     function showModalConfirmar(){
         setModalConfVisibility(true);
     }

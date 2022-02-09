@@ -9,7 +9,7 @@ import '../styles/AdminLayout.css'
 
 //npm components
 import { DataGrid, esES, GridActionsCellItem } from '@mui/x-data-grid';
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 //Firebase Imports
 import {db} from '../firebaseConfig'
@@ -22,12 +22,21 @@ function AdminNotas() {
     const notasCollectionRef = collection(db, "notasMedio")
   
     const q = query(notasCollectionRef, orderBy("titulo"))
-
+    let navigate = useNavigate();
     useEffect (()=>{
-      const getNotas = async () => {
-        const data = await getDocs(q);
-        setNotas(data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))
-      }
+        let authToken = sessionStorage.getItem('Auth Token')
+        if (authToken) {
+            navigate('/admin_proyectos')
+        }
+
+        if (!authToken) {
+            navigate('/login')
+        }
+
+        const getNotas = async () => {
+            const data = await getDocs(q);
+            setNotas(data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))
+        }
   
       getNotas();
     }, [])

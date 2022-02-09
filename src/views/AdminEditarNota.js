@@ -5,7 +5,7 @@ import '../styles/AdminLayout.css'
 import ilustracionAgregarNota from '../assets/ilustracion_agregar_nota.svg'
 import ModalAdminExito from '../components/ModalAdminExito';
 import ModalAdminConfirmar from '../components/ModalAdminConfirmar';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 // Firebase Imports
 import {db} from '../firebaseConfig'
@@ -19,7 +19,17 @@ function AdminEditarNota() {
     let params = useParams();
 
     const notaRef = doc(db, "notasMedio", params.id)
+    let navigate = useNavigate();
     useEffect (()=>{
+        let authToken = sessionStorage.getItem('Auth Token')
+        if (authToken) {
+            navigate('/admin_proyectos')
+        }
+
+        if (!authToken) {
+            navigate('/login')
+        }
+        
         const getNota = async () => {
           const notaDoc = await getDoc(notaRef);
           setNota(notaDoc.data())

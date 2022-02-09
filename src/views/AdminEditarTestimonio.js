@@ -5,7 +5,7 @@ import '../styles/AdminLayout.css'
 import ilustracionAgregarTestimonio from '../assets/ilustracion_agregar_testimonio.svg'
 import ModalAdminExito from '../components/ModalAdminExito';
 import ModalAdminConfirmar from '../components/ModalAdminConfirmar';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 // Firebase Imports
 import {db, storage} from '../firebaseConfig'
@@ -23,7 +23,17 @@ function AdminEditarTestimonio() {
    
     const testimonioRef = doc(db, "testimonios", params.id)
 
+    let navigate = useNavigate();
     useEffect (()=>{
+        let authToken = sessionStorage.getItem('Auth Token')
+        if (authToken) {
+            navigate('/admin_proyectos')
+        }
+
+        if (!authToken) {
+            navigate('/login')
+        }
+        
         const getTestimonio = async () => {
           const testimonioDoc = await getDoc(testimonioRef);
           setTestimonio(testimonioDoc.data())

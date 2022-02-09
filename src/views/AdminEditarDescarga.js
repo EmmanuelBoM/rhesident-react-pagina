@@ -5,7 +5,7 @@ import '../styles/AdminLayout.css'
 import ilustracionAgregarDescarga from '../assets/ilustracion_agregar_descarga.svg'
 import ModalAdminExito from '../components/ModalAdminExito';
 import ModalAdminConfirmar from '../components/ModalAdminConfirmar';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 // Firebase Imports
 import {db, storage} from '../firebaseConfig'
@@ -23,7 +23,16 @@ function AdminEditarDescarga() {
    
     const descargaRef = doc(db, "descargas", params.id)
 
+    let navigate = useNavigate();
     useEffect (()=>{
+        let authToken = sessionStorage.getItem('Auth Token')
+        if (authToken) {
+            navigate('/admin_proyectos')
+        }
+
+        if (!authToken) {
+            navigate('/login')
+        }
         const getDescarga = async () => {
           const descargaDoc = await getDoc(descargaRef);
           setDescarga(descargaDoc.data())

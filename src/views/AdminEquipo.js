@@ -7,7 +7,7 @@ import ModalAdminEliminar from '../components/ModalAdminEliminar';
 import '../styles/base.css'
 import '../styles/AdminLayout.css'
 
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 //Firebase Imports
 import {db} from '../firebaseConfig'
@@ -24,14 +24,24 @@ function AdminEquipo() {
     const equipoCollectionRef = collection(db, "equipo")
   
     const q = query(equipoCollectionRef, orderBy("nombre"))
+    let navigate = useNavigate();
 
     useEffect (()=>{
-      const getEquipo = async () => {
-        const data = await getDocs(q);
-        setEquipo(data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))
-      }
+        let authToken = sessionStorage.getItem('Auth Token')
+        if (authToken) {
+            navigate('/admin_proyectos')
+        }
+
+        if (!authToken) {
+            navigate('/login')
+        }
+
+        const getEquipo = async () => {
+            const data = await getDocs(q);
+            setEquipo(data.docs.map(((doc)=>({...doc.data(), id:doc.id}))))
+        }
   
-      getEquipo();
+        getEquipo();
     }, [])
 
    

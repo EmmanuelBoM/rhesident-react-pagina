@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import AdminNavbar from '../components/AdminNavbar';
 import '../styles/base.css'
 import '../styles/AdminLayout.css'
@@ -6,11 +6,11 @@ import ilustracionAgregarMiembro from '../assets/ilustracion_agregar_miembro.svg
 import ModalAdminExito from '../components/ModalAdminExito';
 import ModalAdminConfirmar from '../components/ModalAdminConfirmar';
 
-
 // Firebase Imports
 import {db, storage} from '../firebaseConfig'
 import {collection,addDoc} from "@firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "@firebase/storage";
+import { useNavigate } from 'react-router-dom';
 
 
 function AdminAgregarMiembro() {
@@ -20,6 +20,18 @@ function AdminAgregarMiembro() {
     const [imgPerfilURL, setImgPerfilURL] = useState('')
     const [imgCompletaURL, setImgCompletaURL] = useState('')
 
+    let navigate = useNavigate();
+    useEffect(()=>{
+        let authToken = sessionStorage.getItem('Auth Token')
+        if (authToken) {
+            navigate('/admin_proyectos')
+        }
+
+        if (!authToken) {
+            navigate('/login')
+        }
+    },[])
+    
     function showModalConfirmar(){
         setModalConfVisibility(true);
     }

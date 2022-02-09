@@ -5,7 +5,7 @@ import '../styles/AdminLayout.css'
 import ilustracionAgregarAlianza from '../assets/ilustracion_agregar_alianza.svg'
 import ModalAdminExito from '../components/ModalAdminExito';
 import ModalAdminConfirmar from '../components/ModalAdminConfirmar';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 // Firebase Imports
 import {db, storage} from '../firebaseConfig'
@@ -22,8 +22,17 @@ function AdminEditarAlianza() {
     const params = useParams();
    
     const alianzaRef = doc(db, "alianzas", params.id)
-
+    
+    let navigate = useNavigate();
     useEffect (()=>{
+        let authToken = sessionStorage.getItem('Auth Token')
+        if (authToken) {
+            navigate('/admin_proyectos')
+        }
+
+        if (!authToken) {
+            navigate('/login')
+        }
         const getAlianza = async () => {
           const alianzaDoc = await getDoc(alianzaRef);
           setAlianza(alianzaDoc.data())
