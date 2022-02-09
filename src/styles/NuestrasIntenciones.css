@@ -125,7 +125,14 @@
 
 .mision, .vision, .objetivo{
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 30%;
+}
+
+.texto-mvo{
+    width: 60%;
 }
 
 @keyframes slide_reveal {

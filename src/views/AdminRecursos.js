@@ -3,7 +3,7 @@ import AdminNavbar from '../components/AdminNavbar';
 import '../styles/AdminLayout.css'
 import RecursoPortada from '../components/RecursoPortada';
 import RecursoVideo from '../components/RecursoVideo';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 //Firebase Imports
 import {db, storage} from '../firebaseConfig'
@@ -34,7 +34,7 @@ function AdminRecursos() {
     useEffect (()=>{
         let authToken = sessionStorage.getItem('Auth Token')
         if (authToken) {
-            navigate('/admin_proyectos')
+            navigate('/admin_recursos')
         }
 
         if (!authToken) {
@@ -121,10 +121,15 @@ function AdminRecursos() {
                             </div>
                         </div>
                         <div className="cont-accesos-directos">
-                            <div className="acceso-directo">
+                            <a href='https://compressor.io/' className="acceso-directo" target="_blank">
+                                <i class="fa-solid fa-folder negro"></i>
+                                <p className="nombre-acceso-directo negro">Compresor</p>
+                            </a>
+                            <Link to='/' className="acceso-directo">
                                 <i class="fa-solid fa-house negro"></i>
                                 <p className="nombre-acceso-directo negro">Página principal</p>
-                            </div>
+                            </Link>
+                            
                         </div>
                     </header>
 

@@ -26,7 +26,7 @@ function AdminNotas() {
     useEffect (()=>{
         let authToken = sessionStorage.getItem('Auth Token')
         if (authToken) {
-            navigate('/admin_proyectos')
+            navigate('/admin_notas')
         }
 
         if (!authToken) {

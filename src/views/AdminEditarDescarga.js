@@ -27,7 +27,7 @@ function AdminEditarDescarga() {
     useEffect (()=>{
         let authToken = sessionStorage.getItem('Auth Token')
         if (authToken) {
-            navigate('/admin_proyectos')
+            navigate(`/editar-descarga/${params.id}`)
         }
 
         if (!authToken) {

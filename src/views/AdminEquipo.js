@@ -29,7 +29,7 @@ function AdminEquipo() {
     useEffect (()=>{
         let authToken = sessionStorage.getItem('Auth Token')
         if (authToken) {
-            navigate('/admin_proyectos')
+            navigate('/admin_equipo')
         }
 
         if (!authToken) {

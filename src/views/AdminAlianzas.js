@@ -28,7 +28,7 @@ function AdminAlianzas() {
     useEffect (()=>{
         let authToken = sessionStorage.getItem('Auth Token')
         if (authToken) {
-            navigate('/admin_proyectos')
+            navigate('/admin_alianzas')
         }
 
         if (!authToken) {

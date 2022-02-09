@@ -184,54 +184,51 @@ function NuestrasIntenciones() {
         </AnimationOnScroll>
       </section>
       <section className="mision-vision">
-        <div className="mision">
+        
           <AnimationOnScroll
+            className="mision"
             animateIn="animate__fadeInDown"
-            animateOut="animate__fadeOutUp"
-          >
+            animateOut="animate__fadeOutUp">
             <h2 className="blanco">Misión</h2>
-            <p className="blanco">
+            <p className="blanco texto-mvo">
               Crear conexiones comunitarias para renovar percepciones y
               diversificar acciones.
             </p>
           </AnimationOnScroll>
-        </div>
         <div className="separador">
           <div className="circulo-separador"></div>
           <div className="linea-separador"></div>
           <div className="circulo-separador"></div>
         </div>
 
-        <div className="vision">
           <AnimationOnScroll
             animateIn="animate__fadeInDown"
             animateOut="animate__fadeOutUp"
             duration={1.4}
+            className="vision"
           >
             <h2 className="blanco">Visión</h2>
-            <p className="blanco">
+            <p className="blanco texto-mvo">
               Fortalecer el sentido de pertenencia y de comunidad, incentivando
               la transformación del entorno.
             </p>
           </AnimationOnScroll>
-        </div>
         <div className="separador">
           <div className="circulo-separador"></div>
           <div className="linea-separador"></div>
           <div className="circulo-separador"></div>
         </div>
-        <div className="objetivo">
           <AnimationOnScroll
             animateIn="animate__fadeInDown"
             animateOut="animate__fadeOutUp"
             duration={1.6}
+            className="objetivo"
           >
             <h2 className="blanco">Objetivo</h2>
-            <p className="blanco">
+            <p className="blanco texto-mvo">
               Resignificar las maneras de construir y hacer comunidad.
             </p>
           </AnimationOnScroll>
-        </div>
       </section>
       <Footer></Footer>
     </main>

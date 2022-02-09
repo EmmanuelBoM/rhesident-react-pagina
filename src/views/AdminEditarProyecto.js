@@ -38,7 +38,7 @@ function AdminEditarProyecto() {
     useEffect (()=>{
         let authToken = sessionStorage.getItem('Auth Token')
         if (authToken) {
-            navigate('/admin_proyectos')
+            navigate(`/editar-proyecto/${params.id}`)
         }
 
         if (!authToken) {

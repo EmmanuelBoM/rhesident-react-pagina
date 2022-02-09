@@ -26,7 +26,7 @@ function AdminTestimonios() {
     useEffect (()=>{
         let authToken = sessionStorage.getItem('Auth Token')
         if (authToken) {
-            navigate('/admin_proyectos')
+            navigate('/admin_testimonios')
         }
 
         if (!authToken) {

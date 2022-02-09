@@ -27,7 +27,7 @@ function AdminEditarTestimonio() {
     useEffect (()=>{
         let authToken = sessionStorage.getItem('Auth Token')
         if (authToken) {
-            navigate('/admin_proyectos')
+            navigate(`/editar-testimonio${params.id}`)
         }
 
         if (!authToken) {

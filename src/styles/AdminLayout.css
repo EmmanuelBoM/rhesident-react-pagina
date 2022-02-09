@@ -52,6 +52,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-left: 2rem;
 }
 
 .acceso-directo i{

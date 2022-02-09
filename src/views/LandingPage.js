@@ -147,7 +147,7 @@ function LandingPage() {
             <h4 className='descripcion-seccion'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta tenetur doloribus, cupiditate vel tempore reprehenderit?</h4>
           <iframe
             className='yt-iframe'
-            src={isVideoVisible ? `https://www.youtube.com/embed/gR3q8YMGh8A?autoplay=1&mute=1&loop=1`: `https://www.youtube.com/embed/gR3q8YMGh8A`}
+            src={`https://www.youtube.com/embed/${videoURL}`}
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

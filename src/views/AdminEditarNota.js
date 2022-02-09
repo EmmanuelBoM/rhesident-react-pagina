@@ -23,7 +23,7 @@ function AdminEditarNota() {
     useEffect (()=>{
         let authToken = sessionStorage.getItem('Auth Token')
         if (authToken) {
-            navigate('/admin_proyectos')
+            navigate(`/editar-nota/${params.id}`)
         }
 
         if (!authToken) {

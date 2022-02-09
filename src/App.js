@@ -51,6 +51,7 @@ import AdminDescargas from './views/AdminDescargas';
 import AdminAgregarDescarga from './views/AdminAgregarDescarga';
 import AdminEditarDescarga from './views/AdminEditarDescarga';
 import Descargas from './views/Descargas';
+import AdminEditarTaller from './views/AdminEditarTaller';
 
 
 function App() {
@@ -107,7 +108,8 @@ function App() {
      
       <Route path='/admin_talleres' element={<AdminTalleres/>} />
       <Route path='/agregar-taller' element={<AdminAgregarTaller/>} />
-      {/* TO DO /editar-taller/:id */}
+      <Route path='/editar-taller/:id' element={<AdminEditarTaller/>} />
+
       <Route path='/admin_descargas' element={<AdminDescargas/>} />
       <Route path='/agregar-descarga' element={<AdminAgregarDescarga/>} />
       <Route path='/editar-descarga/:id' element={<AdminEditarDescarga/>} />

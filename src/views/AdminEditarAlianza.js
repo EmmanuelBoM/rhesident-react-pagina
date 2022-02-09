@@ -27,7 +27,7 @@ function AdminEditarAlianza() {
     useEffect (()=>{
         let authToken = sessionStorage.getItem('Auth Token')
         if (authToken) {
-            navigate('/admin_proyectos')
+            navigate(`/editar-alianza/${params.id}`)
         }
 
         if (!authToken) {

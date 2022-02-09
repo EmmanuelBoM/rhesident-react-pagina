@@ -10,36 +10,56 @@ import ModalAdminConfirmar from '../components/ModalAdminConfirmar';
 import DatePicker from "react-multi-date-picker";
 import DatePanel from "react-multi-date-picker/plugins/date_panel"
 import "react-multi-date-picker/styles/colors/green.css"
-
 // Firebase Imports
 import {db, storage} from '../firebaseConfig'
-import {collection,addDoc} from "@firebase/firestore";
+import {collection, doc, updateDoc, getDoc} from "@firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "@firebase/storage";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-function AdminAgregarTaller() {
+function AdminEditarTaller() {
     const [modalExitoVisibility, setModalExitoVisibility] = useState(false)
     const [modalConfVisibility, setModalConfVisibility] = useState(false)
     const [ejesValue, setEjesValue] = useState([])
     const [fechasValue, setFechasValue] = useState([])
     const [etiquetasValue, setEtiquetasValue] = useState([])
+    const [ejesChange, setEjesChange] = useState(false)
+    const [etiquetasChange, setEtiquetasChange] = useState(false)
+    const [fechasChange, setFechasChange] = useState(false)
     const [imgURL, setImgURL] = useState('')
     const [modalidadValue, setModalidadValue] = useState('')
     const [estatusValue, setEstatusValue] = useState('')
     const [taller, setTaller] = useState({})
+    const [newTaller, setNewTaller] = useState({})
+    let params = useParams();
     const weekDays = ["D", "L", "M", "X", "J", "V", "S"]
     const months = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"]
 
+    const tallerRef = doc(db, "talleres", params.id)
+
     let navigate = useNavigate();
+
     useEffect(()=>{
         let authToken = sessionStorage.getItem('Auth Token')
         if (authToken) {
-            navigate('/agregar-taller')
+            navigate(`/editar-taller/${params.id}`)
         }
 
         if (!authToken) {
             navigate('/login')
         }
+
+        const getTaller = async () => {
+            const tallerDoc = await getDoc(tallerRef);
+            setTaller(tallerDoc.data())
+            setEjesValue(tallerDoc.data().ejesAccion)
+            setEtiquetasValue(tallerDoc.data().etiquetas)
+            setFechasValue(tallerDoc.data().fechasInicio)
+            setModalidadValue(tallerDoc.data().modalidad)
+            setEstatusValue(tallerDoc.data().estatus)
+            setImgURL(tallerDoc.data().imgURL)
+          }
+      
+          getTaller();
     },[])
 
     const ejesAccion = [
@@ -135,12 +155,13 @@ function AdminAgregarTaller() {
 
     
     const handleEjesChange = selectedOptions =>{
+        setEjesChange(true)
         setEjesValue(selectedOptions);
     }
 
     const handleEtiquetasChange = selectedOptions =>{
-        setEtiquetasValue(selectedOptions);
-        console.log(etiquetasValue)
+        setEtiquetasChange(true)
+        setEtiquetasValue(selectedOptions)
     }
     
     const handleModalidadChange = selectedOption =>{
@@ -172,73 +193,79 @@ function AdminAgregarTaller() {
    
 
     function handleInputChange(e){
-        let newTaller = {
-            ...taller,
+        let nuevoTaller = {
+            ...newTaller,
             [e.target.name]: e.target.value,
         };
 
-        setTaller(newTaller);
+        setNewTaller(nuevoTaller);
     }
 
     const handleFechasChange = fecha =>{
+        setFechasChange(true)
         setFechasValue(fecha)
     }
 
     const talleresCollectionRef = collection(db, "talleres")
 
-    const submitTaller = async (e) => {
-        e.preventDefault();
+    
+
+    const updateTaller = async() => {
+
         let ejesArr = []
         let etiquetasArr=[]
-        let objetivosArr = []
-        let fechasArr =[]
-        ejesValue.map((eje)=>ejesArr.push(eje.value))
-        etiquetasValue.map((etiqueta)=>etiquetasArr.push(etiqueta.value))
-        fechasValue.map((fecha)=>fechasArr.push(fecha.toString()))
+        let fechasArr = []
+        
+        if (ejesChange) ejesValue.map((eje)=>ejesArr.push(eje.value)) 
+        else ejesArr = ejesValue
+        if(etiquetasChange) etiquetasValue.map((etiqueta)=>etiquetasArr.push(etiqueta.value))
+        else etiquetasArr = etiquetasValue
+        if(fechasChange) fechasValue.map((fecha)=>fechasArr.push(fecha.toString()))
+        else fechasArr = fechasValue
+       
 
+        const tallerFB ={
+            ...newTaller, 
+            imgURL: imgURL,
+            estatus: estatusValue,
+            modalidad: modalidadValue,
+            ejesAccion: ejesArr,
+            etiquetas: etiquetasArr,
+            fechasInicio: fechasArr
+        }
 
+        console.log(tallerFB)
         try{
-            await addDoc(talleresCollectionRef,
-                {
-                    nombre: taller.nombre,
-                    descripcion: taller.descripcion,
-                    duracion: taller.duracion,
-                    estatus: estatusValue,
-                    modalidad: modalidadValue,
-                    ejesAccion: ejesArr,
-                    etiquetas: etiquetasArr,
-                    fechasInicio: fechasArr,
-                    imgURL: imgURL,
-                    visible: true
-                })
+            await updateDoc(tallerRef, tallerFB);
         }
         catch(error){
             console.log(error)
         }
         setModalConfVisibility(false)
         setModalExitoVisibility(true)
+        
     }
     
 
     return (
         <div className="body-admin">
-            {modalExitoVisibility ? <ModalAdminExito setModalVisibility={setModalExitoVisibility} rutaContinuar='/admin_talleres' accion='agregado' recurso= 'Taller' nombreRecurso={taller.nombre}></ModalAdminExito> : null }
-            {modalConfVisibility ? <ModalAdminConfirmar setModalVisibility={setModalConfVisibility} runFunction={submitTaller} accion='agregar' recurso= 'el Taller' nombreRecurso={taller.nombre}></ModalAdminConfirmar> : null }
+            {modalExitoVisibility ? <ModalAdminExito setModalVisibility={setModalExitoVisibility} rutaContinuar='/admin_talleres' accion='editado' recurso= 'Taller' nombreRecurso={taller.nombre}></ModalAdminExito> : null }
+            {modalConfVisibility ? <ModalAdminConfirmar setModalVisibility={setModalConfVisibility} runFunction={updateTaller} accion='editar' recurso= 'el Taller' nombreRecurso={taller.nombre}></ModalAdminConfirmar> : null }
             
             <AdminNavbar activeTab='talleres'></AdminNavbar>
             <main className='main-admin'>
                 <section className="admin-form-content">
                     <div className="header-form">
                         <img src={ilustracionAgregarTaller} alt="" className="ilustracion-form" />
-                        <h2 className="titulo-admin-form negro">Agrega un <br/> taller nuevo</h2>
+                        <h2 className="titulo-admin-form negro">{`Editar taller ${taller.nombre} `}</h2>
                     </div>
                     <div className="cont-formulario-agregar">
                         <form action="" className="formulario-registro">
                             <label htmlFor="nombre" className='input-label'>Nombre del taller</label>
-                            <input type="text"  placeholder="Nombre" name="nombre" className="input-gral" required onChange={handleInputChange}/>
+                            <input type="text"  placeholder="Nombre" name="nombre" className="input-gral" required onChange={handleInputChange} defaultValue={taller.nombre}/>
                             
                             <label htmlFor="descripcion" className="input-label">Descripción</label>
-                            <textarea name="descripcion"  cols="30" rows="6" className="input-gral" placeholder='200 caracteres máximo' onChange={handleInputChange} maxLength={200}></textarea>
+                            <textarea name="descripcion"  cols="30" rows="6" className="input-gral" placeholder='200 caracteres máximo' onChange={handleInputChange} maxLength={200} defaultValue={taller.descripcion}></textarea>
                            
                             <label htmlFor="imgURL" className="input-label">Imagen</label>
                             <div className="file-preview">
@@ -256,27 +283,27 @@ function AdminAgregarTaller() {
                                 isClearable
                                 isMulti
                                 styles={customSelectStyles}
-                                placeholder="Escribe una o más etiquetas. Enter para agregar otra."
+                                placeholder={taller.etiquetas}
                                 onChange={handleEtiquetasChange}
                             />
 
                             <label htmlFor="" className="input-label">Ejes de acción</label>
-                            <Select styles={customSelectStyles} options={ejesAccion} placeholder='Selecciona uno o más ejes' isMulti onChange={handleEjesChange}/>
+                            <Select styles={customSelectStyles} options={ejesAccion} placeholder={taller.ejesAccion} isMulti onChange={handleEjesChange}/>
 
                             <label htmlFor="" className="input-label">Estatus</label>
-                            <Select styles={customSelectStyles} options={estatusSelect} placeholder='Selecciona el estatus del taller' onChange={handleEstatusChange}/>
+                            <Select styles={customSelectStyles} options={estatusSelect} placeholder={taller.estatus} onChange={handleEstatusChange}/>
 
                             <label htmlFor="" className="input-label">Modalidad</label>
-                            <Select styles={customSelectStyles} options={modalidadesSelect} placeholder='Selecciona la modalidad del taller' onChange={handleModalidadChange}/>
+                            <Select styles={customSelectStyles} options={modalidadesSelect} placeholder={taller.modalidad} onChange={handleModalidadChange}/>
                             
                             <label htmlFor="duracion" className="input-label">Duración</label>
-                            <input type='number' name="duracion" id=""className="input-gral" placeholder='Escribe la duración en horas del taller.' onChange={handleInputChange}/>
+                            <input type='number' name="duracion" id=""className="input-gral" placeholder={taller.duracion} onChange={handleInputChange}/>
                             
                             <label htmlFor="duracion" className="input-label">Fechas de inicio</label>
                             <DatePicker inputClass='input-gral'  
                                         multiple 
                                         className='green' 
-                                        placeholder='Clic para seleccionar'
+                                        placeholder={taller.fechasInicio}
                                         format={ "DD/MM/YYYY" }
                                         weekDays={weekDays}
                                         months={months}
@@ -287,7 +314,7 @@ function AdminAgregarTaller() {
                             
 
                             <button className="btn-enviar"  type="button" onClick={showModalConfirmar}>
-                                <p>Agregar taller</p>
+                                <p>Editar taller</p>
                             </button>
                         </form>
                     </div>
@@ -297,4 +324,4 @@ function AdminAgregarTaller() {
     );
 }
 
-export default AdminAgregarTaller;
+export default AdminEditarTaller;

@@ -24,7 +24,7 @@ function AdminAgregarDescarga() {
     useEffect(()=>{
         let authToken = sessionStorage.getItem('Auth Token')
         if (authToken) {
-            navigate('/admin_proyectos')
+            navigate('/agregar-descarga')
         }
 
         if (!authToken) {

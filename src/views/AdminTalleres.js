@@ -26,7 +26,7 @@ function AdminTalleres() {
     useEffect (()=>{
         let authToken = sessionStorage.getItem('Auth Token')
         if (authToken) {
-            navigate('/admin_proyectos')
+            navigate('/admin_talleres')
         }
 
         if (!authToken) {
