@@ -74,7 +74,7 @@ function Talleres() {
             </section>
 
             <section className="talleres">
-                <h2 className="verde">Talleres abiertos</h2>
+                <h2 className="verde" id='abiertos'>Talleres abiertos</h2>
                 <div className="talleres-activos">
                     {talleresAbiertos.map((tallerInd)=>{
                         return(
@@ -82,7 +82,7 @@ function Talleres() {
                         )
                     })}
                 </div>
-                <h2 className="verde">Próximos Talleres</h2>
+                <h2 className="verde" id='proximos'>Próximos Talleres</h2>
                 <div className="talleres-proximos">
                     {talleresProximos.map((tallerInd)=>{
                         return(

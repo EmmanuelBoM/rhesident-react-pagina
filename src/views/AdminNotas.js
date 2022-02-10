@@ -86,9 +86,9 @@ function AdminNotas() {
       const columns = React.useMemo(()=>
       [
         { field: 'titulo', headerName: 'Título de la nota',flex:1, minWidth: 120 },
-        { field: 'fuente', headerName: 'Fuente', flex:1, minWidth: 20},
-        { field: 'fecha', headerName: 'Fecha', flex:1, minWidth: 100},
-        { field: 'notaURL', headerName: 'URL', flex:1, minWidth: 100},
+        { field: 'fuente', headerName: 'Fuente', flex:1, minWidth: 100},
+        { field: 'fecha', headerName: 'Fecha', flex:1, minWidth: 40},
+        { field: 'notaURL', headerName: 'URL', flex:1, minWidth: 120},
         {
             field: 'actions',
             type: 'actions',

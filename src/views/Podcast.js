@@ -1,13 +1,19 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Footer from '../components/Footer';
 import NavHeader from '../components/NavHeader';
 import ilustracionPodcast from '../assets/ilustracion_podcast.svg'
 import '../styles/base.css'
 import '../styles/Podcast.css'
 import { Helmet } from 'react-helmet';
+import { useParams } from 'react-router-dom';
 
 function Podcast() {
     const [plataforma, setPlataforma] = useState('youtube')
+    const params = useParams()
+
+    useEffect(()=>{
+        if(params.plataforma) setPlataforma(params.plataforma)
+    },[])
 
     function handleSpotify(){
         setPlataforma('spotify')

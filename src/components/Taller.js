@@ -1,5 +1,4 @@
 import React from 'react';
-import imgTaller from '../assets/cultura.png'
 import '../styles/Taller.css'
 
 function Taller(props) {

@@ -25,7 +25,7 @@ function AdminAgregarTestimonio() {
     useEffect(()=>{
         let authToken = sessionStorage.getItem('Auth Token')
         if (authToken) {
-            navigate('/agregar-taller')
+            navigate('/agregar-testimonio')
         }
 
         if (!authToken) {

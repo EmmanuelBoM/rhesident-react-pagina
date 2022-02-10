@@ -60,6 +60,7 @@ footer{
 }
 .footer-cont a{
     text-decoration: none;
+    cursor: pointer;
 }
 .footer-subtitle{
     color: var(--p-200);

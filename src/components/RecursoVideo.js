@@ -43,7 +43,7 @@ function RecursoVideo(props) {
             <h4 className="verde">{props.recurso.nombre}</h4>
         </div>
         <form action="" className="formulario-registro">
-            <label htmlFor="videoURL" className='input-label'>URL del video de Youtube</label>
+            <label htmlFor="videoURL" className='input-label'>URL del video de Youtube (Últimos caracteres)</label>
             <input type="text"  placeholder="Enlace al video" name="videoURL" id="" className="input-gral" required onChange={handleInputChange} defaultValue={videoURL}/>
         </form>
         

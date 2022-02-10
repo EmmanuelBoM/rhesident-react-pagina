@@ -12,13 +12,15 @@ import {Link, useNavigate} from 'react-router-dom'
 //Firebase Imports
 import {db} from '../firebaseConfig'
 import {query, collection, getDocs,orderBy,  deleteDoc, doc} from "@firebase/firestore";
+import { getStorage, ref, deleteObject } from "firebase/storage";
 import ItemPanel from '../components/ItemPanel';
 
 function AdminAlianzas() {
     const [modalVisibility, setModalVisibility] = useState(false)
     const [modalInfo, setModalInfo] = useState('')
     const [idAlianza, setIdAlianza] = useState('')
-    
+    const storage = getStorage();
+
     //Firestore GET Query
     const [alianzas, setAlianzas] = useState([])
     const alianzasCollectionRef = collection(db, "alianzas")
@@ -44,8 +46,15 @@ function AdminAlianzas() {
 
    
     const deleteAlianza = async() => {
+        const alianzaRef = ref(storage, `images/alianzas/${modalInfo}_imgAlianza`);
         try{
             await deleteDoc(doc(db, "alianzas", idAlianza));
+
+            deleteObject(alianzaRef).then(() => {
+                console.log("Imagenes eliminadas")
+            }).catch((error) => {
+                console.log(error)
+            });
         }
         catch(error){
             console.log(error)

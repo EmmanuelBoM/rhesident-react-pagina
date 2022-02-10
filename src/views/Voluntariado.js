@@ -4,7 +4,7 @@ import NavHeader from "../components/NavHeader";
 import "../styles/base.css";
 import "../styles/Voluntariado.css";
 import downArrow from "../assets/down_arrow_light.svg";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import CardVoluntariado from "../components/CardVoluntariado";
 
 import { Animated } from "react-animated-css";
@@ -29,6 +29,7 @@ import {
   getDoc,
 } from "@firebase/firestore";
 import { Helmet } from "react-helmet";
+import usePagination from "@mui/material/usePagination/usePagination";
 
 // install Swiper modules
 SwiperCore.use([Pagination, Navigation]);
@@ -45,6 +46,7 @@ function Voluntariado() {
   const portadaRef = doc(db, "recursosGenerales", "uxuVFcShyChtFGtJzSiX");
   const videoRef = doc(db, "recursosGenerales", "kRku4Qd3Bqpm6ho1F2kE");
   const proyectosCollectionRef = collection(db, "proyectos");
+  const params = useParams();
 
   const q_presencial = query(
     proyectosCollectionRef,
@@ -62,6 +64,7 @@ function Voluntariado() {
     where("visible", "==", true)
   );
   useEffect(() => {
+    
     const getProyectosPresencial = async () => {
       const data = await getDocs(q_presencial);
       setProyectosPresencial(
@@ -98,6 +101,7 @@ function Voluntariado() {
     getProyectosRemoto();
     getVideo();
     getPortada();
+
   }, []);
 
   const portadaImg = {

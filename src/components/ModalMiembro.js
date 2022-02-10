@@ -1,5 +1,4 @@
 import React from 'react'
-import miembroCompleta from '../assets/miembro_completa.png'
 import '../styles/base.css'
 import '../styles/ModalMiembro.css'
 import iconoCerrar from '../assets/icono_cerrar.svg'

@@ -14,10 +14,6 @@ import {collection,addDoc} from "@firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "@firebase/storage";
 import { useNavigate } from 'react-router-dom';
 
-
-
-
-
 function AdminAgregarProyecto() {
     const [modalExitoVisibility, setModalExitoVisibility] = useState(false)
     const [modalConfVisibility, setModalConfVisibility] = useState(false)
@@ -221,7 +217,9 @@ function AdminAgregarProyecto() {
         ejesValue.map((eje)=>ejesArr.push(eje.value))
         etiquetasValue.map((etiqueta)=>etiquetasArr.push(etiqueta.value))
         objetivosValue.map((objetivo)=>objetivosArr.push(objetivo.value))
-
+        if(!proyecto.URLExterno){
+            proyecto.URLExterno = "N/A"
+        }
 
         try{
             await addDoc(proyectosCollectionRef,

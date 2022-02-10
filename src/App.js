@@ -68,10 +68,12 @@ function App() {
       <Route path='/proyecto/:id' element={<ProyectoDetalle/>} />
       <Route path='/talleres' element={<Talleres/>} />
       <Route path='/voluntariado' element={<Voluntariado/>} />
+      <Route path='/voluntariado/:tipo' element={<Voluntariado/>} />
       <Route path='/como-apoyar' element={<Donaciones/>} />
       <Route path='/registro-voluntariado/:modalidad' element={<RegistroVoluntarios/>} />
       <Route path='/registro-voluntariado' element={<RegistroVoluntarios/>} />
       <Route path='/podcast' element={<Podcast/>} />
+      <Route path='/podcast/:plataforma' element={<Podcast/>} />
       <Route path='/blog' element={<Proximamente/>} />
       <Route path='/tienda' element={<Proximamente/>} />
       <Route path='/dona-ahora' element={<PaypalDona/>} />

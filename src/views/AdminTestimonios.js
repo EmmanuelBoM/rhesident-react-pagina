@@ -14,13 +14,14 @@ import {Link, useNavigate} from 'react-router-dom'
 //Firebase Imports
 import {db} from '../firebaseConfig'
 import {query, collection, getDocs,orderBy, doc, updateDoc,  deleteDoc} from "@firebase/firestore";
+import { getStorage, ref, deleteObject } from "firebase/storage";
 
 function AdminTestimonios() {
 
     //Firestore GET Query
     const [testimonios, setTestimonios] = useState([])
     const testimoniosCollectionRef = collection(db, "testimonios")
-  
+    const storage = getStorage();
     const q = query(testimoniosCollectionRef, orderBy("nombre"))
     let navigate = useNavigate();
     useEffect (()=>{
@@ -47,8 +48,15 @@ function AdminTestimonios() {
     const [modalInfo, setModalInfo] = useState('')
 
     const deleteTestimonio = async () => {
+        const testimonioRef = ref(storage, `images/testimonios/${modalInfo}_img`);
         try{
             await deleteDoc(doc(db, "testimonios", idTestimonio));
+
+            deleteObject(testimonioRef).then(() => {
+                console.log("Imagenes eliminadas")
+            }).catch((error) => {
+                console.log(error)
+            });
         }
         catch(error){
             console.log(error)

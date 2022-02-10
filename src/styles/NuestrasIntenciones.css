@@ -18,11 +18,36 @@
     height: 40vh;
 }
 
-.intencion-img{
+.inclusion-img{
     z-index: 10;
-    background-image: url('../assets/nature.png');
+    background-image: url('../assets/img_Inclusion.jpg');
     width: 60%;
-    background-size: contain;
+    background-size: cover;
+    background-position: center;
+}
+
+.cohesion-img{
+    z-index: 10;
+    background-image: url('../assets/img_Cohesion.jpeg');
+    width: 60%;
+    background-size: cover;
+    background-position: center;
+}
+
+.comunidad-img{
+    z-index: 10;
+    background-image: url('../assets/img_Comunidad.JPG');
+    width: 60%;
+    background-size: cover;
+    background-position: center;
+}
+
+.participacion-img{
+    z-index: 10;
+    background-image: url('../assets/img_Participacion.JPG');
+    width: 60%;
+    background-size: cover;
+    background-position: center;
 }
 
 .intencion-texto{
@@ -156,3 +181,8 @@
 }
 
 
+.proposito-evolutivo{
+    background-image: url('../assets/img_PropositoEvolutivo.jpg');
+    background-size: cover;
+    background-position: center;
+}

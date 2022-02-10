@@ -11,13 +11,15 @@ import {Link, useNavigate} from 'react-router-dom'
 //Firebase Imports
 import {db} from '../firebaseConfig'
 import {query, collection, getDocs,orderBy,  deleteDoc, doc} from "@firebase/firestore";
+import { getStorage, ref, deleteObject } from "firebase/storage";
 import ItemPanel from '../components/ItemPanel';
 
 function AdminBeneficiarios() {
     const [modalVisibility, setModalVisibility] = useState(false)
     const [modalInfo, setModalInfo] = useState('')
     const [idBeneficiario, setIdBeneficiario] = useState('')
-    
+    const storage = getStorage();
+
     //Firestore GET Query
     const [beneficiarios, setBeneficiarios] = useState([])
     const beneficiariosCollectionRef = collection(db, "beneficiarios")
@@ -42,10 +44,17 @@ function AdminBeneficiarios() {
         getBeneficiarios();
     }, [])
 
-   
+    
     const deleteBeneficiario = async() => {
+        const beneficiarioRef = ref(storage, `images/beneficiarios/${modalInfo}_imgBenef`);
         try{
             await deleteDoc(doc(db, "beneficiarios", idBeneficiario));
+            
+            deleteObject(beneficiarioRef).then(() => {
+                console.log("Imagenes eliminadas")
+            }).catch((error) => {
+                console.log(error)
+            });
         }
         catch(error){
             console.log(error)

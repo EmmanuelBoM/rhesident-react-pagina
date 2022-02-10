@@ -108,7 +108,7 @@ function ProyectoDetalle() {
                 {proyecto.estatus === 'Pasado' ? <div className="tag-estatus e-pasado"> <p>{proyecto.estatus}</p> </div> : null}
                 {proyecto.estatus === 'Próximo' ? <div className="tag-estatus e-proximo"> <p>{proyecto.estatus}</p> </div> : null}
                 <div className="cont-botones-proyecto">
-                    {proyecto.URLExterno ? <a href={proyecto.URLExterno}><button className="btn-proyecto-externo"> <span className="bold">Ingresa</span> a la página del proyecto</button></a> : null}
+                    {proyecto.URLExterno  !== "N/A" ? <a href={proyecto.URLExterno}><button className="btn-proyecto-externo"> <span className="bold">Ingresa</span> a la página del proyecto</button></a> : null}
                     {proyecto.estatus ==='Activo' ?<Link to='/registro-voluntariado'><button className="btn-colabora">Colabora aquí</button></Link>  :null}
                 </div>
                 

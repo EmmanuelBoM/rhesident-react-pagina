@@ -1,6 +1,5 @@
 import React from 'react'
 import '../styles/MiembroEquipo.css'
-import imgMiembro from '../assets/miembro_prueba.png'
 
 function MiembroEquipo(props) {
 

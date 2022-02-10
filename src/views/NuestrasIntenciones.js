@@ -91,7 +91,7 @@ function NuestrasIntenciones() {
       </section>
       <section className="intenciones-detalle">
         <div className="intencion-cont intencion-verde">
-          <div className="intencion-img"></div>
+          <div className="inclusion-img"></div>
           <div className="intencion-texto">
             <p className="intencion-descripcion blanco">
               Generar conexiones que permitan nombrar y reconocer la diversidad
@@ -109,11 +109,11 @@ function NuestrasIntenciones() {
               individual y colectiva.
             </p>
           </div>
-          <div className="intencion-img"></div>
+          <div className="cohesion-img"></div>
         </div>
 
         <div className="intencion-cont intencion-verde">
-          <div className="intencion-img"></div>
+          <div className="comunidad-img"></div>
           <div className="intencion-texto">
             <p className="intencion-descripcion blanco">
               Crear nuevas posibilidades para reconstruir la organización,
@@ -133,7 +133,7 @@ function NuestrasIntenciones() {
               ciudadanos activos y partícipes.
             </p>
           </div>
-          <div className="intencion-img"></div>
+          <div className="participacion-img"></div>
         </div>
       </section>
 

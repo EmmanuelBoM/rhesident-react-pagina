@@ -61,23 +61,23 @@
 }
 
 .cultura{
-    background-image: url('../assets/cultura.png');
+    background-image: url('../assets/cultura.jpg');
     background-size: cover;
     background-position: center; 
 }
 
 .arte{
-    background-image: url('../assets/arte.png');
+    background-image: url('../assets/arte.jpg');
     background-size: cover;
     background-position: center; 
 }
 .urbanismo{
-    background-image: url('../assets/urbanismo.png');
+    background-image: url('../assets/urbanismo.JPG');
     background-size: cover;
     background-position: center; 
 }
 .sustentabilidad{
-    background-image: url('../assets/sustentabilidad.png');
+    background-image: url('../assets/sustentabilidad.jpg');
     background-size: cover;
     background-position: center; 
 }
