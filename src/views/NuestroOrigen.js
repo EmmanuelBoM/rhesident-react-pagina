@@ -71,9 +71,9 @@ function NuestroOrigen() {
                 </div>
             </section>
 
-            <section className="elementos-origen">
+            <section className="elementos-origen" id='filosofia'>
                 <AnimationOnScroll animateIn="animate__fadeInLeft" animateOut='animate__fadeOutLeft' duration={1.5}>
-                    <div className="nuestra-filosofia">
+                    <div className="nuestra-filosofia" >
                         <div className="cont-origen">
                             <h2 className="titulo-origen negro">Nuestra filosofía</h2>
                             <p className="verde">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem esse reprehenderit quod iste illum cumque commodi, modi, rem ad est adipisci expedita velit. Officiis quam eaque vitae laboriosam eveniet illo, quae enim est rem distinctio. Tempora architecto numquam saepe adipisci repellendus quo reiciendis rerum, quidem expedita reprehenderit delectus et accusamus.</p>
@@ -86,7 +86,7 @@ function NuestroOrigen() {
                 </AnimationOnScroll>
 
                 <AnimationOnScroll animateIn="animate__fadeInRight" animateOut='animate__fadeOutRight' duration={1.5}>
-                    <div className="nuestra-marca">
+                    <div className="nuestra-marca" id='marca'>
                         <figure className='cont-gif'>
                             <img src={gifMarca} alt="" className="gif-origen" />
                         </figure>
@@ -99,7 +99,7 @@ function NuestroOrigen() {
                 </AnimationOnScroll>
 
                 <AnimationOnScroll animateIn="animate__fadeInLeft" animateOut='animate__fadeOutLeft' duration={1.5}>
-                    <div className="nuestra-historia">
+                    <div className="nuestra-historia" id='historia'>
                         <div className="cont-origen">
                             <h2 className="titulo-origen negro">Nuestra historia</h2>
                             <p className="verde">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem esse reprehenderit quod iste illum cumque commodi, modi, rem ad est adipisci expedita velit. Officiis quam eaque vitae laboriosam eveniet illo, quae enim est rem distinctio. Tempora architecto numquam saepe adipisci repellendus quo reiciendis rerum, quidem expedita reprehenderit delectus et accusamus.</p>

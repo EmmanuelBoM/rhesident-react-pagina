@@ -82,17 +82,17 @@ function AdminAgregarNota() {
                     </div>
                     <div className="cont-formulario-agregar">
                         <form action="" className="formulario-registro">
-                            <label htmlFor="titulo" className='input-label'>Título de la nota</label>
-                            <input type="text"  placeholder="Título completo" name="titulo" id="" className="input-gral" required onChange={handleInputChange}/>
+                            <label htmlFor="titulo" className='input-label'>Título de la nota*</label>
+                            <input type="text"  placeholder="Título completo" name="titulo" className="input-gral" required onChange={handleInputChange}/>
                             
-                            <label htmlFor="fuente" className='input-label'>Fuente</label>
+                            <label htmlFor="fuente" className='input-label'>Fuente*</label>
                             <input type="text"  placeholder="Ej.: Milenio, El Sol de Hidalgo, Blog x" name="fuente" id="" className="input-gral" required onChange={handleInputChange}/>
                             
-                            <label htmlFor="fecha" className='input-label'>Fecha de publicación</label>
-                            <input type="date"  name="fecha" id="" className="input-gral" required onChange={handleInputChange}/>
+                            <label htmlFor="fecha" className='input-label'>Fecha de publicación*</label>
+                            <input type="date"  name="fecha"  className="input-gral" required onChange={handleInputChange}/>
 
-                            <label htmlFor="notaURL" className='input-label'>URL</label>
-                            <input type="text"  placeholder="Enlace a la nota" name="notaURL" id="" className="input-gral" required onChange={handleInputChange}/>
+                            <label htmlFor="notaURL" className='input-label'>URL*</label>
+                            <input type="text"  placeholder="Enlace a la nota" name="notaURL" className="input-gral" required onChange={handleInputChange}/>
                             
                             <button className="btn-enviar"  type="button" onClick={showModalConfirmar}>
                                 <p>Agregar nota</p>

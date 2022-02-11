@@ -245,9 +245,9 @@ function Proyectos() {
       </section>
 
       <section className="proceso">
-        <div className="arte" id="arte">
+        <div className="arte" >
           <div className="dark-overlay arte-overlay">
-            <h2 className="blanco">Arte</h2>
+            <h2 className="blanco" id="arte">Arte</h2>
             <div className="scrolldown-cont">
               <img
                 src={downArrow}
@@ -255,7 +255,7 @@ function Proyectos() {
                 className="scroll-down-link scroll-down-arrow"
               />
             </div>
-            <p className="blanco descripcion-proceso">
+            <p className="blanco descripcion-proceso" >
               El arte es nuestra herramienta para descolonizar las formas de
               interacción preestablecidas. Mediante este eje, logramos
               determinar la naturaleza y vocación de cada comunidad, generando
@@ -298,9 +298,9 @@ function Proyectos() {
       </section>
 
       <section className="proceso">
-        <div className="urbanismo" id="urbanismo">
+        <div className="urbanismo" >
           <div className="dark-overlay urbanismo-overlay">
-            <h2 className="blanco">Urbanismo</h2>
+            <h2 className="blanco" id="urbanismo">Urbanismo</h2>
             <div className="scrolldown-cont">
               <img
                 src={downArrow}
@@ -308,7 +308,7 @@ function Proyectos() {
                 className="scroll-down-link scroll-down-arrow"
               />
             </div>
-            <p className="blanco descripcion-proceso">
+            <p className="blanco descripcion-proceso" >
               Nombramos y reconocemos la diversidad dentro de cada lugar,
               mediante la participación, la planificación y el ordenamiento
               territorial. Este eje nos permite fortalecer la inclusión, la
@@ -350,8 +350,8 @@ function Proyectos() {
         </div>
       </section>
 
-      <section className="proceso">
-        <div className="sustentabilidad" id="sustentabilidad">
+      <section className="proceso" >
+        <div className="sustentabilidad" >
           <div className="dark-overlay sustentabilidad-overlay">
             <h2 className="blanco">Sustentabilidad</h2>
             <div className="scrolldown-cont">
@@ -361,7 +361,7 @@ function Proyectos() {
                 className="scroll-down-link scroll-down-arrow"
               />
             </div>
-            <p className="blanco descripcion-proceso">
+            <p className="blanco descripcion-proceso" id="sustentabilidad">
               Para decodificar las limitaciones que impiden una constante
               transformación individual y colectiva, acudimos al eje de
               sustentabilidad. Logramos ver el panorama con mayor amplitud, para

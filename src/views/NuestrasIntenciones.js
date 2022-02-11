@@ -183,7 +183,7 @@ function NuestrasIntenciones() {
           </Link>
         </AnimationOnScroll>
       </section>
-      <section className="mision-vision">
+      <section className="mision-vision" id='objetivo'>
         
           <AnimationOnScroll
             className="mision"
