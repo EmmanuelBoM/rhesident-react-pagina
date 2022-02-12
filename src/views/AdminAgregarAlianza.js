@@ -99,12 +99,12 @@ function AdminAgregarAlianza() {
                     </div>
                     <div className="cont-formulario-agregar">
                         <form action="" className="formulario-registro">
-                            <label htmlFor="nombre" className='input-label'>Nombre de la alianza</label>
-                            <input type="text"  placeholder="Nombre completo" name="nombre" id="" className="input-gral" required onChange={handleInputChange}/>
+                            <label htmlFor="nombre" className='input-label'>Nombre de la alianza*</label>
+                            <input type="text"  placeholder="Nombre completo" name="nombre" className="input-gral" required onChange={handleInputChange}/>
                             
-                            <label htmlFor="imgURL" className="input-label">Imagen/Logotipo</label>
+                            <label htmlFor="imgURL" className="input-label">Imagen / Logotipo*</label>
                             <div className="file-preview">
-                                <input type="file" name="imgURL" id="" className="input-archivo" onChange={handleImgChange}/>
+                                <input type="file" name="imgURL" className="input-archivo" onChange={handleImgChange}/>
                                 <img src={imgURL} alt=""  className="preview-img" />
                             </div>
                             <div className="warning-img">

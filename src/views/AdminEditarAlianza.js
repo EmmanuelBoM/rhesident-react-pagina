@@ -79,7 +79,6 @@ function AdminEditarAlianza() {
             ...newAlianza, 
             imgURL: imgURL
         }
-        console.log(alianzaFB)
         try{
             await updateDoc(alianzaRef, alianzaFB);
         }

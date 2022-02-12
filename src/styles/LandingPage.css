@@ -197,7 +197,7 @@
 .path-conoce{
     stroke-dasharray: 1500;
     stroke-dashoffset: 1600;
-    animation: dash 3s linear forwards;
+    animation: dash 3s linear infinite;
 }
 
 .corazon-conoce{
@@ -228,7 +228,23 @@
 
 .line-conoce{
     position: absolute;
-    margin-top: 58rem;
+    margin-top: 60rem;
+    z-index: -10;
+    width: 1rem;
+    height: 65rem;
+}
+
+.line-conoce-2{
+    position: absolute;
+    margin-top: 154rem;
+    z-index: -10;
+    width: 1rem;
+    height: 65rem;
+}
+
+.line-conoce-3{
+    position: absolute;
+    margin-top: 251.5rem;
     z-index: -10;
     width: 1rem;
     height: 65rem;
@@ -257,6 +273,7 @@
     margin-right: 20rem;
     z-index: 10;
     margin-bottom: 10rem;
+    cursor: pointer;
 }
 
 
@@ -293,7 +310,9 @@
     margin-bottom: 2rem;
 }
 
-
+.text-conoce{
+    width: 30%;
+}
 
 
 .btn-round{

@@ -95,7 +95,7 @@ function AdminEditarTestimonio() {
 
     return (
         <div className="body-admin">
-            {modalExitoVisibility ? <ModalAdminExito setModalVisibility={setModalExitoVisibility} rutaContinuar='/admin_testimonios' accion='editado' recurso= 'Testimonio de' nombreRecurso={newTestimonio.nombre}></ModalAdminExito> : null }
+            {modalExitoVisibility ? <ModalAdminExito setModalVisibility={setModalExitoVisibility} rutaContinuar='/admin_testimonios' accion='editado' recurso= 'Testimonio de' nombreRecurso={testimonio.nombre}></ModalAdminExito> : null }
             {modalConfVisibility ? <ModalAdminConfirmar setModalVisibility={setModalConfVisibility} runFunction={updateTestimonio} accion='editar' recurso= 'el Testimonio de' nombreRecurso={testimonio.nombre}></ModalAdminConfirmar> : null }
             
             <AdminNavbar activeTab='testimonios'></AdminNavbar>
@@ -114,7 +114,7 @@ function AdminEditarTestimonio() {
                             <input type="text"  placeholder="Ej.: Voluntario, Colaborador, etc." name="relacion" id="" className="input-gral" required onChange={handleInputChange} defaultValue={testimonio.relacion}/>
 
                             <label htmlFor="testimonio" className='input-label'>Testimonio</label>
-                            <textarea name="testimonio" id="" cols="30" rows="10" className="input-gral"  onChange={handleInputChange} defaultValue={testimonio.testimonio}></textarea>
+                            <textarea name="testimonio" id="" cols="30" rows="10" className="input-gral" maxLength={220} onChange={handleInputChange} defaultValue={testimonio.testimonio}></textarea>
                             
                             <label htmlFor="imgURL" className="input-label">Imagen / Logotipo</label>
                             <div className="file-preview">

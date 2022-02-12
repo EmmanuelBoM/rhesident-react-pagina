@@ -101,10 +101,10 @@ function AdminAgregarBeneficiario() {
                     </div>
                     <div className="cont-formulario-agregar">
                         <form action="" className="formulario-registro">
-                            <label htmlFor="nombre" className='input-label'>Nombre del beneficiario</label>
+                            <label htmlFor="nombre" className='input-label'>Nombre del beneficiario*</label>
                             <input type="text"  placeholder="Nombre completo" name="nombre" id="" className="input-gral" required onChange={handleInputChange}/>
                             
-                            <label htmlFor="imgURL" className="input-label">Imagen/Logotipo</label>
+                            <label htmlFor="imgURL" className="input-label">Imagen/Logotipo*</label>
                             <div className="file-preview">
                                 <input type="file" name="imgURL" id="" className="input-archivo" onChange={handleImgChange}/>
                                 <img src={imgURL} alt=""  className="preview-img" />

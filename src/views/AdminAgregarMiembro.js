@@ -123,16 +123,16 @@ function AdminAgregarMiembro() {
                     </div>
                     <div className="cont-formulario-agregar">
                         <form action="" className="formulario-registro">
-                            <label htmlFor="nombre" className='input-label'>Nombre del miembro</label>
+                            <label htmlFor="nombre" className='input-label'>Nombre del miembro*</label>
                             <input type="text"  placeholder="Nombre completo" name="nombre" id="" className="input-gral" required onChange={handleInputChange}/>
 
-                            <label htmlFor="areaEspecializacion" className='input-label'>Área de especialización</label>
+                            <label htmlFor="areaEspecializacion" className='input-label'>Área de especialización*</label>
                             <input type="text"  placeholder="Ej.: Marketing, Diseño, Community Manager, Antropología" name="areaEspecializacion" id="" className="input-gral" required onChange={handleInputChange}/>
 
-                            <label htmlFor="descripcion" className='input-label'>Descripción</label>
+                            <label htmlFor="descripcion" className='input-label'>Descripción*</label>
                             <textarea name="descripcion" id="" cols="30" rows="10" className="input-gral"  onChange={handleInputChange}></textarea>
                             
-                            <label htmlFor="imgPerfilURL" className="input-label">Imagen de perfil</label>
+                            <label htmlFor="imgPerfilURL" className="input-label">Imagen de perfil*</label>
                             <div className="file-preview">
                                 <input type="file" name="imgPerfilURL" id="" className="input-archivo" onChange={handleImgPerfilChange}/>
                                 <img src={imgPerfilURL} alt=""  className="preview-img" />
@@ -143,7 +143,7 @@ function AdminAgregarMiembro() {
                                 <p className="txt-warning">Recuerda comprimir el tamaño de la imagen <a href="https://compressor.io/" target="_blank">aquí</a></p>
                             </div>
 
-                            <label htmlFor="imgCompletaURL" className="input-label">Imagen Completa</label>
+                            <label htmlFor="imgCompletaURL" className="input-label">Imagen Completa*</label>
                             <div className="file-preview">
                                 <input type="file" name="imgCompletaURL" id="" className="input-archivo" onChange={handleImgCompletaChange}/>
                                 <img src={imgCompletaURL} alt=""  className="preview-img" />
