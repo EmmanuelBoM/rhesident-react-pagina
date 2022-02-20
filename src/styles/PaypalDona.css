@@ -15,16 +15,13 @@
     background-color: var(--blanco);
     border-radius: 2rem;
     width: 25%;
-    padding: 4rem;
+    padding: 2rem 4rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 20rem;
 }
 
 .btn-dona-paypal{
-    position: absolute;
-    top: 90%;
     font-size: 2.6rem;
     font-family: 'Lato';
     color: var(--g-200);
@@ -33,7 +30,6 @@
     border-radius: 1rem;
     background: var(--secundario);
     border: none;
-    position: absolute;
     cursor: pointer;
     align-items: center;
 }
@@ -45,7 +41,8 @@
 }
 
 .card-paypal img{
-    width: 45%;
+    width: 30%;
+    margin-bottom: 4rem;
 }
 
 .dona-bottom{
@@ -75,4 +72,35 @@
 
 .descripcion-dona{
     width: 50%;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .card-paypal{
+        width: 40%;
+    }
+
+    .descripcion-dona{
+        width: 60%;
+    }
+}
+
+
+@media only screen and (max-width: 576px) {
+    .card-paypal{
+        width: 60%;
+    }
+
+    .dona-bottom{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .frase{
+        width: 90%;
+    }
+
+    .descripcion-dona{
+        width: 80%;
+    }
 }

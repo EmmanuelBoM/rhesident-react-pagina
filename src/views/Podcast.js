@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Footer from '../components/Footer';
 import NavHeader from '../components/NavHeader';
+import NavMovil from '../components/NavMovil';
 import ilustracionPodcast from '../assets/ilustracion_podcast.svg'
 import '../styles/base.css'
 import '../styles/Podcast.css'
@@ -9,6 +10,7 @@ import { useParams } from 'react-router-dom';
 
 function Podcast() {
     const [plataforma, setPlataforma] = useState('youtube')
+    const [navMovilVisibility, setNavMovilVisibility] = useState(false)
     const params = useParams()
 
     useEffect(()=>{
@@ -24,10 +26,14 @@ function Podcast() {
     }
     return (
         <main>
-            <NavHeader></NavHeader>
             <Helmet>
                 <title>Podcast | Rhesident</title>
             </Helmet>
+            {navMovilVisibility ? (
+                <NavMovil setNavMovilVisibility={setNavMovilVisibility}></NavMovil>
+            ) : null}
+            <NavHeader setNavMovilVisibility={setNavMovilVisibility}></NavHeader>
+            
             <section className="header-descargas">
                 <img src={ilustracionPodcast} alt="" className="img-descargas" />
                 <div className="text-header-descargas">
@@ -71,7 +77,10 @@ function Podcast() {
                     <div className="scrolldown-cont">
                         <i class="fa-solid fa-microphone-lines scroll-down-link-green" ></i>
                     </div>
-                    <iframe width="700" height="400" src="https://www.youtube.com/embed/videoseries?list=PLO5PywciZTL_4Ol2haPSRbDPCCfpEc3Y-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div className="cont-frame"> 
+                        <iframe  className='responsive-iframe yt-iframe' src="https://www.youtube.com/embed/videoseries?list=PLO5PywciZTL_4Ol2haPSRbDPCCfpEc3Y-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>   
+                    </div>
+                   
                 </div> :
 
                 <div className="podcast-spotify">
@@ -79,7 +88,7 @@ function Podcast() {
                     <div className="scrolldown-cont">
                         <i class="fa-solid fa-microphone-lines scroll-down-link-green" ></i>
                     </div>
-                    <iframe src="https://open.spotify.com/embed/show/6wF969GfLUfypoKaicH5gr?utm_source=generator" width="80%" height="232" frameBorder="0" allowfullscreen="" title='Rhesident Podcast' allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                    <iframe src="https://open.spotify.com/embed/show/6wF969GfLUfypoKaicH5gr?utm_source=generator" width="85%" height="232" frameBorder="0" allowfullscreen="" title='Rhesident Podcast' allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
                 </div>
 
                 }

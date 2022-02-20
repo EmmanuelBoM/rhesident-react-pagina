@@ -13,7 +13,7 @@ import { useParams } from 'react-router-dom';
 const options = [
   { value: 'Presencial', label: 'Presencial' },
   { value: 'Híbrido', label: 'Híbrido' },
-  { value: 'Remoto', label: 'Remoto' }
+  { value: 'Virtual', label: 'Virtual' }
 ]
 
 function RegistroVoluntarios() {

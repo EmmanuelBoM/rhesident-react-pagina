@@ -104,8 +104,8 @@ function AdminAgregarDescarga() {
                             <label htmlFor="nombre" className='input-label'>Nombre*</label>
                             <input type="text"  placeholder="Nombre del archivo" name="nombre"  className="input-gral" required onChange={handleInputChange}/>
 
-                            <label htmlFor="descripcion" className='input-label'>Descripción</label>
-                            <textarea name="descripcion" placeholder="Descripción del archivo"  cols="30" rows="6" className="input-gral"  onChange={handleInputChange}></textarea>
+                            <label htmlFor="descripcion" className='input-label'>Descripción*</label>
+                            <textarea name="descripcion" placeholder="Descripción del archivo"  cols="30" rows="6" className="input-gral" required onChange={handleInputChange}></textarea>
                             
                             <label htmlFor="imgURL" className="input-label">Archivo*</label>
                             <input type="file" name="imgURL"  className="input-archivo" required onChange={handleArchivoChange}/>

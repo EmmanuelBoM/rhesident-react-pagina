@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Footer from "../components/Footer";
 import NavHeader from "../components/NavHeader";
 import OverlayInvitacion from "../components/OverlayInvitacion";
+import NavMovil from "../components/NavMovil";
 
 import "../styles/base.css";
 import "../styles/LandingPage.css";
@@ -9,8 +10,7 @@ import "../styles/NuestrasIntenciones.css";
 import "animate.css/animate.min.css";
 
 import downArrow from "../assets/down_arrow_light.svg";
-import imgHeroIntenciones from "../assets/nuestras_intenciones.png";
-
+import { Helmet } from "react-helmet";
 import { AnimationOnScroll } from "react-animation-on-scroll";
 import { Animated } from "react-animated-css";
 import "animate.css/animate.min.css";
@@ -19,13 +19,14 @@ import { Link } from "react-router-dom";
 
 // Firebase Imports
 import { db } from "../firebaseConfig";
-import { collection, getDoc, doc } from "@firebase/firestore";
-import { Helmet } from "react-helmet";
+import { getDoc, doc } from "@firebase/firestore";
+
+
 
 function NuestrasIntenciones() {
   const [overlayVisibility, setOverlayVisibility] = useState(false);
   const [portadaIntenciones, setPortadaIntenciones] = useState("");
-
+  const [navMovilVisibility, setNavMovilVisibility] = useState(false)
   const portadaRef = doc(db, "recursosGenerales", "JdU7qvSU98pHcPSt59e4");
   useEffect(() => {
     const getPortada = async () => {
@@ -55,7 +56,12 @@ function NuestrasIntenciones() {
       <Helmet>
         <title>Nuestras Intenciones | Rhesident</title>
       </Helmet>
-      <NavHeader textColor="blanco"></NavHeader>
+      
+      {navMovilVisibility ? (
+        <NavMovil setNavMovilVisibility={setNavMovilVisibility}></NavMovil>
+      ) : null}
+
+      <NavHeader textColor="blanco" setNavMovilVisibility={setNavMovilVisibility}></NavHeader>
       <Animated
         animateOnMount={false}
         animationIn="fadeInDown"
@@ -93,11 +99,15 @@ function NuestrasIntenciones() {
         <div className="intencion-cont intencion-verde">
           <div className="inclusion-img"></div>
           <div className="intencion-texto">
-            <p className="intencion-descripcion blanco">
+            <p className="intencion-descripcion int-hide blanco">
               Generar conexiones que permitan nombrar y reconocer la diversidad
               dentro de una comunidad.
             </p>
             <h2 className="intencion-titulo blanco">Inclusión</h2>
+            <p className="intencion-descripcion-sec blanco">
+              Generar conexiones que permitan nombrar y reconocer la diversidad
+              dentro de una comunidad.
+            </p>
           </div>
         </div>
 
@@ -115,19 +125,23 @@ function NuestrasIntenciones() {
         <div className="intencion-cont intencion-verde">
           <div className="comunidad-img"></div>
           <div className="intencion-texto">
-            <p className="intencion-descripcion blanco">
+            <p className="intencion-descripcion int-hide blanco">
               Crear nuevas posibilidades para reconstruir la organización,
               significado e identidad comunitaria.
             </p>
-            <h2 className="intencion-titulo blanco">Sentido de comunidad</h2>
+            <h2 className="intencion-titulo blanco">Sentido <br /> de comunidad</h2>
+            <p className="intencion-descripcion-sec blanco">
+              Crear nuevas posibilidades para reconstruir la organización,
+              significado e identidad comunitaria.
+            </p>
           </div>
         </div>
 
         <div className="intencion-cont">
           <div className="intencion-texto">
-            <h2 className="intencion-titulo verde">
-              Participación e involucramiento social
-            </h2>
+            <h3 className="intencion-titulo verde">
+              Participación e <br /> involucramiento social
+            </h3>
             <p className="intencion-descripcion verde">
               Determinar la naturaleza y vocación de cada comunidad con
               ciudadanos activos y partícipes.
@@ -172,6 +186,7 @@ function NuestrasIntenciones() {
           animateIn="animate__heartBeat"
           animateOut="animate__fadeOutUp"
           delay={2}
+          duration={3}
         >
           <Link to="/proyectos">
             <button className="btn-intenciones-procesos">
@@ -195,12 +210,17 @@ function NuestrasIntenciones() {
               diversificar acciones.
             </p>
           </AnimationOnScroll>
-        <div className="separador">
+
+        <div className="separador-contacto-vertical">
           <div className="circulo-separador"></div>
           <div className="linea-separador"></div>
           <div className="circulo-separador"></div>
         </div>
-
+        <div className="separador-contacto-horizontal">
+            <div className="circulo-separador"></div>
+            <div className="linea-separador-horizontal"></div>
+            <div className="circulo-separador"></div>
+          </div>
           <AnimationOnScroll
             animateIn="animate__fadeInDown"
             animateOut="animate__fadeOutUp"
@@ -213,11 +233,17 @@ function NuestrasIntenciones() {
               la transformación del entorno.
             </p>
           </AnimationOnScroll>
-        <div className="separador">
+
+        <div className="separador-contacto-vertical">
           <div className="circulo-separador"></div>
           <div className="linea-separador"></div>
           <div className="circulo-separador"></div>
         </div>
+        <div className="separador-contacto-horizontal">
+            <div className="circulo-separador"></div>
+            <div className="linea-separador-horizontal"></div>
+            <div className="circulo-separador"></div>
+          </div>
           <AnimationOnScroll
             animateIn="animate__fadeInDown"
             animateOut="animate__fadeOutUp"

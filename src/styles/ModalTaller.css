@@ -118,3 +118,25 @@
     box-shadow: 2px 5px 5px #16455556;
     transform: scale(1.05);
 }
+
+@media only screen and (max-width: 576px) {
+    .cont-modal-taller{
+        width: 40rem;
+    }
+
+    .img-taller{
+        display: none;
+    }
+
+    .taller-info-principal{
+        width: 100%;
+    }
+
+    .modal-taller-bottom{
+        flex-direction: column;
+    }
+
+    .detalle-taller{
+        margin-bottom: 2rem;
+    }
+}

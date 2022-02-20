@@ -77,7 +77,7 @@ function AdminEditarTaller() {
     const modalidadesSelect = [
         { value: 'Presencial', label: 'Presencial' },
         { value: 'Híbrido', label: 'Híbrido' },
-        { value: 'Remoto', label: 'Remoto' }
+        { value: 'Virtual', label: 'Virtual' }
     ]
 
     const customSelectStyles = {

@@ -1,13 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import Footer from '../components/Footer';
 import NavHeader from '../components/NavHeader';
+import NavMovil from '../components/NavMovil';
+
 import '../styles/base.css'
 import '../styles/LandingPage.css'
 import '../styles/Talleres.css'
 import downArrow from '../assets/down_arrow_light.svg'
 import Taller from '../components/Taller';
 import ModalTaller from '../components/ModalTaller';
-
 import {Animated} from "react-animated-css";
 import "animate.css/animate.min.css";
 
@@ -22,6 +23,7 @@ function Talleres() {
     const [talleresProximos, setTalleresProximos]= useState([])
     const [taller, setTaller]= useState({})
     const [portadaTalleres, setPortadaTalleres] = useState('')
+    const [navMovilVisibility, setNavMovilVisibility] = useState(false)
 
     const portadaRef = doc(db, "recursosGenerales", "fQoDFrUMsc7yKR6cfbh7");
     const talleresCollectionRef = collection(db, "talleres")
@@ -58,7 +60,10 @@ function Talleres() {
             <Helmet>
                 <title>Talleres | Rhesident</title>
             </Helmet>
-            <NavHeader textColor='blanco'></NavHeader>
+            {navMovilVisibility ? (
+                <NavMovil setNavMovilVisibility={setNavMovilVisibility}></NavMovil>
+            ) : null}
+            <NavHeader textColor='blanco' setNavMovilVisibility={setNavMovilVisibility}></NavHeader>
             <section className="hero-talleres" style={portadaImg}>
                     <div className="color-overlay">
                         <h1 className='titulo-hero blanco'>Aprende con nuestros talleres</h1>

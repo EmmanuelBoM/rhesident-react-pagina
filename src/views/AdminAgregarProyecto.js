@@ -54,7 +54,7 @@ function AdminAgregarProyecto() {
     const modalidadesSelect = [
         { value: 'Presencial', label: 'Presencial' },
         { value: 'Híbrido', label: 'Híbrido' },
-        { value: 'Remoto', label: 'Remoto' }
+        { value: 'Remoto', label: 'Virtual' }
     ]
 
     const customSelectStyles = {

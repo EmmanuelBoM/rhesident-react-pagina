@@ -112,6 +112,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     padding: 20rem 0;
     background-color: var(--blanco);
 }
@@ -157,6 +158,9 @@
     flex-direction: column;
     align-items: center;
     margin: 20rem 0;
+    padding: 0 25rem;
+    box-sizing: border-box;
+    text-align: center;
 }
 
 .galeria-proyectos-voluntariado{
@@ -167,4 +171,40 @@
 .flecha-card-v{
     font-size: 2rem ;
     margin-top: 4rem;
+}
+
+.subt-center{
+    text-align: center;
+    width: 85%;
+    margin-inline: auto;
+}
+@media only screen and (max-width: 992px) {
+    .video-voluntariado{
+        padding: 0 15rem;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .cont-tipo-voluntariado{
+        padding: 4rem 2rem;
+    }
+
+    .video-voluntariado{
+        padding: 0 10rem;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .tipos-voluntariado{
+        flex-direction: column;
+    }
+
+    .cont-tipo-voluntariado{
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .video-voluntariado{
+        padding: 0 5rem;
+    }
 }

@@ -10,9 +10,10 @@ function Footer() {
             <section className="footer-main-content">
                 <div className="footer-details">
                     <img src={logo} alt="" className="logo-footer" />
-                    <p className="footer-subtitle">Contacto</p>
-                    <p className="verde">info@rhesident.org</p>
-                    <div className="redes-footer">
+                    <div className="contacto-footer">
+                        <p className="footer-subtitle">Contacto</p>
+                        <p   p className="verde">info@rhesident.org</p>
+                        <div className="redes-footer">
                         <a href="https://www.facebook.com/rhesident.org">
                             <i class="fa-brands fa-facebook"></i>
                         </a>
@@ -29,8 +30,13 @@ function Footer() {
                             <i class="fa-brands fa-linkedin"></i>
                         </a>
                     </div>
-                    <p className="footer-subtitle">Suscríbete al newsletter</p>
-                    <CustomMailchimpForm variacion='footer'></CustomMailchimpForm>
+                    </div>
+                    
+                    <div className="footer-mailchimp">
+                        <p className="footer-subtitle">Suscríbete al newsletter</p>
+                        <CustomMailchimpForm variacion='footer'></CustomMailchimpForm>
+                    </div>
+                    
                 </div>
                 <div className="footer-links">
                     <div className="footer-cont">
@@ -83,12 +89,11 @@ function Footer() {
             <div className="footer-divider"></div>
             <section className="footer-bottom">
                 <div className="footer-credits">
-                    <p><span className="bold">Rhesident Org.</span> ®. 2021. Todos los derechos reservados. ©</p>
-                    <p>Desarrollado y diseñado por<a href=""> Emmanuel Manzo </a></p>
+                    <p><span className="bold">Rhesident Org.</span> ®. 2022. Todos los derechos reservados. ©</p>
+                    <p>Desarrollado y diseñado por<a href="http://ebmanzo.me/" className='verde' target="_blank"> Emmanuel Manzo </a></p>
                 </div>
                 <div className="footer-docs">
-                    <p>Política de privacidad</p>
-                    <p>Términos y condiciones</p>
+                    <Link to="/aviso-de-privacidad" ><p className="footer-link verde">Aviso de privacidad</p> </Link>
                 </div>
                 
             </section>

@@ -38,6 +38,7 @@
 
 .nombre-testimonial{
     font-weight: 500;
+    width: 70%;
 }
 
 .detalles-testimonial{
@@ -47,14 +48,16 @@
     justify-content: center;
     text-align: center;
     margin-top: 8rem;
+    margin-left: 4rem;
 }
 
 .texto-testimonio{
     font-size: 1.6rem;
     text-align: center;
-    width: 50%;
+    width: 38%;
     font-style: italic;
     margin-top: 2rem;
+    margin-left: -3rem;
 }
 
 .img-testimonial{
@@ -193,4 +196,50 @@
 .img-alianza{
     margin-inline: 4rem;
     width: 20rem;
+    margin-bottom: 4rem;
+}
+
+@media only screen and (max-width: 1200px) {
+    .detalles-testimonial{
+        margin-left: 3rem;
+    }
+    .texto-testimonio{
+        width: 35%;
+        margin-left: -2rem;
+    }
+    .swiper-testimonios .swiper-button-next, .swiper-testimonios .swiper-button-prev{
+        width: 8rem !important;
+        top: 51rem !important;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .texto-testimonio{
+        width: 35%;
+        margin-left: -3rem;
+    }
+    
+}
+
+@media only screen and (max-width: 768px) {
+    .texto-testimonio{
+        width: 28%;
+        margin-left: -3rem;
+    }
+
+    .swiper-testimonios .swiper-button-next, .swiper-testimonios .swiper-button-prev{
+        width: 4rem !important;
+        top: 51rem !important;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .swiper-testimonios .swiper-button-next, .swiper-testimonios .swiper-button-prev{
+        width: 0rem !important;
+        top: 51rem !important;
+    }
+    .texto-testimonio{
+        width: 45%;
+        margin-left: -3rem;
+    }
 }

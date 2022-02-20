@@ -101,3 +101,15 @@
     margin-top: 10rem;
     margin-bottom: 10rem;
 }
+
+@media only screen and (max-width: 768px) {
+    .tipos-donaciones{
+        flex-direction: column;
+    }
+
+    .cont-tipo-donaciones{
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+

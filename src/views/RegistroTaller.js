@@ -4,6 +4,7 @@ import NavHeader from '../components/NavHeader';
 import '../styles/base.css'
 import '../styles/Formularios.css'
 import imgRegistroVoluntario from '../assets/ilustracion_agregar_taller.svg'
+import NavMovil from '../components/NavMovil';
 
 import emailjs from '@emailjs/browser';
 import ModalAdminExito from '../components/ModalAdminExito';
@@ -26,6 +27,7 @@ function RegistroTaller() {
     const [encabezado, setEncabezado] = useState('')
     const [formulario, setFormulario] = useState('')
     const [formul, setFormul] = useState()
+    const [navMovilVisibility, setNavMovilVisibility] = useState(false)
 
     const params = useParams();
 
@@ -86,7 +88,10 @@ function RegistroTaller() {
         <main>
             {modalExitoVisibility ? <ModalAdminExito setModalVisibility={setModalExitoVisibility} rutaContinuar='/talleres' accion='completado. Pronto nos pondremos en contacto' recurso= 'Registro' subt=" " nombreRecurso=" "></ModalAdminExito> : null }
             {modalConfVisibility ? <ModalAdminConfirmar setModalVisibility={setModalConfVisibility} runFunction={sendEmail} accion='enviar' recurso= 'tu registro' nombreRecurso=" "></ModalAdminConfirmar> : null }
-            <NavHeader></NavHeader>
+            {navMovilVisibility ? (
+                <NavMovil setNavMovilVisibility={setNavMovilVisibility}></NavMovil>
+            ) : null}
+            <NavHeader setNavMovilVisibility={setNavMovilVisibility}></NavHeader>
             <div className="titulo-header">
                 <h1 className="verde">Regístrate al taller</h1>
                 <h3 className="negro">{taller.nombre}</h3>

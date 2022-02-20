@@ -15,7 +15,7 @@
     flex-direction: row;
     box-sizing: border-box;
     justify-content: center;
-    height: 40vh;
+    height: 60vh;
 }
 
 .inclusion-img{
@@ -32,6 +32,7 @@
     width: 60%;
     background-size: cover;
     background-position: center;
+    margin-left: 4rem;
 }
 
 .comunidad-img{
@@ -40,6 +41,7 @@
     width: 60%;
     background-size: cover;
     background-position: center;
+    margin-right: 4rem;
 }
 
 .participacion-img{
@@ -48,15 +50,17 @@
     width: 60%;
     background-size: cover;
     background-position: center;
+    margin-left: 6rem;
 }
 
 .intencion-texto{
     display: flex;
     flex-direction: row;
-    width: 40%;
+    width: 60%;
     justify-content: space-around;
     align-items: center;
     text-align: center;
+    font-size: 2rem;
 }
 
 
@@ -64,6 +68,10 @@
     display: none;
     margin-bottom: 0;
     width: 40%;
+}
+
+.intencion-descripcion-sec{
+    display: none;
 }
 
 .intencion-cont:hover .intencion-img{
@@ -185,4 +193,79 @@
     background-image: url('../assets/img_PropositoEvolutivo.jpg');
     background-size: cover;
     background-position: center;
+}
+
+@media only screen and (max-width: 768px) {
+    .intencion-cont{
+        flex-direction: column;
+    }
+
+    .inclusion-img{
+        display: none;
+    }
+
+    .cohesion-img{
+        display: none;
+    }
+
+    .comunidad-img{
+        display: none;
+    }
+
+    .intencion-cont{
+        align-items: center;
+    }
+    .participacion-img{
+        display: none;
+    }
+
+    .intencion-cont:hover .intencion-texto{
+        animation: none;
+    }
+
+    .intencion-texto{
+        width: 90%;
+    }
+
+    .intencion-descripcion{
+        display: flex;
+    }
+
+    .mision-vision{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .mision, .vision, .objetivo{
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+
+}
+
+
+@media only screen and (max-width: 576px) {
+    .titulo-hero{
+        width: 90%;
+    }
+
+    .descripcion-hero{
+        width: 85%;
+    }
+
+    .intencion-descripcion{
+        width: 100%;
+    }
+    
+    .intencion-descripcion-sec{
+        display: flex;
+    }
+
+    .int-hide{
+        display: none !important;
+    }
+
+    .intencion-texto{
+        flex-direction: column;
+    }
 }

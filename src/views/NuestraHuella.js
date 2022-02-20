@@ -15,6 +15,7 @@ import "swiper/css/navigation";
 import { Animated } from "react-animated-css";
 import "animate.css/animate.min.css";
 import SwiperCore, { Pagination, Navigation } from "swiper";
+import NavMovil from "../components/NavMovil";
 
 //Firebase imports
 import { db } from "../firebaseConfig";
@@ -23,6 +24,7 @@ import {
   collection,
   getDocs,
   where,
+  orderBy,
   doc,
   getDoc,
 } from "@firebase/firestore";
@@ -36,6 +38,7 @@ function NuestraHuella() {
   const [testimonios, setTestimonios] = useState([]);
   const [alianzas, setAlianzas] = useState([]);
   const [portadaHuella, setPortadaHuella] = useState("");
+  const [navMovilVisibility, setNavMovilVisibility] = useState(false)
 
   function showOverlay() {
     if (window.scrollY >= 80) {
@@ -48,13 +51,10 @@ function NuestraHuella() {
   const portadaRef = doc(db, "recursosGenerales", "mHhvAtVFhE9x7rikpH4W");
 
   const notasCollectionRef = collection(db, "notasMedio");
-  const q_notas = query(notasCollectionRef, where("visible", "==", true));
+  const q_notas = query(notasCollectionRef, where("visible", "==", true), orderBy("fecha"));
 
   const testimoniosCollectionRef = collection(db, "testimonios");
-  const q_testimonios = query(
-    testimoniosCollectionRef,
-    where("visible", "==", true)
-  );
+  const q_testimonios = query(testimoniosCollectionRef, where("visible", "==", true), orderBy("nombre"));
 
   const alianzasCollectionRef = collection(db, "alianzas");
   const q_alianzas = query(alianzasCollectionRef, where("visible", "==", true));
@@ -83,6 +83,7 @@ function NuestraHuella() {
     getNotas();
     getTestimonios();
     getAlianzas();
+    console.log(testimonios)
   }, []);
 
   const portadaImg = {
@@ -95,7 +96,10 @@ function NuestraHuella() {
       <Helmet>
         <title>Nuestra Huella | Rhesident</title>
       </Helmet>
-      <NavHeader textColor="blanco"></NavHeader>
+      {navMovilVisibility ? (
+        <NavMovil setNavMovilVisibility={setNavMovilVisibility}></NavMovil>
+      ) : null}
+      <NavHeader textColor="blanco" setNavMovilVisibility={setNavMovilVisibility}></NavHeader>
       <Animated
         animateOnMount={false}
         animationIn="fadeInDown"
@@ -140,10 +144,19 @@ function NuestraHuella() {
         </div>
 
         <Swiper
-          slidesPerView={3}
+          slidesPerView={4}
           navigation={true}
           spaceBetween={1}
           centeredSlides={true}
+          initialSlide={1}
+          breakpoints={{
+            768: {
+              slidesPerView: 2,
+            },
+            0: {
+              slidesPerView: 1,
+            },
+          }}
           pagination={{ clickable: true }}
           className="swiper-testimonios"
         >
@@ -186,6 +199,14 @@ function NuestraHuella() {
           spaceBetween={30}
           pagination={{ type: "custom" }}
           navigation={true}
+          breakpoints={{
+            768: {
+              slidesPerView: 3,
+            },
+            0: {
+              slidesPerView: 2,
+            },
+          }}
           className="swiper-proyectos"
         >
           {notas.map((nota) => {
