@@ -45,7 +45,15 @@ function Proyectos() {
   const [proyectosSustentabilidad, setProyectosSustentabilidad] = useState([]);
   const [portadaProyectos, setPortadaProyectos] = useState("");
   const [navMovilVisibility, setNavMovilVisibility] = useState(false)
+  const [culturaImg, setImgCultura] = useState('')
+  const [arteImg, setImgArte] = useState('')
+  const [urbanismoImg, setImgUrbanismo] = useState('')
+  const [sustentabilidadImg, setImgSustentabilidad] = useState('')
   const portadaRef = doc(db, "recursosGenerales", "iFJVC92tChob76LtClV4");
+  const culturaRef = doc(db, "recursosGenerales", "J0uekV97B4U7n7cdWd9W");
+  const arteRef = doc(db, "recursosGenerales", "vDRd2aOZzlUDxFTOjnLA");
+  const urbanismoRef = doc(db, "recursosGenerales", "x2imEnVsTNCZSmI0Y8uv");
+  const sustentabilidadRef = doc(db, "recursosGenerales", "rpDAVZHphDNpmI30z7mw");
   const proyectosCollectionRef = collection(db, "proyectos");
 
   const q_arte = query(
@@ -93,11 +101,37 @@ function Proyectos() {
         data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
       );
     };
+    
+    const getImgArte = async () => {
+      const arteDoc = await getDoc(arteRef);
+      setImgArte(arteDoc.data().url);
+    };
+
+    const getImgCultura = async () => {
+      const culturaDoc = await getDoc(culturaRef);
+      setImgCultura(culturaDoc.data().url);
+    };
+
+    const getImgSustentabilidad = async () => {
+      const sustentabilidadDoc = await getDoc(sustentabilidadRef);
+      setImgSustentabilidad(sustentabilidadDoc.data().url);
+    };
+
+    const getImgUrbanismo = async () => {
+      const urbanismoDoc = await getDoc(urbanismoRef);
+      setImgUrbanismo(urbanismoDoc.data().url);
+    };
 
     const getPortada = async () => {
       const portadaDoc = await getDoc(portadaRef);
       setPortadaProyectos(portadaDoc.data().url);
     };
+
+
+    getImgArte();
+    getImgCultura();
+    getImgSustentabilidad();
+    getImgUrbanismo();
 
     getPortada();
     getProyectosArte();
@@ -108,6 +142,19 @@ function Proyectos() {
 
   const portadaImg = {
     backgroundImage: `url(${portadaProyectos})`,
+  };
+
+  const arteBGImg = {
+    backgroundImage: `url(${arteImg})`,
+  };
+  const culturaBGImg = {
+    backgroundImage: `url(${culturaImg})`,
+  };
+  const sustentabilidadBGImg = {
+    backgroundImage: `url(${sustentabilidadImg})`,
+  };
+  const urbanismoBGImg = {
+    backgroundImage: `url(${urbanismoImg})`,
   };
 
   const [swiperRef, setSwiperRef] = useState(null);
@@ -197,7 +244,7 @@ function Proyectos() {
       </section>
 
       <section className="proceso">
-        <div className="cultura" id="cultura">
+        <div className="cultura" id="cultura" style={culturaBGImg}>
           <div className="dark-overlay cultura-overlay">
             <h2 className="blanco">Cultura</h2>
             <div className="scrolldown-cont">
@@ -250,7 +297,7 @@ function Proyectos() {
       </section>
 
       <section className="proceso">
-        <div className="arte" id="arte_">
+        <div className="arte" id="arte_" style={arteBGImg}>
           <div className="dark-overlay arte-overlay">
             <h2 className="blanco" id="arte">Arte</h2>
             <div className="scrolldown-cont">
@@ -303,7 +350,7 @@ function Proyectos() {
       </section>
 
       <section className="proceso">
-        <div className="urbanismo" id="urbanismo_">
+        <div className="urbanismo" id="urbanismo_" style={urbanismoBGImg}>
           <div className="dark-overlay urbanismo-overlay">
             <h2 className="blanco" id="urbanismo">Urbanismo</h2>
             <div className="scrolldown-cont">
@@ -356,7 +403,7 @@ function Proyectos() {
       </section>
 
       <section className="proceso" >
-        <div className="sustentabilidad" id="sustentabilidad_">
+        <div className="sustentabilidad" id="sustentabilidad_" style={sustentabilidadBGImg}>
           <div className="dark-overlay sustentabilidad-overlay">
             <h2 className="blanco">Sustentabilidad</h2>
             <div className="scrolldown-cont">

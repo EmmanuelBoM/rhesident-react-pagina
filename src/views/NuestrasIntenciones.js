@@ -27,18 +27,31 @@ function NuestrasIntenciones() {
   const [overlayVisibility, setOverlayVisibility] = useState(false);
   const [portadaIntenciones, setPortadaIntenciones] = useState("");
   const [navMovilVisibility, setNavMovilVisibility] = useState(false)
+  const [propositoImg, setPropositoImg] = useState('')
   const portadaRef = doc(db, "recursosGenerales", "JdU7qvSU98pHcPSt59e4");
+  const propositoRef = doc(db, "recursosGenerales", "d62EdjeAOaeBMLMPqcAF");
+
   useEffect(() => {
     const getPortada = async () => {
       const portadaDoc = await getDoc(portadaRef);
       setPortadaIntenciones(portadaDoc.data().url);
     };
 
+    const getImgProposito = async () => {
+      const propositoDoc = await getDoc(propositoRef);
+      setPropositoImg(propositoDoc.data().url);
+    };
+
+    getImgProposito();
     getPortada();
   }, []);
 
   const portadaImg = {
     backgroundImage: `url(${portadaIntenciones})`,
+  };
+
+  const propositoBGImg = {
+    backgroundImage: `url(${propositoImg})`,
   };
 
   function showOverlay() {
@@ -56,12 +69,15 @@ function NuestrasIntenciones() {
       <Helmet>
         <title>Nuestras Intenciones | Rhesident</title>
       </Helmet>
-      
+
       {navMovilVisibility ? (
         <NavMovil setNavMovilVisibility={setNavMovilVisibility}></NavMovil>
       ) : null}
 
-      <NavHeader textColor="blanco" setNavMovilVisibility={setNavMovilVisibility}></NavHeader>
+      <NavHeader
+        textColor="blanco"
+        setNavMovilVisibility={setNavMovilVisibility}
+      ></NavHeader>
       <Animated
         animateOnMount={false}
         animationIn="fadeInDown"
@@ -129,7 +145,9 @@ function NuestrasIntenciones() {
               Crear nuevas posibilidades para reconstruir la organización,
               significado e identidad comunitaria.
             </p>
-            <h2 className="intencion-titulo blanco">Sentido <br /> de comunidad</h2>
+            <h2 className="intencion-titulo blanco">
+              Sentido <br /> de comunidad
+            </h2>
             <p className="intencion-descripcion-sec blanco">
               Crear nuevas posibilidades para reconstruir la organización,
               significado e identidad comunitaria.
@@ -151,7 +169,11 @@ function NuestrasIntenciones() {
         </div>
       </section>
 
-      <section className="proposito-evolutivo" id="propositoEvolutivo">
+      <section
+        className="proposito-evolutivo"
+        id="propositoEvolutivo"
+        style={propositoBGImg}
+      >
         <div className="color-overlay">
           <AnimationOnScroll
             animateIn="animate__fadeInUp"
@@ -167,10 +189,10 @@ function NuestrasIntenciones() {
             offset={190}
           >
             <p className="blanco">
-              El propósito que seguimos, es el rizoma que multiplica nuestras
-              acciones, nuestro propósito: Reproducir, desde las potencialidades
-              individuales y colectivas, diferentes conexiones comunitarias,
-              para que se construyan nuevas interacciones territoriales.
+              El propósito que seguimos es el rizoma que multiplica nuestras
+              acciones, este es: reproducir, desde las potencialidades y
+              colectivas, diferentes conexiones comunitarias para que se
+              construyan nuevas interacciones territoriales.
             </p>
           </AnimationOnScroll>
         </div>
@@ -198,18 +220,18 @@ function NuestrasIntenciones() {
           </Link>
         </AnimationOnScroll>
       </section>
-      <section className="mision-vision" id='objetivo'>
-        
-          <AnimationOnScroll
-            className="mision"
-            animateIn="animate__fadeInDown"
-            animateOut="animate__fadeOutUp">
-            <h2 className="blanco">Misión</h2>
-            <p className="blanco texto-mvo">
-              Crear conexiones comunitarias para renovar percepciones y
-              diversificar acciones.
-            </p>
-          </AnimationOnScroll>
+      <section className="mision-vision" id="objetivo">
+        <AnimationOnScroll
+          className="mision"
+          animateIn="animate__fadeInDown"
+          animateOut="animate__fadeOutUp"
+        >
+          <h2 className="blanco">Misión</h2>
+          <p className="blanco texto-mvo">
+            Crear conexiones comunitarias para renovar percepciones y
+            diversificar acciones.
+          </p>
+        </AnimationOnScroll>
 
         <div className="separador-contacto-vertical">
           <div className="circulo-separador"></div>
@@ -217,22 +239,22 @@ function NuestrasIntenciones() {
           <div className="circulo-separador"></div>
         </div>
         <div className="separador-contacto-horizontal">
-            <div className="circulo-separador"></div>
-            <div className="linea-separador-horizontal"></div>
-            <div className="circulo-separador"></div>
-          </div>
-          <AnimationOnScroll
-            animateIn="animate__fadeInDown"
-            animateOut="animate__fadeOutUp"
-            duration={1.4}
-            className="vision"
-          >
-            <h2 className="blanco">Visión</h2>
-            <p className="blanco texto-mvo">
-              Fortalecer el sentido de pertenencia y de comunidad, incentivando
-              la transformación del entorno.
-            </p>
-          </AnimationOnScroll>
+          <div className="circulo-separador"></div>
+          <div className="linea-separador-horizontal"></div>
+          <div className="circulo-separador"></div>
+        </div>
+        <AnimationOnScroll
+          animateIn="animate__fadeInDown"
+          animateOut="animate__fadeOutUp"
+          duration={1.4}
+          className="vision"
+        >
+          <h2 className="blanco">Visión</h2>
+          <p className="blanco texto-mvo">
+            Fortalecer el sentido de pertenencia y de comunidad, incentivando la
+            transformación del entorno.
+          </p>
+        </AnimationOnScroll>
 
         <div className="separador-contacto-vertical">
           <div className="circulo-separador"></div>
@@ -240,21 +262,21 @@ function NuestrasIntenciones() {
           <div className="circulo-separador"></div>
         </div>
         <div className="separador-contacto-horizontal">
-            <div className="circulo-separador"></div>
-            <div className="linea-separador-horizontal"></div>
-            <div className="circulo-separador"></div>
-          </div>
-          <AnimationOnScroll
-            animateIn="animate__fadeInDown"
-            animateOut="animate__fadeOutUp"
-            duration={1.6}
-            className="objetivo"
-          >
-            <h2 className="blanco">Objetivo</h2>
-            <p className="blanco texto-mvo">
-              Resignificar las maneras de construir y hacer comunidad.
-            </p>
-          </AnimationOnScroll>
+          <div className="circulo-separador"></div>
+          <div className="linea-separador-horizontal"></div>
+          <div className="circulo-separador"></div>
+        </div>
+        <AnimationOnScroll
+          animateIn="animate__fadeInDown"
+          animateOut="animate__fadeOutUp"
+          duration={1.6}
+          className="objetivo"
+        >
+          <h2 className="blanco">Objetivo</h2>
+          <p className="blanco texto-mvo">
+            Resignificar las maneras de construir y hacer comunidad.
+          </p>
+        </AnimationOnScroll>
       </section>
       <Footer></Footer>
     </main>

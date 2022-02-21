@@ -160,6 +160,10 @@ function AdminRecursos() {
                     />
                     <img src={popupImg} alt="" className="preview-img" />
                   </div>
+                  <div className="warning-img">
+                      <i class="fa-solid fa-circle-exclamation"></i>
+                      <p className="txt-warning">Formatos recomendados: Póster (3:4), Póster Horizontal (4:3), Cuadrado</p>
+                  </div>
                   <button
                     className={btnPopupDisabled ? "btn-disabled" : "btn-enviar"}
                     onClick={updatePopUp}

@@ -18,28 +18,38 @@ const CustomFormFooter = ({ status, message, onValidated }) => {
         console.log(status)
     }
 
-    return(
-        <div >
-            <div className="input-newsletter-cont-s">
-                <input  className='input-newsletter-s' type="email" name="correo" id="" placeholder='Correo electrónico'required enterKeyHint='done' autoComplete='off' onChange={handleEmailChange}/>
-                <button className="btn-newsletter-s" onClick={submit} type='submit'>
-                    <i class="fa-solid fa-paper-plane icono-send-newsletter-s"></i>
-                </button>
-            </div>
-            {status === "sending" && <p className='negro mc-texto-s mc-enviando texto-s'>Enviando...</p>}
-
-            {status === "error" && (
-                <p className='mc-texto-s negro'>Ha ocurrido un error. Intenta con otro correo electrónico.</p>
-            )}
-
-            {status === "success" && (
-                <p className='mc-texto-s verde'>¡Gracias por suscribirte! </p>
-               
-            )}
-
-            
-            
+    return (
+      <div>
+        <div className="input-newsletter-cont-s">
+          <input
+            className="input-newsletter-s"
+            type="email"
+            name="correo"
+            id=""
+            placeholder="Correo electrónico"
+            required
+            enterKeyHint="done"
+            autoComplete="off"
+            onChange={handleEmailChange}
+          />
+          <button className="btn-newsletter-s" onClick={submit} type="submit">
+            <i class="fa-solid fa-paper-plane icono-send-newsletter-s"></i>
+          </button>
         </div>
-  );
+        {status === "sending" && (
+          <p className="negro mc-texto-s mc-enviando texto-s">Enviando...</p>
+        )}
+
+        {status === "error" && (
+          <p className="mc-texto-s negro">
+            Ha ocurrido un error. Intenta con otro correo electrónico.
+          </p>
+        )}
+
+        {status === "success" && (
+          <p className="mc-texto-s verde">¡Gracias por suscribirte! </p>
+        )}
+      </div>
+    );
     }
 export default CustomFormFooter;

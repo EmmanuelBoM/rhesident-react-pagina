@@ -5,7 +5,8 @@ import CustomForm from "./CustomForm";
 import CustomFormFooter from "./CustomFormFooter";
 
 function CustomMailchimpForm(props) {
-    const url ="https://rhesident.us14.list-manage.com/subscribe/post?u=7bd1fc1e8d1b21fa36dd77455&amp;id=0972078ecd";
+    const url =
+      "https://rhesident.us14.list-manage.com/subscribe/post?u=7bd1fc1e8d1b21fa36dd77455&amp;id=0972078ecd";
     return (
     <div>
         <MailchimpSubscribe

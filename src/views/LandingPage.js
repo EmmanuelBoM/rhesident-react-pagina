@@ -31,45 +31,53 @@ function LandingPage() {
 
     
     const [portadaImg, setPortadaImg] = useState('')
+    const [causaImg, setCausaImg] = useState('')
     const [videoURL, setVideoURL] = useState('')
     const [modalVisibility, setModalVisibility] = useState(false)
     const [modalImg, setModalImg] = useState('')
     const [navMovilVisibility, setNavMovilVisibility] = useState(false)
     
+    const causaBGImg = {
+      backgroundImage: `url(${causaImg})`,
+    };
 
     const portadaRef = doc(db, "recursosGenerales", "5ePochyXKfxpLa6MK32Q")
     const modalRef = doc(db, "recursosGenerales", "enDqmvvOeWGgzB88rDrB")
     const videoRef = doc(db, "recursosGenerales", "5aT7wvcLG9yGr6B8Ar8G")
+    const causaRef = doc(db, "recursosGenerales", "9Ye3smePFo8rD4oilpTE")
 
-    useEffect (()=>{
-        
+    useEffect(() => {
+      const getPortada = async () => {
+        const portadaDoc = await getDoc(portadaRef);
+        setPortadaImg(portadaDoc.data().url);
+      };
 
-        const getPortada = async () => {
-          const portadaDoc = await getDoc(portadaRef);
-          setPortadaImg(portadaDoc.data().url)
+      const getCausaImg = async () => {
+        const causaDoc = await getDoc(causaRef);
+        setCausaImg(causaDoc.data().url);
+      };
+
+      const getModal = async () => {
+        const modalDoc = await getDoc(modalRef);
+        setModalImg(modalDoc.data().url);
+        let modalStorage = sessionStorage.getItem("modalLanding");
+        if (modalStorage) {
+          setModalVisibility(false);
+        } else {
+          setModalVisibility(modalDoc.data().visible);
         }
-        const getModal = async () => {
-            const modalDoc = await getDoc(modalRef);
-            setModalImg(modalDoc.data().url)
-            let modalStorage = sessionStorage.getItem('modalLanding')
-            if(modalStorage){
-              setModalVisibility(false)
-            }
-            else{
-              setModalVisibility(modalDoc.data().visible)
-            }
-            
-        }
+      };
 
-        const getVideo = async () => {
+      const getVideo = async () => {
         const videoDoc = await getDoc(videoRef);
-        setVideoURL(videoDoc.data().url)
-        }
-        
-        getModal();
-        getVideo();
-        getPortada();
-      }, []);
+        setVideoURL(videoDoc.data().url);
+      };
+
+      getCausaImg();
+      getModal();
+      getVideo();
+      getPortada();
+    }, []);
 
     
     return (
@@ -140,7 +148,7 @@ function LandingPage() {
             individual y colectivo.
           </p>
           <div className="scrolldown-cont-small">
-            <i class="fa-solid fa-angles-down scroll-down-link"></i>
+            <i className="fa-solid fa-angles-down scroll-down-link"></i>
           </div>
 
           <div className="hero-ctas">
@@ -168,9 +176,9 @@ function LandingPage() {
               animateOut="animate__fadeOutRight"
               offset={190}
             >
-              <div className="cta">
+            <div className="cta">
                 <div className="icono-cta">
-                  <img src={iconoCausa} alt="" className="img-cta" />
+                    <img src={iconoCausa} alt="" className="img-cta" />
                 </div>
 
                 <p className="texto-cta megro">
@@ -188,7 +196,7 @@ function LandingPage() {
         </section>
 
         <div className="scrolldown-cont">
-          <i class="fa-solid fa-angle-down scroll-down-link-green"></i>
+          <i className="fa-solid fa-angle-down scroll-down-link-green"></i>
         </div>
 
         <section className="video-principal">
@@ -198,9 +206,9 @@ function LandingPage() {
               className="responsive-iframe"
               src={`https://www.youtube.com/embed/${videoURL}`}
               title="YouTube video player"
-              frameborder="0"
+              frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
+              allowFullScreen
             ></iframe>
           </div>
           
@@ -214,7 +222,7 @@ function LandingPage() {
           />
         </div>
 
-        <section className="nuestra-causa">
+        <section className="nuestra-causa" style={causaBGImg}>
           <div className="color-overlay">
             <AnimationOnScroll
               animateIn="animate__fadeInUp"
@@ -285,7 +293,7 @@ function LandingPage() {
                   className="path-conoce"
                   d="M40.5948 34.4589L40.5961 34.458C87.9233 0.385331 149.926 -4.30329 202.253 21.2961C232.481 36.0871 267.288 51.946 290.191 58.5908C313.062 65.2314 332.898 79.4079 353.747 96.7009C359.129 101.165 364.588 105.846 370.177 110.639C386.022 124.228 402.912 138.713 422.06 151.682C434.42 160.054 443.273 168.906 449.666 179.206C456.068 189.521 460.165 201.552 462.652 216.508C467.294 244.419 466.224 281.559 464.679 335.213C464.552 339.628 464.421 344.156 464.291 348.799C463.868 363.835 462.655 375.409 460.635 384.291C458.613 393.18 455.849 399.071 452.535 403.021C446.191 410.585 436.516 412.52 419.997 411.659C413.54 411.322 406.268 410.57 398.15 409.73C365.305 406.332 318.625 401.503 256.204 417.006C219.151 426.208 191.482 418.865 169.269 401.631C146.744 384.154 129.427 356.192 114.134 323.389C103.982 301.613 94.9114 278.156 85.8043 254.605C81.1717 242.625 76.5296 230.621 71.731 218.801C57.6226 184.049 42.216 151.064 22.0185 126.972C5.27119 106.995 2.43836 89.8345 6.87797 75.1449C11.4465 60.0286 24.0447 46.366 40.5948 34.4589Z"
                   stroke="#F0E967"
-                  stroke-width="10"
+                  strokeWidth="10"
                 />
               </svg>
               <h3 className="verde subt-conoce">
@@ -371,7 +379,7 @@ function LandingPage() {
                   className="path-conoce"
                   d="M40.5948 34.4589L40.5961 34.458C87.9233 0.385331 149.926 -4.30329 202.253 21.2961C232.481 36.0871 267.288 51.946 290.191 58.5908C313.062 65.2314 332.898 79.4079 353.747 96.7009C359.129 101.165 364.588 105.846 370.177 110.639C386.022 124.228 402.912 138.713 422.06 151.682C434.42 160.054 443.273 168.906 449.666 179.206C456.068 189.521 460.165 201.552 462.652 216.508C467.294 244.419 466.224 281.559 464.679 335.213C464.552 339.628 464.421 344.156 464.291 348.799C463.868 363.835 462.655 375.409 460.635 384.291C458.613 393.18 455.849 399.071 452.535 403.021C446.191 410.585 436.516 412.52 419.997 411.659C413.54 411.322 406.268 410.57 398.15 409.73C365.305 406.332 318.625 401.503 256.204 417.006C219.151 426.208 191.482 418.865 169.269 401.631C146.744 384.154 129.427 356.192 114.134 323.389C103.982 301.613 94.9114 278.156 85.8043 254.605C81.1717 242.625 76.5296 230.621 71.731 218.801C57.6226 184.049 42.216 151.064 22.0185 126.972C5.27119 106.995 2.43836 89.8345 6.87797 75.1449C11.4465 60.0286 24.0447 46.366 40.5948 34.4589Z"
                   stroke="#F0E967"
-                  stroke-width="10"
+                  strokeWidth="10"
                 />
               </svg>
               <h3 className="verde subt-conoce">
@@ -450,7 +458,7 @@ function LandingPage() {
                   className="path-conoce"
                   d="M40.5948 34.4589L40.5961 34.458C87.9233 0.385331 149.926 -4.30329 202.253 21.2961C232.481 36.0871 267.288 51.946 290.191 58.5908C313.062 65.2314 332.898 79.4079 353.747 96.7009C359.129 101.165 364.588 105.846 370.177 110.639C386.022 124.228 402.912 138.713 422.06 151.682C434.42 160.054 443.273 168.906 449.666 179.206C456.068 189.521 460.165 201.552 462.652 216.508C467.294 244.419 466.224 281.559 464.679 335.213C464.552 339.628 464.421 344.156 464.291 348.799C463.868 363.835 462.655 375.409 460.635 384.291C458.613 393.18 455.849 399.071 452.535 403.021C446.191 410.585 436.516 412.52 419.997 411.659C413.54 411.322 406.268 410.57 398.15 409.73C365.305 406.332 318.625 401.503 256.204 417.006C219.151 426.208 191.482 418.865 169.269 401.631C146.744 384.154 129.427 356.192 114.134 323.389C103.982 301.613 94.9114 278.156 85.8043 254.605C81.1717 242.625 76.5296 230.621 71.731 218.801C57.6226 184.049 42.216 151.064 22.0185 126.972C5.27119 106.995 2.43836 89.8345 6.87797 75.1449C11.4465 60.0286 24.0447 46.366 40.5948 34.4589Z"
                   stroke="#F0E967"
-                  stroke-width="10"
+                  strokeWidth="10"
                 />
               </svg>
               <h4 className="verde subt-conoce">
@@ -537,7 +545,7 @@ function LandingPage() {
                   className="path-conoce"
                   d="M40.5948 34.4589L40.5961 34.458C87.9233 0.385331 149.926 -4.30329 202.253 21.2961C232.481 36.0871 267.288 51.946 290.191 58.5908C313.062 65.2314 332.898 79.4079 353.747 96.7009C359.129 101.165 364.588 105.846 370.177 110.639C386.022 124.228 402.912 138.713 422.06 151.682C434.42 160.054 443.273 168.906 449.666 179.206C456.068 189.521 460.165 201.552 462.652 216.508C467.294 244.419 466.224 281.559 464.679 335.213C464.552 339.628 464.421 344.156 464.291 348.799C463.868 363.835 462.655 375.409 460.635 384.291C458.613 393.18 455.849 399.071 452.535 403.021C446.191 410.585 436.516 412.52 419.997 411.659C413.54 411.322 406.268 410.57 398.15 409.73C365.305 406.332 318.625 401.503 256.204 417.006C219.151 426.208 191.482 418.865 169.269 401.631C146.744 384.154 129.427 356.192 114.134 323.389C103.982 301.613 94.9114 278.156 85.8043 254.605C81.1717 242.625 76.5296 230.621 71.731 218.801C57.6226 184.049 42.216 151.064 22.0185 126.972C5.27119 106.995 2.43836 89.8345 6.87797 75.1449C11.4465 60.0286 24.0447 46.366 40.5948 34.4589Z"
                   stroke="#F0E967"
-                  stroke-width="10"
+                  strokeWidth="10"
                 />
               </svg>
               <h3 className="verde subt-conoce">
@@ -606,19 +614,19 @@ function LandingPage() {
             </p>
             <div className="redes">
               <a href="https://www.facebook.com/rhesident.org">
-                <i class="fa-brands fa-facebook"></i>
+                <i className="fa-brands fa-facebook"></i>
               </a>
               <a href="https://www.instagram.com/rhesident_org/">
-                <i class="fa-brands fa-instagram"></i>
+                <i className="fa-brands fa-instagram"></i>
               </a>
               <a href="https://twitter.com/rhesident_org">
-                <i class="fa-brands fa-twitter"></i>
+                <i className="fa-brands fa-twitter"></i>
               </a>
               <a href="https://www.linkedin.com/company/rhesident-org/">
-                <i class="fa-brands fa-linkedin"></i>
+                <i className="fa-brands fa-linkedin"></i>
               </a>
               <a href="mailto:contacto@rhesident.org">
-                <i class="fa-solid fa-envelope"></i>
+                <i className="fa-solid fa-envelope"></i>
               </a>
             </div>
           </div>

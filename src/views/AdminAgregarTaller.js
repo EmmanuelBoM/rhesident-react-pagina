@@ -247,6 +247,10 @@ function AdminAgregarTaller() {
                             </div>
                             <div className="warning-img">
                                 <i class="fa-solid fa-circle-exclamation"></i>
+                                <p className="txt-warning">Formato recomendado: <span className="bold"> Horizontal 4:3</span> </p>
+                            </div>  
+                            <div className="warning-img">
+                                <i class="fa-solid fa-circle-exclamation"></i>
                                 <p className="txt-warning">Recuerda comprimir el tamaño de la imagen <a href="https://compressor.io/">aquí</a></p>
                             </div>
 
