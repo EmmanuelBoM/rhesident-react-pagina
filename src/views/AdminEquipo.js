@@ -11,7 +11,7 @@ import {Link, useNavigate} from 'react-router-dom'
 
 //Firebase Imports
 import {db} from '../firebaseConfig'
-import {query, collection, getDocs,orderBy,  deleteDoc, doc} from "@firebase/firestore";
+import {query, collection, getDocs,orderBy,  deleteDoc, doc, where} from "@firebase/firestore";
 import ItemPanel from '../components/ItemPanel';
 import { Helmet } from 'react-helmet';
 
@@ -24,7 +24,7 @@ function AdminEquipo() {
     const [equipo, setEquipo] = useState([])
     const equipoCollectionRef = collection(db, "equipo")
   
-    const q = query(equipoCollectionRef, orderBy("nombre"))
+    const q = query(equipoCollectionRef, orderBy("nombre"), where("nombre", "!=", "No eliminar"))
     let navigate = useNavigate();
 
     useEffect (()=>{

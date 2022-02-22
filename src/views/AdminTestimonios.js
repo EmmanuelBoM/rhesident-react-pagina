@@ -13,7 +13,7 @@ import {Link, useNavigate} from 'react-router-dom'
 
 //Firebase Imports
 import {db} from '../firebaseConfig'
-import {query, collection, getDocs,orderBy, doc, updateDoc,  deleteDoc} from "@firebase/firestore";
+import {query, collection, getDocs,orderBy, doc, updateDoc,  deleteDoc, where} from "@firebase/firestore";
 import { getStorage, ref, deleteObject } from "firebase/storage";
 import { Helmet } from 'react-helmet';
 
@@ -23,7 +23,7 @@ function AdminTestimonios() {
     const [testimonios, setTestimonios] = useState([])
     const testimoniosCollectionRef = collection(db, "testimonios")
     const storage = getStorage();
-    const q = query(testimoniosCollectionRef, orderBy("nombre"))
+    const q = query(testimoniosCollectionRef, orderBy("nombre"), where("nombre", "!=", "No eliminar"))
     let navigate = useNavigate();
     useEffect (()=>{
         let authToken = sessionStorage.getItem('Auth Token')
@@ -158,12 +158,7 @@ function AdminTestimonios() {
           </header>
           <section className="panel-bottom">
             <div className="layout1-panel-top">
-              <div className="card-contenido-panel card-estadisticas">
-                <div className="header-card-contenido">
-                  <div className="horizontal-indicator"></div>
-                  <h4 className="verde">Estadísticas</h4>
-                </div>
-              </div>
+              
 
               <Link to="/agregar-testimonio" className="btn-agregar-panel">
                 <div className="header-card-contenido">

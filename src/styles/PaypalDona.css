@@ -32,6 +32,7 @@
     border: none;
     cursor: pointer;
     align-items: center;
+    text-decoration: none;
 }
 
 .btn-dona-paypal:hover{

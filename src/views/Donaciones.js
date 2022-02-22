@@ -76,7 +76,7 @@ function Donaciones() {
                 <div className="cont-tipo-donaciones agenda-entrevista">
                     <i class="fa-solid fa-calendar-day icono-donaciones"></i>
                     <p className="mb4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi suscipit architecto soluta repellendus unde id!</p>
-                    <a href="https://calendly.com/"><button className="btn-donaciones">Agenda una entrevista</button></a>
+                    <a href="https://calendly.com/rhesidentorg"><button className="btn-donaciones">Agenda una entrevista</button></a>
                 </div>
             </section>
 

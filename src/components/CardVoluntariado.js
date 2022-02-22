@@ -55,19 +55,27 @@ function CardVoluntariado(props) {
           >
             {props.tipoVoluntariado}
           </h3>
-          <i
-            className={
-              props.voluntariadoActive === props.tipoVoluntariado
-                ? `text-voluntariado-active`
-                : null
-            }
-            class={
-              props.voluntariadoActive === props.tipoVoluntariado
-                ? "text-voluntariado-active fa-regular fa-circle-question icono-pregunta"
-                : "fa-regular fa-circle-question icono-pregunta"
-            }
-          ></i>
+          <div className="cont-i-explicacion">
+            <i
+              className={
+                props.voluntariadoActive === props.tipoVoluntariado
+                  ? `text-voluntariado-active`
+                  : null
+              }
+              class={
+                props.voluntariadoActive === props.tipoVoluntariado
+                  ? "text-voluntariado-active fa-regular fa-circle-question icono-pregunta"
+                  : "fa-regular fa-circle-question icono-pregunta"
+              }
+            ></i>
+            <div className="explicacion-tipo">
+            <p className="negro">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque consectetur animi earum minus at quaerat repellat quasi quibusdam magnam perspiciatis!</p>
+            </div>
+          </div>
+         
+          
         </div>
+        
         <Link to="/registro-voluntariado">
           <button
             className={

@@ -176,7 +176,7 @@ function NuestraHuella() {
                   </p>
                 </div>
                 <p className="blanco texto-testimonio">
-                  {testimonio.testimonio}
+                  "{testimonio.testimonio}"
                 </p>
               </SwiperSlide>
             );

@@ -12,7 +12,7 @@ import {Link, useNavigate} from 'react-router-dom'
 
 //Firebase Imports
 import {db} from '../firebaseConfig'
-import {query, collection, getDocs,orderBy, doc, updateDoc,  deleteDoc} from "@firebase/firestore";
+import {query, collection, getDocs,orderBy, doc, updateDoc,  deleteDoc, where} from "@firebase/firestore";
 import { Helmet } from 'react-helmet';
 
 function AdminTalleres() {
@@ -21,7 +21,7 @@ function AdminTalleres() {
     const [talleres, setTalleres] = useState([])
     const talleresCollectionRef = collection(db, "talleres")
   
-    const q = query(talleresCollectionRef, orderBy("nombre"))
+    const q = query(talleresCollectionRef, orderBy("nombre"), where("nombre", "!=", "No eliminar"))
 
     let navigate = useNavigate();
     useEffect (()=>{
@@ -154,13 +154,7 @@ function AdminTalleres() {
           </header>
           <section className="panel-bottom">
             <div className="layout1-panel-top">
-              <div className="card-contenido-panel card-estadisticas">
-                <div className="header-card-contenido">
-                  <div className="horizontal-indicator"></div>
-                  <h4 className="verde">Estadísticas</h4>
-                </div>
-              </div>
-
+              
               <Link to="/agregar-taller" className="btn-agregar-panel">
                 <div className="header-card-contenido">
                   <div className="vertical-indicator-light"></div>

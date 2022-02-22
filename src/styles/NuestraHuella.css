@@ -14,7 +14,7 @@
 
 .swiper-testimonios{
     padding: 10rem 0 !important;
-    height: 38rem;
+    height: 48rem;
     width: 100%;
     display: flex;
     align-items: center;
@@ -38,7 +38,7 @@
 
 .nombre-testimonial{
     font-weight: 500;
-    width: 70%;
+    width: 90%;
 }
 
 .detalles-testimonial{
@@ -55,7 +55,6 @@
     font-size: 1.6rem;
     text-align: center;
     width: 38%;
-    font-style: italic;
     margin-top: 2rem;
     margin-left: -3rem;
 }
@@ -77,7 +76,7 @@
     height: 10rem !important;
     border-radius: 25rem;
     color: var(--primario) !important;
-    top: 50.5rem !important;
+    top: 60.5rem !important;
     cursor: pointer;
     
 }
@@ -204,42 +203,61 @@
         margin-left: 3rem;
     }
     .texto-testimonio{
-        width: 35%;
+        width: 45%;
         margin-left: -2rem;
     }
     .swiper-testimonios .swiper-button-next, .swiper-testimonios .swiper-button-prev{
         width: 8rem !important;
-        top: 51rem !important;
+        top: 61rem !important;
     }
 }
 
 @media only screen and (max-width: 992px) {
     .texto-testimonio{
-        width: 35%;
-        margin-left: -3rem;
+        width: 45%;
+        margin-left: -5rem;
     }
     
 }
 
 @media only screen and (max-width: 768px) {
     .texto-testimonio{
-        width: 28%;
-        margin-left: -3rem;
+        width: 35%;
+        margin-left: -5rem;
     }
 
     .swiper-testimonios .swiper-button-next, .swiper-testimonios .swiper-button-prev{
         width: 4rem !important;
-        top: 51rem !important;
+        top: 61rem !important;
     }
 }
 
 @media only screen and (max-width: 576px) {
     .swiper-testimonios .swiper-button-next, .swiper-testimonios .swiper-button-prev{
         width: 0rem !important;
-        top: 51rem !important;
+        top: 61rem !important;
     }
     .texto-testimonio{
         width: 45%;
+        margin-left: -3rem;
+    }
+
+    .swiper-testimonios .swiper-button-next{
+        margin-right: 30%;
+    }
+
+    .swiper-testimonios .swiper-button-prev{
+        margin-left: 30%;
+    }
+}
+@media only screen and (max-width: 450px) {
+    .swiper-testimonios .swiper-button-next, .swiper-testimonios .swiper-button-prev{
+        width: 0rem !important;
+        top: 61rem !important;
+    }
+
+    .texto-testimonio{
+        width: 60%;
         margin-left: -3rem;
     }
 }

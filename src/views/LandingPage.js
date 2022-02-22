@@ -48,8 +48,8 @@ function LandingPage() {
 
     useEffect(() => {
       const getPortada = async () => {
-        const portadaDoc = await getDoc(portadaRef);
-        setPortadaImg(portadaDoc.data().url);
+          const portadaDoc = await getDoc(portadaRef);
+          setPortadaImg(portadaDoc.data().url);
       };
 
       const getCausaImg = async () => {
@@ -79,9 +79,13 @@ function LandingPage() {
       getPortada();
     }, []);
 
+    function showData(){
+      console.log(portadaImg)
+    }
+
     
     return (
-      <main className='main-landing'>
+      <main className="main-landing">
         <Helmet>
           <title>Inicio | Rhesident Org </title>
         </Helmet>
@@ -96,7 +100,6 @@ function LandingPage() {
         {navMovilVisibility ? (
           <NavMovil setNavMovilVisibility={setNavMovilVisibility}></NavMovil>
         ) : null}
-        
 
         <NavHeader
           textColor="blanco"
@@ -176,9 +179,9 @@ function LandingPage() {
               animateOut="animate__fadeOutRight"
               offset={190}
             >
-            <div className="cta">
+              <div className="cta">
                 <div className="icono-cta">
-                    <img src={iconoCausa} alt="" className="img-cta" />
+                  <img src={iconoCausa} alt="" className="img-cta" />
                 </div>
 
                 <p className="texto-cta megro">
@@ -211,7 +214,6 @@ function LandingPage() {
               allowFullScreen
             ></iframe>
           </div>
-          
         </section>
 
         <div className="scrolldown-cont">

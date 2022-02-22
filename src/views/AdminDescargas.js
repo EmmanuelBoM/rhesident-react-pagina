@@ -13,7 +13,7 @@ import {Link, useNavigate} from 'react-router-dom'
 
 //Firebase Imports
 import {db} from '../firebaseConfig'
-import {query, collection, getDocs,orderBy, doc, updateDoc,  deleteDoc} from "@firebase/firestore";
+import {query, collection, getDocs,orderBy, doc, updateDoc,  deleteDoc, where} from "@firebase/firestore";
 import { Helmet } from 'react-helmet';
 
 function AdminDescargas() {
@@ -22,7 +22,7 @@ function AdminDescargas() {
     const [descargas, setDescargas] = useState([])
     const descargasCollectionRef = collection(db, "descargas")
   
-    const q = query(descargasCollectionRef, orderBy("nombre"))
+    const q = query(descargasCollectionRef, orderBy("nombre"), where("nombre", "!=", "No eliminar"))
     let navigate = useNavigate();
     useEffect (()=>{
         let authToken = sessionStorage.getItem('Auth Token')
@@ -150,12 +150,7 @@ function AdminDescargas() {
           </header>
           <section className="panel-bottom">
             <div className="layout1-panel-top">
-              <div className="card-contenido-panel card-estadisticas">
-                <div className="header-card-contenido">
-                  <div className="horizontal-indicator"></div>
-                  <h4 className="verde">Estadísticas</h4>
-                </div>
-              </div>
+             
 
               <Link to="/agregar-descarga" className="btn-agregar-panel">
                 <div className="header-card-contenido">
@@ -173,7 +168,7 @@ function AdminDescargas() {
             <div className="card-contenido-panel card-cont-tabla">
               <div className="header-card-contenido">
                 <div className="vertical-indicator"></div>
-                <h4 className="verde">Todas los descargas</h4>
+                <h4 className="verde">Todas las descargas</h4>
               </div>
               <DataGrid
                 autoHeight

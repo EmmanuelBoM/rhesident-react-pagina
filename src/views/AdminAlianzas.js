@@ -11,7 +11,7 @@ import {Link, useNavigate} from 'react-router-dom'
 
 //Firebase Imports
 import {db} from '../firebaseConfig'
-import {query, collection, getDocs,orderBy,  deleteDoc, doc} from "@firebase/firestore";
+import {query, collection, getDocs,orderBy,  deleteDoc, doc, where} from "@firebase/firestore";
 import { getStorage, ref, deleteObject } from "firebase/storage";
 import ItemPanel from '../components/ItemPanel';
 import { Helmet } from 'react-helmet';
@@ -26,7 +26,7 @@ function AdminAlianzas() {
     const [alianzas, setAlianzas] = useState([])
     const alianzasCollectionRef = collection(db, "alianzas")
   
-    const q = query(alianzasCollectionRef, orderBy("nombre"))
+    const q = query(alianzasCollectionRef, orderBy("nombre"), where("nombre", "!=", "No eliminar"))
     let navigate = useNavigate();
     useEffect (()=>{
         let authToken = sessionStorage.getItem('Auth Token')

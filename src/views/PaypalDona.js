@@ -25,7 +25,7 @@ function PaypalDona() {
                 <p className="blanco descripcion-dona">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt similique porro numquam aperiam reiciendis et, aliquam error ipsum quibusdam necessitatibus?</p>
                 <div className="card-paypal">
                     <img src={paypalLogo} alt="" />
-                    <button className="btn-dona-paypal">Donar ahora</button>
+                    <a href='https://www.paypal.com/paypalme/rhesidentorg' className="btn-dona-paypal">Donar ahora</a>
                 </div>
                 <div className="dona-bottom">
                     <div className="frase">
