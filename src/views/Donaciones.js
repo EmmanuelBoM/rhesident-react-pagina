@@ -6,6 +6,7 @@ import '../styles/Donaciones.css'
 import downArrow from '../assets/down_arrow_light.svg'
 import {Link} from 'react-router-dom'
 import { Helmet } from 'react-helmet';
+import NavMovil from '../components/NavMovil';
 
 //Firebase imports
 import {db} from '../firebaseConfig'
@@ -14,6 +15,7 @@ import {query, collection, getDocs,where, doc, getDoc} from "@firebase/firestore
 function Donaciones() {
     const [portadaDonaciones, setPortadaDonaciones] = useState('')
     const portadaRef = doc(db, "recursosGenerales", "aSTTw9VJfhoZbNYB7MKk");
+    const [navMovilVisibility, setNavMovilVisibility] = useState(false)
 
     const [beneficiarios, setBeneficiarios]= useState([])
     const beneficiariosCollectionRef = collection(db, "beneficiarios")
@@ -43,7 +45,10 @@ function Donaciones() {
             <Helmet>
                 <title>Cómo Apoyar | Rhesident</title>
             </Helmet>
-            <NavHeader textColor='blanco'></NavHeader>
+            {navMovilVisibility ? (
+                <NavMovil setNavMovilVisibility={setNavMovilVisibility}></NavMovil>
+            ) : null}
+            <NavHeader textColor='blanco' setNavMovilVisibility={setNavMovilVisibility}></NavHeader>
             <section className="hero-donaciones" style={portadaImg}>
                 <div className="color-overlay">
                     <h1 className='titulo-hero blanco'>Apoya nuestra causa</h1>
@@ -71,7 +76,7 @@ function Donaciones() {
                 <div className="cont-tipo-donaciones agenda-entrevista">
                     <i class="fa-solid fa-calendar-day icono-donaciones"></i>
                     <p className="mb4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi suscipit architecto soluta repellendus unde id!</p>
-                    <a href="https://calendly.com/"><button className="btn-donaciones">Agenda una entrevista</button></a>
+                    <a href="https://calendly.com/rhesidentorg"><button className="btn-donaciones">Agenda una entrevista</button></a>
                 </div>
             </section>
 

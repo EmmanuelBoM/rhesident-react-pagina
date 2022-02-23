@@ -76,7 +76,7 @@ function AdminEditarProyecto() {
     const modalidadesSelect = [
         { value: 'Presencial', label: 'Presencial' },
         { value: 'Híbrido', label: 'Híbrido' },
-        { value: 'Remoto', label: 'Remoto' }
+        { value: 'Remoto', label: 'Virtual' }
     ]
 
     const customSelectStyles = {
@@ -293,6 +293,15 @@ function AdminEditarProyecto() {
                                 <input type="file" name="imgPrincipalURL" id="" className="input-archivo" onChange={handleImgChange}/>
                                 <img src={imgPrincipalURL} alt=""  className="preview-img"/>
                             </div>
+                            <div className="warning-img">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                                <p className="txt-warning">Formato recomendado: <span className="bold"> Horizontal 4:3</span> </p>
+                            </div>  
+
+                            <div className="warning-img">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                                <p className="txt-warning">Recuerda comprimir el tamaño de la imagen <a href="https://compressor.io/" target="_blank">aquí</a></p>
+                            </div>
 
                             <label htmlFor="" className="input-label">Etiquetas</label>
                             <CreatableSelect
@@ -339,6 +348,10 @@ function AdminEditarProyecto() {
                                     )}
                                 </div>
                                 
+                            </div>
+                            <div className="warning-img">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                                <p className="txt-warning">Recuerda comprimir el tamaño de las imagenes <a href="https://compressor.io/" target="_blank">aquí</a></p>
                             </div>
 
                             <button className="btn-enviar"  type="button" onClick={showModalConfirmar}>

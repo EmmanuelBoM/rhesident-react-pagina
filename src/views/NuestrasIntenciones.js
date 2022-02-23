@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Footer from "../components/Footer";
 import NavHeader from "../components/NavHeader";
 import OverlayInvitacion from "../components/OverlayInvitacion";
+import NavMovil from "../components/NavMovil";
 
 import "../styles/base.css";
 import "../styles/LandingPage.css";
@@ -9,8 +10,7 @@ import "../styles/NuestrasIntenciones.css";
 import "animate.css/animate.min.css";
 
 import downArrow from "../assets/down_arrow_light.svg";
-import imgHeroIntenciones from "../assets/nuestras_intenciones.png";
-
+import { Helmet } from "react-helmet";
 import { AnimationOnScroll } from "react-animation-on-scroll";
 import { Animated } from "react-animated-css";
 import "animate.css/animate.min.css";
@@ -19,25 +19,39 @@ import { Link } from "react-router-dom";
 
 // Firebase Imports
 import { db } from "../firebaseConfig";
-import { collection, getDoc, doc } from "@firebase/firestore";
-import { Helmet } from "react-helmet";
+import { getDoc, doc } from "@firebase/firestore";
+
+
 
 function NuestrasIntenciones() {
   const [overlayVisibility, setOverlayVisibility] = useState(false);
   const [portadaIntenciones, setPortadaIntenciones] = useState("");
-
+  const [navMovilVisibility, setNavMovilVisibility] = useState(false)
+  const [propositoImg, setPropositoImg] = useState('')
   const portadaRef = doc(db, "recursosGenerales", "JdU7qvSU98pHcPSt59e4");
+  const propositoRef = doc(db, "recursosGenerales", "d62EdjeAOaeBMLMPqcAF");
+
   useEffect(() => {
     const getPortada = async () => {
       const portadaDoc = await getDoc(portadaRef);
       setPortadaIntenciones(portadaDoc.data().url);
     };
 
+    const getImgProposito = async () => {
+      const propositoDoc = await getDoc(propositoRef);
+      setPropositoImg(propositoDoc.data().url);
+    };
+
+    getImgProposito();
     getPortada();
   }, []);
 
   const portadaImg = {
     backgroundImage: `url(${portadaIntenciones})`,
+  };
+
+  const propositoBGImg = {
+    backgroundImage: `url(${propositoImg})`,
   };
 
   function showOverlay() {
@@ -55,7 +69,15 @@ function NuestrasIntenciones() {
       <Helmet>
         <title>Nuestras Intenciones | Rhesident</title>
       </Helmet>
-      <NavHeader textColor="blanco"></NavHeader>
+
+      {navMovilVisibility ? (
+        <NavMovil setNavMovilVisibility={setNavMovilVisibility}></NavMovil>
+      ) : null}
+
+      <NavHeader
+        textColor="blanco"
+        setNavMovilVisibility={setNavMovilVisibility}
+      ></NavHeader>
       <Animated
         animateOnMount={false}
         animationIn="fadeInDown"
@@ -93,11 +115,15 @@ function NuestrasIntenciones() {
         <div className="intencion-cont intencion-verde">
           <div className="inclusion-img"></div>
           <div className="intencion-texto">
-            <p className="intencion-descripcion blanco">
+            <p className="intencion-descripcion int-hide blanco">
               Generar conexiones que permitan nombrar y reconocer la diversidad
               dentro de una comunidad.
             </p>
             <h2 className="intencion-titulo blanco">Inclusión</h2>
+            <p className="intencion-descripcion-sec blanco">
+              Generar conexiones que permitan nombrar y reconocer la diversidad
+              dentro de una comunidad.
+            </p>
           </div>
         </div>
 
@@ -115,19 +141,25 @@ function NuestrasIntenciones() {
         <div className="intencion-cont intencion-verde">
           <div className="comunidad-img"></div>
           <div className="intencion-texto">
-            <p className="intencion-descripcion blanco">
+            <p className="intencion-descripcion int-hide blanco">
               Crear nuevas posibilidades para reconstruir la organización,
               significado e identidad comunitaria.
             </p>
-            <h2 className="intencion-titulo blanco">Sentido de comunidad</h2>
+            <h2 className="intencion-titulo blanco">
+              Sentido <br /> de comunidad
+            </h2>
+            <p className="intencion-descripcion-sec blanco">
+              Crear nuevas posibilidades para reconstruir la organización,
+              significado e identidad comunitaria.
+            </p>
           </div>
         </div>
 
         <div className="intencion-cont">
           <div className="intencion-texto">
-            <h2 className="intencion-titulo verde">
-              Participación e involucramiento social
-            </h2>
+            <h3 className="intencion-titulo verde">
+              Participación e <br /> involucramiento social
+            </h3>
             <p className="intencion-descripcion verde">
               Determinar la naturaleza y vocación de cada comunidad con
               ciudadanos activos y partícipes.
@@ -137,7 +169,11 @@ function NuestrasIntenciones() {
         </div>
       </section>
 
-      <section className="proposito-evolutivo" id="propositoEvolutivo">
+      <section
+        className="proposito-evolutivo"
+        id="propositoEvolutivo"
+        style={propositoBGImg}
+      >
         <div className="color-overlay">
           <AnimationOnScroll
             animateIn="animate__fadeInUp"
@@ -153,10 +189,10 @@ function NuestrasIntenciones() {
             offset={190}
           >
             <p className="blanco">
-              El propósito que seguimos, es el rizoma que multiplica nuestras
-              acciones, nuestro propósito: Reproducir, desde las potencialidades
-              individuales y colectivas, diferentes conexiones comunitarias,
-              para que se construyan nuevas interacciones territoriales.
+              El propósito que seguimos es el rizoma que multiplica nuestras
+              acciones, este es: reproducir, desde las potencialidades y
+              colectivas, diferentes conexiones comunitarias para que se
+              construyan nuevas interacciones territoriales.
             </p>
           </AnimationOnScroll>
         </div>
@@ -172,6 +208,7 @@ function NuestrasIntenciones() {
           animateIn="animate__heartBeat"
           animateOut="animate__fadeOutUp"
           delay={2}
+          duration={3}
         >
           <Link to="/proyectos">
             <button className="btn-intenciones-procesos">
@@ -183,52 +220,63 @@ function NuestrasIntenciones() {
           </Link>
         </AnimationOnScroll>
       </section>
-      <section className="mision-vision" id='objetivo'>
-        
-          <AnimationOnScroll
-            className="mision"
-            animateIn="animate__fadeInDown"
-            animateOut="animate__fadeOutUp">
-            <h2 className="blanco">Misión</h2>
-            <p className="blanco texto-mvo">
-              Crear conexiones comunitarias para renovar percepciones y
-              diversificar acciones.
-            </p>
-          </AnimationOnScroll>
-        <div className="separador">
-          <div className="circulo-separador"></div>
-          <div className="linea-separador"></div>
-          <div className="circulo-separador"></div>
-        </div>
+      <section className="mision-vision" id="objetivo">
+        <AnimationOnScroll
+          className="mision"
+          animateIn="animate__fadeInDown"
+          animateOut="animate__fadeOutUp"
+        >
+          <h2 className="blanco">Misión</h2>
+          <p className="blanco texto-mvo">
+            Crear conexiones comunitarias para renovar percepciones y
+            diversificar acciones.
+          </p>
+        </AnimationOnScroll>
 
-          <AnimationOnScroll
-            animateIn="animate__fadeInDown"
-            animateOut="animate__fadeOutUp"
-            duration={1.4}
-            className="vision"
-          >
-            <h2 className="blanco">Visión</h2>
-            <p className="blanco texto-mvo">
-              Fortalecer el sentido de pertenencia y de comunidad, incentivando
-              la transformación del entorno.
-            </p>
-          </AnimationOnScroll>
-        <div className="separador">
+        <div className="separador-contacto-vertical">
           <div className="circulo-separador"></div>
           <div className="linea-separador"></div>
           <div className="circulo-separador"></div>
         </div>
-          <AnimationOnScroll
-            animateIn="animate__fadeInDown"
-            animateOut="animate__fadeOutUp"
-            duration={1.6}
-            className="objetivo"
-          >
-            <h2 className="blanco">Objetivo</h2>
-            <p className="blanco texto-mvo">
-              Resignificar las maneras de construir y hacer comunidad.
-            </p>
-          </AnimationOnScroll>
+        <div className="separador-contacto-horizontal">
+          <div className="circulo-separador"></div>
+          <div className="linea-separador-horizontal"></div>
+          <div className="circulo-separador"></div>
+        </div>
+        <AnimationOnScroll
+          animateIn="animate__fadeInDown"
+          animateOut="animate__fadeOutUp"
+          duration={1.4}
+          className="vision"
+        >
+          <h2 className="blanco">Visión</h2>
+          <p className="blanco texto-mvo">
+            Fortalecer el sentido de pertenencia y de comunidad, incentivando la
+            transformación del entorno.
+          </p>
+        </AnimationOnScroll>
+
+        <div className="separador-contacto-vertical">
+          <div className="circulo-separador"></div>
+          <div className="linea-separador"></div>
+          <div className="circulo-separador"></div>
+        </div>
+        <div className="separador-contacto-horizontal">
+          <div className="circulo-separador"></div>
+          <div className="linea-separador-horizontal"></div>
+          <div className="circulo-separador"></div>
+        </div>
+        <AnimationOnScroll
+          animateIn="animate__fadeInDown"
+          animateOut="animate__fadeOutUp"
+          duration={1.6}
+          className="objetivo"
+        >
+          <h2 className="blanco">Objetivo</h2>
+          <p className="blanco texto-mvo">
+            Resignificar las maneras de construir y hacer comunidad.
+          </p>
+        </AnimationOnScroll>
       </section>
       <Footer></Footer>
     </main>

@@ -9,6 +9,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import {db, storage} from '../firebaseConfig'
 import {query, collection, getDocs,orderBy, doc, updateDoc,  where, getDoc} from "@firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "@firebase/storage";
+import { Helmet } from 'react-helmet';
 
 
 
@@ -108,81 +109,105 @@ function AdminRecursos() {
     }
 
     return (
-        <body className='body-admin'>
-            <AdminNavbar activeTab='recursos'></AdminNavbar>
-            <main className='main-admin'>
-                <section className="panel-content">
-                    <header className="header-panel">
-                        <div className="cont-bienvenida">
-                            <i class="fa-solid fa-photo-film icono-pagina"></i>
-                            <div className="texto-bienvenida">
-                                <p className="verde">Bienvenido Administrador</p>
-                                <h3 className="negro">Recursos generales</h3>
-                            </div>
-                        </div>
-                        <div className="cont-accesos-directos">
-                            <a href='https://compressor.io/' className="acceso-directo" target="_blank">
-                                <i class="fa-solid fa-folder negro"></i>
-                                <p className="nombre-acceso-directo negro">Compresor</p>
-                            </a>
-                            <Link to='/' className="acceso-directo">
-                                <i class="fa-solid fa-house negro"></i>
-                                <p className="nombre-acceso-directo negro">Página principal</p>
-                            </Link>
-                            
-                        </div>
-                    </header>
+      <body className="body-admin">
+        <Helmet>
+          <title>Panel | Rhesident</title>
+        </Helmet>
+        <AdminNavbar activeTab="recursos"></AdminNavbar>
+        <main className="main-admin">
+          <section className="panel-content">
+            <header className="header-panel">
+              <div className="cont-bienvenida">
+                <i class="fa-solid fa-photo-film icono-pagina"></i>
+                <div className="texto-bienvenida">
+                  <p className="verde">Bienvenido Administrador</p>
+                  <h3 className="negro">Recursos generales</h3>
+                </div>
+              </div>
+              <div className="cont-accesos-directos">
+                <a
+                  href="https://compressor.io/"
+                  className="acceso-directo"
+                  target="_blank"
+                >
+                  <i class="fa-solid fa-folder negro"></i>
+                  <p className="nombre-acceso-directo negro">Compresor</p>
+                </a>
+                <Link to="/" className="acceso-directo" target="_blank">
+                  <i class="fa-solid fa-house negro"></i>
+                  <p className="nombre-acceso-directo negro">
+                    Página principal
+                  </p>
+                </Link>
+              </div>
+            </header>
 
-                    <section className="panel-bottom">
-                        <div className="cont-recurso">
-                            <h3 className="verde titulo-recurso">Pop Up</h3>
-                            <div className="card-contenido-panel card-recurso">
-                                <div className="header-card-contenido mb4">
-                                    <div className="vertical-indicator"></div>
-                                    <h4 className="verde">{popup.nombre}</h4>
-                                </div>
-                                <div className="file-preview">
-                                    <input type="file" name="" id="" className="input-archivo" onChange={handlePopUpChange} />
-                                    <img src={popupImg} alt="" className="preview-img" />
-                                </div>
-                                <button className={btnPopupDisabled ? "btn-disabled" : "btn-enviar" } onClick={updatePopUp}  disabled={btnPopupDisabled} >Actualizar</button>
-                                <div className="disable-popup" onClick={togglePopUpVisibility}>
-                                    <i class={popup.visible ? 'fa-solid fa-eye icono-accion-tabla icono-tabla-habilitar' : 'fa-solid fa-eye-slash icono-accion-tabla icono-tabla-deshabilitar'}></i>
-                                    {popup.visible ?  <p className="negro">Desactivar Pop Up</p> :  <p className="negro">Activar Pop Up</p>}
-                                </div>
-                            </div>
-                        </div>
+            <section className="panel-bottom">
+              <div className="cont-recurso">
+                <h3 className="verde titulo-recurso">Pop Up</h3>
+                <div className="card-contenido-panel card-recurso">
+                  <div className="header-card-contenido mb4">
+                    <div className="vertical-indicator"></div>
+                    <h4 className="verde">{popup.nombre}</h4>
+                  </div>
+                  <div className="file-preview">
+                    <input
+                      type="file"
+                      name=""
+                      id=""
+                      className="input-archivo"
+                      onChange={handlePopUpChange}
+                    />
+                    <img src={popupImg} alt="" className="preview-img" />
+                  </div>
+                  <div className="warning-img">
+                      <i class="fa-solid fa-circle-exclamation"></i>
+                      <p className="txt-warning">Formatos recomendados: Póster (3:4), Póster Horizontal (4:3), Cuadrado</p>
+                  </div>
+                  <button
+                    className={btnPopupDisabled ? "btn-disabled" : "btn-enviar"}
+                    onClick={updatePopUp}
+                    disabled={btnPopupDisabled}
+                  >
+                    Actualizar
+                  </button>
+                  <div
+                    className="disable-popup"
+                    onClick={togglePopUpVisibility}
+                  >
+                    <i
+                      class={
+                        popup.visible
+                          ? "fa-solid fa-eye icono-accion-tabla icono-tabla-habilitar"
+                          : "fa-solid fa-eye-slash icono-accion-tabla icono-tabla-deshabilitar"
+                      }
+                    ></i>
+                    {popup.visible ? (
+                      <p className="negro">Desactivar Pop Up</p>
+                    ) : (
+                      <p className="negro">Activar Pop Up</p>
+                    )}
+                  </div>
+                </div>
+              </div>
 
-                        <div className="cont-recurso">
-                            <h3 className="verde titulo-recurso">Portadas</h3>
-                            {
-                                recursosPortada.map((recurso)=>{
-                                    return(
-                                        <RecursoPortada recurso={recurso}></RecursoPortada>
-                                    )
-                                    
-                                })
-                            }
-                        </div>
+              <div className="cont-recurso">
+                <h3 className="verde titulo-recurso">Portadas</h3>
+                {recursosPortada.map((recurso) => {
+                  return <RecursoPortada recurso={recurso}></RecursoPortada>;
+                })}
+              </div>
 
-                        <div className="cont-recurso">
-                            <h3 className="verde titulo-recurso">Videos</h3>
-                            {
-                                videos.map((video)=>{
-                                    return(
-                                        <RecursoVideo recurso={video}></RecursoVideo>
-                                    )
-                                    
-                                })
-                            }
-                        </div>
-                        
-                    </section>
-                </section>
-            </main>
-            
-            
-        </body>
+              <div className="cont-recurso">
+                <h3 className="verde titulo-recurso">Videos</h3>
+                {videos.map((video) => {
+                  return <RecursoVideo recurso={video}></RecursoVideo>;
+                })}
+              </div>
+            </section>
+          </section>
+        </main>
+      </body>
     );
 }
 

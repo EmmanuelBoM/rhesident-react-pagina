@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react'
 import Footer from '../components/Footer'
 import NavHeader from '../components/NavHeader'
 import OverlayInvitacion from '../components/OverlayInvitacion'
+import NavMovil from '../components/NavMovil'
+
 import '../styles/base.css'
 import '../styles/LandingPage.css'
 import '../styles/NuestroOrigen.css'
@@ -15,13 +17,14 @@ import { AnimationOnScroll } from 'react-animation-on-scroll';
 
 // Firebase Imports
 import {db} from '../firebaseConfig'
-import {collection,getDoc, doc} from "@firebase/firestore";
+import {getDoc, doc} from "@firebase/firestore";
 import { Helmet } from 'react-helmet'
 
 function NuestroOrigen() {
 
     const [overlayVisibility, setOverlayVisibility] = useState(false)
     const [portadaOrigen, setPortadaOrigen] = useState('')
+    const [navMovilVisibility, setNavMovilVisibility] = useState(false)
 
     const portadaRef = doc(db, "recursosGenerales", "xAt58eGwLARlU7bnoerV")
     useEffect (()=>{
@@ -47,11 +50,17 @@ function NuestroOrigen() {
 
     window.addEventListener('scroll', showOverlay)
     return (
-        <main>
+        <main>     
+            {navMovilVisibility ? (
+                        <NavMovil setNavMovilVisibility={setNavMovilVisibility}></NavMovil>
+            ) : null}
+            
             <Helmet>
                 <title>Nuestro Origen | Rhesident</title>
             </Helmet>
-            <NavHeader textColor='blanco'></NavHeader>
+            
+
+            <NavHeader textColor='blanco' setNavMovilVisibility={setNavMovilVisibility}></NavHeader>
 
             <Animated animateOnMount={false} animationIn="fadeInDown" animationOut="fadeOutUp" isVisible={overlayVisibility} animationInDuration={500} animationOutDuration={500}className="overlay-top">
                 {overlayVisibility ? <OverlayInvitacion overlayVisibility={overlayVisibility}></OverlayInvitacion>:null}
@@ -74,8 +83,12 @@ function NuestroOrigen() {
             <section className="elementos-origen" id='filosofia'>
                 <AnimationOnScroll animateIn="animate__fadeInLeft" animateOut='animate__fadeOutLeft' duration={1.5}>
                     <div className="nuestra-filosofia" >
+                        
                         <div className="cont-origen">
                             <h2 className="titulo-origen negro">Nuestra filosofía</h2>
+                            <figure className='cont-gif-sec'>
+                                <img src={gifFilosofia} alt="" className="gif-origen" />
+                            </figure>
                             <p className="verde">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem esse reprehenderit quod iste illum cumque commodi, modi, rem ad est adipisci expedita velit. Officiis quam eaque vitae laboriosam eveniet illo, quae enim est rem distinctio. Tempora architecto numquam saepe adipisci repellendus quo reiciendis rerum, quidem expedita reprehenderit delectus et accusamus.</p>
                         </div>
 
@@ -93,6 +106,9 @@ function NuestroOrigen() {
 
                         <div className="cont-origen">
                             <h2 className="titulo-origen negro">Nuestra marca</h2>
+                            <figure className='cont-gif-sec'>
+                                <img src={gifMarca} alt="" className="gif-origen" />
+                            </figure>
                             <p className="verde">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem esse reprehenderit quod iste illum cumque commodi, modi, rem ad est adipisci expedita velit. Officiis quam eaque vitae laboriosam eveniet illo, quae enim est rem distinctio. Tempora architecto numquam saepe adipisci repellendus quo reiciendis rerum, quidem expedita reprehenderit delectus et accusamus.</p>
                         </div>
                     </div>
@@ -102,6 +118,9 @@ function NuestroOrigen() {
                     <div className="nuestra-historia" id='historia'>
                         <div className="cont-origen">
                             <h2 className="titulo-origen negro">Nuestra historia</h2>
+                            <figure className='cont-gif-sec'>
+                                <img src={gifHistoria} alt="" className="gif-origen" />
+                            </figure>
                             <p className="verde">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem esse reprehenderit quod iste illum cumque commodi, modi, rem ad est adipisci expedita velit. Officiis quam eaque vitae laboriosam eveniet illo, quae enim est rem distinctio. Tempora architecto numquam saepe adipisci repellendus quo reiciendis rerum, quidem expedita reprehenderit delectus et accusamus.</p>
                         </div>
 

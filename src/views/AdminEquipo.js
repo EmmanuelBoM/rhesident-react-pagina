@@ -11,8 +11,9 @@ import {Link, useNavigate} from 'react-router-dom'
 
 //Firebase Imports
 import {db} from '../firebaseConfig'
-import {query, collection, getDocs,orderBy,  deleteDoc, doc} from "@firebase/firestore";
+import {query, collection, getDocs,orderBy,  deleteDoc, doc, where} from "@firebase/firestore";
 import ItemPanel from '../components/ItemPanel';
+import { Helmet } from 'react-helmet';
 
 function AdminEquipo() {
     const [modalVisibility, setModalVisibility] = useState(false)
@@ -23,7 +24,7 @@ function AdminEquipo() {
     const [equipo, setEquipo] = useState([])
     const equipoCollectionRef = collection(db, "equipo")
   
-    const q = query(equipoCollectionRef, orderBy("nombre"))
+    const q = query(equipoCollectionRef, orderBy("nombre"), where("nombre", "!=", "No eliminar"))
     let navigate = useNavigate();
 
     useEffect (()=>{
@@ -61,51 +62,65 @@ function AdminEquipo() {
 
   return (
     <div className="body-admin">
-    <AdminNavbar activeTab='equipo'></AdminNavbar>
-    {modalVisibility ? <ModalAdminEliminar setModalVisibility={setModalVisibility} recurso='el miembro' nombreRecurso={modalInfo} runFunction={deleteMiembro}></ModalAdminEliminar> : null}
-    <main className='main-admin'>
-            <header className="header-panel">
-                <div className="cont-bienvenida">
-                    <i class= 'fa-solid fa-handshake-angle icono-tab icono-pagina'></i>
-                    <div className="texto-bienvenida">
-                        <p className="verde">Bienvenido Administrador</p>
-                        <h3 className="negro">Equipo</h3>
-                    </div>
-                </div>
-                <div className="cont-accesos-directos">
-                    <Link to='/' className="acceso-directo">
-                        <i class="fa-solid fa-house negro"></i>
-                        <p className="nombre-acceso-directo negro">Página principal</p>
-                    </Link>
-                </div>
-            </header>
-            
-            <section className="panel-bottom-2">
-           
-            <div className="card-contenido-panel card-cont-items">
-                <div className="header-card-contenido">
-                    <div className="vertical-indicator"></div>
-                    <h4 className="verde">Todos los miembros</h4>
-                </div>
-                <div className="cont-items-panel">
-                    {equipo.map((miembro, i)=>{
-                        return(
-                            <ItemPanel doc={miembro} collection='equipo' objetivo='miembro' setModalInfo={setModalInfo} setId={setIdMiembro} setModalVisibility={setModalVisibility}></ItemPanel>
-                        )
-                    })}
-                    
-                </div>
+      <Helmet>
+        <title>Panel | Rhesident</title>
+      </Helmet>
+      <AdminNavbar activeTab="equipo"></AdminNavbar>
+      {modalVisibility ? (
+        <ModalAdminEliminar
+          setModalVisibility={setModalVisibility}
+          recurso="el miembro"
+          nombreRecurso={modalInfo}
+          runFunction={deleteMiembro}
+        ></ModalAdminEliminar>
+      ) : null}
+      <main className="main-admin">
+        <header className="header-panel">
+          <div className="cont-bienvenida">
+            <i class="fa-solid fa-handshake-angle icono-tab icono-pagina"></i>
+            <div className="texto-bienvenida">
+              <p className="verde">Bienvenido Administrador</p>
+              <h3 className="negro">Equipo</h3>
             </div>
-            <Link  to='/agregar-miembro' className="btn-agregar-panel">
-                <div className="header-card-contenido">
-                    <div className="vertical-indicator-light"></div>
-                    <h4 className="blanco">Agregar un miembro</h4>
-                </div>
-                <img src={iconoAgregarMiembro} alt="" className='icono-agregar'/>
+          </div>
+          <div className="cont-accesos-directos">
+            <Link to="/" className="acceso-directo" target="_blank">
+              <i class="fa-solid fa-house negro"></i>
+              <p className="nombre-acceso-directo negro">Página principal</p>
             </Link>
-                            
-            </section>
-    </main>
+          </div>
+        </header>
+
+        <section className="panel-bottom-2">
+          <div className="card-contenido-panel card-cont-items">
+            <div className="header-card-contenido">
+              <div className="vertical-indicator"></div>
+              <h4 className="verde">Todos los miembros</h4>
+            </div>
+            <div className="cont-items-panel">
+              {equipo.map((miembro, i) => {
+                return (
+                  <ItemPanel
+                    doc={miembro}
+                    collection="equipo"
+                    objetivo="miembro"
+                    setModalInfo={setModalInfo}
+                    setId={setIdMiembro}
+                    setModalVisibility={setModalVisibility}
+                  ></ItemPanel>
+                );
+              })}
+            </div>
+          </div>
+          <Link to="/agregar-miembro" className="btn-agregar-panel">
+            <div className="header-card-contenido">
+              <div className="vertical-indicator-light"></div>
+              <h4 className="blanco">Agregar un miembro</h4>
+            </div>
+            <img src={iconoAgregarMiembro} alt="" className="icono-agregar" />
+          </Link>
+        </section>
+      </main>
     </div>
   );
 }

@@ -57,7 +57,7 @@ function AdminAgregarTaller() {
     const modalidadesSelect = [
         { value: 'Presencial', label: 'Presencial' },
         { value: 'Híbrido', label: 'Híbrido' },
-        { value: 'Remoto', label: 'Remoto' }
+        { value: 'Virtual', label: 'Virtual' }
     ]
 
     const customSelectStyles = {
@@ -245,6 +245,10 @@ function AdminAgregarTaller() {
                                 <input type="file" name="imgURL"  className="input-archivo" onChange={handleImgChange}/>
                                 <img src={imgURL} alt=""  className="preview-img" />
                             </div>
+                            <div className="warning-img">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                                <p className="txt-warning">Formato recomendado: <span className="bold"> Horizontal 4:3</span> </p>
+                            </div>  
                             <div className="warning-img">
                                 <i class="fa-solid fa-circle-exclamation"></i>
                                 <p className="txt-warning">Recuerda comprimir el tamaño de la imagen <a href="https://compressor.io/">aquí</a></p>

@@ -112,7 +112,7 @@ function AdminAgregarTestimonio() {
                             <input type="text"  placeholder="Ej.: Voluntario, Colaborador, etc." name="relacion" id="" className="input-gral" required onChange={handleInputChange}/>
 
                             <label htmlFor="testimonio" className='input-label'>Testimonio*</label>
-                            <textarea name="testimonio"placeholder='220 caracteres máximo.' id="" cols="30" rows="10" className="input-gral" maxLength={220} onChange={handleInputChange}></textarea>
+                            <textarea name="testimonio"placeholder='500 caracteres máximo.' id="" cols="30" rows="10" className="input-gral" maxLength={500} onChange={handleInputChange}></textarea>
                             
                             <label htmlFor="imgURL" className="input-label">Imagen / Logotipo*</label>
                             <div className="file-preview">

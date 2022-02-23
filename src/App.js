@@ -52,6 +52,8 @@ import AdminAgregarDescarga from './views/AdminAgregarDescarga';
 import AdminEditarDescarga from './views/AdminEditarDescarga';
 import Descargas from './views/Descargas';
 import AdminEditarTaller from './views/AdminEditarTaller';
+import AvisoPrivacidad from './views/AvisoPrivacidad';
+import AvisoIntegral from './views/AvisoIntegral';
 
 
 function App() {
@@ -80,6 +82,8 @@ function App() {
       <Route path='/cuentanos-tu-idea' element={<FormularioIdea/>} />
       <Route path='/registro-taller/:id' element={<RegistroTaller/>} />
       <Route path='/descargas' element={<Descargas/>} />
+      <Route path='/aviso-de-privacidad' element={<AvisoPrivacidad/>} />
+      <Route path='/aviso-integral' element={<AvisoIntegral/>} />
       
       <Route path='/login' element={<Login/>} />
       <Route path='/admin_recursos' element={ <AdminRecursos/>} />

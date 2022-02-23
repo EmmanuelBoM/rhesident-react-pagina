@@ -13,6 +13,9 @@ html{
 	text-decoration: none;
 }
 
+.main-landing{
+	position: relative;
+}
 
 p{
     font-size: 1.8rem;
@@ -117,6 +120,10 @@ main{
 	overflow-x: hidden;
 }
 
+body{
+	overflow-x: hidden;
+}
+
 .descripcion-seccion{
 	font-weight: 400;
     color: var(--p-200);
@@ -137,4 +144,39 @@ path{
 .p-300{
 	color: var(--p-300);
 	font-weight: 600;
+}
+
+
+@media only screen and (max-width: 1400px) {
+	html{
+		font-size: 9px;
+	}
+}
+
+@media only screen and (max-width: 1200px) {
+	html{
+		font-size: 8px;
+	}
+}
+
+@media only screen and (max-width: 992px) {
+	html{
+		font-size: 7px;
+	}
+
+	
+}
+
+
+@media only screen and (max-width: 768px) {
+	html{
+		font-size: 8px;
+	}
+}
+
+
+@media only screen and (max-width: 576px) {
+	html{
+		font-size: 7.5px;
+	}
 }

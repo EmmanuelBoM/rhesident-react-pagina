@@ -6,7 +6,7 @@ import "../styles/Voluntariado.css";
 import downArrow from "../assets/down_arrow_light.svg";
 import { Link, useParams } from "react-router-dom";
 import CardVoluntariado from "../components/CardVoluntariado";
-
+import NavMovil from '../components/NavMovil';
 import { Animated } from "react-animated-css";
 import "animate.css/animate.min.css";
 import { AnimationOnScroll } from "react-animation-on-scroll";
@@ -46,7 +46,7 @@ function Voluntariado() {
   const portadaRef = doc(db, "recursosGenerales", "uxuVFcShyChtFGtJzSiX");
   const videoRef = doc(db, "recursosGenerales", "kRku4Qd3Bqpm6ho1F2kE");
   const proyectosCollectionRef = collection(db, "proyectos");
-  const params = useParams();
+  const [navMovilVisibility, setNavMovilVisibility] = useState(false)
 
   const q_presencial = query(
     proyectosCollectionRef,
@@ -113,7 +113,10 @@ function Voluntariado() {
       <Helmet>
         <title>Voluntariado | Rhesident</title>
       </Helmet>
-      <NavHeader textColor="blanco"></NavHeader>
+      {navMovilVisibility ? (
+        <NavMovil setNavMovilVisibility={setNavMovilVisibility}></NavMovil>
+      ) : null}
+      <NavHeader textColor="blanco"  setNavMovilVisibility={setNavMovilVisibility}></NavHeader>
       <section className="hero-voluntariado" style={portadaImg}>
         <div className="color-overlay">
           <h1 className="titulo-hero blanco">
@@ -148,7 +151,7 @@ function Voluntariado() {
           voluntariadoActive={voluntariadoActive}
         ></CardVoluntariado>
         <CardVoluntariado
-          tipoVoluntariado="Remoto"
+          tipoVoluntariado="Virtual"
           setSwiperVisibility={setswiperVisibility}
           setVoluntariadoActive={setVoluntariadoActive}
           voluntariadoActive={voluntariadoActive}
@@ -291,7 +294,7 @@ function Voluntariado() {
           animateIn="animate__fadeIn"
           animateOut="animate__fadeOut"
         >
-          <h2 className="negro">
+          <h2 className="negro subt-center">
             Aprende, comparte y logra transformar tu entorno.
           </h2>
         </AnimationOnScroll>
@@ -311,20 +314,23 @@ function Voluntariado() {
       </section>
 
       <section className="video-voluntariado">
-        <h2 className="negro">
-          ¿Te imaginas cómo sería ser parte de Rhesident Org?
+        <h2 className="negro subt-center">
+          ¿Te imaginas cómo sería formar parte de Rhesident Org?
         </h2>
         <h4 className="descripcion-seccion">
           ¡Da clic a este video y descúbrelo!
         </h4>
-        <iframe
-          className="yt-iframe"
-          src={`https://www.youtube.com/embed/${videoURL}`}
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
+        <div className="cont-frame">
+          <iframe
+            className="responsive-iframe"
+            src={`https://www.youtube.com/embed/${videoURL}`}
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+       
       </section>
       <Footer></Footer>
     </main>

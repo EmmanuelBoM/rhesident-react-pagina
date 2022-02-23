@@ -73,3 +73,35 @@
     font-size: 4rem;
     color: var(--primario);
 }
+
+@media only screen and (max-width: 576px) {
+
+    .descarga{
+        flex-direction: column;
+        align-items: center;
+        padding: 4rem 2rem;
+    }
+
+    .header-descarga{
+        width: 100%;
+    }
+
+    .descripcion-descarga{
+        margin-bottom: 4rem;
+    }
+
+    .header-descargas{
+        flex-direction: column;
+        padding: 0 5rem;
+    }
+    .img-descargas{
+        width: 50%;
+    }
+    .text-header-descargas{
+        width: 80%;
+    }
+
+    .descargas-lista{
+        padding: 0 5rem;
+    }
+}

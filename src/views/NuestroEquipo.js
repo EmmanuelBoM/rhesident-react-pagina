@@ -8,6 +8,7 @@ import downArrow from "../assets/down_arrow_light.svg";
 import MiembroEquipo from "../components/MiembroEquipo";
 import ModalMiembro from "../components/ModalMiembro";
 import OverlayInvitacion from "../components/OverlayInvitacion";
+import NavMovil from "../components/NavMovil";
 
 import { Animated } from "react-animated-css";
 import "animate.css/animate.min.css";
@@ -32,6 +33,7 @@ function NuestroEquipo() {
   const [equipo, setEquipo] = useState([]);
   const [miembroModal, setMiembroModal] = useState({});
   const [portadaEquipo, setPortadaEquipo] = useState("");
+  const [navMovilVisibility, setNavMovilVisibility] = useState(false)
 
   const portadaRef = doc(db, "recursosGenerales", "ovN44y53KLXexXeAvrQn");
   const equipoCollectionRef = collection(db, "equipo");
@@ -71,7 +73,10 @@ function NuestroEquipo() {
       <Helmet>
         <title>Nuestro Equipo | Rhesident</title>
       </Helmet>
-      <NavHeader textColor="blanco"></NavHeader>
+      {navMovilVisibility ? (
+        <NavMovil setNavMovilVisibility={setNavMovilVisibility}></NavMovil>
+      ) : null}
+      <NavHeader textColor="blanco" setNavMovilVisibility={setNavMovilVisibility}></NavHeader>
       <Animated
         animateOnMount={false}
         animationIn="fadeInDown"

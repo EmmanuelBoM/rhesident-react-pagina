@@ -1,4 +1,5 @@
 .hero-landing{
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,6 +15,7 @@
 
 .titulo-landing{
     margin-top: 18rem;
+    text-align: center;
 }
 .subtitulo-landing{
     text-align: center;
@@ -26,6 +28,15 @@
 }
 
 .descripcion-hero{
+    margin-top: 5rem;
+    width: 40%;
+    text-align: center;
+    font-weight: 500;
+    color: var(--blanco);
+    font-size: 2rem;
+}
+
+.descripcion-hero-landing{
     margin-top: 5rem;
     width: 60%;
     text-align: center;
@@ -96,26 +107,16 @@
 }
 
 
-
-.descripcion-video-principal{
-    margin-bottom: 4rem;
-    text-align: center;
-    width: 50%;
-}
 .video-principal{
+    padding: 0 25rem;
+    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-
-.yt-iframe{
-    width: 58%;
-    height: 70vh;
+    justify-content: center;
 }
 
 .nuestra-causa{
-    background-image: url("../assets/nuestra_causa.JPG");
     width: 100%;
     box-sizing: border-box;
     background-size: cover;
@@ -197,7 +198,7 @@
 .path-conoce{
     stroke-dasharray: 1500;
     stroke-dashoffset: 1600;
-    animation: dash 3s linear infinite;
+    animation: dash 3s linear forwards 10;
 }
 
 .corazon-conoce{
@@ -228,18 +229,20 @@
 
 .line-conoce{
     position: absolute;
-    margin-top: 60rem;
+    margin-top: 65rem;
     z-index: -10;
     width: 1rem;
-    height: 65rem;
+    height: 56rem;
+    background-color: var(--secundario);
 }
 
 .line-conoce-2{
     position: absolute;
-    margin-top: 154rem;
+    margin-top: 159rem;
     z-index: -10;
     width: 1rem;
-    height: 65rem;
+    height: 56rem;
+    background-color: var(--secundario);
 }
 
 .line-conoce-3{
@@ -248,6 +251,7 @@
     z-index: -10;
     width: 1rem;
     height: 65rem;
+    background-color: var(--secundario);
 }
 
 
@@ -334,8 +338,8 @@
     box-shadow: 2px 3px 5px #21647a76;
 }
 
-.btn-round-voluntario img{
-    width: 95%;
+.btn-round img{
+    width: 110%;
 }
 
 .contacto{
@@ -503,11 +507,18 @@
 
 }
 
-.separador{
+.separador-contacto-vertical{
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 5%;
+}
+
+.separador-contacto-horizontal{
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
 }
 
 .circulo-separador{
@@ -520,6 +531,12 @@
 .linea-separador{
     width: .5rem;
     height: 100%;
+    background-color: var(--secundario);
+}
+
+.linea-separador-horizontal{
+    width: 100%;
+    height: 0.5rem;
     background-color: var(--secundario);
 }
 
@@ -651,4 +668,242 @@ animation: dash 5s linear reverse;
 
 .mc-exito{
     color: #F0E967 !important;
+}
+
+/* MEDIA QUERIES */
+
+@media only screen and (max-width: 1400px) {
+	.line-conoce{
+        margin-top: 66.5rem;
+        height: 57rem;
+    }
+
+    .line-conoce-2{
+        margin-top: 160.5rem;
+        height: 57rem;
+    }
+
+    .line-conoce-3{
+        margin-top: 253rem;
+        height: 66rem;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+	.main-svg{
+        width: 110%;
+    }
+
+    .huella-conoce{
+        width: 44rem;
+        margin-top: -11rem;
+    }
+
+    .btn-round-voluntario img{
+        width: 85%;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+	.main-svg{
+        width: 120%;
+    }
+
+    .huella-conoce{
+        width: 43rem;
+        margin-top: -15rem;
+    }
+
+    .line-conoce-3{
+        height: 65rem;
+    }
+
+    .video-principal{
+        padding: 0 20rem;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+	.main-svg{
+        width: 180%;
+    }
+
+    .subtitulo-landing{
+        width: 95%;
+    }
+
+    .descripcion-hero{
+        width: 85%;
+    }
+
+    .descripcion-hero-landing{
+        width: 90%;
+    }
+    .hero-ctas{
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10rem;
+    }
+
+    .cta{
+        width: 40rem;
+        margin-bottom: 10rem;
+        
+    }
+
+    .btn-cta{
+        top: 63%;
+    }
+
+    .huella-conoce{
+        width: 41rem;
+        margin-top: -13rem;
+    }
+
+
+    .round-ctas{
+        flex-direction: column;
+    }
+
+    .round-cta-cont{
+        width: 70%;
+        margin-bottom: 10rem;
+    }
+
+    .round-cta-cont h3{
+        width: 60%;
+    }
+
+    .contacto{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .newsletter-cont{
+        width: 80%;
+    }
+
+    .info-contacto{
+        width: 80%;
+    }
+
+    .separador-contacto-horizontal{
+        display: flex;
+        margin-top: 6rem;
+        margin-bottom: 6rem;
+    }
+
+    .separador-contacto-vertical{
+        display: none;
+    }
+
+    .titulo-landing{
+        margin-top: 14rem;
+    }
+
+    .video-principal{
+        padding: 0 10rem;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .main-svg{
+        width: 270%;
+    }
+
+    .hero-landing{
+        padding: 2rem 4rem;
+    }
+
+    .descripcion-hero{
+        width: 98%;
+    }
+
+    .video-principal{
+        padding: 0 5rem;
+    }
+
+    .titulo-landing{
+        margin-top: 12rem;
+    }
+
+    .descripcion-hero-landing{
+        margin-top: 2rem;
+    }
+
+
+    .huella-conoce{
+        width: 44rem;
+        margin-top: -12.5rem;
+    }
+
+    .newsletter-cont{
+        width: 100%;
+    }
+
+    .info-contacto{
+        width: 100%;
+    }
+    .cta{
+        width: 36rem;
+    }
+}
+
+@media only screen and (max-width: 560px) {
+    .huella-conoce{
+        width: 44rem;
+        margin-top: -15rem;
+    }
+}
+
+
+@media only screen and (max-width: 460px) {
+    .huella-conoce{
+        width: 44rem;
+        margin-top: -16rem;
+    }
+    .line-conoce{
+        margin-top: 68rem;
+    }
+    .line-conoce-2{
+        margin-top: 165rem;
+    }
+    .line-conoce-3{
+        margin-top: 260rem;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .huella-conoce{
+        width: 42rem;
+        margin-top: -16rem;
+    }
+
+    .line-conoce{
+        margin-top: 72rem;
+    }
+    .line-conoce-2{
+        margin-top: 172rem;
+    }
+    .line-conoce-3{
+        margin-top: 266rem;
+    }
+}
+
+@media only screen and (max-width: 370px) {
+    .main-svg{
+        width: 300%;
+    }
+
+    .titulo-landing{
+        font-size: 4.8rem;
+        margin-top: 10rem;
+    }
+
+    .subtitulo-landing{
+        font-size: 2.6rem;
+    }
+    .hero-landing{
+        padding: 2rem 2rem;
+    }
 }

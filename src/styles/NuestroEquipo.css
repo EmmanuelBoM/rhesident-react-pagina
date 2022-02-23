@@ -1,6 +1,7 @@
 .hero-equipo{
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
 }
 
 .galeria-equipo{
@@ -21,3 +22,4 @@
     flex-wrap: wrap;
     width: 90%;
 }
+

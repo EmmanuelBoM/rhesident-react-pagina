@@ -137,6 +137,10 @@ function AdminAgregarMiembro() {
                                 <input type="file" name="imgPerfilURL" id="" className="input-archivo" onChange={handleImgPerfilChange}/>
                                 <img src={imgPerfilURL} alt=""  className="preview-img" />
                             </div>
+                            <div className="warning-img">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                                <p className="txt-warning">Formato recomendado: <span className="bold"> Vertical 4:3</span> </p>
+                            </div>  
 
                             <div className="warning-img">
                                 <i class="fa-solid fa-circle-exclamation"></i>
