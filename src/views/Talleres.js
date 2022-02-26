@@ -1,13 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import Footer from '../components/Footer';
 import NavHeader from '../components/NavHeader';
+import NavMovil from '../components/NavMovil';
+
 import '../styles/base.css'
 import '../styles/LandingPage.css'
 import '../styles/Talleres.css'
 import downArrow from '../assets/down_arrow_light.svg'
 import Taller from '../components/Taller';
 import ModalTaller from '../components/ModalTaller';
-
 import {Animated} from "react-animated-css";
 import "animate.css/animate.min.css";
 
@@ -22,6 +23,7 @@ function Talleres() {
     const [talleresProximos, setTalleresProximos]= useState([])
     const [taller, setTaller]= useState({})
     const [portadaTalleres, setPortadaTalleres] = useState('')
+    const [navMovilVisibility, setNavMovilVisibility] = useState(false)
 
     const portadaRef = doc(db, "recursosGenerales", "fQoDFrUMsc7yKR6cfbh7");
     const talleresCollectionRef = collection(db, "talleres")
@@ -58,14 +60,16 @@ function Talleres() {
             <Helmet>
                 <title>Talleres | Rhesident</title>
             </Helmet>
-            <NavHeader textColor='blanco'></NavHeader>
+            {navMovilVisibility ? (
+                <NavMovil setNavMovilVisibility={setNavMovilVisibility}></NavMovil>
+            ) : null}
+            <NavHeader textColor='blanco' setNavMovilVisibility={setNavMovilVisibility}></NavHeader>
             <section className="hero-talleres" style={portadaImg}>
                     <div className="color-overlay">
                         <h1 className='titulo-hero blanco'>Aprende con nuestros talleres</h1>
                         <p className='origen-descripcion blanco descripcion-hero'>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam,
-                            quia praesentium iste explicabo ad ipsum ex eius neque, dolor error
-                            commodi accusamus. 
+                        Creemos que es sumamente importante, el poder ofrecer nuestros saberes, dones y talentos al colectivo. Siempre podemos aprender de todas las personas algo nuevo. Te dejamos aquí unas opciones de aprendizaje y capacitación que podrían interesarte.
+
                         </p>
                         <div className="scrolldown-cont">
                             <img src={downArrow} alt="" className="scroll-down-link scroll-down-arrow" />
@@ -74,7 +78,7 @@ function Talleres() {
             </section>
 
             <section className="talleres">
-                <h2 className="verde">Talleres abiertos</h2>
+                <h2 className="verde" id='abiertos'>Talleres abiertos</h2>
                 <div className="talleres-activos">
                     {talleresAbiertos.map((tallerInd)=>{
                         return(
@@ -82,7 +86,7 @@ function Talleres() {
                         )
                     })}
                 </div>
-                <h2 className="verde">Próximos Talleres</h2>
+                <h2 className="verde" id='proximos'>Próximos Talleres</h2>
                 <div className="talleres-proximos">
                     {talleresProximos.map((tallerInd)=>{
                         return(

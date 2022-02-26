@@ -18,7 +18,7 @@
     justify-content: space-between;
     align-items: center;
     width: 90%;
-    margin: 10rem 0;
+    margin: 20rem 0;
     padding: 0 10rem;
     box-sizing: border-box;
 }
@@ -30,6 +30,11 @@
     justify-content: center;
     width: intrinsic;
 }
+
+.cont-gif-sec{
+    display: none;
+}
+
 .gif-origen {
     width: 100%;
 }
@@ -40,4 +45,49 @@
 
 .titulo-origen{
     margin-bottom: 4rem;
+}
+
+@media only screen and (max-width: 768px) {
+    .elementos-origen{
+        align-items: center;
+    }
+    .nuestra-filosofia, .nuestra-marca, .nuestra-historia{
+        padding: 0;
+        margin: 10rem 5rem;
+        justify-content: space-around;
+    }
+    .cont-origen{
+        width: 50%;
+    }
+
+    .cont-gif{
+        width: 40%;
+    }
+}
+
+
+@media only screen and (max-width: 576px) {
+
+    .titulo-origen{
+        margin-bottom: 1rem;
+    }
+
+    .cont-gif{
+        display: none;
+    }
+
+    .cont-gif-sec{
+        display: flex;
+        margin-bottom: 2rem;
+    }
+
+    .cont-origen{
+        width: 90%;
+    }
+
+    .nuestra-filosofia, .nuestra-marca, .nuestra-historia{
+        padding: 0;
+        margin: 8rem 2.5rem;
+        justify-content: space-around;
+    }
 }

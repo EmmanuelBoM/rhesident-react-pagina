@@ -5,7 +5,7 @@ import '../styles/AdminLayout.css'
 import ilustracionAgregarMiembro from '../assets/ilustracion_agregar_miembro.svg'
 import ModalAdminExito from '../components/ModalAdminExito';
 import ModalAdminConfirmar from '../components/ModalAdminConfirmar';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 // Firebase Imports
 import {db, storage} from '../firebaseConfig'
@@ -23,8 +23,17 @@ function AdminEditarMiembro() {
     const params = useParams();
    
     const miembroRef = doc(db, "equipo", params.id)
-
+    
+    let navigate = useNavigate();
     useEffect (()=>{
+        let authToken = sessionStorage.getItem('Auth Token')
+        if (authToken) {
+            navigate(`/editar-miembro/${params.id}`)
+        }
+
+        if (!authToken) {
+            navigate('/login')
+        }
         const getMiembro = async () => {
           const miembroDoc = await getDoc(miembroRef);
           setMiembro(miembroDoc.data())

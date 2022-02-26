@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import AdminNavbar from '../components/AdminNavbar';
 import '../styles/base.css'
 import '../styles/AdminLayout.css'
@@ -6,11 +6,11 @@ import ilustracionAgregarMiembro from '../assets/ilustracion_agregar_miembro.svg
 import ModalAdminExito from '../components/ModalAdminExito';
 import ModalAdminConfirmar from '../components/ModalAdminConfirmar';
 
-
 // Firebase Imports
 import {db, storage} from '../firebaseConfig'
 import {collection,addDoc} from "@firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "@firebase/storage";
+import { useNavigate } from 'react-router-dom';
 
 
 function AdminAgregarMiembro() {
@@ -20,6 +20,18 @@ function AdminAgregarMiembro() {
     const [imgPerfilURL, setImgPerfilURL] = useState('')
     const [imgCompletaURL, setImgCompletaURL] = useState('')
 
+    let navigate = useNavigate();
+    useEffect(()=>{
+        let authToken = sessionStorage.getItem('Auth Token')
+        if (authToken) {
+            navigate('/agregar-miembro')
+        }
+
+        if (!authToken) {
+            navigate('/login')
+        }
+    },[])
+    
     function showModalConfirmar(){
         setModalConfVisibility(true);
     }
@@ -111,27 +123,31 @@ function AdminAgregarMiembro() {
                     </div>
                     <div className="cont-formulario-agregar">
                         <form action="" className="formulario-registro">
-                            <label htmlFor="nombre" className='input-label'>Nombre del miembro</label>
+                            <label htmlFor="nombre" className='input-label'>Nombre del miembro*</label>
                             <input type="text"  placeholder="Nombre completo" name="nombre" id="" className="input-gral" required onChange={handleInputChange}/>
 
-                            <label htmlFor="areaEspecializacion" className='input-label'>Área de especialización</label>
+                            <label htmlFor="areaEspecializacion" className='input-label'>Área de especialización*</label>
                             <input type="text"  placeholder="Ej.: Marketing, Diseño, Community Manager, Antropología" name="areaEspecializacion" id="" className="input-gral" required onChange={handleInputChange}/>
 
-                            <label htmlFor="descripcion" className='input-label'>Descripción</label>
+                            <label htmlFor="descripcion" className='input-label'>Descripción*</label>
                             <textarea name="descripcion" id="" cols="30" rows="10" className="input-gral"  onChange={handleInputChange}></textarea>
                             
-                            <label htmlFor="imgPerfilURL" className="input-label">Imagen de perfil</label>
+                            <label htmlFor="imgPerfilURL" className="input-label">Imagen de perfil*</label>
                             <div className="file-preview">
                                 <input type="file" name="imgPerfilURL" id="" className="input-archivo" onChange={handleImgPerfilChange}/>
                                 <img src={imgPerfilURL} alt=""  className="preview-img" />
                             </div>
+                            <div className="warning-img">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                                <p className="txt-warning">Formato recomendado: <span className="bold"> Vertical 4:3</span> </p>
+                            </div>  
 
                             <div className="warning-img">
                                 <i class="fa-solid fa-circle-exclamation"></i>
                                 <p className="txt-warning">Recuerda comprimir el tamaño de la imagen <a href="https://compressor.io/" target="_blank">aquí</a></p>
                             </div>
 
-                            <label htmlFor="imgCompletaURL" className="input-label">Imagen Completa</label>
+                            <label htmlFor="imgCompletaURL" className="input-label">Imagen Completa*</label>
                             <div className="file-preview">
                                 <input type="file" name="imgCompletaURL" id="" className="input-archivo" onChange={handleImgCompletaChange}/>
                                 <img src={imgCompletaURL} alt=""  className="preview-img" />

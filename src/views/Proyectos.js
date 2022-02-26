@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Footer from "../components/Footer";
 import NavHeader from "../components/NavHeader";
 import OverlayInvitacion from "../components/OverlayInvitacion";
+import NavMovil from "../components/NavMovil";
 
 import "../styles/base.css";
 import "../styles/LandingPage.css";
@@ -32,6 +33,7 @@ import {
 } from "@firebase/firestore";
 import { Helmet } from "react-helmet";
 
+
 // install Swiper modules
 SwiperCore.use([Pagination, Navigation]);
 
@@ -42,8 +44,16 @@ function Proyectos() {
   const [proyectosUrbanismo, setProyectosUrbanismo] = useState([]);
   const [proyectosSustentabilidad, setProyectosSustentabilidad] = useState([]);
   const [portadaProyectos, setPortadaProyectos] = useState("");
-
+  const [navMovilVisibility, setNavMovilVisibility] = useState(false)
+  const [culturaImg, setImgCultura] = useState('')
+  const [arteImg, setImgArte] = useState('')
+  const [urbanismoImg, setImgUrbanismo] = useState('')
+  const [sustentabilidadImg, setImgSustentabilidad] = useState('')
   const portadaRef = doc(db, "recursosGenerales", "iFJVC92tChob76LtClV4");
+  const culturaRef = doc(db, "recursosGenerales", "J0uekV97B4U7n7cdWd9W");
+  const arteRef = doc(db, "recursosGenerales", "vDRd2aOZzlUDxFTOjnLA");
+  const urbanismoRef = doc(db, "recursosGenerales", "x2imEnVsTNCZSmI0Y8uv");
+  const sustentabilidadRef = doc(db, "recursosGenerales", "rpDAVZHphDNpmI30z7mw");
   const proyectosCollectionRef = collection(db, "proyectos");
 
   const q_arte = query(
@@ -91,11 +101,37 @@ function Proyectos() {
         data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
       );
     };
+    
+    const getImgArte = async () => {
+      const arteDoc = await getDoc(arteRef);
+      setImgArte(arteDoc.data().url);
+    };
+
+    const getImgCultura = async () => {
+      const culturaDoc = await getDoc(culturaRef);
+      setImgCultura(culturaDoc.data().url);
+    };
+
+    const getImgSustentabilidad = async () => {
+      const sustentabilidadDoc = await getDoc(sustentabilidadRef);
+      setImgSustentabilidad(sustentabilidadDoc.data().url);
+    };
+
+    const getImgUrbanismo = async () => {
+      const urbanismoDoc = await getDoc(urbanismoRef);
+      setImgUrbanismo(urbanismoDoc.data().url);
+    };
 
     const getPortada = async () => {
       const portadaDoc = await getDoc(portadaRef);
       setPortadaProyectos(portadaDoc.data().url);
     };
+
+
+    getImgArte();
+    getImgCultura();
+    getImgSustentabilidad();
+    getImgUrbanismo();
 
     getPortada();
     getProyectosArte();
@@ -106,6 +142,19 @@ function Proyectos() {
 
   const portadaImg = {
     backgroundImage: `url(${portadaProyectos})`,
+  };
+
+  const arteBGImg = {
+    backgroundImage: `url(${arteImg})`,
+  };
+  const culturaBGImg = {
+    backgroundImage: `url(${culturaImg})`,
+  };
+  const sustentabilidadBGImg = {
+    backgroundImage: `url(${sustentabilidadImg})`,
+  };
+  const urbanismoBGImg = {
+    backgroundImage: `url(${urbanismoImg})`,
   };
 
   const [swiperRef, setSwiperRef] = useState(null);
@@ -127,7 +176,10 @@ function Proyectos() {
       <Helmet>
         <title>Proyectos | Rhesident</title>
       </Helmet>
-      <NavHeader textColor="blanco"></NavHeader>
+      {navMovilVisibility ? (
+            <NavMovil setNavMovilVisibility={setNavMovilVisibility}></NavMovil>
+      ) : null}
+      <NavHeader textColor="blanco" setNavMovilVisibility={setNavMovilVisibility}></NavHeader>
       <Animated
         animateOnMount={false}
         animationIn="fadeInDown"
@@ -147,9 +199,11 @@ function Proyectos() {
         <div className="color-overlay">
           <h1 className="titulo-hero blanco">Proyectos</h1>
           <p className="origen-descripcion blanco descripcion-hero">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam,
-            quia praesentium iste explicabo ad ipsum ex eius neque, dolor error
-            commodi accusamus.
+            Es casi un proceso artesanal el que otorgamos a cada espacio y
+            lugar. Nuestros 4 ejes de acción, nos permiten conformar procesos
+            comunitarios que permitan generar consciencia acerca del lugar que
+            ocupamos, renovando la manera en la que nos vinculamos con nuestro
+            entorno.
           </p>
           <div className="btns-secciones">
             <button
@@ -160,20 +214,20 @@ function Proyectos() {
             </button>
             <button
               className="btn-seccion"
-              onClick={() => window.location.replace("/proyectos#arte")}
+              onClick={() => window.location.replace("/proyectos#arte_")}
             >
               Arte
             </button>
             <button
               className="btn-seccion"
-              onClick={() => window.location.replace("/proyectos#urbanismo")}
+              onClick={() => window.location.replace("/proyectos#urbanismo_")}
             >
               Urbanismo
             </button>
             <button
               className="btn-seccion"
               onClick={() =>
-                window.location.replace("/proyectos#sustentabilidad")
+                window.location.replace("/proyectos#sustentabilidad_")
               }
             >
               Sustentabilidad
@@ -190,7 +244,7 @@ function Proyectos() {
       </section>
 
       <section className="proceso">
-        <div className="cultura" id="cultura">
+        <div className="cultura" id="cultura" style={culturaBGImg}>
           <div className="dark-overlay cultura-overlay">
             <h2 className="blanco">Cultura</h2>
             <div className="scrolldown-cont">
@@ -201,9 +255,10 @@ function Proyectos() {
               />
             </div>
             <p className="blanco descripcion-proceso">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quos
-              nesciunt nemo dignissimos totam eveniet tempora consequuntur esse
-              veniam amet?
+              Intentamos reconstruir la identidad y la organización comunitaria;
+              fortaleciendo el sentido de pertenencia de cada lugar. Desde aquí,
+              co-creamos iniciativas de colaboración, enfocadas en educación,
+              empoderamiento y emprendimiento.
             </p>
           </div>
         </div>
@@ -242,9 +297,9 @@ function Proyectos() {
       </section>
 
       <section className="proceso">
-        <div className="arte" id="arte">
+        <div className="arte" id="arte_" style={arteBGImg}>
           <div className="dark-overlay arte-overlay">
-            <h2 className="blanco">Arte</h2>
+            <h2 className="blanco" id="arte">Arte</h2>
             <div className="scrolldown-cont">
               <img
                 src={downArrow}
@@ -252,10 +307,11 @@ function Proyectos() {
                 className="scroll-down-link scroll-down-arrow"
               />
             </div>
-            <p className="blanco descripcion-proceso">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quos
-              nesciunt nemo dignissimos totam eveniet tempora consequuntur esse
-              veniam amet?
+            <p className="blanco descripcion-proceso" >
+              El arte es nuestra herramienta para descolonizar las formas de
+              interacción preestablecidas. Mediante este eje, logramos
+              determinar la naturaleza y vocación de cada comunidad, generando
+              mayor participación e involucramiento social.
             </p>
           </div>
         </div>
@@ -294,9 +350,9 @@ function Proyectos() {
       </section>
 
       <section className="proceso">
-        <div className="urbanismo" id="urbanismo">
+        <div className="urbanismo" id="urbanismo_" style={urbanismoBGImg}>
           <div className="dark-overlay urbanismo-overlay">
-            <h2 className="blanco">Urbanismo</h2>
+            <h2 className="blanco" id="urbanismo">Urbanismo</h2>
             <div className="scrolldown-cont">
               <img
                 src={downArrow}
@@ -304,10 +360,11 @@ function Proyectos() {
                 className="scroll-down-link scroll-down-arrow"
               />
             </div>
-            <p className="blanco descripcion-proceso">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quos
-              nesciunt nemo dignissimos totam eveniet tempora consequuntur esse
-              veniam amet?
+            <p className="blanco descripcion-proceso" >
+              Nombramos y reconocemos la diversidad dentro de cada lugar,
+              mediante la participación, la planificación y el ordenamiento
+              territorial. Este eje nos permite fortalecer la inclusión, la
+              creatividad y la iniciativa tanto en campo como en gabinete.
             </p>
           </div>
         </div>
@@ -345,8 +402,8 @@ function Proyectos() {
         </div>
       </section>
 
-      <section className="proceso">
-        <div className="sustentabilidad" id="sustentabilidad">
+      <section className="proceso" >
+        <div className="sustentabilidad" id="sustentabilidad_" style={sustentabilidadBGImg}>
           <div className="dark-overlay sustentabilidad-overlay">
             <h2 className="blanco">Sustentabilidad</h2>
             <div className="scrolldown-cont">
@@ -356,10 +413,11 @@ function Proyectos() {
                 className="scroll-down-link scroll-down-arrow"
               />
             </div>
-            <p className="blanco descripcion-proceso">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quos
-              nesciunt nemo dignissimos totam eveniet tempora consequuntur esse
-              veniam amet?
+            <p className="blanco descripcion-proceso" id="sustentabilidad">
+              Para decodificar las limitaciones que impiden una constante
+              transformación individual y colectiva, acudimos al eje de
+              sustentabilidad. Logramos ver el panorama con mayor amplitud, para
+              particularizar estrategias de cohesión social.
             </p>
           </div>
         </div>

@@ -42,24 +42,25 @@ function Login() {
         });
     }
 
-    function signIn(){
+    function signIn(e){
+        e.preventDefault();
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                
                 setErrorVisibility(false);
-                window.localStorage.setItem('Auth Token', userCredential._tokenResponse.refreshToken)
+                sessionStorage.setItem('Auth Token', userCredential._tokenResponse.refreshToken)
+                navigate('/admin_proyectos')
             })
             .catch((error) => {
                 const errorMessage = error.message;
                 const errorCode= error.code;
 
-                if(errorCode == 'auth/wrong-password' ){
+                if(errorCode === 'auth/wrong-password' ){
                     setErrorMsg('El correo electrónico o la contraseña no son correctos.');
                 }
-                else if(errorCode == 'auth/too-many-requests'){
+                else if(errorCode === 'auth/too-many-requests'){
                     setErrorMsg('Acceso a la cuenta deshabilitado temporalmente. Intenta de nuevo más tarde.');
                 }
-                else if(errorCode == 'auth/user-not-found'){
+                else if(errorCode === 'auth/user-not-found'){
                     setErrorMsg('El correo electrónico o la contraseña no son correctos.');
                 }
                 else{
@@ -69,8 +70,6 @@ function Login() {
             
                 setErrorVisibility(true);
             });
-
-        navigate('/admin_proyectos')
     }
     
     function toggleForgot(){

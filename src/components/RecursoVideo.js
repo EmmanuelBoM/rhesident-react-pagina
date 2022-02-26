@@ -37,19 +37,42 @@ function RecursoVideo(props) {
     
 
     return (
-        <div className="card-contenido-panel card-recurso">
+      <div className="card-contenido-panel card-recurso">
         <div className="header-card-contenido mb4">
-            <div className="vertical-indicator"></div>
-            <h4 className="verde">{props.recurso.nombre}</h4>
+          <div className="vertical-indicator"></div>
+          <h4 className="verde">{props.recurso.nombre}</h4>
         </div>
         <form action="" className="formulario-registro">
-            <label htmlFor="videoURL" className='input-label'>URL del video de Youtube</label>
-            <input type="text"  placeholder="Enlace al video" name="videoURL" id="" className="input-gral" required onChange={handleInputChange} defaultValue={videoURL}/>
+          <label htmlFor="videoURL" className="input-label">
+            URL del video de Youtube
+          </label>
+          <input
+            type="text"
+            placeholder="Enlace al video"
+            name="videoURL"
+            id=""
+            className="input-gral"
+            required
+            onChange={handleInputChange}
+            defaultValue={videoURL}
+          />
+          <div className="warning-img">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <p className="txt-warning">
+              Solo pega los últimos caracteres después del signo{" "}
+              <span className="bold"> = </span>
+            </p>
+          </div>
         </form>
-        
-           
-        <button className={btnDisabled ? "btn-disabled" : "btn-enviar" } onClick={updateRecurso}  disabled={btnDisabled} >Actualizar</button>
-        </div>
+
+        <button
+          className={btnDisabled ? "btn-disabled" : "btn-enviar"}
+          onClick={updateRecurso}
+          disabled={btnDisabled}
+        >
+          Actualizar
+        </button>
+      </div>
     );
 }
 

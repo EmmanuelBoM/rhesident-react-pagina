@@ -61,23 +61,19 @@
 }
 
 .cultura{
-    background-image: url('../assets/cultura.png');
     background-size: cover;
     background-position: center; 
 }
 
 .arte{
-    background-image: url('../assets/arte.png');
     background-size: cover;
     background-position: center; 
 }
 .urbanismo{
-    background-image: url('../assets/urbanismo.png');
     background-size: cover;
     background-position: center; 
 }
 .sustentabilidad{
-    background-image: url('../assets/sustentabilidad.png');
     background-size: cover;
     background-position: center; 
 }
@@ -261,4 +257,20 @@
 
 .icono-pag-admin{
     color: #768D95 !important;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .btns-secciones{
+        flex-wrap: wrap;
+        width: 90%;
+    }
+
+    .btn-seccion{
+        margin-bottom: 2rem;
+    }
+
+    .descripcion-proceso{
+        width: 80%;
+    }
 }

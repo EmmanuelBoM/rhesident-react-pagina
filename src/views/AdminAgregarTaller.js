@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import AdminNavbar from '../components/AdminNavbar';
 import '../styles/base.css'
 import '../styles/AdminLayout.css'
@@ -15,10 +15,7 @@ import "react-multi-date-picker/styles/colors/green.css"
 import {db, storage} from '../firebaseConfig'
 import {collection,addDoc} from "@firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "@firebase/storage";
-
-
-
-
+import { useNavigate } from 'react-router-dom';
 
 function AdminAgregarTaller() {
     const [modalExitoVisibility, setModalExitoVisibility] = useState(false)
@@ -26,13 +23,24 @@ function AdminAgregarTaller() {
     const [ejesValue, setEjesValue] = useState([])
     const [fechasValue, setFechasValue] = useState([])
     const [etiquetasValue, setEtiquetasValue] = useState([])
-    const [objetivosValue, setObjetivosValue] = useState([])
     const [imgURL, setImgURL] = useState('')
     const [modalidadValue, setModalidadValue] = useState('')
     const [estatusValue, setEstatusValue] = useState('')
     const [taller, setTaller] = useState({})
     const weekDays = ["D", "L", "M", "X", "J", "V", "S"]
     const months = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"]
+
+    let navigate = useNavigate();
+    useEffect(()=>{
+        let authToken = sessionStorage.getItem('Auth Token')
+        if (authToken) {
+            navigate('/agregar-taller')
+        }
+
+        if (!authToken) {
+            navigate('/login')
+        }
+    },[])
 
     const ejesAccion = [
         { value: 'Cultura', label: 'Cultura' },
@@ -49,7 +57,7 @@ function AdminAgregarTaller() {
     const modalidadesSelect = [
         { value: 'Presencial', label: 'Presencial' },
         { value: 'Híbrido', label: 'Híbrido' },
-        { value: 'Remoto', label: 'Remoto' }
+        { value: 'Virtual', label: 'Virtual' }
     ]
 
     const customSelectStyles = {
@@ -237,6 +245,10 @@ function AdminAgregarTaller() {
                                 <input type="file" name="imgURL"  className="input-archivo" onChange={handleImgChange}/>
                                 <img src={imgURL} alt=""  className="preview-img" />
                             </div>
+                            <div className="warning-img">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                                <p className="txt-warning">Formato recomendado: <span className="bold"> Horizontal 4:3</span> </p>
+                            </div>  
                             <div className="warning-img">
                                 <i class="fa-solid fa-circle-exclamation"></i>
                                 <p className="txt-warning">Recuerda comprimir el tamaño de la imagen <a href="https://compressor.io/">aquí</a></p>

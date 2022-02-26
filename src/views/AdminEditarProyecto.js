@@ -7,8 +7,7 @@ import Select from 'react-select'
 import CreatableSelect, { useCreatable } from 'react-select/creatable';
 import ModalAdminExito from '../components/ModalAdminExito';
 import ModalAdminConfirmar from '../components/ModalAdminConfirmar';
-import { useParams } from 'react-router-dom';
-
+import { useNavigate, useParams } from 'react-router-dom';
 // Firebase Imports
 import {db, storage} from '../firebaseConfig'
 import {doc, getDoc, updateDoc} from "@firebase/firestore";
@@ -34,7 +33,18 @@ function AdminEditarProyecto() {
     let params = useParams();
 
     const proyectoRef = doc(db, "proyectos", params.id)
+
+    let navigate = useNavigate();
     useEffect (()=>{
+        let authToken = sessionStorage.getItem('Auth Token')
+        if (authToken) {
+            navigate(`/editar-proyecto/${params.id}`)
+        }
+
+        if (!authToken) {
+            navigate('/login')
+        }
+        
         const getProyecto = async () => {
           const proyectoDoc = await getDoc(proyectoRef);
           setProyecto(proyectoDoc.data())
@@ -59,14 +69,14 @@ function AdminEditarProyecto() {
     
     const estatusSelect = [
         { value: 'Activo', label: 'Activo' },
-        { value: 'Pasado', label: 'Pasado' },
+        { value: 'Terminado', label: 'Terminado' },
         { value: 'Próximo', label: 'Próximo' }
     ]
     
     const modalidadesSelect = [
         { value: 'Presencial', label: 'Presencial' },
         { value: 'Híbrido', label: 'Híbrido' },
-        { value: 'Remoto', label: 'Remoto' }
+        { value: 'Remoto', label: 'Virtual' }
     ]
 
     const customSelectStyles = {
@@ -275,6 +285,11 @@ function AdminEditarProyecto() {
                             <label htmlFor="descripcionBreve" className="input-label">Descripción breve</label>
                             <textarea name="descripcionBreve" id="" cols="30" rows="4" className="input-gral" placeholder='90 caracteres máximo' onChange={handleInputChange} defaultValue={proyecto.descripcionBreve}></textarea>
                             
+                            <div className="warning-img">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                                <p className="txt-warning">La descripción breve es la que se muestra al pasar el mouse sobre el cuadro del proyecto en la galería de proyectos.</p>
+                            </div>
+
                             <label htmlFor="descripcionGeneral" className="input-label">Descripción general</label>
                             <textarea name="descripcionGeneral" id="" cols="30" rows="8" className="input-gral" placeholder='Escribe aquí' onChange={handleInputChange} defaultValue={proyecto.descripcionGeneral}></textarea>
                             
@@ -282,6 +297,15 @@ function AdminEditarProyecto() {
                             <div className="file-preview">
                                 <input type="file" name="imgPrincipalURL" id="" className="input-archivo" onChange={handleImgChange}/>
                                 <img src={imgPrincipalURL} alt=""  className="preview-img"/>
+                            </div>
+                            <div className="warning-img">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                                <p className="txt-warning">Formato recomendado: <span className="bold"> Horizontal 4:3</span> </p>
+                            </div>  
+
+                            <div className="warning-img">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                                <p className="txt-warning">Recuerda comprimir el tamaño de la imagen <a href="https://compressor.io/" target="_blank">aquí</a></p>
                             </div>
 
                             <label htmlFor="" className="input-label">Etiquetas</label>
@@ -320,6 +344,9 @@ function AdminEditarProyecto() {
                             <label htmlFor="" className="input-label">Procesos</label>
                             <textarea name="procesos" id="" cols="30" rows="8" className="input-gral" placeholder='Escribe aquí' onChange={handleInputChange} defaultValue={proyecto.procesos}></textarea>
                             
+                            <label htmlFor="URLExterno" className='input-label'>Enlace externo</label>
+                            <input type="text"  placeholder="URL del blog o página del proyecto" name="URLExterno" id="" className="input-gral" onChange={handleInputChange}/>
+                            
                             <label htmlFor="" className="input-label">Galería de imagenes</label>
                             <div className="file-preview-multi">
                                 <input type="file" name="" id="" className="input-archivo" onChange={handleGaleriaChange} multiple/>
@@ -329,6 +356,10 @@ function AdminEditarProyecto() {
                                     )}
                                 </div>
                                 
+                            </div>
+                            <div className="warning-img">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                                <p className="txt-warning">Recuerda comprimir el tamaño de las imagenes <a href="https://compressor.io/" target="_blank">aquí</a></p>
                             </div>
 
                             <button className="btn-enviar"  type="button" onClick={showModalConfirmar}>

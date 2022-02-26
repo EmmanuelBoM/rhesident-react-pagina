@@ -1,12 +1,16 @@
 import React,{useRef, useState} from 'react';
 import Footer from '../components/Footer';
 import NavHeader from '../components/NavHeader';
+import NavMovil from '../components/NavMovil';
+
 import '../styles/base.css'
 import '../styles/Formularios.css'
 import '../styles/FormularioIdea.css'
+
 import emailjs from '@emailjs/browser';
 import ModalAdminExito from '../components/ModalAdminExito';
 import ModalAdminConfirmar from '../components/ModalAdminConfirmar';
+
 
 function FormularioIdea() {
 
@@ -19,7 +23,7 @@ function FormularioIdea() {
     const [encabezado, setEncabezado] = useState('')
     const [formulario, setFormulario] = useState('')
     const [formul, setFormul] = useState()
-
+    const [navMovilVisibility, setNavMovilVisibility] = useState(false)
 
     function handleInputChange(e){
         let newContenido = {
@@ -51,7 +55,7 @@ function FormularioIdea() {
     };
 
     const sendEmail = ()=>{
-        emailjs.sendForm('service_u991eko', 'template_bcuckis', formul, 'user_wh73PvSsOalaHXaqSy8Bk')
+        emailjs.sendForm('service_ptr57gn', 'template_uewpabn', formul, 'user_6Z59AsBJ728YVhNVXCx7x')
         .then((result) => {
             setModalConfVisibility(false)
             setModalExitoVisibility(true)
@@ -62,11 +66,15 @@ function FormularioIdea() {
 
     return (
         <main>
-            {modalExitoVisibility ? <ModalAdminExito setModalVisibility={setModalExitoVisibility} rutaContinuar='/como-apoyar' accion='enviada' recurso= 'Respuesta' subt=" " nombreRecurso=" "></ModalAdminExito> : null }
+            {modalExitoVisibility ? <ModalAdminExito setModalVisibility={setModalExitoVisibility} rutaContinuar='/como-apoyar' accion='enviada. Pronto nos pondremos en contacto contigo' recurso= 'Respuesta' subt=" " nombreRecurso=" "></ModalAdminExito> : null }
             {modalConfVisibility ? <ModalAdminConfirmar setModalVisibility={setModalConfVisibility} runFunction={sendEmail} accion='enviar' recurso= 'tu respuesta' nombreRecurso=" "></ModalAdminConfirmar> : null }
-            <NavHeader></NavHeader>
+            {navMovilVisibility ? (
+                <NavMovil setNavMovilVisibility={setNavMovilVisibility}></NavMovil>
+            ) : null}
+            <NavHeader setNavMovilVisibility={setNavMovilVisibility}></NavHeader>
             <div className="titulo-header">
                 <h1 className="verde">Cuéntanos tu idea</h1>
+                <p className="header-subt negro">Colabora con Rhesident Org.</p>
             </div>
            
             <section className="registro-contenido cont-idea">
@@ -123,15 +131,11 @@ function FormularioIdea() {
                         </div>
                         <h3 className="verde">Contacto</h3>
                         <div className="text-idea">
-                            <p className="verde bold">Teléfono</p>
-                            <p className="verde ">771 123 73 48</p>
-                        </div>
-                        <div className="text-idea">
                             <p className="verde bold">Correo Electrónico</p>
                             <p className="verde ">info@rhesident.org</p>
                         </div>
                     </div>
-                    <img src='' alt="" className="img-registro" />
+                    
                 </div>
             </section>
             <Footer></Footer>

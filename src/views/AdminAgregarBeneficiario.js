@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import AdminNavbar from '../components/AdminNavbar';
 import '../styles/base.css'
 import '../styles/AdminLayout.css'
@@ -11,6 +11,7 @@ import ModalAdminConfirmar from '../components/ModalAdminConfirmar';
 import {db, storage} from '../firebaseConfig'
 import {collection,addDoc} from "@firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "@firebase/storage";
+import { useNavigate } from 'react-router-dom';
 
 
 function AdminAgregarBeneficiario() {
@@ -19,6 +20,18 @@ function AdminAgregarBeneficiario() {
     const [beneficiario, setBeneficiario] = useState({})
     const [imgURL, setImgURL] = useState('')
 
+    let navigate = useNavigate();
+    useEffect(()=>{
+        let authToken = sessionStorage.getItem('Auth Token')
+        if (authToken) {
+            navigate('/agregar-beneficiario')
+        }
+
+        if (!authToken) {
+            navigate('/login')
+        }
+    },[])
+    
     function showModalConfirmar(){
         setModalConfVisibility(true);
     }
@@ -88,10 +101,10 @@ function AdminAgregarBeneficiario() {
                     </div>
                     <div className="cont-formulario-agregar">
                         <form action="" className="formulario-registro">
-                            <label htmlFor="nombre" className='input-label'>Nombre del beneficiario</label>
+                            <label htmlFor="nombre" className='input-label'>Nombre del beneficiario*</label>
                             <input type="text"  placeholder="Nombre completo" name="nombre" id="" className="input-gral" required onChange={handleInputChange}/>
                             
-                            <label htmlFor="imgURL" className="input-label">Imagen/Logotipo</label>
+                            <label htmlFor="imgURL" className="input-label">Imagen/Logotipo*</label>
                             <div className="file-preview">
                                 <input type="file" name="imgURL" id="" className="input-archivo" onChange={handleImgChange}/>
                                 <img src={imgURL} alt=""  className="preview-img" />

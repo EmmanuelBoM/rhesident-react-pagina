@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router,
   Route,
   Routes, 
-  Navigate
+  useNavigate
   } from 'react-router-dom';
 import "animate.css";
 import LandingPage from './views/LandingPage'
@@ -51,18 +51,14 @@ import AdminDescargas from './views/AdminDescargas';
 import AdminAgregarDescarga from './views/AdminAgregarDescarga';
 import AdminEditarDescarga from './views/AdminEditarDescarga';
 import Descargas from './views/Descargas';
+import AdminEditarTaller from './views/AdminEditarTaller';
+import AvisoPrivacidad from './views/AvisoPrivacidad';
+import AvisoIntegral from './views/AvisoIntegral';
 
 
 function App() {
-  const [authToken, setAuthToken] =useState('')
-  
-  useEffect(() => {
-    setAuthToken(window.localStorage.getItem('Auth Token'));
-  }, [])
-  
-
   return (
-   <Router>
+   <>
       <ScrollToTop/>
      <Routes>
       <Route path='/' element={<LandingPage/>} />
@@ -74,54 +70,59 @@ function App() {
       <Route path='/proyecto/:id' element={<ProyectoDetalle/>} />
       <Route path='/talleres' element={<Talleres/>} />
       <Route path='/voluntariado' element={<Voluntariado/>} />
+      <Route path='/voluntariado/:tipo' element={<Voluntariado/>} />
       <Route path='/como-apoyar' element={<Donaciones/>} />
       <Route path='/registro-voluntariado/:modalidad' element={<RegistroVoluntarios/>} />
       <Route path='/registro-voluntariado' element={<RegistroVoluntarios/>} />
-      <Route path='/podcast' element={<Podcast/>} />
+      <Route path='/podcast' element={<Proximamente/>} />
+      <Route path='/podcast/:plataforma' element={<Proximamente/>} />
       <Route path='/blog' element={<Proximamente/>} />
       <Route path='/tienda' element={<Proximamente/>} />
       <Route path='/dona-ahora' element={<PaypalDona/>} />
       <Route path='/cuentanos-tu-idea' element={<FormularioIdea/>} />
       <Route path='/registro-taller/:id' element={<RegistroTaller/>} />
       <Route path='/descargas' element={<Descargas/>} />
+      <Route path='/aviso-de-privacidad' element={<AvisoPrivacidad/>} />
+      <Route path='/aviso-integral' element={<AvisoIntegral/>} />
       
       <Route path='/login' element={<Login/>} />
-      <Route path='/admin_recursos' element={authToken ? <AdminRecursos/>: <Navigate to='/login'/>} />
+      <Route path='/admin_recursos' element={ <AdminRecursos/>} />
       
-      <Route path='/admin_proyectos' element={authToken ? <AdminProyectos/> : <Navigate to='/login'/>} />
-      <Route path='/agregar-proyecto' element={authToken ? <AdminAgregarProyecto/> : <Navigate to='/login'/>} />
-      <Route path='/editar-proyecto/:id' element={authToken ? <AdminEditarProyecto/> : <Navigate to='/login'/>} />
+      <Route path='/admin_proyectos' element={ <AdminProyectos/> } />
+      <Route path='/agregar-proyecto' element={ <AdminAgregarProyecto/> } />
+      <Route path='/editar-proyecto/:id' element={ <AdminEditarProyecto/> } />
       
-      <Route path='/admin_notas' element={authToken ? <AdminNotas/>  : <Navigate to='/login'/>} />
-      <Route path='/agregar-nota' element={authToken ? <AdminAgregarNota/> : <Navigate to='/login'/>} />
-      <Route path='/editar-nota/:id' element={ authToken ? <AdminEditarNota/>: <Navigate to='/login'/>} />
+      <Route path='/admin_notas' element={ <AdminNotas/>  } />
+      <Route path='/agregar-nota' element={ <AdminAgregarNota/> } />
+      <Route path='/editar-nota/:id' element={  <AdminEditarNota/>} />
       
-      <Route path='/admin_beneficiarios' element={ authToken ? <AdminBeneficiarios/> : <Navigate to='/login'/>} />
-      <Route path='/agregar-beneficiario' element={ authToken ? <AdminAgregarBeneficiario/> : <Navigate to='/login'/>} />
-      <Route path='/editar-beneficiario/:id' element={ authToken ?  <AdminEditarBeneficiario/> : <Navigate to='/login'/>} />
+      <Route path='/admin_beneficiarios' element={  <AdminBeneficiarios/> } />
+      <Route path='/agregar-beneficiario' element={  <AdminAgregarBeneficiario/> } />
+      <Route path='/editar-beneficiario/:id' element={   <AdminEditarBeneficiario/> } />
       
-      <Route path='/admin_alianzas' element={ authToken ? <AdminAlianzas/> : <Navigate to='/login'/>} />
-      <Route path='/agregar-alianza' element={ authToken ? <AdminAgregarAlianza/> : <Navigate to='/login'/>} />
-      <Route path='/editar-alianza/:id' element={authToken ? <AdminEditarAlianza/> : <Navigate to='/login'/>} />
+      <Route path='/admin_alianzas' element={  <AdminAlianzas/> } />
+      <Route path='/agregar-alianza' element={  <AdminAgregarAlianza/> } />
+      <Route path='/editar-alianza/:id' element={ <AdminEditarAlianza/> } />
       
-      <Route path='/admin_equipo' element={authToken ? <AdminEquipo/> : <Navigate to='/login'/>} />
-      <Route path='/agregar-miembro' element={ authToken ? <AdminAgregarMiembro/> : <Navigate to='/login'/>} />
-      <Route path='/editar-miembro/:id' element={authToken ? <AdminEditarMiembro/> : <Navigate to='/login'/>} />
+      <Route path='/admin_equipo' element={ <AdminEquipo/> } />
+      <Route path='/agregar-miembro' element={  <AdminAgregarMiembro/> } />
+      <Route path='/editar-miembro/:id' element={ <AdminEditarMiembro/> } />
       
-      <Route path='/admin_testimonios' element={authToken ? <AdminTestimonios/>: <Navigate to='/login'/>} />
-      <Route path='/agregar-testimonio' element={authToken ?<AdminAgregarTestimonio/>: <Navigate to='/login'/>} />
-      <Route path='/editar-testimonio/:id' element={authToken ?<AdminEditarTestimonio/>: <Navigate to='/login'/>} />
+      <Route path='/admin_testimonios' element={ <AdminTestimonios/>} />
+      <Route path='/agregar-testimonio' element={<AdminAgregarTestimonio/>} />
+      <Route path='/editar-testimonio/:id' element={<AdminEditarTestimonio/>} />
      
-      <Route path='/admin_talleres' element={authToken ?<AdminTalleres/>: <Navigate to='/login'/>} />
-      <Route path='/agregar-taller' element={authToken ?<AdminAgregarTaller/>: <Navigate to='/login'/>} />
-      {/* TO DO /editar-taller/:id */}
-      <Route path='/admin_descargas' element={authToken ?<AdminDescargas/>: <Navigate to='/login'/>} />
-      <Route path='/agregar-descarga' element={authToken ?<AdminAgregarDescarga/>: <Navigate to='/login'/>} />
-      <Route path='/editar-descarga/:id' element={authToken ?<AdminEditarDescarga/>: <Navigate to='/login'/>} />
+      <Route path='/admin_talleres' element={<AdminTalleres/>} />
+      <Route path='/agregar-taller' element={<AdminAgregarTaller/>} />
+      <Route path='/editar-taller/:id' element={<AdminEditarTaller/>} />
+
+      <Route path='/admin_descargas' element={<AdminDescargas/>} />
+      <Route path='/agregar-descarga' element={<AdminAgregarDescarga/>} />
+      <Route path='/editar-descarga/:id' element={<AdminEditarDescarga/>} />
       
       <Route path="*" element={<Vista404/>} />
      </Routes>
-   </Router>
+   </>
   )
 }
 

@@ -2,6 +2,7 @@
 import { initializeApp } from "@firebase/app";
 import { getFirestore } from "@firebase/firestore";
 import { getStorage } from "@firebase/storage";
+import { getAuth, setPersistence, browserSessionPersistence } from "@firebase/auth";
 
 const firebaseConfig = {
  apiKey: process.env.REACT_APP_API_KEY_PROD,
@@ -13,7 +14,13 @@ const firebaseConfig = {
   measurementId:process.env.REACT_APP_MEASUREMENT_ID_PROD 
 };
 
-
 const app = initializeApp(firebaseConfig);
 export const storage = getStorage(app);
 export const db = getFirestore(app);
+const auth = getAuth();
+setPersistence(auth, browserSessionPersistence)
+  .then(() => {
+  })
+  .catch((error) => {
+    console.log(error)
+  });

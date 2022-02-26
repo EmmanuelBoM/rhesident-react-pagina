@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import AdminNavbar from '../components/AdminNavbar';
 import '../styles/base.css'
 import '../styles/AdminLayout.css'
@@ -11,6 +11,7 @@ import ModalAdminConfirmar from '../components/ModalAdminConfirmar';
 import {db, storage} from '../firebaseConfig'
 import {collection,addDoc} from "@firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "@firebase/storage";
+import { useNavigate } from 'react-router-dom';
 
 
 function AdminAgregarTestimonio() {
@@ -19,6 +20,18 @@ function AdminAgregarTestimonio() {
     const [testimonio, setTestimonio] = useState({})
     const [imgURL, setImgURL] = useState('')
     const [imgCompletaURL, setImgCompletaURL] = useState('')
+
+    let navigate = useNavigate();
+    useEffect(()=>{
+        let authToken = sessionStorage.getItem('Auth Token')
+        if (authToken) {
+            navigate('/agregar-testimonio')
+        }
+
+        if (!authToken) {
+            navigate('/login')
+        }
+    },[])
 
     function showModalConfirmar(){
         setModalConfVisibility(true);
@@ -92,16 +105,16 @@ function AdminAgregarTestimonio() {
                     </div>
                     <div className="cont-formulario-agregar">
                         <form action="" className="formulario-registro">
-                            <label htmlFor="nombre" className='input-label'>Nombre</label>
+                            <label htmlFor="nombre" className='input-label'>Nombre*</label>
                             <input type="text"  placeholder="Persona/Organización que da el tesimonioo" name="nombre" id="" className="input-gral" required onChange={handleInputChange}/>
 
-                            <label htmlFor="relacion" className='input-label'>Relación con Rhesident Org.</label>
+                            <label htmlFor="relacion" className='input-label'>Relación con Rhesident Org.*</label>
                             <input type="text"  placeholder="Ej.: Voluntario, Colaborador, etc." name="relacion" id="" className="input-gral" required onChange={handleInputChange}/>
 
-                            <label htmlFor="testimonio" className='input-label'>Testimonio</label>
-                            <textarea name="testimonio" id="" cols="30" rows="10" className="input-gral"  onChange={handleInputChange}></textarea>
+                            <label htmlFor="testimonio" className='input-label'>Testimonio*</label>
+                            <textarea name="testimonio"placeholder='500 caracteres máximo.' id="" cols="30" rows="10" className="input-gral" maxLength={500} onChange={handleInputChange}></textarea>
                             
-                            <label htmlFor="imgURL" className="input-label">Imagen / Logotipo</label>
+                            <label htmlFor="imgURL" className="input-label">Imagen / Logotipo*</label>
                             <div className="file-preview">
                                 <input type="file" name="imgURL" id="" className="input-archivo" onChange={handleImgChange}/>
                                 <img src={imgURL} alt=""  className="preview-img" />

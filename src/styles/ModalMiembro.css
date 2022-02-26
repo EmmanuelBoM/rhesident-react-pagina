@@ -18,7 +18,7 @@
     background-color: var(--g-900);
     display: flex;
     flex-direction: row;
-    width: 60%;
+    width: 90rem;
     z-index: 100;
 }
 
@@ -26,6 +26,7 @@
     padding: 4rem 6rem;
     width: 60%;
 }
+
 .imagen-completa-miembro{
     width: 50%;
     background-size: cover;
@@ -60,6 +61,7 @@
 .descripcion-miembro-modal{
     font-size:1.6rem;
     margin-bottom: 4rem;
+    text-align: justify;
 }
 .btn-cerrar{
     width: 6%;
@@ -71,3 +73,27 @@
 }
 
 
+@media only screen and (max-width: 768px) {
+    .cont-modal-miembro{
+        width: 65rem;
+    }
+
+}
+
+@media only screen and (max-width: 576px) {
+    .cont-modal-miembro{
+        width: 80%;
+    }
+    .imagen-completa-miembro{
+        display: none;
+    }
+
+    .modal-contenido{
+        width: 80%;
+    }
+
+    .nombre-miembro-modal{
+        text-align: center;
+        font-size: 3.2rem;
+    }
+}

@@ -27,7 +27,9 @@
 }
 
 .nombre-proyecto{
+    text-align: start;
     margin-bottom: 1rem;
+    width: 100%;
 }
 
 .categorias-proyecto{
@@ -48,7 +50,7 @@
 
 .descripcion-proyecto{
     color: var(--g-400);
-    width: 90%;
+    width: 100%;
     margin-bottom: 1rem;
 }
 
@@ -155,6 +157,12 @@
 .procesos{
     width: 50%;
     text-align: justify;
+    
+}
+
+.procesos-texto{
+    font-size: 1.8rem;
+    white-space: pre-line;
 }
 
 
@@ -208,4 +216,84 @@
 .icono-full{
     font-size: 3rem;
     z-index: 100;
+}
+
+@media only screen and (max-width: 992px) {
+    .detalles-principal{
+        padding: 0 15rem;
+    }
+
+    .detalles-secundario{
+        padding: 0 15rem;
+    }
+}
+
+@media only screen and (max-width: 880px) {
+    .detalles-principal{
+        padding: 0 10rem;
+    }
+
+    .detalles-secundario{
+        padding: 0 10rem;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .detalles-principal{
+        margin-top: 20rem;
+        flex-direction: column;
+        justify-content: start;
+    }
+
+    .nombre-proyecto{
+        text-align: center;
+    }
+
+    .img-principal-svg{
+        width: 30rem;
+        height: auto;
+    }
+
+    .info-principal{
+        margin-top: 4rem;
+        width: 100%;
+        align-items: center;
+    }
+
+    .categorias-proyecto{
+        margin-bottom: 8rem;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+
+    .detalles-principal{
+        padding: 0 5rem;
+    }
+
+    .detalles-secundario{
+        padding: 0 5rem;
+    }
+    .cont-detalles-sec{
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+
+    .objetivos{
+        margin-bottom: 4rem;
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .procesos{
+        width: 100%;
+    }
+
+    .cont-proposito{
+        margin-bottom: 4rem;
+        text-align: justify;
+    }
 }

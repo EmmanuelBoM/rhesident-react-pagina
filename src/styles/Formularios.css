@@ -198,3 +198,38 @@
 .dnone{
     display: none;
 }
+
+
+@media only screen and (max-width: 992px) {
+    .registro-contenido{
+        padding: 0 5rem;
+    }
+
+    .formulario-registro{
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .registro-contenido{
+        margin-top: 4rem;
+        flex-direction: column;
+    }
+
+    .img-registro{
+        margin-bottom: 6rem;
+    }
+
+    .cont-formulario-registro{
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .img-registro{
+        width: 70%;
+    }
+    .cont-formulario-registro{
+        width: 95%;
+    }
+}

@@ -1,170 +1,310 @@
-import React, {useState, useEffect} from 'react'
-import Footer from '../components/Footer'
-import NavHeader from '../components/NavHeader'
-import OverlayInvitacion from '../components/OverlayInvitacion'
+import React, { useState, useEffect } from "react";
+import Footer from "../components/Footer";
+import NavHeader from "../components/NavHeader";
+import OverlayInvitacion from "../components/OverlayInvitacion";
+import NavMovil from "../components/NavMovil";
 
-import '../styles/base.css'
-import '../styles/LandingPage.css'
-import '../styles/NuestrasIntenciones.css'
-import "animate.css/animate.min.css"
-
-import downArrow from '../assets/down_arrow_light.svg'
-import imgHeroIntenciones from '../assets/nuestras_intenciones.png';
-
-import { AnimationOnScroll } from 'react-animation-on-scroll';
-import {Animated} from "react-animated-css";
+import "../styles/base.css";
+import "../styles/LandingPage.css";
+import "../styles/NuestrasIntenciones.css";
 import "animate.css/animate.min.css";
 
-import {Link} from 'react-router-dom';
+import downArrow from "../assets/down_arrow_light.svg";
+import { Helmet } from "react-helmet";
+import { AnimationOnScroll } from "react-animation-on-scroll";
+import { Animated } from "react-animated-css";
+import "animate.css/animate.min.css";
+
+import { Link } from "react-router-dom";
 
 // Firebase Imports
-import {db} from '../firebaseConfig'
-import {collection,getDoc, doc} from "@firebase/firestore";
-import { Helmet } from 'react-helmet'
+import { db } from "../firebaseConfig";
+import { getDoc, doc } from "@firebase/firestore";
+
+
 
 function NuestrasIntenciones() {
-    const [overlayVisibility, setOverlayVisibility] = useState(false)
-    const [portadaIntenciones, setPortadaIntenciones] = useState('')
+  const [overlayVisibility, setOverlayVisibility] = useState(false);
+  const [portadaIntenciones, setPortadaIntenciones] = useState("");
+  const [navMovilVisibility, setNavMovilVisibility] = useState(false)
+  const [propositoImg, setPropositoImg] = useState('')
+  const portadaRef = doc(db, "recursosGenerales", "JdU7qvSU98pHcPSt59e4");
+  const propositoRef = doc(db, "recursosGenerales", "d62EdjeAOaeBMLMPqcAF");
 
-    const portadaRef = doc(db, "recursosGenerales", "JdU7qvSU98pHcPSt59e4")
-    useEffect (()=>{
-        const getPortada = async () => {
-          const portadaDoc = await getDoc(portadaRef);
-          setPortadaIntenciones(portadaDoc.data().url)
-        }
-    
-        getPortada();
-      }, []);
-    
-    const portadaImg = {
-        backgroundImage: `url(${portadaIntenciones})`
+  useEffect(() => {
+    const getPortada = async () => {
+      const portadaDoc = await getDoc(portadaRef);
+      setPortadaIntenciones(portadaDoc.data().url);
+    };
+
+    const getImgProposito = async () => {
+      const propositoDoc = await getDoc(propositoRef);
+      setPropositoImg(propositoDoc.data().url);
+    };
+
+    getImgProposito();
+    getPortada();
+  }, []);
+
+  const portadaImg = {
+    backgroundImage: `url(${portadaIntenciones})`,
+  };
+
+  const propositoBGImg = {
+    backgroundImage: `url(${propositoImg})`,
+  };
+
+  function showOverlay() {
+    if (window.scrollY >= 80) {
+      setOverlayVisibility(true);
+    } else {
+      setOverlayVisibility(false);
     }
+  }
 
-    function showOverlay(){
-        if (window.scrollY>=80){
-            setOverlayVisibility(true)
-        }
-        else{
-            setOverlayVisibility(false)
-        }
-    }
+  window.addEventListener("scroll", showOverlay);
 
-    window.addEventListener('scroll', showOverlay)
+  return (
+    <main>
+      <Helmet>
+        <title>Nuestras Intenciones | Rhesident</title>
+      </Helmet>
 
-    return (
-        <main>
-             <Helmet>
-                <title>Nuestras Intenciones | Rhesident</title>
-            </Helmet>
-            <NavHeader textColor='blanco'></NavHeader>
-            <Animated animateOnMount={false} animationIn="fadeInDown" animationOut="fadeOutUp" isVisible={overlayVisibility} animationInDuration={500} animationOutDuration={500}className="overlay-top">
-                {overlayVisibility ? <OverlayInvitacion overlayVisibility={overlayVisibility}></OverlayInvitacion>:null}
-            </Animated>
-            <section className="hero-intenciones" style={portadaImg}>
-                <div className="color-overlay">
-                    <h1 className='titulo-hero blanco'>Nuestras intenciones</h1>
-                    <p className='intenciones-descripcion blanco descripcion-hero'>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam,
-                        quia praesentium iste explicabo ad ipsum ex eius neque, dolor error
-                        commodi accusamus. 
-                    </p>
-                    <div className="scrolldown-cont">
-                        <img src={downArrow} alt="" className="scroll-down-link scroll-down-arrow" />
-                    </div>
-                </div>
-            </section>
-            <section className="intenciones-detalle">
-                <div className="intencion-cont intencion-verde">
-                    <div className="intencion-img"></div>
-                    <div className="intencion-texto">
-                        <p className="intencion-descripcion blanco">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis distinctio quis, impedit perferendis rem minima qui. Rerum pariatur amet nostrum?</p>
-                        <h2 className="intencion-titulo blanco">Inclusión</h2>
-                    </div>
-                </div>
+      {navMovilVisibility ? (
+        <NavMovil setNavMovilVisibility={setNavMovilVisibility}></NavMovil>
+      ) : null}
 
-                <div className="intencion-cont">
-                    <div className="intencion-texto">
-                        <h2 className="intencion-titulo verde">Cohesión Social</h2>
-                        <p className="intencion-descripcion verde">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis distinctio quis, impedit perferendis rem minima qui. Rerum pariatur amet nostrum?</p>
-                    </div>
-                    <div className="intencion-img"></div>
-                </div>
+      <NavHeader
+        textColor="blanco"
+        setNavMovilVisibility={setNavMovilVisibility}
+      ></NavHeader>
+      <Animated
+        animateOnMount={false}
+        animationIn="fadeInDown"
+        animationOut="fadeOutUp"
+        isVisible={overlayVisibility}
+        animationInDuration={500}
+        animationOutDuration={500}
+        className="overlay-top"
+      >
+        {overlayVisibility ? (
+          <OverlayInvitacion
+            overlayVisibility={overlayVisibility}
+          ></OverlayInvitacion>
+        ) : null}
+      </Animated>
+      <section className="hero-intenciones" style={portadaImg}>
+        <div className="color-overlay">
+          <h1 className="titulo-hero blanco">Nuestras intenciones</h1>
+          <p className="intenciones-descripcion blanco descripcion-hero">
+            Queremos generar situaciones que nos inviten a responsabilizarnos e
+            intervenir para crear entornos inclusivos, transformando la forma en
+            la que nos vinculamos individual y colectivamente con el entorno que
+            nos rodea.
+          </p>
+          <div className="scrolldown-cont">
+            <img
+              src={downArrow}
+              alt=""
+              className="scroll-down-link scroll-down-arrow"
+            />
+          </div>
+        </div>
+      </section>
+      <section className="intenciones-detalle">
+        <div className="intencion-cont intencion-verde">
+          <div className="inclusion-img"></div>
+          <div className="intencion-texto">
+            <p className="intencion-descripcion int-hide blanco">
+              Generar conexiones que permitan nombrar y reconocer la diversidad
+              dentro de una comunidad.
+            </p>
+            <h2 className="intencion-titulo blanco">Inclusión</h2>
+            <p className="intencion-descripcion-sec blanco">
+              Generar conexiones que permitan nombrar y reconocer la diversidad
+              dentro de una comunidad.
+            </p>
+          </div>
+        </div>
 
-                <div className="intencion-cont intencion-verde">
-                    <div className="intencion-img"></div>
-                    <div className="intencion-texto">
-                        <p className="intencion-descripcion blanco">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis distinctio quis, impedit perferendis rem minima qui. Rerum pariatur amet nostrum?</p>
-                        <h2 className="intencion-titulo blanco">Sentido de comunidad</h2>
-                    </div>
-                </div>
+        <div className="intencion-cont">
+          <div className="intencion-texto">
+            <h2 className="intencion-titulo verde">Cohesión Social</h2>
+            <p className="intencion-descripcion verde">
+              Decodificar limitaciones que impiden la constante transformación
+              individual y colectiva.
+            </p>
+          </div>
+          <div className="cohesion-img"></div>
+        </div>
 
-                <div className="intencion-cont">
-                    <div className="intencion-texto">
-                        <h2 className="intencion-titulo verde">Participación e involucramiento social</h2>
-                        <p className="intencion-descripcion verde">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis distinctio quis, impedit perferendis rem minima qui. Rerum pariatur amet nostrum?</p>
-                    </div>
-                    <div className="intencion-img"></div>
-                </div>
-            </section>
+        <div className="intencion-cont intencion-verde">
+          <div className="comunidad-img"></div>
+          <div className="intencion-texto">
+            <p className="intencion-descripcion int-hide blanco">
+              Crear nuevas posibilidades para reconstruir la organización,
+              significado e identidad comunitaria.
+            </p>
+            <h2 className="intencion-titulo blanco">
+              Sentido <br /> de comunidad
+            </h2>
+            <p className="intencion-descripcion-sec blanco">
+              Crear nuevas posibilidades para reconstruir la organización,
+              significado e identidad comunitaria.
+            </p>
+          </div>
+        </div>
 
-            <section className="proposito-evolutivo">
-                <div className="color-overlay">
-                    <AnimationOnScroll animateIn="animate__fadeInUp" animateOut='animate__fadeOutUp' offset={190}>
-                        <h2 className='blanco'>Nuestro propósito evolutivo</h2>
-                    </AnimationOnScroll>
-                    <AnimationOnScroll className='descripcion-hero' animateIn="animate__fadeInUp" animateOut='animate__fadeOutUp' offset={190}>
-                        <p className='blanco'>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam,
-                            quia praesentium iste explicabo ad ipsum ex eius neque, dolor error
-                            commodi accusamus. 
-                        </p>
-                    </AnimationOnScroll>
-                </div>
-            </section>
-            <section className="cta-procesos">
-                <AnimationOnScroll animateIn="animate__fadeIn" animateOut='animate__fadeOut'>
-                    <h2 className='negro'>Para conocer qué hacemos...</h2>
-                </AnimationOnScroll>
-                <AnimationOnScroll animateIn="animate__heartBeat" animateOut='animate__fadeOutUp' delay={2}>
-                    <Link to='/proyectos'><button className="btn-intenciones-procesos"><p className="btn-intenciones-txt-primario">Presiona aquí</p><p className="btn-intenciones-txt-secundario">Conoce nuestros procesos comunitarios</p></button></Link>
-                </AnimationOnScroll>
-            </section>
-            <section className="mision-vision">
-            <div className="mision">
-                <AnimationOnScroll animateIn="animate__fadeInDown" animateOut='animate__fadeOutUp'>
-                        <h2 className="blanco">Misión</h2>
-                        <p className="blanco">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos voluptatum maxime ut itaque aspernatur qui laborum, ad cupiditate amet libero.</p>
-                </AnimationOnScroll>
-            </div>
-                <div className="separador">
-                    <div className="circulo-separador"></div>
-                    <div className="linea-separador"></div>
-                    <div className="circulo-separador"></div>
-                </div>
+        <div className="intencion-cont">
+          <div className="intencion-texto">
+            <h3 className="intencion-titulo verde">
+              Participación e <br /> involucramiento social
+            </h3>
+            <p className="intencion-descripcion verde">
+              Determinar la naturaleza y vocación de cada comunidad con
+              ciudadanos activos y partícipes.
+            </p>
+          </div>
+          <div className="participacion-img"></div>
+        </div>
+      </section>
 
-                <div className="vision">
-                <AnimationOnScroll animateIn="animate__fadeInDown" animateOut='animate__fadeOutUp' duration={1.4}>
-                    <h2 className="blanco">Visión</h2>
-                    <p className="blanco">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos voluptatum maxime ut itaque aspernatur qui laborum, ad cupiditate amet libero.</p>
-                </AnimationOnScroll>
-                    
-                </div>
-                <div className="separador">
-                    <div className="circulo-separador"></div>
-                    <div className="linea-separador"></div>
-                    <div className="circulo-separador"></div>
-                </div>
-                <div className="objetivo">
-                    <AnimationOnScroll animateIn="animate__fadeInDown" animateOut='animate__fadeOutUp' duration={1.6}>
-                    <h2 className="blanco">Objetivo</h2>
-                    <p className="blanco">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos voluptatum maxime ut itaque aspernatur qui laborum, ad cupiditate amet libero.</p>
-                    </AnimationOnScroll>
-                    
-                </div>
-            </section>
-            <Footer></Footer>
-        </main>
-    )
+      <section
+        className="proposito-evolutivo"
+        id="propositoEvolutivo"
+        style={propositoBGImg}
+      >
+        <div className="color-overlay">
+          <AnimationOnScroll
+            animateIn="animate__fadeInUp"
+            animateOut="animate__fadeOutUp"
+            offset={190}
+          >
+            <h2 className="blanco">Nuestro propósito evolutivo</h2>
+          </AnimationOnScroll>
+          <AnimationOnScroll
+            className="descripcion-hero"
+            animateIn="animate__fadeInUp"
+            animateOut="animate__fadeOutUp"
+            offset={190}
+          >
+            <p className="blanco">
+              El propósito que seguimos es el rizoma que multiplica nuestras
+              acciones, este es: reproducir, desde las potencialidades y
+              colectivas, diferentes conexiones comunitarias para que se
+              construyan nuevas interacciones territoriales.
+            </p>
+          </AnimationOnScroll>
+        </div>
+      </section>
+      <section className="cta-procesos">
+        <AnimationOnScroll
+          animateIn="animate__fadeIn"
+          animateOut="animate__fadeOut"
+        >
+          <h2 className="negro">Para conocer qué hacemos...</h2>
+        </AnimationOnScroll>
+        <AnimationOnScroll
+          animateIn="animate__heartBeat"
+          animateOut="animate__fadeOutUp"
+          delay={2}
+          duration={3}
+        >
+          <Link to="/proyectos">
+            <button className="btn-intenciones-procesos">
+              <p className="btn-intenciones-txt-primario">Presiona aquí</p>
+              <p className="btn-intenciones-txt-secundario">
+                Conoce nuestros procesos comunitarios
+              </p>
+            </button>
+          </Link>
+        </AnimationOnScroll>
+      </section>
+      <section className="mision-vision" id="objetivo">
+        <AnimationOnScroll
+          className="mision"
+          animateIn="animate__fadeInDown"
+          animateOut="animate__fadeOutUp"
+        >
+          <h2 className="blanco">Misión</h2>
+          <p className="blanco texto-mvo">
+          Rhesident Org. es una organización apartidista y sin fines de lucro, enfocada en la regeneración comunitaria, la cual está comprometida con la  creación de nuevas interacciones territoriales. Busca crear conexiones comunitarias para diversificar acciones, que disminuyan la desigualdad espacial evitando mayor fragmentación y conflicto social.
+          </p>
+        </AnimationOnScroll>
+
+        <div className="separador-contacto-vertical">
+          <div className="circulo-separador"></div>
+          <div className="linea-separador"></div>
+          <div className="circulo-separador"></div>
+        </div>
+        <div className="separador-contacto-horizontal">
+          <div className="circulo-separador"></div>
+          <div className="linea-separador-horizontal"></div>
+          <div className="circulo-separador"></div>
+        </div>
+        <AnimationOnScroll
+          animateIn="animate__fadeInDown"
+          animateOut="animate__fadeOutUp"
+          duration={1.4}
+          className="vision"
+        >
+          <h2 className="blanco">Visión</h2>
+          <p className="blanco texto-mvo">
+          Contrarrestar la exclusión y vulnerabilidad en comunidades que viven bajo condiciones de segregación y fragmentación, ocasionadas por la urbanización desmesurada. Para fortalecer el sentido de pertenencia, incentivando la transformación del entorno mediante procesos de regeneración.
+          </p>
+        </AnimationOnScroll>
+
+        <div className="separador-contacto-vertical">
+          <div className="circulo-separador"></div>
+          <div className="linea-separador"></div>
+          <div className="circulo-separador"></div>
+        </div>
+        <div className="separador-contacto-horizontal">
+          <div className="circulo-separador"></div>
+          <div className="linea-separador-horizontal"></div>
+          <div className="circulo-separador"></div>
+        </div>
+        <AnimationOnScroll
+          animateIn="animate__fadeInDown"
+          animateOut="animate__fadeOutUp"
+          duration={1.6}
+          className="objetivo"
+        >
+          <h2 className="blanco">Objetivo</h2>
+          <p className="blanco texto-mvo">
+            Resignificar las maneras actuales de construir y hacer comunidad mediante acciones que involucren cultura, arte, urbanismo y sustentabilidad. Para desterritorializar la identificación preconcebida y construir diversas posibilidades de conexión con el territorio.
+          </p>
+        </AnimationOnScroll>
+      </section>
+      <section className="valores">
+      <AnimationOnScroll
+          animateIn="animate__fadeIn"
+          animateOut="animate__fadeOut"
+        >
+          <h2 className="negro">Nuestros valores</h2>
+          
+        </AnimationOnScroll>
+
+        <AnimationOnScroll
+          animateIn="animate__fadeInDown"
+          animateOut="animate__fadeOutUp"
+        >
+         <ul className="valores-lista">
+            <li className="valor">Compromiso</li>
+            <li className="valor">Transformación Social</li>
+            <li className="valor">Equidad</li>
+            <li className="valor">Igualdad</li>
+            <li className="valor">Interculturalidad</li>
+            <li className="valor">Solidaridad</li>
+            <li className="valor">Transparencia</li>
+          </ul>
+          
+        </AnimationOnScroll>
+        
+      </section>
+      <Footer></Footer>
+    </main>
+  );
 }
 
-export default NuestrasIntenciones
+export default NuestrasIntenciones;

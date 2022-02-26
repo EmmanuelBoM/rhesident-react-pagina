@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import AdminNavbar from '../components/AdminNavbar';
 import '../styles/base.css'
 import '../styles/AdminLayout.css'
@@ -10,80 +10,25 @@ import ModalAdminConfirmar from '../components/ModalAdminConfirmar';
 // Firebase Imports
 import {db} from '../firebaseConfig'
 import {collection,addDoc} from "@firebase/firestore";
+import { useNavigate } from 'react-router-dom';
 
 function AdminAgregarNota() {
     const [modalExitoVisibility, setModalExitoVisibility] = useState(false)
     const [modalConfVisibility, setModalConfVisibility] = useState(false)
     const [nota, setNota] = useState({})
+    
+    let navigate = useNavigate();
+    useEffect(()=>{
+        let authToken = sessionStorage.getItem('Auth Token')
+        if (authToken) {
+            navigate('/agregar-nota')
+        }
 
-    const customSelectStyles = {
-        control: (base, state) => ({
-            ...base,
-            border: "2px solid #cfcfc9",
-            boxShadow: state.isFocused ? null : null,
-            padding: "0.3rem 0rem",
-            borderRadius: "1rem",
-            fontSize: "1.8rem",
-            color: "#F7F7F7",
-            fontFamily: "Lato",
-            textAlign: "start",
-            backgroundColor: 'rgba(255, 255, 255, 0)',
-            marginBottom: '2rem',
-            "&:focus ": {
-                outline: "none !important",
-                border: "2px solid var(--p-400)"
-              },
-          }),
-        placeholder: base =>({
-            ...base,
-            color: "#878778"
-        }),
-        menu: base => ({
-            ...base,
-            borderRadius: "1rem",
-            background: "#FCFCFC",
-            color: "#878778",
-            fontSize: "1.8rem",
-            textAlign: "start",
-            fontFamily: "Lato",
-            marginTop: '-1.4rem'
-        
-        }),
-        menuList: base => ({
-            ...base,
-            borderRadius: "1rem",
-        }),
-        singleValue: base => ({
-            ...base,
-            color: "#1b1b18",
-        }),
-        input: base => ({
-            ...base,
-            color: "#1b1b18",
-        }),
-        dropdownIndicator: base => ({
-            ...base,
-            color: "#164453"
-        }),
-        option: (base,{data, isDisabled, isFocused,isSelected}) => ({
-            ...base,
-            color: "#1A1A1A",
-            backgroundColor: isDisabled ? undefined: isSelected,
-            "&:hover ": {
-                background: "#164453",
-                color:"#f0f0ee"
-              },
-        }),
-        container: base => ({
-            ...base,
-            "@media only screen and (max-width: 576px)": {
-                ...base["@media only screen and (max-width: 576px)"],
-                width:"100%",
-        },
-        })
-    }
-
-
+        if (!authToken) {
+            navigate('/login')
+        }
+    },[])
+    
     function showModalConfirmar(){
         setModalConfVisibility(true);
     }
@@ -137,17 +82,17 @@ function AdminAgregarNota() {
                     </div>
                     <div className="cont-formulario-agregar">
                         <form action="" className="formulario-registro">
-                            <label htmlFor="titulo" className='input-label'>Título de la nota</label>
-                            <input type="text"  placeholder="Título completo" name="titulo" id="" className="input-gral" required onChange={handleInputChange}/>
+                            <label htmlFor="titulo" className='input-label'>Título de la nota*</label>
+                            <input type="text"  placeholder="Título completo" name="titulo" className="input-gral" required onChange={handleInputChange}/>
                             
-                            <label htmlFor="fuente" className='input-label'>Fuente</label>
+                            <label htmlFor="fuente" className='input-label'>Fuente*</label>
                             <input type="text"  placeholder="Ej.: Milenio, El Sol de Hidalgo, Blog x" name="fuente" id="" className="input-gral" required onChange={handleInputChange}/>
                             
-                            <label htmlFor="fecha" className='input-label'>Fecha de publicación</label>
-                            <input type="date"  name="fecha" id="" className="input-gral" required onChange={handleInputChange}/>
+                            <label htmlFor="fecha" className='input-label'>Fecha de publicación*</label>
+                            <input type="date"  name="fecha"  className="input-gral" required onChange={handleInputChange}/>
 
-                            <label htmlFor="notaURL" className='input-label'>URL</label>
-                            <input type="text"  placeholder="Enlace a la nota" name="notaURL" id="" className="input-gral" required onChange={handleInputChange}/>
+                            <label htmlFor="notaURL" className='input-label'>URL*</label>
+                            <input type="text"  placeholder="Enlace a la nota" name="notaURL" className="input-gral" required onChange={handleInputChange}/>
                             
                             <button className="btn-enviar"  type="button" onClick={showModalConfirmar}>
                                 <p>Agregar nota</p>

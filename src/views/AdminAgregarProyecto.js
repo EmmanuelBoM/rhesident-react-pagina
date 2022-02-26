@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import AdminNavbar from '../components/AdminNavbar';
 import '../styles/base.css'
 import '../styles/AdminLayout.css'
@@ -8,15 +8,11 @@ import CreatableSelect, { useCreatable } from 'react-select/creatable';
 import ModalAdminExito from '../components/ModalAdminExito';
 import ModalAdminConfirmar from '../components/ModalAdminConfirmar';
 
-
 // Firebase Imports
 import {db, storage} from '../firebaseConfig'
 import {collection,addDoc} from "@firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "@firebase/storage";
-
-
-
-
+import { useNavigate } from 'react-router-dom';
 
 function AdminAgregarProyecto() {
     const [modalExitoVisibility, setModalExitoVisibility] = useState(false)
@@ -30,6 +26,18 @@ function AdminAgregarProyecto() {
     const [estatusValue, setEstatusValue] = useState('')
     const [proyecto, setProyecto] = useState({})
 
+    let navigate = useNavigate();
+    useEffect(()=>{
+        let authToken = sessionStorage.getItem('Auth Token')
+        if (authToken) {
+            navigate('/agregar-proyecto')
+        }
+
+        if (!authToken) {
+            navigate('/login')
+        }
+    },[])
+
     const ejesAccion = [
         { value: 'Cultura', label: 'Cultura' },
         { value: 'Arte', label: 'Arte' },
@@ -39,14 +47,14 @@ function AdminAgregarProyecto() {
     
     const estatusSelect = [
         { value: 'Activo', label: 'Activo' },
-        { value: 'Pasado', label: 'Pasado' },
+        { value: 'Terminado', label: 'Terminado' },
         { value: 'Próximo', label: 'Próximo' }
     ]
     
     const modalidadesSelect = [
         { value: 'Presencial', label: 'Presencial' },
         { value: 'Híbrido', label: 'Híbrido' },
-        { value: 'Remoto', label: 'Remoto' }
+        { value: 'Remoto', label: 'Virtual' }
     ]
 
     const customSelectStyles = {
@@ -209,7 +217,9 @@ function AdminAgregarProyecto() {
         ejesValue.map((eje)=>ejesArr.push(eje.value))
         etiquetasValue.map((etiqueta)=>etiquetasArr.push(etiqueta.value))
         objetivosValue.map((objetivo)=>objetivosArr.push(objetivo.value))
-
+        if(!proyecto.URLExterno){
+            proyecto.URLExterno = "N/A"
+        }
 
         try{
             await addDoc(proyectosCollectionRef,
@@ -257,7 +267,10 @@ function AdminAgregarProyecto() {
                             
                             <label htmlFor="descripcionBreve" className="input-label">Descripción breve*</label>
                             <textarea name="descripcionBreve" cols="30" rows="4" className="input-gral" placeholder='250 caracteres máximo' onChange={handleInputChange} maxLength={250}></textarea>
-                            
+                            <div className="warning-img">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                                <p className="txt-warning">La descripción breve es la que se muestra al pasar el mouse sobre el cuadro del proyecto en la galería de proyectos.</p>
+                            </div>
                             <label htmlFor="descripcionGeneral" className="input-label">Descripción general*</label>
                             <textarea name="descripcionGeneral" cols="30" rows="8" className="input-gral" placeholder='Escribe aquí' onChange={handleInputChange}></textarea>
                             
@@ -268,8 +281,14 @@ function AdminAgregarProyecto() {
                             </div>
                             <div className="warning-img">
                                 <i class="fa-solid fa-circle-exclamation"></i>
+                                <p className="txt-warning">Formato recomendado: <span className="bold"> Horizontal 4:3</span> </p>
+                            </div>  
+
+                            <div className="warning-img">
+                                <i class="fa-solid fa-circle-exclamation"></i>
                                 <p className="txt-warning">Recuerda comprimir el tamaño de la imagen <a href="https://compressor.io/" target="_blank">aquí</a></p>
                             </div>
+                            
 
                             <label htmlFor="" className="input-label">Etiquetas*</label>
                             <CreatableSelect

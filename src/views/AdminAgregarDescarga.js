@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import AdminNavbar from '../components/AdminNavbar';
 import '../styles/base.css'
 import '../styles/AdminLayout.css'
@@ -11,6 +11,7 @@ import ModalAdminConfirmar from '../components/ModalAdminConfirmar';
 import {db, storage} from '../firebaseConfig'
 import {collection,addDoc} from "@firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "@firebase/storage";
+import { useNavigate } from 'react-router-dom';
 
 
 function AdminAgregarDescarga() {
@@ -19,6 +20,18 @@ function AdminAgregarDescarga() {
     const [descarga, setDescarga] = useState({})
     const [archivoURL, setArchivoURL] = useState('')
 
+    let navigate = useNavigate();
+    useEffect(()=>{
+        let authToken = sessionStorage.getItem('Auth Token')
+        if (authToken) {
+            navigate('/agregar-descarga')
+        }
+
+        if (!authToken) {
+            navigate('/login')
+        }
+    },[])
+    
     function showModalConfirmar(){
         setModalConfVisibility(true);
     }
@@ -91,8 +104,8 @@ function AdminAgregarDescarga() {
                             <label htmlFor="nombre" className='input-label'>Nombre*</label>
                             <input type="text"  placeholder="Nombre del archivo" name="nombre"  className="input-gral" required onChange={handleInputChange}/>
 
-                            <label htmlFor="descripcion" className='input-label'>Descripción</label>
-                            <textarea name="descripcion" placeholder="Descripción del archivo"  cols="30" rows="6" className="input-gral"  onChange={handleInputChange}></textarea>
+                            <label htmlFor="descripcion" className='input-label'>Descripción*</label>
+                            <textarea name="descripcion" placeholder="Descripción del archivo"  cols="30" rows="6" className="input-gral" required onChange={handleInputChange}></textarea>
                             
                             <label htmlFor="imgURL" className="input-label">Archivo*</label>
                             <input type="file" name="imgURL"  className="input-archivo" required onChange={handleArchivoChange}/>

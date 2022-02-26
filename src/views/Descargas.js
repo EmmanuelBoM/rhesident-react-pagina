@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import ilustracionDescargas from '../assets/ilustracion_descargas.svg'
 import Footer from '../components/Footer';
 import NavHeader from '../components/NavHeader';
+import NavMovil from '../components/NavMovil';
+
 import '../styles/base.css'
 import '../styles/Descargas.css'
 
@@ -12,7 +14,7 @@ import { Helmet } from 'react-helmet';
 
 function Descargas() {
     const [descargas, setDescargas] = useState([])
-
+    const [navMovilVisibility, setNavMovilVisibility] = useState(false)
 
     const descargasCollectionRef = collection(db, "descargas")
     const q= query(descargasCollectionRef, where("visible", "==",true));
@@ -30,12 +32,15 @@ function Descargas() {
             <Helmet>
                 <title>Descargas | Rhesident</title>
             </Helmet>
-             <NavHeader></NavHeader>
+            {navMovilVisibility ? (
+                <NavMovil setNavMovilVisibility={setNavMovilVisibility}></NavMovil>
+            ) : null}
+            <NavHeader setNavMovilVisibility={setNavMovilVisibility}></NavHeader>
             <section className="header-descargas">
                 <img src={ilustracionDescargas} alt="" className="img-descargas" />
                 <div className="text-header-descargas">
                     <h1 className="negro">Descargas</h1>
-                    <p className="header-subt verde">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit maiores commodi, error praesentium placeat eius.</p>
+                    <p className="header-subt verde">Aquí encontrarás diferentes materiales que hemos elaborado para ti, ¡nos encanta compartir!</p>
                 </div>
             </section>
             <section className="descargas-lista">

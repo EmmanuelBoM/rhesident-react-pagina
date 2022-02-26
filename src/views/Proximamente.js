@@ -1,18 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Footer from '../components/Footer';
 import NavHeader from '../components/NavHeader';
+import NavMovil from '../components/NavMovil';
 import '../styles/base.css'
 import '../styles/extras.css'
 import ilustracionProximamente from '../assets/ilustracion_proximamente.svg'
 import { Helmet } from 'react-helmet';
 
+
 function Proximamente() {
-  return (
+    const [navMovilVisibility, setNavMovilVisibility] = useState(false)
+     return (
         <main>
             <Helmet>
                 <title>Próximamente | Rhesident</title>
             </Helmet>
-            <NavHeader></NavHeader>
+            {navMovilVisibility ? (
+                <NavMovil setNavMovilVisibility={setNavMovilVisibility}></NavMovil>
+            ) : null}
+            <NavHeader setNavMovilVisibility={setNavMovilVisibility}></NavHeader>
             <section className="proximamente">
                     <h1 className="verde">Próximamente</h1>
                     <svg class="machine"xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 645 526">
@@ -37,7 +43,7 @@ function Proximamente() {
                         </g>
                     </svg>
                 
-                <h4>Estamos trabajando para ofrecerte lo mejor en nuestra plataforma</h4>
+                <h4 className='negro'>Estamos trabajando para ofrecerte lo mejor en nuestra plataforma</h4>
                 <img src={ilustracionProximamente} alt="" />
             </section>
             <Footer></Footer>
