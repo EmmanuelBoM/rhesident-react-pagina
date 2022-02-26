@@ -68,9 +68,8 @@ function Talleres() {
                     <div className="color-overlay">
                         <h1 className='titulo-hero blanco'>Aprende con nuestros talleres</h1>
                         <p className='origen-descripcion blanco descripcion-hero'>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam,
-                            quia praesentium iste explicabo ad ipsum ex eius neque, dolor error
-                            commodi accusamus. 
+                        Creemos que es sumamente importante, el poder ofrecer nuestros saberes, dones y talentos al colectivo. Siempre podemos aprender de todas las personas algo nuevo. Te dejamos aquí unas opciones de aprendizaje y capacitación que podrían interesarte.
+
                         </p>
                         <div className="scrolldown-cont">
                             <img src={downArrow} alt="" className="scroll-down-link scroll-down-arrow" />

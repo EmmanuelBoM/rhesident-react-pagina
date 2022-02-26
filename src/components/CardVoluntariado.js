@@ -69,14 +69,16 @@ function CardVoluntariado(props) {
               }
             ></i>
             <div className="explicacion-tipo">
-            <p className="negro">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque consectetur animi earum minus at quaerat repellat quasi quibusdam magnam perspiciatis!</p>
+              {props.tipoVoluntariado === "Presencial" ? <p className="negro">Si te encuentras en la ciudad de Pachuca o en zonas aledañas, este es tu momento para involucrarte.</p> : null}
+              {props.tipoVoluntariado === "Híbrido" ? <p className="negro">Si te agrada el trabajo remoto y tienes posibilidad de acompañar ciertos procesos presenciales, esto es para ti.</p> : null}
+              {props.tipoVoluntariado === "Virtual" ? <p className="negro">Tenemos también muchos proyectos los cuales requieren de colaboración a distancia, no lo dudes, ¡regístrate!</p> : null}
             </div>
           </div>
          
           
         </div>
         
-        <Link to="/registro-voluntariado">
+        <Link to="/registro-voluntariado" target="_blank">
           <button
             className={
               props.voluntariadoActive === props.tipoVoluntariado

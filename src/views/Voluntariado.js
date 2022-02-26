@@ -120,7 +120,7 @@ function Voluntariado() {
       <section className="hero-voluntariado" style={portadaImg}>
         <div className="color-overlay">
           <h1 className="titulo-hero blanco">
-            ¡Rgístrate a nuestro voluntariado!
+            ¡Regístrate a nuestro voluntariado!
           </h1>
           <p className="origen-descripcion blanco descripcion-hero">
             “...lo que está en el mundo me pertenece –no en el sentido de
@@ -304,7 +304,7 @@ function Voluntariado() {
           animateOut="animate__fadeOutUp"
           delay={2}
         >
-          <Link to="/registro-voluntariado">
+          <Link to="/registro-voluntariado" target="_blank">
             <button className="btn-cta-voluntariado">
               <p className="cta-voluntariado-t1">Aplica aquí</p>
               <p className="cta-voluntariado-t2">Sé parte de Rhesident Org</p>

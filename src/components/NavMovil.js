@@ -17,7 +17,7 @@ function NavMovil(props) {
       <ul className="nav-list-movil">
         <li className="nav-element-movil nav-submenu-movil">
           <div className="nav-submenu-cont-movil">
-            <p className="submenu-title-movil amarillo">¿Quienes somos?</p>
+            <p className="submenu-title-movil amarillo">¿Quiénes somos?</p>
             <div className="submenu-elements-movil">
               <Link to="/nuestras-intenciones">Nuestras Intenciones</Link>
               <Link to="/nuestro-origen">Nuestro Origen</Link>

@@ -22,17 +22,17 @@ function PaypalDona() {
             <NavHeader textColor='blanco' setNavMovilVisibility={setNavMovilVisibility}></NavHeader>
             <section className="contenido-dona">
                 <h2 className="titulo-hero blanco">Dona ahora</h2>
-                <p className="blanco descripcion-dona">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt similique porro numquam aperiam reiciendis et, aliquam error ipsum quibusdam necessitatibus?</p>
+                <p className="blanco descripcion-dona">Desde aquí puedes apoyarnos a seguir trabajando por nuestro propósito y causa. Cada aporte es valioso.</p>
                 <div className="card-paypal">
                     <img src={paypalLogo} alt="" />
                     <a href='https://www.paypal.com/paypalme/rhesidentorg' className="btn-dona-paypal">Donar ahora</a>
                 </div>
                 <div className="dona-bottom">
                     <div className="frase">
-                        <h4 className="blanco">"Las grandes oportunidades para ayudar a los demás raras veces vienen, pero las pequeñas nos rodean todos los días."</h4>
-                        <p className="autor-frase blanco">Sally Koch.</p>
+                        <h4 className="blanco">"Sé que las cosas pueden incluso empeorar, pero también sé que es posible intervenir para mejorarlas".</h4>
+                        <p className="autor-frase blanco">Paulo Freire</p>
                     </div>
-                    <img src="" alt="" className="gif-dona" />
+                    <div className="img-dona"></div>
                 </div>
             </section>
             <Footer></Footer>

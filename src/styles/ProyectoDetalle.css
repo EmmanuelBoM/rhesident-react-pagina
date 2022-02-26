@@ -27,7 +27,9 @@
 }
 
 .nombre-proyecto{
+    text-align: start;
     margin-bottom: 1rem;
+    width: 100%;
 }
 
 .categorias-proyecto{
@@ -48,7 +50,7 @@
 
 .descripcion-proyecto{
     color: var(--g-400);
-    width: 90%;
+    width: 100%;
     margin-bottom: 1rem;
 }
 
@@ -155,6 +157,12 @@
 .procesos{
     width: 50%;
     text-align: justify;
+    
+}
+
+.procesos-texto{
+    font-size: 1.8rem;
+    white-space: pre-line;
 }
 
 
@@ -235,6 +243,10 @@
         margin-top: 20rem;
         flex-direction: column;
         justify-content: start;
+    }
+
+    .nombre-proyecto{
+        text-align: center;
     }
 
     .img-principal-svg{

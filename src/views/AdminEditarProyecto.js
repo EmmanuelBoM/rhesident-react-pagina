@@ -69,7 +69,7 @@ function AdminEditarProyecto() {
     
     const estatusSelect = [
         { value: 'Activo', label: 'Activo' },
-        { value: 'Pasado', label: 'Pasado' },
+        { value: 'Terminado', label: 'Terminado' },
         { value: 'Próximo', label: 'Próximo' }
     ]
     
@@ -285,6 +285,11 @@ function AdminEditarProyecto() {
                             <label htmlFor="descripcionBreve" className="input-label">Descripción breve</label>
                             <textarea name="descripcionBreve" id="" cols="30" rows="4" className="input-gral" placeholder='90 caracteres máximo' onChange={handleInputChange} defaultValue={proyecto.descripcionBreve}></textarea>
                             
+                            <div className="warning-img">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                                <p className="txt-warning">La descripción breve es la que se muestra al pasar el mouse sobre el cuadro del proyecto en la galería de proyectos.</p>
+                            </div>
+
                             <label htmlFor="descripcionGeneral" className="input-label">Descripción general</label>
                             <textarea name="descripcionGeneral" id="" cols="30" rows="8" className="input-gral" placeholder='Escribe aquí' onChange={handleInputChange} defaultValue={proyecto.descripcionGeneral}></textarea>
                             
@@ -338,6 +343,9 @@ function AdminEditarProyecto() {
                             
                             <label htmlFor="" className="input-label">Procesos</label>
                             <textarea name="procesos" id="" cols="30" rows="8" className="input-gral" placeholder='Escribe aquí' onChange={handleInputChange} defaultValue={proyecto.procesos}></textarea>
+                            
+                            <label htmlFor="URLExterno" className='input-label'>Enlace externo</label>
+                            <input type="text"  placeholder="URL del blog o página del proyecto" name="URLExterno" id="" className="input-gral" onChange={handleInputChange}/>
                             
                             <label htmlFor="" className="input-label">Galería de imagenes</label>
                             <div className="file-preview-multi">

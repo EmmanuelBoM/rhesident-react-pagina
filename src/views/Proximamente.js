@@ -43,7 +43,7 @@ function Proximamente() {
                         </g>
                     </svg>
                 
-                <h4>Estamos trabajando para ofrecerte lo mejor en nuestra plataforma</h4>
+                <h4 className='negro'>Estamos trabajando para ofrecerte lo mejor en nuestra plataforma</h4>
                 <img src={ilustracionProximamente} alt="" />
             </section>
             <Footer></Footer>

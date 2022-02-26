@@ -22,6 +22,7 @@ import {
   where,
   doc,
   getDoc,
+  orderBy
 } from "@firebase/firestore";
 import { Helmet } from "react-helmet";
 
@@ -37,7 +38,7 @@ function NuestroEquipo() {
 
   const portadaRef = doc(db, "recursosGenerales", "ovN44y53KLXexXeAvrQn");
   const equipoCollectionRef = collection(db, "equipo");
-  const q = query(equipoCollectionRef, where("visible", "==", true));
+  const q = query(equipoCollectionRef, where("visible", "==", true), orderBy("nombre"));
 
   useEffect(() => {
     const getEquipo = async () => {

@@ -198,7 +198,7 @@
 .path-conoce{
     stroke-dasharray: 1500;
     stroke-dashoffset: 1600;
-    animation: dash 3s linear forwards 10;
+    animation: dash 3s linear forwards 1;
 }
 
 .corazon-conoce{

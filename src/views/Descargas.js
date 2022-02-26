@@ -40,7 +40,7 @@ function Descargas() {
                 <img src={ilustracionDescargas} alt="" className="img-descargas" />
                 <div className="text-header-descargas">
                     <h1 className="negro">Descargas</h1>
-                    <p className="header-subt verde">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit maiores commodi, error praesentium placeat eius.</p>
+                    <p className="header-subt verde">Aquí encontrarás diferentes materiales que hemos elaborado para ti, ¡nos encanta compartir!</p>
                 </div>
             </section>
             <section className="descargas-lista">

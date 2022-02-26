@@ -75,13 +75,13 @@
 }
 
 .intencion-cont:hover .intencion-img{
-    animation: image_hide 0.3s;
-    animation-timing-function:cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    animation: image_hide 0.8s;
+    animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
 }
 
 .intencion-cont:hover .intencion-texto{
-    animation: slide_reveal 0.3s ease-in-out;
+    animation: slide_reveal 0.8s ease-in-out;
     animation-fill-mode: forwards;
 }
 
@@ -161,11 +161,32 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 30%;
+    width: 40%;
 }
 
 .texto-mvo{
     width: 60%;
+}
+
+.valores{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 10rem 0;
+    align-items: center;
+    margin-bottom: 10rem;
+}
+
+.valores-lista{
+    margin-top: 10rem;
+    list-style: none;
+    text-align: center;
+}
+
+.valor{
+    font-size: 2.4rem;
+    color: var(--primario);
+    margin-bottom: 2rem;
 }
 
 @keyframes slide_reveal {

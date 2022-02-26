@@ -17,6 +17,10 @@
     padding: 8rem 4rem;
     align-items: center;
     text-align: center;
+
+}
+.texto-tipo-donacion{
+    width: 80%;
 }
 
 .donar .btn-donaciones{

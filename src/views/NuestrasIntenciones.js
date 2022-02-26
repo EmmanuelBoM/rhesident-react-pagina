@@ -228,8 +228,7 @@ function NuestrasIntenciones() {
         >
           <h2 className="blanco">Misión</h2>
           <p className="blanco texto-mvo">
-            Crear conexiones comunitarias para renovar percepciones y
-            diversificar acciones.
+          Rhesident Org. es una organización apartidista y sin fines de lucro, enfocada en la regeneración comunitaria, la cual está comprometida con la  creación de nuevas interacciones territoriales. Busca crear conexiones comunitarias para diversificar acciones, que disminuyan la desigualdad espacial evitando mayor fragmentación y conflicto social.
           </p>
         </AnimationOnScroll>
 
@@ -251,8 +250,7 @@ function NuestrasIntenciones() {
         >
           <h2 className="blanco">Visión</h2>
           <p className="blanco texto-mvo">
-            Fortalecer el sentido de pertenencia y de comunidad, incentivando la
-            transformación del entorno.
+          Contrarrestar la exclusión y vulnerabilidad en comunidades que viven bajo condiciones de segregación y fragmentación, ocasionadas por la urbanización desmesurada. Para fortalecer el sentido de pertenencia, incentivando la transformación del entorno mediante procesos de regeneración.
           </p>
         </AnimationOnScroll>
 
@@ -274,9 +272,35 @@ function NuestrasIntenciones() {
         >
           <h2 className="blanco">Objetivo</h2>
           <p className="blanco texto-mvo">
-            Resignificar las maneras de construir y hacer comunidad.
+            Resignificar las maneras actuales de construir y hacer comunidad mediante acciones que involucren cultura, arte, urbanismo y sustentabilidad. Para desterritorializar la identificación preconcebida y construir diversas posibilidades de conexión con el territorio.
           </p>
         </AnimationOnScroll>
+      </section>
+      <section className="valores">
+      <AnimationOnScroll
+          animateIn="animate__fadeIn"
+          animateOut="animate__fadeOut"
+        >
+          <h2 className="negro">Nuestros valores</h2>
+          
+        </AnimationOnScroll>
+
+        <AnimationOnScroll
+          animateIn="animate__fadeInDown"
+          animateOut="animate__fadeOutUp"
+        >
+         <ul className="valores-lista">
+            <li className="valor">Compromiso</li>
+            <li className="valor">Transformación Social</li>
+            <li className="valor">Equidad</li>
+            <li className="valor">Igualdad</li>
+            <li className="valor">Interculturalidad</li>
+            <li className="valor">Solidaridad</li>
+            <li className="valor">Transparencia</li>
+          </ul>
+          
+        </AnimationOnScroll>
+        
       </section>
       <Footer></Footer>
     </main>
