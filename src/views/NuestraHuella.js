@@ -85,7 +85,6 @@ function NuestraHuella() {
     getNotas();
     getTestimonios();
     getAlianzas();
-    console.log(testimonios)
   }, []);
 
   const portadaImg = {
