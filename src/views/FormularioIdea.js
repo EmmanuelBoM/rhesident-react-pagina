@@ -55,7 +55,7 @@ function FormularioIdea() {
     };
 
     const sendEmail = ()=>{
-        emailjs.sendForm('service_u991eko', 'template_bcuckis', formul, 'user_wh73PvSsOalaHXaqSy8Bk')
+        emailjs.sendForm('service_ptr57gn', 'template_uewpabn', formul, 'user_6Z59AsBJ728YVhNVXCx7x')
         .then((result) => {
             setModalConfVisibility(false)
             setModalExitoVisibility(true)
@@ -74,6 +74,7 @@ function FormularioIdea() {
             <NavHeader setNavMovilVisibility={setNavMovilVisibility}></NavHeader>
             <div className="titulo-header">
                 <h1 className="verde">Cuéntanos tu idea</h1>
+                <p className="header-subt negro">Colabora con Rhesident Org.</p>
             </div>
            
             <section className="registro-contenido cont-idea">
@@ -134,7 +135,7 @@ function FormularioIdea() {
                             <p className="verde ">info@rhesident.org</p>
                         </div>
                     </div>
-                    <img src='' alt="" className="img-registro" />
+                    
                 </div>
             </section>
             <Footer></Footer>

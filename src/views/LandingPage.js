@@ -136,10 +136,10 @@ function LandingPage() {
             />
           </svg>
 
-          <h1 className="titulo-landing blanco">Rhesident Org.</h1>
-          <h3 className="subtitulo-landing amarillo">
+          <h1 className="titulo-landing blanco">Rhesident <span className="amarillo">Org.</span> </h1>
+          <h3 className="subtitulo-landing blanco">
             Somos una organización de <br />{" "}
-            <span className="bold">
+            <span className="bold amarillo">
               Regeneración Comunitaria Multidisciplinaria.
             </span>
           </h3>
@@ -203,7 +203,6 @@ function LandingPage() {
         </div>
 
         <section className="video-principal">
-          <h2 className="negro mb4">Lorem ipsum dolor sit.</h2>
           <div className="cont-frame">
             <iframe
               className="responsive-iframe"

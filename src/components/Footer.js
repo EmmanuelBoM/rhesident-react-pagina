@@ -41,7 +41,7 @@ function Footer() {
           </div>
           <div className="footer-links">
             <div className="footer-cont">
-              <p className="footer-subtitle">¿Quienes somos?</p>
+              <p className="footer-subtitle">¿Quiénes somos?</p>
               <Link to="/nuestras-intenciones">
                 <p className="footer-link">Nuestras intenciones</p>
               </Link>
@@ -79,12 +79,10 @@ function Footer() {
             </div>
             <div className="footer-cont">
               <p className="footer-subtitle">Podcast</p>
-              <Link to="/podcast/youtube">
-                <p className="footer-link">Escúchalo en Youtube</p>
+              <Link to="/podcast">
+                <p className="footer-link">Próximamente</p>
               </Link>
-              <Link to="/podcast/spotify">
-                <p className="footer-link">Escúchalo en Spotify</p>
-              </Link>
+              
             </div>
             <div className="footer-cont">
               <p className="footer-subtitle">Talleres</p>
@@ -124,10 +122,10 @@ function Footer() {
               <Link to="/dona-ahora">
                 <p className="footer-link">Donaciones</p>
               </Link>
-              <Link to="/cuentanos-tu-idea">
+              <Link to="/cuentanos-tu-idea" target="_blank">
                 <p className="footer-link">Cuéntanos tu idea</p>
               </Link>
-              <a href="/">
+              <a href="https://calendly.com/rhesidentorg" target="_blank">
                 <p className="footer-link">Agenda una entrevista</p>
               </a>
             </div>

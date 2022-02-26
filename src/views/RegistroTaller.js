@@ -75,7 +75,7 @@ function RegistroTaller() {
     };
 
     const sendEmail = ()=>{
-        emailjs.sendForm('service_odg80w1', 'template_bcuckis', formul, 'user_wh73PvSsOalaHXaqSy8Bk')
+        emailjs.sendForm('service_ptr57gn', 'template_uewpabn', formul, 'user_6Z59AsBJ728YVhNVXCx7x')
         .then((result) => {
             setModalConfVisibility(false)
             setModalExitoVisibility(true)

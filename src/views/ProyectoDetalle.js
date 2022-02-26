@@ -85,7 +85,7 @@ function ProyectoDetalle() {
                         })}
                     </div>
                     
-                    <p className="descripcion-proyecto">{proyecto.descripcionGeneral}</p>
+                    <div className="descripcion-proyecto procesos-texto negro">{proyecto.descripcionGeneral}</div>
                     
                     <div className="categorias-proyecto">
                         {
@@ -105,7 +105,7 @@ function ProyectoDetalle() {
             <section className="detalles-secundario">
                 <h3 className="estatus-proyecto">Estatus del proyecto</h3>
                 {proyecto.estatus === 'Activo' ? <div className="tag-estatus e-activo"> <p>{proyecto.estatus}</p> </div> : null}
-                {proyecto.estatus === 'Pasado' ? <div className="tag-estatus e-pasado"> <p>{proyecto.estatus}</p> </div> : null}
+                {proyecto.estatus === 'Terminado' ? <div className="tag-estatus e-pasado"> <p>{proyecto.estatus}</p> </div> : null}
                 {proyecto.estatus === 'Próximo' ? <div className="tag-estatus e-proximo"> <p>{proyecto.estatus}</p> </div> : null}
                 <div className="cont-botones-proyecto">
                     {proyecto.URLExterno  !== "N/A" ? <a href={proyecto.URLExterno}><button className="btn-proyecto-externo"> <span className="bold">Ingresa</span> a la página del proyecto</button></a> : null}
@@ -142,7 +142,7 @@ function ProyectoDetalle() {
                     </div>
                     <div className="procesos">
                         <h2 className="negro h-proyecto">Procesos</h2>
-                        <p className='negro'>{proyecto.procesos}</p>
+                        <div className='negro procesos-texto'>{proyecto.procesos}</div>
                     </div>
                 </div>
             </section>

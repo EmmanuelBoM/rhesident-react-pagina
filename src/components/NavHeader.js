@@ -48,7 +48,7 @@ function NavHeader(props) {
                     : `submenu-title negro`
                 }
               >
-                ¿Quienes somos?
+                ¿Quiénes somos?
               </a>
               <div
                 className={

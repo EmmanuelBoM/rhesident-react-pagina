@@ -6,6 +6,7 @@ import "../styles/base.css";
 import "../styles/LandingPage.css";
 import "../styles/NuestraHuella.css";
 import downArrow from "../assets/down_arrow_light.svg";
+import NavMovil from "../components/NavMovil";
 
 // SwiperJS
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -15,7 +16,8 @@ import "swiper/css/navigation";
 import { Animated } from "react-animated-css";
 import "animate.css/animate.min.css";
 import SwiperCore, { Pagination, Navigation } from "swiper";
-import NavMovil from "../components/NavMovil";
+
+import moment from 'moment';
 
 //Firebase imports
 import { db } from "../firebaseConfig";
@@ -57,7 +59,7 @@ function NuestraHuella() {
   const q_testimonios = query(testimoniosCollectionRef, where("visible", "==", true), orderBy("nombre"));
 
   const alianzasCollectionRef = collection(db, "alianzas");
-  const q_alianzas = query(alianzasCollectionRef, where("visible", "==", true));
+  const q_alianzas = query(alianzasCollectionRef, where("visible", "==", true), orderBy("nombre"));
 
   useEffect(() => {
     const getNotas = async () => {
@@ -119,10 +121,7 @@ function NuestraHuella() {
         <div className="color-overlay">
           <h1 className="titulo-hero blanco">Nuestra Huella</h1>
           <p className="origen-descripcion blanco descripcion-hero">
-            Tenemos un compromiso con el movimiento; para mover la tierra y
-            generar transformación colectiva, colaborativa y local. Somos
-            semilla creativa y de empoderamiento; canalizamos, abrimos caminos,
-            posibilidades, mentes y corazones.
+          Tenemos un compromiso con el movimiento; para mover el territorio y generar transformación colectiva, colaborativa y local.  Somos semilla creativa y de empoderamiento; canalizamos, abrimos caminos, posibilidades, mentes y corazones. 
           </p>
           <div className="scrolldown-cont">
             <img
@@ -138,8 +137,7 @@ function NuestraHuella() {
         <div className="section-title">
           <h2 className="negro">Testimonios</h2>
           <h4 className="negro descripcion-seccion">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Consectetur minus fuga fugit quis nemo iste.
+          Te compartimos algunos testimonios de personas, organizaciones, colectivos y distintas agrupaciones con quienes hemos colaborado y creado nuevas conexiones.
           </h4>
         </div>
 
@@ -210,6 +208,7 @@ function NuestraHuella() {
           className="swiper-proyectos"
         >
           {notas.map((nota) => {
+            var fecha = moment(nota.fecha).format("DD-MM-YYYY");
             return (
               <SwiperSlide className="cont-nota-medio">
                 <div className="franja-nota"></div>
@@ -218,7 +217,7 @@ function NuestraHuella() {
                   className="cont-nota-medio link-decoration"
                 >
                   <div className="detalles-nota">
-                    <p className="fecha-nota">{nota.fecha}</p>
+                    <p className="fecha-nota">{fecha}</p>
                     <h4 className="nombre-nota negro">{nota.titulo}</h4>
                     <div className="separador-nota"></div>
                     <div className="fuente-nota">

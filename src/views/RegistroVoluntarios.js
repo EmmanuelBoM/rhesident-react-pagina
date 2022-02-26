@@ -137,7 +137,7 @@ function RegistroVoluntarios() {
     };
 
     const sendEmail = ()=>{
-        emailjs.sendForm('service_u991eko', 'template_bcuckis', formul, 'user_wh73PvSsOalaHXaqSy8Bk')
+        emailjs.sendForm('service_ptr57gn', 'template_uewpabn', formul, 'user_6Z59AsBJ728YVhNVXCx7x')
         .then((result) => {
             setModalConfVisibility(false)
             setModalExitoVisibility(true)
@@ -168,7 +168,7 @@ function RegistroVoluntarios() {
                         <label htmlFor="lugarResidencia" className='input-label'>Lugar de residencia*</label>
                         <input type="text"  placeholder="Ciudad o comunidad" name="lugarResidencia" id="" className="input-gral" required onChange={handleInputChange}/>
                         <label htmlFor="" className="input-label">Modalidad de voluntariado*</label>
-                        <Select styles={customSelectStyles} options={options} placeholder='Selecciona una modalidad' onChange={handleModalidadChange} defaultValue={defaultSelectValue}/>
+                        <Select styles={customSelectStyles} options={options} placeholder='Selecciona una modalidad' onChange={handleModalidadChange} />
                         <label htmlFor="mensaje" className="input-label">¿Por qué te interesaría ser parte de la organización?*</label>
                         <textarea name="mensaje" id=""  cols="30" rows="10" className="input-gral" placeholder='Cuéntanos' onChange={handleInputChange} required></textarea>
                         

@@ -47,7 +47,7 @@ function AdminAgregarProyecto() {
     
     const estatusSelect = [
         { value: 'Activo', label: 'Activo' },
-        { value: 'Pasado', label: 'Pasado' },
+        { value: 'Terminado', label: 'Terminado' },
         { value: 'Próximo', label: 'Próximo' }
     ]
     
@@ -267,7 +267,10 @@ function AdminAgregarProyecto() {
                             
                             <label htmlFor="descripcionBreve" className="input-label">Descripción breve*</label>
                             <textarea name="descripcionBreve" cols="30" rows="4" className="input-gral" placeholder='250 caracteres máximo' onChange={handleInputChange} maxLength={250}></textarea>
-                            
+                            <div className="warning-img">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                                <p className="txt-warning">La descripción breve es la que se muestra al pasar el mouse sobre el cuadro del proyecto en la galería de proyectos.</p>
+                            </div>
                             <label htmlFor="descripcionGeneral" className="input-label">Descripción general*</label>
                             <textarea name="descripcionGeneral" cols="30" rows="8" className="input-gral" placeholder='Escribe aquí' onChange={handleInputChange}></textarea>
                             
