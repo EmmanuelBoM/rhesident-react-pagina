@@ -6,6 +6,7 @@ import NavMovil from '../components/NavMovil';
 import '../styles/base.css'
 import '../styles/Formularios.css'
 import '../styles/FormularioIdea.css'
+import imgGlobal from '../assets/ilustracion_global.png'
 
 import emailjs from '@emailjs/browser';
 import ModalAdminExito from '../components/ModalAdminExito';
@@ -134,6 +135,8 @@ function FormularioIdea() {
                             <p className="verde bold">Correo Electrónico</p>
                             <p className="verde ">info@rhesident.org</p>
                         </div>
+                        <h3 className="verde texto-global-thinking">#GlobalThinking</h3>
+                        <img src={imgGlobal} alt="" className="img-global-thinking" />
                     </div>
                     
                 </div>
