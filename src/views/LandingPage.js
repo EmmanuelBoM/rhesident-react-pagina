@@ -140,7 +140,7 @@ function LandingPage() {
           <h3 className="subtitulo-landing blanco">
             Somos una organización de <br />{" "}
             <span className="bold amarillo">
-              Regeneración Comunitaria Multidisciplinaria.
+              Regeneración Comunitaria Multidisciplinaria
             </span>
           </h3>
           <p className="descripcion-hero-landing blanco">

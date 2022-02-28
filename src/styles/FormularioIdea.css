@@ -34,6 +34,13 @@
     margin-bottom: 1rem;
 }
 
+.texto-global-thinking{
+    margin-top: 6rem;
+    text-align: center;
+}
+.img-global-thinking{
+    width: 100%;
+}
 
 
 @media only screen and (max-width: 768px) {
