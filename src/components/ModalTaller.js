@@ -13,6 +13,8 @@ function ModalTaller(props) {
         backgroundImage : `url(${props.taller.imgURL})`
     }
 
+    
+
     return (
       <div>
         <div className="modal-bg">
@@ -26,7 +28,7 @@ function ModalTaller(props) {
               />
             </div>
             <div className="modal-taller-top">
-              <div className="img-taller" style={imgBg}></div>
+              <img className="img-taller" src={props.taller.imgURL}></img>
               <div className="taller-info-principal">
                 <h3 className="nombre-taller">{props.taller.nombre}</h3>
                 <div className="etiquetas-taller">
