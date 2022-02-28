@@ -66,6 +66,7 @@
 
 .intencion-descripcion{
     display: none;
+    opacity: 0;
     margin-bottom: 0;
     width: 40%;
 }
@@ -76,7 +77,7 @@
 
 .intencion-cont:hover .intencion-img{
     animation: image_hide 0.8s;
-    animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in;
     animation-fill-mode: forwards;
 }
 
@@ -86,14 +87,14 @@
 }
 
 .intencion-cont:hover .intencion-descripcion{
+    animation: fade_reveal 1.5s ease-in;
+    animation-fill-mode: forwards;
     display: flex;
 }
 
 .intencion-verde{
     background-color: var(--primario);
 }
-
-
 
 .cta-procesos{
     margin:20rem 0;
@@ -190,8 +191,18 @@
 }
 
 @keyframes slide_reveal {
-    0%{width: 40%;}
+    0%{width: 60%;}
     100%{width: 94.5%;}
+}
+
+@keyframes fade_reveal {
+    0%{
+        opacity: 0;
+    }
+
+    100%{
+        opacity: 1;
+    }
 }
 
 @keyframes image_hide {
