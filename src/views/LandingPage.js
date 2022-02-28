@@ -21,6 +21,7 @@ import ModalResponsive from '../components/ModalResponsive.js'
 import { Animated } from "react-animated-css";
 import "animate.css/animate.min.css";
 
+import ReactGA from 'react-ga';
 
 // Firebase Imports
 import {db} from '../firebaseConfig'
@@ -47,6 +48,10 @@ function LandingPage() {
     const causaRef = doc(db, "recursosGenerales", "9Ye3smePFo8rD4oilpTE")
 
     useEffect(() => {
+
+      ReactGA.initialize('UA-221512994-2');
+      ReactGA.pageview(window.location.pathname + window.location.search);
+
       const getPortada = async () => {
           const portadaDoc = await getDoc(portadaRef);
           setPortadaImg(portadaDoc.data().url);
