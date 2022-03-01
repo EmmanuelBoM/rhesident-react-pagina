@@ -18,10 +18,7 @@ import iconoEquipo from '../assets/icono_equipo.svg'
 import { Helmet } from 'react-helmet';
 import ModalResponsive from '../components/ModalResponsive.js'
 
-import { Animated } from "react-animated-css";
 import "animate.css/animate.min.css";
-
-import ReactGA from 'react-ga';
 
 // Firebase Imports
 import {db} from '../firebaseConfig'
@@ -29,8 +26,6 @@ import {collection,getDoc, doc} from "@firebase/firestore";
 import NavMovil from '../components/NavMovil'
 
 function LandingPage() {
-
-    
     const [portadaImg, setPortadaImg] = useState('')
     const [causaImg, setCausaImg] = useState('')
     const [videoURL, setVideoURL] = useState('')
@@ -48,10 +43,6 @@ function LandingPage() {
     const causaRef = doc(db, "recursosGenerales", "9Ye3smePFo8rD4oilpTE")
 
     useEffect(() => {
-
-      ReactGA.initialize('UA-221512994-2');
-      ReactGA.pageview(window.location.pathname + window.location.search);
-
       const getPortada = async () => {
           const portadaDoc = await getDoc(portadaRef);
           setPortadaImg(portadaDoc.data().url);
