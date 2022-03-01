@@ -11,7 +11,7 @@ import "animate.css/animate.min.css";
 
 import downArrow from "../assets/down_arrow_light.svg";
 import { Helmet } from "react-helmet";
-import { AnimationOnScroll } from "react-animation-on-scroll";
+import ScrollAnimation from 'react-animate-on-scroll';
 import { Animated } from "react-animated-css";
 import "animate.css/animate.min.css";
 
@@ -175,17 +175,17 @@ function NuestrasIntenciones() {
         style={propositoBGImg}
       >
         <div className="color-overlay">
-          <AnimationOnScroll
-            animateIn="animate__fadeInUp"
-            animateOut="animate__fadeOutUp"
+          <ScrollAnimation
+            animateIn="fadeInUp"
+            animateOut="fadeOutUp"
             offset={190}
           >
             <h2 className="blanco">Nuestro propósito evolutivo</h2>
-          </AnimationOnScroll>
-          <AnimationOnScroll
+          </ScrollAnimation>
+          <ScrollAnimation
             className="descripcion-hero"
-            animateIn="animate__fadeInUp"
-            animateOut="animate__fadeOutUp"
+            animateIn="fadeInUp"
+            animateOut="fadeOutUp"
             offset={190}
           >
             <p className="blanco">
@@ -194,19 +194,19 @@ function NuestrasIntenciones() {
               colectivas, diferentes conexiones comunitarias para que se
               construyan nuevas interacciones territoriales.
             </p>
-          </AnimationOnScroll>
+          </ScrollAnimation>
         </div>
       </section>
       <section className="cta-procesos">
-        <AnimationOnScroll
-          animateIn="animate__fadeIn"
-          animateOut="animate__fadeOut"
+        <ScrollAnimation
+          animateIn="fadeIn"
+          animateOut="fadeOut"
         >
           <h2 className="negro">Para conocer qué hacemos...</h2>
-        </AnimationOnScroll>
-        <AnimationOnScroll
-          animateIn="animate__heartBeat"
-          animateOut="animate__fadeOutUp"
+        </ScrollAnimation>
+        <ScrollAnimation
+          animateIn="heartBeat"
+          animateOut="fadeOutUp"
           delay={2}
           duration={3}
         >
@@ -218,19 +218,19 @@ function NuestrasIntenciones() {
               </p>
             </button>
           </Link>
-        </AnimationOnScroll>
+        </ScrollAnimation>
       </section>
       <section className="mision-vision" id="objetivo">
-        <AnimationOnScroll
+        <ScrollAnimation
           className="mision"
-          animateIn="animate__fadeInDown"
-          animateOut="animate__fadeOutUp"
+          animateIn="fadeInDown"
+          animateOut="fadeOutUp"
         >
           <h2 className="blanco">Misión</h2>
           <p className="blanco texto-mvo">
           Rhesident Org. es una organización apartidista y sin fines de lucro, enfocada en la regeneración comunitaria, la cual está comprometida con la  creación de nuevas interacciones territoriales. Busca crear conexiones comunitarias para diversificar acciones, que disminuyan la desigualdad espacial evitando mayor fragmentación y conflicto social.
           </p>
-        </AnimationOnScroll>
+        </ScrollAnimation>
 
         <div className="separador-contacto-vertical">
           <div className="circulo-separador"></div>
@@ -242,9 +242,9 @@ function NuestrasIntenciones() {
           <div className="linea-separador-horizontal"></div>
           <div className="circulo-separador"></div>
         </div>
-        <AnimationOnScroll
-          animateIn="animate__fadeInDown"
-          animateOut="animate__fadeOutUp"
+        <ScrollAnimation
+          animateIn="fadeInDown"
+          animateOut="fadeOutUp"
           duration={1.4}
           className="vision"
         >
@@ -252,7 +252,7 @@ function NuestrasIntenciones() {
           <p className="blanco texto-mvo">
           Contrarrestar la exclusión y vulnerabilidad en comunidades que viven bajo condiciones de segregación y fragmentación, ocasionadas por la urbanización desmesurada. Para fortalecer el sentido de pertenencia, incentivando la transformación del entorno mediante procesos de regeneración.
           </p>
-        </AnimationOnScroll>
+        </ScrollAnimation>
 
         <div className="separador-contacto-vertical">
           <div className="circulo-separador"></div>
@@ -264,9 +264,9 @@ function NuestrasIntenciones() {
           <div className="linea-separador-horizontal"></div>
           <div className="circulo-separador"></div>
         </div>
-        <AnimationOnScroll
-          animateIn="animate__fadeInDown"
-          animateOut="animate__fadeOutUp"
+        <ScrollAnimation
+          animateIn="fadeInDown"
+          animateOut="fadeOutUp"
           duration={1.6}
           className="objetivo"
         >
@@ -274,20 +274,20 @@ function NuestrasIntenciones() {
           <p className="blanco texto-mvo">
             Resignificar las maneras actuales de construir y hacer comunidad mediante acciones que involucren cultura, arte, urbanismo y sustentabilidad. Para desterritorializar la identificación preconcebida y construir diversas posibilidades de conexión con el territorio.
           </p>
-        </AnimationOnScroll>
+        </ScrollAnimation>
       </section>
       <section className="valores">
-      <AnimationOnScroll
-          animateIn="animate__fadeIn"
-          animateOut="animate__fadeOut"
+      <ScrollAnimation
+          animateIn="fadeIn"
+          animateOut="fadeOut"
         >
           <h2 className="negro">Nuestros valores</h2>
           
-        </AnimationOnScroll>
+        </ScrollAnimation>
 
-        <AnimationOnScroll
-          animateIn="animate__fadeInDown"
-          animateOut="animate__fadeOutUp"
+        <ScrollAnimation
+          animateIn="fadeInDown"
+          animateOut="fadeOutUp"
         >
          <ul className="valores-lista">
             <li className="valor">Compromiso</li>
@@ -299,7 +299,7 @@ function NuestrasIntenciones() {
             <li className="valor">Transparencia</li>
           </ul>
           
-        </AnimationOnScroll>
+        </ScrollAnimation>
         
       </section>
       <Footer></Footer>

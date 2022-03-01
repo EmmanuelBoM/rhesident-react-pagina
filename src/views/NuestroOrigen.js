@@ -13,7 +13,7 @@ import gifMarca from '../assets/nuestra_marca.GIF'
 import gifHistoria from '../assets/nuestra_historia.GIF'
 import {Animated} from "react-animated-css";
 import "animate.css/animate.min.css";
-import { AnimationOnScroll } from 'react-animation-on-scroll';
+import ScrollAnimation from 'react-animate-on-scroll';
 
 // Firebase Imports
 import {db} from '../firebaseConfig'
@@ -101,9 +101,9 @@ function NuestroOrigen() {
         </section>
 
         <section className="elementos-origen" id="filosofia">
-          <AnimationOnScroll
-            animateIn="animate__fadeInLeft"
-            animateOut="animate__fadeOutLeft"
+          <ScrollAnimation
+            animateIn="fadeInLeft"
+            animateOut="fadeOutLeft"
             duration={2.3}
           >
             <div className="nuestra-filosofia">
@@ -131,11 +131,11 @@ function NuestroOrigen() {
                 <img src={gifFilosofia} alt="" className="gif-origen" />
               </figure>
             </div>
-          </AnimationOnScroll>
+          </ScrollAnimation>
 
-          <AnimationOnScroll
-            animateIn="animate__fadeInRight"
-            animateOut="animate__fadeOutRight"
+          <ScrollAnimation
+            animateIn="fadeInRight"
+            animateOut="fadeOutRight"
             duration={2.3}
           >
             <div className="nuestra-marca" id="marca">
@@ -162,11 +162,11 @@ function NuestroOrigen() {
                 </p>
               </div>
             </div>
-          </AnimationOnScroll>
+          </ScrollAnimation>
 
-          <AnimationOnScroll
-            animateIn="animate__fadeInLeft"
-            animateOut="animate__fadeOutLeft"
+          <ScrollAnimation
+            animateIn="fadeInLeft"
+            animateOut="fadeOutLeft"
             duration={2.3}
           >
             <div className="nuestra-historia" id="historia">
@@ -193,7 +193,7 @@ function NuestroOrigen() {
                 <img src={gifHistoria} alt="" className="gif-origen" />
               </figure>
             </div>
-          </AnimationOnScroll>
+          </ScrollAnimation>
         </section>
 
         <Footer></Footer>

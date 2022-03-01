@@ -8,7 +8,7 @@ import iconoCausa from '../assets/icono_causa.svg'
 import iconoMas from '../assets/icono_mas.svg'
 import downArrow from '../assets/down_arrow.svg'
 import "animate.css/animate.min.css";
-import { AnimationOnScroll } from 'react-animation-on-scroll';
+import ScrollAnimation from 'react-animate-on-scroll';
 import {Link} from 'react-router-dom'
 import CustomMailchimpForm from '../components/CustomMailchimpForm'
 import iconoIntenciones from '../assets/icono_intenciones.png'
@@ -18,12 +18,15 @@ import iconoEquipo from '../assets/icono_equipo.svg'
 import { Helmet } from 'react-helmet';
 import ModalResponsive from '../components/ModalResponsive.js'
 
+
 import "animate.css/animate.min.css";
 
 // Firebase Imports
 import {db} from '../firebaseConfig'
 import {collection,getDoc, doc} from "@firebase/firestore";
 import NavMovil from '../components/NavMovil'
+
+import ReactGA from 'react-ga';
 
 function LandingPage() {
     const [portadaImg, setPortadaImg] = useState('')
@@ -43,6 +46,10 @@ function LandingPage() {
     const causaRef = doc(db, "recursosGenerales", "9Ye3smePFo8rD4oilpTE")
 
     useEffect(() => {
+      
+      ReactGA.initialize('UA-221512994-2');
+      ReactGA.pageview(window.location.pathname + window.location.search);
+      
       const getPortada = async () => {
           const portadaDoc = await getDoc(portadaRef);
           setPortadaImg(portadaDoc.data().url);
@@ -151,9 +158,9 @@ function LandingPage() {
           </div>
 
           <div className="hero-ctas">
-            <AnimationOnScroll
-              animateIn="animate__fadeInLeft"
-              animateOut="animate__fadeOutLeft"
+            <ScrollAnimation
+              animateIn="fadeInLeft"
+              animateOut="fadeOutLeft"
               offset={190}
             >
               <div className="cta">
@@ -169,10 +176,10 @@ function LandingPage() {
                   </button>
                 </Link>
               </div>
-            </AnimationOnScroll>
-            <AnimationOnScroll
-              animateIn="animate__fadeInRight"
-              animateOut="animate__fadeOutRight"
+            </ScrollAnimation>
+            <ScrollAnimation
+              animateIn="fadeInRight"
+              animateOut="fadeOutRight"
               offset={190}
             >
               <div className="cta">
@@ -190,7 +197,7 @@ function LandingPage() {
                   </button>
                 </Link>
               </div>
-            </AnimationOnScroll>
+            </ScrollAnimation>
           </div>
         </section>
 
@@ -221,16 +228,16 @@ function LandingPage() {
 
         <section className="nuestra-causa" style={causaBGImg}>
           <div className="color-overlay">
-            <AnimationOnScroll
-              animateIn="animate__fadeInUp"
-              animateOut="animate__fadeOutUp"
+            <ScrollAnimation
+              animateIn="fadeInUp"
+              animateOut="fadeOutUp"
               offset={190}
             >
               <h2>Nuestra Causa</h2>
-            </AnimationOnScroll>
-            <AnimationOnScroll
-              animateIn="animate__fadeInUp"
-              animateOut="animate__fadeOutUp"
+            </ScrollAnimation>
+            <ScrollAnimation
+              animateIn="fadeInUp"
+              animateOut="fadeOutUp"
               delay={1}
             >
               <p className="causa-descripcion">
@@ -241,10 +248,10 @@ function LandingPage() {
                 poblacionales que viven bajo condiciones de segregación y
                 fragmentación, ocasionadas por la urbanización desmesurada.
               </p>
-            </AnimationOnScroll>
-            <AnimationOnScroll
-              animateIn="animate__fadeInUp"
-              animateOut="animate__fadeOutUp"
+            </ScrollAnimation>
+            <ScrollAnimation
+              animateIn="fadeInUp"
+              animateOut="fadeOutUp"
               delay={1}
             >
               <p className="causa-descripcion">
@@ -256,7 +263,7 @@ function LandingPage() {
                 </span>
                 , así como disminuyendo la desigualdad espacial.
               </p>
-            </AnimationOnScroll>
+            </ScrollAnimation>
           </div>
         </section>
 
@@ -276,7 +283,7 @@ function LandingPage() {
             <span className="bold">Rhesident Org.</span>{" "}
           </h4>
 
-          <AnimationOnScroll animateIn="animate__fadeIn" duration={2}>
+          <ScrollAnimation animateIn="fadeIn" duration={2}>
             <div className="item-conoce">
               <svg
                 className="huella-conoce"
@@ -304,13 +311,13 @@ function LandingPage() {
                 <img src={iconoIntenciones} alt="" />
               </Link>
             </div>
-          </AnimationOnScroll>
+          </ScrollAnimation>
 
           <div className="line-conoce"></div>
 
-          <AnimationOnScroll
-            animateIn="animate__fadeInRight"
-            animateOut="animate__fadeOutRight"
+          <ScrollAnimation
+            animateIn="fadeInRight"
+            animateOut="fadeOutRight"
             offset={180}
           >
             <div
@@ -326,11 +333,11 @@ function LandingPage() {
                 Nuestro <br /> propósito evolutivo
               </p>
             </div>
-          </AnimationOnScroll>
+          </ScrollAnimation>
 
-          <AnimationOnScroll
-            animateIn="animate__fadeInLeft"
-            animateOut="animate__fadeOutLeft"
+          <ScrollAnimation
+            animateIn="fadeInLeft"
+            animateOut="fadeOutLeft"
             offset={190}
           >
             <div
@@ -344,10 +351,10 @@ function LandingPage() {
               </p>
               <div className="node-conoce"></div>
             </div>
-          </AnimationOnScroll>
-          <AnimationOnScroll
-            animateIn="animate__fadeInRight"
-            animateOut="animate__fadeOutRight"
+          </ScrollAnimation>
+          <ScrollAnimation
+            animateIn="fadeInRight"
+            animateOut="fadeOutRight"
             offset={200}
           >
             <div
@@ -361,8 +368,8 @@ function LandingPage() {
                 Nuestra <br /> misión y visión
               </p>
             </div>
-          </AnimationOnScroll>
-          <AnimationOnScroll animateIn="animate__fadeIn" duration={2}>
+          </ScrollAnimation>
+          <ScrollAnimation animateIn="fadeIn" duration={2}>
             <div className="item-conoce">
               <svg
                 className="huella-conoce"
@@ -390,11 +397,11 @@ function LandingPage() {
                 <img src={iconoOrigen} alt="" />
               </Link>
             </div>
-          </AnimationOnScroll>
+          </ScrollAnimation>
           <div className="line-conoce-2"></div>
-          <AnimationOnScroll
-            animateIn="animate__fadeInLeft"
-            animateOut="animate__fadeOutLeft"
+          <ScrollAnimation
+            animateIn="fadeInLeft"
+            animateOut="fadeOutLeft"
             offset={200}
           >
             <div
@@ -408,10 +415,10 @@ function LandingPage() {
               </p>
               <div className="node-conoce"></div>
             </div>
-          </AnimationOnScroll>
-          <AnimationOnScroll
-            animateIn="animate__fadeInRight"
-            animateOut="animate__fadeOutRight"
+          </ScrollAnimation>
+          <ScrollAnimation
+            animateIn="fadeInRight"
+            animateOut="fadeOutRight"
             offset={180}
           >
             <div
@@ -425,10 +432,10 @@ function LandingPage() {
                 Nuestra <br /> marca
               </p>
             </div>
-          </AnimationOnScroll>
-          <AnimationOnScroll
-            animateIn="animate__fadeInLeft"
-            animateOut="animate__fadeOutLeft"
+          </ScrollAnimation>
+          <ScrollAnimation
+            animateIn="fadeInLeft"
+            animateOut="fadeOutLeft"
             offset={200}
           >
             <div
@@ -440,8 +447,8 @@ function LandingPage() {
               </p>
               <div className="node-conoce"></div>
             </div>
-          </AnimationOnScroll>
-          <AnimationOnScroll animateIn="animate__fadeIn" duration={3}>
+          </ScrollAnimation>
+          <ScrollAnimation animateIn="fadeIn" duration={3}>
             <div className="item-conoce">
               <svg
                 className="huella-conoce"
@@ -469,13 +476,13 @@ function LandingPage() {
                 <img src={iconoProcesos} alt="" />
               </Link>
             </div>
-          </AnimationOnScroll>
+          </ScrollAnimation>
 
           <div className="line-conoce-3"></div>
 
-          <AnimationOnScroll
-            animateIn="animate__fadeInRight"
-            animateOut="animate__fadeOutRight"
+          <ScrollAnimation
+            animateIn="fadeInRight"
+            animateOut="fadeOutRight"
             offset={180}
           >
             <div
@@ -485,11 +492,11 @@ function LandingPage() {
               <div className="node-conoce"></div>
               <p className="node-texto">Cultura</p>
             </div>
-          </AnimationOnScroll>
+          </ScrollAnimation>
 
-          <AnimationOnScroll
-            animateIn="animate__fadeInLeft"
-            animateOut="animate__fadeOutLeft"
+          <ScrollAnimation
+            animateIn="fadeInLeft"
+            animateOut="fadeOutLeft"
             offset={190}
           >
             <div
@@ -499,10 +506,10 @@ function LandingPage() {
               <p className="node-texto">Arte</p>
               <div className="node-conoce"></div>
             </div>
-          </AnimationOnScroll>
-          <AnimationOnScroll
-            animateIn="animate__fadeInRight"
-            animateOut="animate__fadeOutRight"
+          </ScrollAnimation>
+          <ScrollAnimation
+            animateIn="fadeInRight"
+            animateOut="fadeOutRight"
             offset={200}
           >
             <div
@@ -512,10 +519,10 @@ function LandingPage() {
               <div className="node-conoce"></div>
               <p className="node-texto">Urbanismo</p>
             </div>
-          </AnimationOnScroll>
-          <AnimationOnScroll
-            animateIn="animate__fadeInLeft"
-            animateOut="animate__fadeOutLeft"
+          </ScrollAnimation>
+          <ScrollAnimation
+            animateIn="fadeInLeft"
+            animateOut="fadeOutLeft"
             offset={190}
           >
             <div
@@ -527,8 +534,8 @@ function LandingPage() {
               <p className="node-texto">Sustentabilidad</p>
               <div className="node-conoce"></div>
             </div>
-          </AnimationOnScroll>
-          <AnimationOnScroll animateIn="animate__fadeIn" duration={3}>
+          </ScrollAnimation>
+          <ScrollAnimation animateIn="fadeIn" duration={3}>
             <div className="item-conoce">
               <svg
                 className="huella-conoce"
@@ -556,7 +563,7 @@ function LandingPage() {
                 <img src={iconoEquipo} alt="" />
               </Link>
             </div>
-          </AnimationOnScroll>
+          </ScrollAnimation>
         </section>
 
         <section className="round-ctas">
