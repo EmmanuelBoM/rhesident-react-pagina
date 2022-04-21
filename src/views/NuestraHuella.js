@@ -190,11 +190,8 @@ function NuestraHuella() {
         </div>
 
         <Swiper
-          slidesPerView={4}
-          centeredSlides={true}
-          loop={true}
+          slidesPerView={3}
           spaceBetween={30}
-          pagination={{ type: "custom" }}
           navigation={true}
           breakpoints={{
             768: {
@@ -204,7 +201,7 @@ function NuestraHuella() {
               slidesPerView: 2,
             },
           }}
-          className="swiper-proyectos"
+          className="swiper-notas"
         >
           {notas.map((nota) => {
             var fecha = moment(nota.fecha).format("DD-MM-YYYY");

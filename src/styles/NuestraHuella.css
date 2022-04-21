@@ -106,6 +106,31 @@
     font-weight: 900 !important;
 }
 
+.swiper-notas {
+    width: 100%;
+    display: flex;
+  }
+
+  .swiper-notas a{
+    text-decoration: none;
+}
+
+.swiper-notas .swiper-button-next, .swiper-notas .swiper-button-prev{
+    width: 10rem !important;
+    height: 10rem !important;
+    border-radius: 25rem;
+    background-color: var(--p-300);
+    color: var(--blanco) !important;
+    margin-top: -5rem !important;
+}
+
+.swiper-notas .swiper-wrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
 .notas-medio{
     width: 100%;
     display: flex;
