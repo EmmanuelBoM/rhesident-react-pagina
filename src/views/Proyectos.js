@@ -265,9 +265,9 @@ function Proyectos() {
         <div className="proyectos-galeria">
           <Swiper
             onSwiper={setSwiperRef}
-            slidesPerView={1}
+            slidesPerView={7}
             centeredSlides={true}
-            loop={false}
+            loop={true}
             spaceBetween={30}
             pagination={{ type: "custom" }}
             navigation={true}
@@ -318,9 +318,9 @@ function Proyectos() {
         <div className="proyectos-galeria">
           <Swiper
             onSwiper={setSwiperRef}
-            slidesPerView={1}
+            slidesPerView={7}
             centeredSlides={true}
-            loop={false}
+            loop={true}
             spaceBetween={30}
             pagination={{ type: "custom" }}
             navigation={true}
@@ -371,9 +371,9 @@ function Proyectos() {
         <div className="proyectos-galeria">
           <Swiper
             onSwiper={setSwiperRef}
-            slidesPerView={1}
+            slidesPerView={7}
             centeredSlides={true}
-            loop={false}
+            loop={true}
             spaceBetween={30}
             pagination={{ type: "custom" }}
             navigation={true}
@@ -424,9 +424,9 @@ function Proyectos() {
         <div className="proyectos-galeria">
           <Swiper
             onSwiper={setSwiperRef}
-            slidesPerView={1}
+            slidesPerView={7}
             centeredSlides={true}
-            loop={false}
+            loop={true}
             spaceBetween={30}
             pagination={{ type: "custom" }}
             navigation={true}

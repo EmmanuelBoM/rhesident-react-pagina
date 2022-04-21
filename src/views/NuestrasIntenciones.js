@@ -228,7 +228,7 @@ function NuestrasIntenciones() {
         >
           <h2 className="blanco">Misión</h2>
           <p className="blanco texto-mvo">
-          Rhesident Org. es una organización apartidista y sin fines de lucro, enfocada en la regeneración comunitaria, la cual está comprometida con la  creación de nuevas interacciones territoriales. Busca crear conexiones comunitarias para diversificar acciones, que disminuyan la desigualdad espacial evitando mayor fragmentación y conflicto social.
+            Rhesident Org. es una organización apartidista y sin fines de lucro, comprometida con la  creación de nuevas interacciones territoriales desde un enfoque de regeneración comunitaria multidisciplinaria, para fortalecer el sentido de pertenencia en comunidades urbanas, semi rurales, rurales, ciudades y grupos poblacionales que viven bajo condiciones de segregación y fragmentación.
           </p>
         </ScrollAnimation>
 
@@ -250,7 +250,7 @@ function NuestrasIntenciones() {
         >
           <h2 className="blanco">Visión</h2>
           <p className="blanco texto-mvo">
-          Contrarrestar la exclusión y vulnerabilidad en comunidades que viven bajo condiciones de segregación y fragmentación, ocasionadas por la urbanización desmesurada. Para fortalecer el sentido de pertenencia, incentivando la transformación del entorno mediante procesos de regeneración.
+            Convertirnos en una de las organizaciones no gubernamentales, con mayor presencia tanto a nivel nacional como internacional, enfocados en contrarrestar la exclusión y vulnerabilidad en comunidades impactadas por los efectos de la urbanización desmesurada, evitando mayor fragmentación y conflicto social y mayor desigualdad espacial.
           </p>
         </ScrollAnimation>
 
@@ -272,7 +272,7 @@ function NuestrasIntenciones() {
         >
           <h2 className="blanco">Objetivo</h2>
           <p className="blanco texto-mvo">
-            Resignificar las maneras actuales de construir y hacer comunidad mediante acciones que involucren cultura, arte, urbanismo y sustentabilidad. Para desterritorializar la identificación preconcebida y construir diversas posibilidades de conexión con el territorio.
+            Resignificar las maneras actuales de construir y hacer comunidad mediante acciones que involucren cultura, arte, urbanismo y sustentabilidad. Con la finalidad de poder desterritorializar la identificación preconcebida y construir diversas posibilidades de conexión con el territorio.
           </p>
         </ScrollAnimation>
       </section>
