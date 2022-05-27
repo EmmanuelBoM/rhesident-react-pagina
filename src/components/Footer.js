@@ -80,7 +80,7 @@ function Footer() {
             <div className="footer-cont">
               <p className="footer-subtitle">Podcast</p>
               <Link to="/podcast">
-                <p className="footer-link">Próximamente</p>
+                <p className="footer-link">Escúchalo aquí</p>
               </Link>
               
             </div>
