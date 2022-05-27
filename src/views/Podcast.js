@@ -2,14 +2,14 @@ import React, {useState, useEffect} from 'react';
 import Footer from '../components/Footer';
 import NavHeader from '../components/NavHeader';
 import NavMovil from '../components/NavMovil';
-import ilustracionPodcast from '../assets/ilustracion_podcast.svg'
+import ilustracionPodcast from '../assets/Rhe-acciona.png'
 import '../styles/base.css'
 import '../styles/Podcast.css'
 import { Helmet } from 'react-helmet';
 import { useParams } from 'react-router-dom';
 
 function Podcast() {
-    const [plataforma, setPlataforma] = useState('youtube')
+    const [plataforma, setPlataforma] = useState('spotify')
     const [navMovilVisibility, setNavMovilVisibility] = useState(false)
     const params = useParams()
 
@@ -34,11 +34,13 @@ function Podcast() {
             ) : null}
             <NavHeader setNavMovilVisibility={setNavMovilVisibility}></NavHeader>
             
-            <section className="header-descargas">
-                <img src={ilustracionPodcast} alt="" className="img-descargas" />
+            <section className="header-podcast">
+                <img src={ilustracionPodcast} alt="" className="img-podcast" />
                 <div className="text-header-descargas">
-                    <h1 className="negro">Podcast Rhesident</h1>
-                    <p className="header-subt verde">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit maiores commodi, error praesentium placeat eius.</p>
+                    
+                    <p className="header-subt-podcast verde">Intentamos cuestionar, confrontar, interrogar, dialogar... <br/> Buscamos <span className='bold'>Rhe-Accionar</span>. <br/> <br/>
+                                                    Este podcast es un no-lugar para Rhe-accionar ante temas actuales y diversos, para responder esas preguntas que de repente llegan a tu cabeza cuando vas escuchando las cumbias del chofer en la combi, en la fila del súper, cuando estás lavando los platos, cuando estás escogiendo tus aguacates en el mercado o cuando estás buscando figuritas en el techo de tu cuarto. Queremos conseguir inquietarte. Sin paniquearte.
+                                                    <br/> <br/>Porque para Rhe-accionar, primero hay que cuestionar.</p>
                 </div>
             </section>
             <section className="cont-podcast">
@@ -50,22 +52,22 @@ function Podcast() {
                     </div>
                     <div className="cont-siguenos">
                         <h3 className="negro">Síguenos</h3>
-                        <div className="item-siguenos">
+                        <a className="item-siguenos"  target="_blank" href='https://www.youtube.com/channel/UCTzEC-SbnoKXEtavo0MW6dQ'>
                             <i class="fa-brands fa-youtube"></i>
                             <p className="negro">YouTube</p>
-                        </div>
-                        <div className="item-siguenos">
+                        </a>
+                        <a className="item-siguenos" target="_blank" href='https://open.spotify.com/show/2Wqgl9N5XyxNNQ4BJg7OYz?si=e5485681b46f4226'>
                             <i class="fa-brands fa-spotify"></i>
                             <p className="negro">Spotify</p>
-                        </div>
-                        <div className="item-siguenos">
+                        </a>
+                        <a className="item-siguenos" target="_blank" href='https://www.facebook.com/rhesident.org'>
                             <i class="fa-brands fa-facebook"></i>
                             <p className="negro">Facebook</p>
-                        </div>
-                        <div className="item-siguenos">
+                        </a>
+                        <a className="item-siguenos"target="_blank" href='https://www.instagram.com/rhesident_org/'>
                             <i class="fa-brands fa-instagram"></i>
                             <p className="negro">Instagram</p>
-                        </div>
+                        </a>
                         
                             
                     </div>
@@ -73,12 +75,12 @@ function Podcast() {
                 {plataforma ==='youtube' ?
 
                 <div className="podcast-youtube">
-                    <h2 className="verde bold">Último episodio</h2>
+                    <h2 className="verde bold">Episodios</h2>
                     <div className="scrolldown-cont">
                         <i class="fa-solid fa-microphone-lines scroll-down-link-green" ></i>
                     </div>
                     <div className="cont-frame"> 
-                        <iframe  className='responsive-iframe yt-iframe' src="https://www.youtube.com/embed/videoseries?list=PLO5PywciZTL_4Ol2haPSRbDPCCfpEc3Y-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>   
+                        <iframe  className='responsive-iframe yt-iframe' src="https://www.youtube.com/embed/videoseries?list=PLz0Y6nyd3NAuGbkztpR_XFR7HTKg4F_ti" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>   
                     </div>
                    
                 </div> :
@@ -88,7 +90,7 @@ function Podcast() {
                     <div className="scrolldown-cont">
                         <i class="fa-solid fa-microphone-lines scroll-down-link-green" ></i>
                     </div>
-                    <iframe src="https://open.spotify.com/embed/show/6wF969GfLUfypoKaicH5gr?utm_source=generator" width="85%" height="232" frameBorder="0" allowfullscreen="" title='Rhesident Podcast' allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                    <iframe src="https://open.spotify.com/embed/show/2Wqgl9N5XyxNNQ4BJg7OYz?utm_source=generator" width="85%" height="232" frameBorder="0" allowfullscreen="" title='Rhesident Podcast' allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
                 </div>
 
                 }

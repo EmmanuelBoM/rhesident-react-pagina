@@ -9,8 +9,21 @@
     box-sizing: border-box;
     justify-content: space-between;
 }
-
-
+.header-podcast{
+    margin-top: 15rem;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    text-align: center;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 10rem;
+    width: 100%;
+    margin-bottom: 10rem;
+}
+.img-podcast{
+    width: 40%;
+}
 .podcast-acciones{
     width: 20%;
     display: flex;
@@ -103,6 +116,7 @@
     font-weight: 600;
     margin-top: 2rem;
     text-align: left;
+    text-decoration: none;
 }
 
 .item-siguenos i{
@@ -159,6 +173,9 @@
     width: 100%;
     height: 100%;
   }
+
+
+
 
   @media only screen and (max-width: 768px) {
 
